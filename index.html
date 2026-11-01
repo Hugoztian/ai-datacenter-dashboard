@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Datacenter — Full-Stack Dashboard</title>
+<script src="data.js"></script><script src="chart.umd.min.js"></script>
+<style>
+:root{--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;--bg:#f5f5f7;--panel:#fff;--panel2:#fafafc;--line:rgba(0,0,0,.08);--hair:#d2d2d7;--txt:#1d1d1f;--mut:#6e6e73;--mut2:#86868b;--acc:#0071e3;--pos:#1d8a3a;--neg:#d70015;--warn:#b25000;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 18px rgba(0,0,0,.05);--glass:rgba(251,251,253,.72);--seg:#e8e8ed}
+[data-theme=dark]{--bg:#000;--panel:#1c1c1e;--panel2:#232325;--line:rgba(255,255,255,.1);--hair:#3a3a3c;--txt:#f5f5f7;--mut:#a1a1a6;--mut2:#8e8e93;--acc:#2997ff;--pos:#30d158;--neg:#ff453a;--warn:#ffb340;--shadow:0 1px 2px rgba(0,0,0,.3),0 4px 18px rgba(0,0,0,.4);--glass:rgba(22,22,23,.72);--seg:#2c2c2e}
+*{box-sizing:border-box}body{margin:0;font-family:var(--font);background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--glass);border-bottom:1px solid var(--line)}
+.hd{max-width:1180px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
+.hd h1{font-size:19px;margin:0;font-weight:600;letter-spacing:-.01em}.hd .s{color:var(--mut);font-size:13px}
+.sp{flex:1}.seg{display:flex;background:var(--seg);border-radius:9px;padding:2px}.seg button{border:0;background:none;color:var(--txt);font:500 13px var(--font);padding:6px 12px;border-radius:7px;cursor:pointer}.seg button.on{background:var(--panel);box-shadow:var(--shadow)}
+.tbtn{border:1px solid var(--hair);background:var(--panel);color:var(--txt);border-radius:20px;padding:6px 12px;cursor:pointer;font:13px var(--font)}
+main{max-width:1180px;margin:auto;padding:22px 20px 60px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:22px}
+.kpi{background:var(--panel);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.kpi .l{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}.kpi .v{font-size:26px;font-weight:600;margin:6px 0 2px;letter-spacing:-.02em}.kpi .n{font-size:12px;color:var(--mut2)}
+.kpi sup a{font-size:10px;margin-left:2px}
+h2{font-size:22px;letter-spacing:-.015em;margin:28px 0 12px}
+.card{background:var(--panel);border-radius:18px;padding:20px;box-shadow:var(--shadow);border:1px solid var(--line)}
+/* WORLD stack */
+#world{position:relative;perspective:1400px}
+.stack{display:flex;flex-direction:column;gap:10px;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s}
+
+.slab{position:relative;display:grid;grid-template-columns:52px 1.3fr 1fr 1.6fr 22px;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,opacity .4s;opacity:0;transform:translateY(24px) scale(.98);animation:in .6s forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.slab:hover{transform:scale(1.012);box-shadow:0 10px 40px rgba(0,0,0,.15)}
+.slab::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c)}
+.slab .flow{position:absolute;inset:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--c) 16%,transparent),transparent);transform:translateX(-100%);animation:flow 4s linear infinite;pointer-events:none}
+@keyframes flow{to{transform:translateX(100%)}}
+.ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;color:#fff;background:var(--c)}
+.slab .nm{font-weight:600;font-size:16px}.slab .sb{font-size:12px;color:var(--mut)}
+.slab .tv{font-size:20px;font-weight:600}.slab .tw{font-size:11.5px;color:var(--mut2);line-height:1.35}
+.slab .chev{color:var(--mut2);font-size:20px}
+.fade .slab{opacity:.15!important;filter:blur(2px)}
+/* Zoom overlay */
+#zoom{position:fixed;z-index:80;background:var(--bg);overflow:auto;border-radius:16px;display:none;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+#zoom.open{display:block}
+#zoom .zin{max-width:1180px;margin:auto;padding:18px 20px 60px;opacity:0;transition:opacity .3s .25s}
+#zoom.full .zin{opacity:1}
+.zbar{display:flex;align-items:center;gap:12px;position:sticky;top:0;padding:12px 0;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:2}
+.back{border:0;background:var(--seg);color:var(--txt);border-radius:20px;padding:8px 14px;font:500 14px var(--font);cursor:pointer}
+.crumb{display:flex;gap:6px;overflow:auto;flex:1}.crumb button{border:1px solid var(--hair);background:var(--panel);color:var(--txt);border-radius:16px;padding:5px 10px;font:12px var(--font);cursor:pointer;white-space:nowrap}.crumb button.on{background:var(--c);color:#fff;border-color:transparent}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin:10px 0 16px}
+.big sup a{font-size:14px;vertical-align:top}
+.big{font-size:52px;font-weight:700;letter-spacing:-.03em;color:var(--c)}
+.segs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.sg{padding:14px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);opacity:0;transform:scale(.9);animation:pop .45s forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+.sg b{display:block;margin-bottom:4px}.sg span{font-size:13px;color:var(--mut)}
+.cos{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.co{padding:12px;border-radius:14px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);opacity:0;animation:pop .4s forwards;transition:transform .2s}.co:hover{transform:translateY(-3px)}
+.co .t{font:600 12px ui-monospace,Menlo,monospace;color:var(--c)}.co .nm{font-weight:600;margin:3px 0}.co .r{font-size:12px;color:var(--mut)}
+.note{font-size:12px;color:var(--mut2);margin-top:8px}
+.tbd{color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}th{font-size:12px;color:var(--mut);font-weight:500;text-transform:uppercase}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.srcs li{margin:6px 0;font-size:13px}.srcs .d{color:var(--mut2)}
+.tab{display:none}.tab.on{display:block;animation:pop .35s}
+footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12px;border-top:1px solid var(--line)}
+@media(max-width:760px){.slab{grid-template-columns:44px 1fr 22px}.slab .tvw,.slab .tw2{display:none}.hero,.grid2{grid-template-columns:1fr}.big{font-size:38px}.stack{transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.slab,.sg,.co{opacity:1;transform:none}}
+.model{display:block}
+.mwrap{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--panel)}
+#dc{display:block;width:100%;height:auto;transition:transform .55s cubic-bezier(.6,0,.3,1),filter .5s;animation:boot .9s cubic-bezier(.2,.8,.2,1)}
+@keyframes boot{from{opacity:0;transform:scale(.94)}}
+.mwrap.dive #dc{filter:blur(1px)}
+.sk1{stop-color:#eaf3ff}.sk2{stop-color:#fbfbfd}[data-theme=dark] .sk1{stop-color:#0b1220}[data-theme=dark] .sk2{stop-color:#151518}
+.ground{fill:#e6e8ec}[data-theme=dark] .ground{fill:#1c1c1f}.gridl{fill:none;stroke:var(--line);stroke-width:.6}
+.shell{fill:#f4f5f7;stroke:#b8bcc4;stroke-width:2}.roof{fill:#dfe2e7;stroke:#b8bcc4}.side{fill:#d3d7de;stroke:#b8bcc4}
+[data-theme=dark] .shell{fill:#202024;stroke:#3a3a40}[data-theme=dark] .roof{fill:#2a2a30;stroke:#3a3a40}[data-theme=dark] .side{fill:#18181b;stroke:#3a3a40}
+.hall{fill:#0e1420;opacity:.92}.lbl{font:600 10px -apple-system,system-ui,sans-serif;fill:var(--mut);letter-spacing:.06em}.lbl.sm{font-size:8.5px}.hall+.lbl{fill:#8a93a6}
+.box{fill:var(--panel);stroke:var(--mut2);stroke-width:1.2}.box.ghost{stroke-dasharray:4 3;fill:none}
+.tower,.crane{fill:none;stroke:var(--mut);stroke-width:2.2}.wire{fill:none;stroke:var(--mut2);stroke-width:1.5}
+.bolt{fill:#ff9f0a}.ups{fill:#2a3242;stroke:#ff9f0a}.pipe{fill:none;stroke:#32ade6;stroke-width:4;stroke-dasharray:8 6;animation:dash 1.2s linear infinite}
+.fanring{fill:#1d2533}.blade{fill:#9fb4cc}.hub{fill:#fff}.spin{animation:spin 1.4s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes dash{to{stroke-dashoffset:-28}}
+.port{fill:#30d158;animation:blink 1.6s steps(2) infinite}.led{fill:#30d158;animation:blink 2.2s steps(2) infinite}@keyframes blink{50%{opacity:.25}}
+.tray{stroke:#6e6e73;stroke-width:6;fill:none}.flowl{stroke:#ffd60a;stroke-width:2;fill:none;stroke-dasharray:3 14;animation:dash .9s linear infinite}.drop{stroke:#8e8e93;stroke-width:1.5}
+.rackb{fill:#1a2230;stroke:#3b475c}.ru{fill:#263247}
+.callout{stroke:var(--mut2);stroke-dasharray:3 3;fill:none}.board{fill:#0f3d2a;stroke:#1d8a3a}.chip{fill:#111;stroke:#5ac8fa;animation:pulse 2.4s ease-in-out infinite}.chipt{fill:#5ac8fa}.mem{fill:#bf5af2;stroke:#2c0a3a}
+@keyframes pulse{50%{stroke:#0071e3;stroke-width:2.5}}
+.elec{fill:#ffd60a;filter:url(#glow)}
+.hot{cursor:pointer;outline:none}.hot>g:first-child{transition:filter .25s,opacity .25s}
+.hot .tag rect{fill:var(--panel);stroke:var(--c);stroke-width:1.5;opacity:.95}.hot .tag text{font:600 11px -apple-system,system-ui,sans-serif;fill:var(--txt,currentColor)}
+.hot .tag .dot{fill:var(--c);animation:ping 2s ease-out infinite;transform-box:fill-box;transform-origin:center}@keyframes ping{0%{opacity:1}70%{opacity:.3;transform:scale(1.8)}100%{opacity:1}}
+.hot.lit>g:first-child,.hot:hover>g:first-child,.hot:focus>g:first-child{filter:drop-shadow(0 0 6px var(--c)) drop-shadow(0 0 14px var(--c))}
+.hot.lit .tag rect,.hot:hover .tag rect{fill:var(--c)}.hot.lit .tag text,.hot:hover .tag text{fill:#fff}
+#dc:has(.hot:hover) .hot:not(:hover):not(.lit)>g:first-child{opacity:.55}
+.tip{position:absolute;pointer-events:none;width:250px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--panel) 88%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.2);font-size:12.5px;opacity:0;transform:scale(.9);transition:opacity .15s,transform .15s}
+.tip.on{opacity:1;transform:none}.tip .tv{font-size:20px;font-weight:700;margin:6px 0 2px}.tip .tw{color:var(--mut);font-size:11px}.tip em{display:block;margin-top:6px;color:var(--acc);font-style:normal;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.legend button{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);color:inherit;padding:6px 12px;border-radius:999px;font-size:12.5px;cursor:pointer;transition:all .2s}
+.legend i{width:9px;height:9px;border-radius:50%;background:var(--c)}.legend button.lit,.legend button:hover{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 25%,transparent)}
+
+/* hub isometric model */
+#dc{display:block;width:100%;height:auto;transition:transform .55s cubic-bezier(.6,.05,.3,1)}
+#dc .bg1{stop-color:#ffffff}#dc .bg2{stop-color:#eef0fb}
+[data-theme=dark] #dc .bg1{stop-color:#1b1d2a}[data-theme=dark] #dc .bg2{stop-color:#0c0d14}
+#dc .card{fill:#fff;stroke:#e3e6f3}[data-theme=dark] #dc .card{fill:#1f2130;stroke:#2e3146}
+#dc .dash{fill:none;stroke:#b8bfe6;stroke-dasharray:3 4}#dc .dev *{fill:none;stroke:#6b78c9;stroke-width:1.6}#dc .cnode{fill:none;stroke:#fff;stroke-width:1.6}
+#dc .ibox .ff{fill:#262a3d}#dc .ibox .ft{fill:#4a4f6b}#dc .ibox .fs{fill:#171a28}
+#dc .ibox.srv .ff,#dc .ibox.sw .ff{fill:#2f3347}
+#dc .ibox.chl .ff,#dc .ibox.cab .ff,#dc .ibox.gen .ff{fill:#e9ecf3;stroke:#c9cedb}#dc .ibox.chl .ft,#dc .ibox.cab .ft,#dc .ibox.gen .ft{fill:#f7f8fb;stroke:#c9cedb}#dc .ibox.chl .fs,#dc .ibox.cab .fs,#dc .ibox.gen .fs{fill:#cfd4e0}
+#dc .ibox.gen .ff{fill:#4b5563}
+#dc .ru{fill:#1b1e2d;stroke:#3c4260;stroke-width:.6}#dc .led{fill:#4f8cff;animation:blink 1.8s infinite}@keyframes blink{50%{opacity:.25}}
+#dc .port{fill:#7aa2ff;animation:blink 1.4s infinite}
+#dc .slab{fill:#fff;stroke:#dfe3f2}#dc .slabf{fill:#e4e7f4}#dc .slabs{fill:#d3d7ea}[data-theme=dark] #dc .slab{fill:#252838;stroke:#353950}[data-theme=dark] #dc .slabf{fill:#1a1c29}[data-theme=dark] #dc .slabs{fill:#151722}
+#dc .slabglow{stroke:url(#wg);stroke-width:3;filter:url(#glow);opacity:.8}
+#dc .cyl{fill:#e6ebf5;stroke:#9aa6c4}#dc .cylb{fill:#c6cee0;stroke:#9aa6c4}#dc .cyll{fill:none;stroke:#7d8bb0}
+#dc .fanring{fill:#3a3f55;stroke:#9aa1b5}#dc .blade{fill:#cfd5e3}#dc .spin{animation:spin 1.6s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+#dc .pipe{fill:none;stroke:#9aa1b5;stroke-width:4;stroke-linecap:round}#dc .bolt{fill:#f5b400}
+#dc .scr{fill:#14172a}#dc .spark{fill:none;stroke:#6aa0ff;stroke-width:2}#dc .bar{fill:url(#wg)}#dc .ring{fill:none;stroke:#a35bff;stroke-width:5;stroke-dasharray:55 30}#dc .scrt{fill:#c8cdf0;font:600 10px -apple-system,system-ui,sans-serif}
+#dc .tray{fill:#3a3f55;stroke:#7a86ff}#dc .gpu{fill:#4f6bff}#dc .lens{fill:rgba(120,140,255,.12);stroke:#5b6cff;stroke-width:3}#dc .lensh{stroke:#5b6cff;stroke-width:5;stroke-linecap:round}#dc .chipt{fill:#fff;font:700 7px -apple-system,system-ui,sans-serif}
+#dc .tag2 text{font:600 11px -apple-system,system-ui,sans-serif;fill:var(--mut)}
+#dc .wbase{fill:none;stroke:#c3c9f0;stroke-width:2.5;stroke-dasharray:2 5;stroke-linecap:round}[data-theme=dark] #dc .wbase{stroke:#3a3f66}
+#dc .wflow{fill:none;stroke:url(#wg);stroke-width:2.5;stroke-dasharray:14 120;animation:flow 2.4s linear infinite;filter:url(#glow)}@keyframes flow{to{stroke-dashoffset:-134}}
+#dc .elec{fill:#7c6bff;filter:url(#glow)}
+#dc .icn circle{fill:#fff;stroke:#d8dcf0}[data-theme=dark] #dc .icn circle{fill:#1f2130;stroke:#3a3f66}#dc .icn .ig *{stroke:#4f5bd5;stroke-width:1.7;fill:#4f5bd5}#dc .icn .ig [fill=none]{fill:none}
+#dc .pill rect{fill:url(#pg);filter:drop-shadow(0 4px 8px rgba(80,60,255,.3))}#dc .pill text{fill:#fff;font:600 12.5px -apple-system,system-ui,sans-serif}
+#dc .hot:hover .card,#dc .hot.lit .card{stroke:var(--c);stroke-width:2}
+#dc .hot:hover .wbase,#dc .hot.lit .wbase{stroke:var(--c);stroke-dasharray:none}
+#dc .hot:hover .pill rect,#dc .hot.lit .pill rect{fill:var(--c)}
+</style></head><body>
+<header><div class="hd"><div><h1>AI Datacenter</h1><div class="s">Full-stack TAM · companies · hyperscaler CapEx</div></div><div class="sp"></div>
+<div class="seg" id="tabs"><button data-t="stack" class="on">Model</button><button data-t="tam">TAM</button><button data-t="capex">CapEx</button><button data-t="src">Sources</button></div>
+<button class="tbtn" id="theme">◐</button></div></header>
+<main>
+<div class="kpis" id="kpis"></div>
+<section class="tab on" id="t-stack"><h2>AI data-center model — hover to inspect, click to zoom in</h2><div id="world"><div class="stack" id="stack"></div></div>
+<p class="note">Cutaway: grid &amp; substation → hall → switches, cable trays, racks → GPU/HBM board; rooftop chillers; buildout crane = CapEx. Press <b>Esc</b> or ← Back to zoom out. Deep links: <code>#layer=memory</code>.</p></section>
+<section class="tab" id="t-tam"><h2>Overall AI data-center TAM</h2><div class="grid2"><div class="card"><canvas id="cTam" height="260"></canvas><p class="note">Annual figures. Bars show low–high where a range was given. Mgmt = company guidance (preferred); Analyst = research firm.</p></div>
+<div class="card"><canvas id="cMck" height="260"></canvas><p class="note" id="mckNote"></p></div></div>
+<div class="card" style="margin-top:16px"><h3 style="margin-top:0">Layer TAM anchors</h3><table id="layerTam"></table></div></section>
+<section class="tab" id="t-capex"><h2>Hyperscaler CapEx — 2026 guidance</h2><div class="grid2"><div class="card"><canvas id="cCap" height="260"></canvas></div><div class="card"><table id="capT"></table></div></div>
+<p class="note">Bases differ (cash vs. incl. finance leases; Oracle is fiscal FY27). Data-center MW buildouts per company: TBD — not yet sourced.</p></section>
+<section class="tab" id="t-src"><h2>Sources</h2><div class="card"><ol class="srcs" id="srcs"></ol><p class="note">Research via web search on 2026-11-01 (SGT). Paywalled reports (LightCounting, Dell'Oro full tables) only cited at headline level. Figures not found are shown as TBD — never estimated.</p></div></section>
+</main>
+<div id="zoom"><div class="zin" id="zin"></div></div>
+<footer>© 2026 Hugo Tian · Data as of <span id="upd"></span> · Not investment advice. Company guidance preferred over sell-side estimates.</footer>
+<script>
+const D=window.AIDC,S=D.sources,$=s=>document.querySelector(s);
+const cite=k=>k&&S[k]?`<sup><a href="${S[k].u}" target="_blank" title="${S[k].t} (${S[k].d})">[${Object.keys(S).indexOf(k)+1}]</a></sup>`:'';
+const tbd=v=>/TBD|—/.test(v)?`<span class="tbd">${v}</span>`:v;
+$('#upd').textContent=D.updated;
+// theme
+const root=document.documentElement,mq=matchMedia('(prefers-color-scheme: dark)');
+function setT(t){root.dataset.theme=t;localStorage.setItem('aidc-theme',t);drawCharts()}
+root.dataset.theme=localStorage.getItem('aidc-theme')||(mq.matches?'dark':'light');
+$('#theme').onclick=()=>setT(root.dataset.theme==='dark'?'light':'dark');
+// KPIs
+const cx=D.capex,sumLo=cx.reduce((a,c)=>a+c.lo,0),sumHi=cx.reduce((a,c)=>a+c.hi,0);
+$('#kpis').innerHTML=[
+ ['2026 CapEx guide (5 cos)',`$${sumLo}–${sumHi}B`,'AMZN·GOOGL·MSFT·META + ORCL FY27','luminix'],
+ ['AI infra / yr by 2030','$3–4T','NVIDIA mgmt','nvdaGS'],
+ ['DC capex 2030','> $3T',"Dell'Oro, Jul-26 forecast",'delloroCapex'],
+ ['HBM TAM 2028','~$100B','Micron mgmt','muFQ1']
+].map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}${cite(k[3])}</div><div class="n">${k[2]}</div></div>`).join('');
+// World stack (render top→bottom: capex on top, power at base visually? keep logical order 1..8)
+// Zoom (FLIP)
+const Z=$('#zoom');let cur=null,srcEl=null;
+function rectOf(el){const r=el.getBoundingClientRect();return {top:r.top,left:r.left,width:r.width,height:r.height}}
+function place(r){Object.assign(Z.style,{top:r.top+'px',left:r.left+'px',width:r.width+'px',height:r.height+'px'})}
+function render(id){const L=D.layers.find(l=>l.id===id);Z.style.setProperty('--c',L.color);
+ $('#zin').innerHTML=`<div class="zbar"><button class="back" onclick="zoomOut()">← Model</button><div class="crumb">${D.layers.map(l=>`<button class="${l.id===id?'on':''}" onclick="go('${l.id}')">${l.n}. ${l.name}</button>`).join('')}</div></div>
+ <div class="hero"><div class="card"><div style="font-size:12px;color:var(--mut);text-transform:uppercase">Layer ${L.n} · ${L.sub}</div><h2 style="margin:6px 0">${L.name}</h2><div class="big">${tbd(L.tam.v)}${cite(L.tam.src)}</div><div class="note" style="font-size:14px">${L.tam.what}</div></div>
+ <div class="kpis" style="grid-template-columns:1fr;margin:0">${L.kpis.map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v" style="font-size:22px">${tbd(k[1])}${cite(k[3])}</div><div class="n">${k[2]}</div></div>`).join('')}</div></div>
+ <h2>Components</h2><div class="segs">${L.segs.map((s,i)=>`<div class="sg" style="animation-delay:${200+i*80}ms;border-top:3px solid ${L.color}"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
+ ${id==='capex'?`<h2>2026 guidance</h2><div class="card"><table>${capRows()}</table></div>`:''}
+ <h2>Company map</h2><div class="cos">${L.cos.map((c,i)=>`<div class="co" style="animation-delay:${350+i*50}ms"><div class="t">${c[0]}</div><div class="nm">${c[1]}</div><div class="r">${c[2]}</div></div>`).join('')}</div>
+ <p class="note">Sources: ${[...new Set([L.tam.src,...L.kpis.map(k=>k[3])].filter(Boolean))].map(k=>`<a href="${S[k].u}" target="_blank">${S[k].t}</a> (${S[k].d})`).join(' · ')}</p>`;
+ Z.scrollTop=0;cur=id;history.replaceState(null,'','#layer='+id)}
+function zoomIn(id,el){srcEl=el;render(id);const r=rectOf(el);place(r);Z.classList.add('open');Z.style.transition='none';Z.style.borderRadius='16px';
+ $('#stack').parentElement.classList.add('fade');
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{Z.style.transition='all .55s cubic-bezier(.2,.8,.2,1)';place({top:0,left:0,width:innerWidth,height:innerHeight});Z.style.borderRadius='0';setTimeout(()=>Z.classList.add('full'),200)}));document.body.style.overflow='hidden'}
+function go(id){$('#zin').style.opacity=0;setTimeout(()=>{render(id);$('#zin').style.opacity='';srcEl=$('#mwrap')},180)}
+function zoomOut(){if(!cur)return;Z.classList.remove('full');const el=document.querySelector(`#mwrap`);el.scrollIntoView({block:'center'});
+ requestAnimationFrame(()=>{place(rectOf(el));Z.style.borderRadius='16px'});$('#stack').parentElement.classList.remove('fade');
+ setTimeout(()=>{Z.classList.remove('open');document.body.style.overflow='';camOut()},450);cur=null;history.replaceState(null,'',location.pathname)}
+addEventListener('keydown',e=>{if(e.key==='Escape')zoomOut()});
+addEventListener('resize',()=>{if(cur)place({top:0,left:0,width:innerWidth,height:innerHeight})});
+// ===== Data-center model (Flash/Java-style interactive cutaway) =====
+(function(){
+const C={};D.layers.forEach(L=>C[L.id]=L.color);
+const NM=id=>D.layers.find(l=>l.id===id);
+// oblique-iso box: front w×h at (x,y), depth offset (dx,-dy)
+const box=(x,y,w,h,dx,dy,cls='')=>`<g class="ibox ${cls}"><path d="M${x} ${y}L${x+dx} ${y-dy}H${x+w+dx}L${x+w} ${y}Z" class="ft"/><path d="M${x+w} ${y}L${x+w+dx} ${y-dy}V${y+h-dy}L${x+w} ${y+h}Z" class="fs"/><rect x="${x}" y="${y}" width="${w}" height="${h}" class="ff"/></g>`;
+const rack=(x,y,i)=>{let s=box(x,y,40,118,16,10,'rack');for(let k=0;k<9;k++)s+=`<rect x="${x+4}" y="${y+6+k*12.2}" width="32" height="9" rx="1" class="ru"/><circle cx="${x+32}" cy="${y+10.5+k*12.2}" r="1.5" class="led" style="animation-delay:${((i*7+k*3)%11)/5}s"/>`;return s};
+const pill=(id,label,cx,cy)=>`<g class="pill" transform="translate(${cx} ${cy})"><rect x="${-label.length*4.1-18}" y="-13" width="${label.length*8.2+36}" height="26" rx="8"/><text y="4.5" text-anchor="middle">${label}</text></g>`;
+const icon=(cx,cy,g)=>`<g transform="translate(${cx} ${cy})" class="icn"><circle r="17"/><g class="ig">${g}</g></g>`;
+const card=(id,label,x,y,w,h,art,ic)=>`<g class="hot" data-id="${id}" style="--c:${C[id]}" tabindex="0" role="button" aria-label="Zoom into ${NM(id).name}"><g><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="18" class="card" filter="url(#sh)"/>${art}</g>${icon(x+w/2,y,ic)}${pill(id,label,x+w/2,y+h)}</g>`;
+const fan=(x,y)=>`<g transform="translate(${x} ${y})"><circle r="13" class="fanring"/><g class="spin"><path d="M0 0L-3 -11L3 -11Z M0 0L11 -3L11 3Z M0 0L3 11L-3 11Z M0 0L-11 3L-11 -3Z" class="blade"/></g></g>`;
+// connection paths (wiring)
+const P=['M262 205 C300 205 300 285 330 290','M262 225 C310 225 310 305 335 310','M738 205 C700 205 700 285 670 290','M738 225 C690 225 690 305 665 310','M262 440 C300 440 300 360 335 355','M738 440 C700 440 700 360 665 355','M500 445 V432','M500 150 V230','M430 150 V120 M570 150 V120'];
+const wires=P.map((d,i)=>`<path d="${d}" class="wbase"/><path d="${d}" class="wflow" style="animation-delay:${i*.3}s"/>`).join('');
+let racks='';[0,1,2,3,4,5].forEach(i=>racks+=rack(360+i*48,262-(i%2)*0,i));
+const svg=`<svg id="dc" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="pg" x1="0" x2="1"><stop offset="0" stop-color="#3b5bff"/><stop offset="1" stop-color="#8b3dff"/></linearGradient>
+<linearGradient id="wg" x1="0" x2="1"><stop offset="0" stop-color="#4f7cff"/><stop offset="1" stop-color="#a35bff"/></linearGradient>
+<radialGradient id="bgg" cx=".5" cy=".45" r=".7"><stop offset="0" class="bg1"/><stop offset="1" class="bg2"/></radialGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#3a3f8f" flood-opacity=".14"/></filter>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="1000" height="600" fill="url(#bgg)"/>
+<!-- cloud + devices (decorative) -->
+<g class="deco"><rect x="330" y="96" width="340" height="56" rx="12" class="dash"/>
+<path d="M470 52 a22 22 0 0 1 40 -14 a18 18 0 0 1 32 12 a14 14 0 0 1 -2 28 h-72 a14 14 0 0 1 2 -26z" fill="url(#pg)" filter="url(#glow)"/><circle cx="505" cy="62" r="9" class="cnode"/>
+<g class="dev"><rect x="380" y="112" width="26" height="17" rx="2"/><path d="M374 131 h38"/><rect x="450" y="110" width="28" height="19" rx="2"/><path d="M464 129 v5 M456 134 h16"/><rect x="530" y="108" width="15" height="26" rx="3"/><ellipse cx="610" cy="113" rx="11" ry="4"/><path d="M599 113 v16 a11 4 0 0 0 22 0 v-16"/></g></g>
+<g class="hot" data-id="wire" style="--c:${C.wire}" tabindex="0" role="button" aria-label="Zoom into Wiring"><g>${wires}</g></g>
+<!-- compute platform -->
+<g class="hot" data-id="racks" style="--c:${C.racks}" tabindex="0" role="button" aria-label="Zoom into Racks"><g>
+<path d="M310 395 L345 365 H705 L670 395Z" class="slab" filter="url(#sh)"/><path d="M310 395 H670 V405 H310Z" class="slabf"/><path d="M670 395 L705 365 V375 L670 405Z" class="slabs"/>
+<path d="M330 392 H650" class="slabglow"/>${racks}</g>${pill('racks','Compute · Racks & Servers',490,418)}</g>
+<g class="hot" data-id="semis" style="--c:${C.semis}" tabindex="0" role="button" aria-label="Zoom into Semiconductors"><g>
+<path d="M556 300 L612 300 L628 290 L572 290Z" class="tray"/><rect x="560" y="291" width="18" height="7" class="gpu"/><rect x="584" y="291" width="18" height="7" class="gpu"/>
+<circle cx="640" cy="240" r="26" class="lens"/><path d="M621 258 L604 280" class="lensh"/><rect x="628" y="228" width="24" height="24" rx="3" class="gpu"/><text x="640" y="244" class="chipt" text-anchor="middle">GPU</text></g>
+<g class="tag2" transform="translate(640 202)"><text text-anchor="middle">GPU / ASIC</text></g></g>
+<!-- modules -->
+${card('net','Networking',60,170,200,120,`${box(85,220,150,16,14,9,'sw')}${box(85,240,150,16,14,9,'sw')}${box(85,260,150,16,14,9,'sw')}${[220,240,260].map(y=>Array.from({length:14},(_,i)=>`<rect x="${92+i*10}" y="${y+5}" width="6" height="5" class="port" style="animation-delay:${(i%5)/4}s"/>`).join('')).join('')}`,`<circle cx="0" cy="-6" r="3"/><circle cx="-7" cy="5" r="3"/><circle cx="7" cy="5" r="3"/><path d="M0 -6L-7 5H7Z" fill="none"/>`)}
+${card('memory','Memory / Storage',740,170,200,120,`${box(770,205,34,62,12,8,'srv')}${[0,1,2].map(i=>`<g transform="translate(${830+i*34} 0)"><ellipse cx="0" cy="${222}" rx="14" ry="5" class="cyl"/><path d="M-14 222 V262 a14 5 0 0 0 28 0 V222" class="cylb"/><path d="M-14 236 a14 5 0 0 0 28 0 M-14 249 a14 5 0 0 0 28 0" class="cyll"/></g>`).join('')}`,`<ellipse cy="-6" rx="8" ry="3" fill="none"/><path d="M-8 -6V6a8 3 0 0 0 16 0V-6M-8 0a8 3 0 0 0 16 0" fill="none"/>`)}
+${card('cool','Cooling',60,370,200,120,`${box(80,410,140,58,16,10,'chl')}${fan(103,439)}${fan(141,439)}${fan(179,439)}<path d="M96 400 V388 H230 M120 400 V392" class="pipe"/>`,`<path d="M0 -9V9M-8 -4.5L8 4.5M-8 4.5L8 -4.5" fill="none"/>`)}
+${card('power','Power',740,370,200,120,`${box(762,412,46,56,12,8,'cab')}${box(816,412,46,56,12,8,'cab')}${box(870,428,48,40,12,8,'gen')}<path d="M780 432 l6 -10 v7 h5 l-6 10 v-7z M834 432 l6 -10 v7 h5 l-6 10 v-7z" class="bolt"/><path d="M770 402 V392 H920 M800 402 V396" class="pipe"/>`,`<path d="M2 -9L-5 1H0L-2 9L5 -1H0Z"/>`)}
+${card('capex','Orchestration · CapEx',380,462,240,120,`<rect x="398" y="480" width="204" height="88" rx="10" class="scr"/><path d="M412 548 l20 -14 18 8 22 -22 18 10 22 -18" class="spark"/>${[0,1,2,3,4,5].map(i=>`<rect x="${500+i*14}" y="${560-[18,26,14,32,24,38][i]}" width="9" height="${[18,26,14,32,24,38][i]}" rx="2" class="bar"/>`).join('')}<circle cx="574" cy="514" r="13" class="ring"/><text x="412" y="498" class="scrt">2026 CapEx</text>`,`<circle r="5" fill="none"/><path d="M0 -10V-6M0 6V10M-10 0H-6M6 0H10" />`)}
+<circle r="3.5" class="elec"><animateMotion dur="2.6s" repeatCount="indefinite" path="${P[4]}"/></circle><circle r="3.5" class="elec"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite" path="${P[5]}"/></circle><circle r="3.5" class="elec"><animateMotion dur="3s" repeatCount="indefinite" path="${P[0]}"/></circle><circle r="3.5" class="elec"><animateMotion dur="3s" begin=".8s" repeatCount="indefinite" path="${P[2]}"/></circle>
+</svg>`;
+
+$('#stack').className='model';
+$('#stack').innerHTML=`<div class="mwrap" id="mwrap">${svg}<div class="tip" id="tip"></div></div>
+<div class="legend">${D.layers.map(L=>`<button data-id="${L.id}" style="--c:${L.color}"><i></i>${L.n}. ${L.name}</button>`).join('')}</div>`;
+const tip=$('#tip'),wrap=$('#mwrap');
+const hl=(id,on)=>{document.querySelectorAll(`.hot[data-id=${id}],.legend button[data-id=${id}]`).forEach(e=>e.classList.toggle('lit',on))};
+document.querySelectorAll('.hot').forEach(g=>{const L=D.layers.find(l=>l.id===g.dataset.id);
+ g.onmouseenter=()=>{hl(L.id,1);tip.innerHTML=`<b style="color:${L.color}">${L.n}. ${L.name}</b><div>${L.sub}</div><div class="tv">${tbd(L.tam.v)}</div><div class="tw">${L.tam.what}</div><em>Click to zoom in ›</em>`;tip.classList.add('on')};
+ g.onmousemove=e=>{const r=wrap.getBoundingClientRect();let x=e.clientX-r.left+16,y=e.clientY-r.top+16;if(x>r.width-250)x-=270;tip.style.left=x+'px';tip.style.top=y+'px'};
+ g.onmouseleave=()=>{hl(L.id,0);tip.classList.remove('on')};
+ g.onclick=()=>camIn(L.id);g.onkeydown=k=>{if(k.key==='Enter')camIn(L.id)}});
+document.querySelectorAll('.legend button').forEach(b=>{b.onmouseenter=()=>hl(b.dataset.id,1);b.onmouseleave=()=>hl(b.dataset.id,0);b.onclick=()=>camIn(b.dataset.id)});
+// camera: zoom the SVG into hotspot, then FLIP panel out of it
+window.camIn=function(id){const g=document.querySelector(`.hot[data-id=${id}]`),s=$('#dc');tip.classList.remove('on');
+ const sr=s.getBoundingClientRect(),gr=g.getBoundingClientRect();const k=Math.min(3,.8*sr.width/gr.width,.8*sr.height/gr.height);
+ const cx=gr.left+gr.width/2-sr.left,cy=gr.top+gr.height/2-sr.top;
+ s.style.transformOrigin=`${cx}px ${cy}px`;s.style.transform=`translate(${sr.width/2-cx}px,${sr.height/2-cy}px) scale(${k})`;wrap.classList.add('dive');g.classList.add('lit');
+ setTimeout(()=>{zoomIn(id,wrap)},520)};
+window.camOut=function(){const s=$('#dc');s.style.transform='';wrap.classList.remove('dive');document.querySelectorAll('.lit').forEach(e=>e.classList.remove('lit'))};
+})();
+
+// Tabs
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.id==='t-'+b.dataset.t));drawCharts()});
+// Tables
+function capRows(){return `<tr><th>Company</th><th class="num">2026 guide</th><th>Basis</th><th>Note</th></tr>`+cx.map(c=>`<tr><td><b>${c.tk}</b> ${c.co}</td><td class="num">${c.lo===c.hi?'~$'+c.lo:'$'+c.lo+'–'+c.hi}B${cite(c.src)}</td><td>${c.basis}</td><td style="font-size:12px;color:var(--mut)">${c.note}</td></tr>`).join('')}
+$('#capT').innerHTML=capRows();
+$('#layerTam').innerHTML='<tr><th>Layer</th><th>TAM anchor</th><th>Definition</th></tr>'+D.layers.map(L=>`<tr style="cursor:pointer" onclick="document.querySelector('#tabs button').click();camIn('${L.id}')"><td><b>${L.n}. ${L.name}</b></td><td>${tbd(L.tam.v)}${cite(L.tam.src)}</td><td style="font-size:12px;color:var(--mut)">${L.tam.what}</td></tr>`).join('');
+$('#srcs').innerHTML=Object.values(S).map(s=>`<li><a href="${s.u}" target="_blank">${s.t}</a> <span class="d">— ${s.d}</span></li>`).join('');
+$('#mckNote').innerHTML=`McKinsey: $${D.mckinsey.total/1000}T ${D.mckinsey.period}; scenarios ${D.mckinsey.scen.map(s=>s[0]+' $'+s[1]/1000+'T').join(', ')}. ${cite('mck')}`;
+// Charts
+let charts=[];
+function drawCharts(){charts.forEach(c=>c.destroy());charts=[];if(!window.Chart)return;const cs=getComputedStyle(root),tx=cs.getPropertyValue('--mut').trim(),ln=cs.getPropertyValue('--line').trim(),acc=cs.getPropertyValue('--acc').trim();
+ Chart.defaults.color=tx;Chart.defaults.font.family=cs.getPropertyValue('--font');Chart.defaults.borderColor=ln;
+ const o={responsive:true,animation:{duration:900,easing:'easeOutQuart'},plugins:{legend:{display:false}}};
+ if($('#t-tam').classList.contains('on')){
+ charts.push(new Chart($('#cTam'),{type:'bar',data:{labels:D.tam.map(t=>t.label),datasets:[{data:D.tam.map(t=>[t.lo,t.hi===t.lo?t.hi+60:t.hi]),backgroundColor:D.tam.map(t=>t.kind==='Mgmt'?acc:'#8944ab'),borderRadius:6}]},options:{...o,indexAxis:'y',plugins:{legend:{display:false},title:{display:true,text:'TAM anchors ($B / yr)'},tooltip:{callbacks:{label:c=>{const t=D.tam[c.dataIndex];return `$${t.lo}${t.hi!==t.lo?'–'+t.hi:''}B (${t.year}) — ${S[t.src].t}, ${S[t.src].d}`}}}}}}));
+ charts.push(new Chart($('#cMck'),{type:'doughnut',data:{labels:D.mckinsey.split.map(s=>s[0]),datasets:[{data:D.mckinsey.split.map(s=>s[1]),backgroundColor:['#0071e3','#b25000','#6e6e73'],borderWidth:0}]},options:{...o,cutout:'62%',plugins:{legend:{display:true,position:'bottom'},title:{display:true,text:'McKinsey AI DC capex split, 2025–30 ($B)'}}}}))}
+ if($('#t-capex').classList.contains('on')){
+ charts.push(new Chart($('#cCap'),{type:'bar',data:{labels:cx.map(c=>c.tk),datasets:[{label:'Low',data:cx.map(c=>c.lo),backgroundColor:acc,borderRadius:6},{label:'Range to high',data:cx.map(c=>c.hi-c.lo),backgroundColor:acc+'66',borderRadius:6}]},options:{...o,scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'$B'}}},plugins:{legend:{display:false},title:{display:true,text:'2026 capex guidance ($B)'}}}}))}}
+drawCharts();
+// deep link
+const m=location.hash.match(/layer=(\w+)/);if(m){if(D.layers.some(l=>l.id===m[1]))setTimeout(()=>camIn(m[1]),900)}
+</script></body></html>
