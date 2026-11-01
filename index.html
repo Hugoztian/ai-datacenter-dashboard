@@ -180,8 +180,8 @@ const Z=$('#zoom');let cur=null,srcEl=null;
 function rectOf(el){const r=el.getBoundingClientRect();return {top:r.top,left:r.left,width:r.width,height:r.height}}
 function place(r){Object.assign(Z.style,{top:r.top+'px',left:r.left+'px',width:r.width+'px',height:r.height+'px'})}
 function render(id){const L=D.layers.find(l=>l.id===id);Z.style.setProperty('--c',L.color);
- $('#zin').innerHTML=`<div class="zbar"><button class="back" onclick="zoomOut()">← Model</button><div class="crumb">${D.layers.map(l=>`<button class="${l.id===id?'on':''}" onclick="go('${l.id}')">${l.n}. ${l.name}</button>`).join('')}</div></div>
- <div class="hero"><div class="card"><div style="font-size:12px;color:var(--mut);text-transform:uppercase">Layer ${L.n} · ${L.sub}</div><h2 style="margin:6px 0">${L.name}</h2><div class="big">${tbd(L.tam.v)}${cite(L.tam.src)}</div><div class="note" style="font-size:14px">${L.tam.what}</div></div>
+ $('#zin').innerHTML=`<div class="zbar"><button class="back" onclick="zoomOut()">← Model</button><div class="crumb">${D.layers.map(l=>`<button class="${l.id===id?'on':''}" onclick="go('${l.id}')">${l.tam.v} · ${l.name}</button>`).join('')}</div></div>
+ <div class="hero"><div class="card"><div style="font-size:12px;color:var(--mut);text-transform:uppercase">Global TAM ${L.tam.v} · ${L.sub}</div><h2 style="margin:6px 0">${L.name}</h2><div class="big">${tbd(L.tam.v)}${cite(L.tam.src)}</div><div class="note" style="font-size:14px">${L.tam.what}</div></div>
  <div class="kpis" style="grid-template-columns:1fr;margin:0">${L.kpis.map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v" style="font-size:22px">${tbd(k[1])}${cite(k[3])}</div><div class="n">${k[2]}</div></div>`).join('')}</div></div>
  <h2>Level −2 · Product families <span class="lvl">click a picture</span></h2><div class="pics">${(D.catalog[id]||[]).map((f,i)=>`<button class="pic" style="--c:${L.color};animation-delay:${150+i*70}ms" onclick="openFam('${id}','${f.id}')">${art(f.pic,L.color)}<b>${f.name}</b><small>${f.blurb}</small><span class="co">${f.items.length} product${f.items.length>1?'s':''} →</span></button>`).join('')}</div>
  ${id==='capex'?`<h2>2026 guidance</h2><div class="card"><table>${capRows()}</table></div>`:''}
@@ -237,7 +237,7 @@ const NM=id=>D.layers.find(l=>l.id===id);
 // oblique-iso box: front w×h at (x,y), depth offset (dx,-dy)
 const box=(x,y,w,h,dx,dy,cls='')=>`<g class="ibox ${cls}"><path d="M${x} ${y}L${x+dx} ${y-dy}H${x+w+dx}L${x+w} ${y}Z" class="ft"/><path d="M${x+w} ${y}L${x+w+dx} ${y-dy}V${y+h-dy}L${x+w} ${y+h}Z" class="fs"/><rect x="${x}" y="${y}" width="${w}" height="${h}" class="ff"/></g>`;
 const rack=(x,y,i)=>{let s=box(x,y,40,118,16,10,'rack');for(let k=0;k<9;k++)s+=`<rect x="${x+4}" y="${y+6+k*12.2}" width="32" height="9" rx="1" class="ru"/><circle cx="${x+32}" cy="${y+10.5+k*12.2}" r="1.5" class="led" style="animation-delay:${((i*7+k*3)%11)/5}s"/>`;return s};
-const pill=(id,label,cx,cy)=>`<g class="pill" transform="translate(${cx} ${cy})"><rect x="${-label.length*4.1-18}" y="-13" width="${label.length*8.2+36}" height="26" rx="8"/><text y="4.5" text-anchor="middle">${label}</text></g>`;
+const pill=(id,label0,cx,cy)=>{const T=NM(id)&&NM(id).tam?NM(id).tam.v:"";const label=T?`${T} · ${label0}`:label0;return `<g class="pill" transform="translate(${cx} ${cy})"><rect x="${-label.length*4.1-18}" y="-13" width="${label.length*8.2+36}" height="26" rx="8"/><text y="4.5" text-anchor="middle">${label}</text></g>`};
 const icon=(cx,cy,g)=>`<g transform="translate(${cx} ${cy})" class="icn"><circle r="17"/><g class="ig">${g}</g></g>`;
 const card=(id,label,x,y,w,h,art,ic)=>`<g class="hot" data-id="${id}" style="--c:${C[id]}" tabindex="0" role="button" aria-label="Zoom into ${NM(id).name}"><g><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="18" class="card" filter="url(#sh)"/>${art}</g>${icon(x+w/2,y,ic)}${pill(id,label,x+w/2,y+h)}</g>`;
 const fan=(x,y)=>`<g transform="translate(${x} ${y})"><circle r="13" class="fanring"/><g class="spin"><path d="M0 0L-3 -11L3 -11Z M0 0L11 -3L11 3Z M0 0L3 11L-3 11Z M0 0L-11 3L-11 -3Z" class="blade"/></g></g>`;
@@ -264,7 +264,7 @@ const svg=`<svg id="dc" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg
 <g class="hot" data-id="semis" style="--c:${C.semis}" tabindex="0" role="button" aria-label="Zoom into Semiconductors"><g>
 <path d="M556 300 L612 300 L628 290 L572 290Z" class="tray"/><rect x="560" y="291" width="18" height="7" class="gpu"/><rect x="584" y="291" width="18" height="7" class="gpu"/>
 <circle cx="640" cy="240" r="26" class="lens"/><path d="M621 258 L604 280" class="lensh"/><rect x="628" y="228" width="24" height="24" rx="3" class="gpu"/><text x="640" y="244" class="chipt" text-anchor="middle">GPU</text></g>
-<g class="tag2" transform="translate(640 202)"><text text-anchor="middle">GPU / ASIC</text></g></g>
+<g class="tag2" transform="translate(640 202)"><text text-anchor="middle">${NM("semis").tam.v} · GPU / ASIC</text></g></g>
 <!-- modules -->
 ${card('net','Networking',60,170,200,120,`${box(85,220,150,16,14,9,'sw')}${box(85,240,150,16,14,9,'sw')}${box(85,260,150,16,14,9,'sw')}${[220,240,260].map(y=>Array.from({length:14},(_,i)=>`<rect x="${92+i*10}" y="${y+5}" width="6" height="5" class="port" style="animation-delay:${(i%5)/4}s"/>`).join('')).join('')}`,`<circle cx="0" cy="-6" r="3"/><circle cx="-7" cy="5" r="3"/><circle cx="7" cy="5" r="3"/><path d="M0 -6L-7 5H7Z" fill="none"/>`)}
 ${card('memory','Memory / Storage',740,170,200,120,`${box(770,205,34,62,12,8,'srv')}${[0,1,2].map(i=>`<g transform="translate(${830+i*34} 0)"><ellipse cx="0" cy="${222}" rx="14" ry="5" class="cyl"/><path d="M-14 222 V262 a14 5 0 0 0 28 0 V222" class="cylb"/><path d="M-14 236 a14 5 0 0 0 28 0 M-14 249 a14 5 0 0 0 28 0" class="cyll"/></g>`).join('')}`,`<ellipse cy="-6" rx="8" ry="3" fill="none"/><path d="M-8 -6V6a8 3 0 0 0 16 0V-6M-8 0a8 3 0 0 0 16 0" fill="none"/>`)}
@@ -276,11 +276,11 @@ ${card('capex','Orchestration · CapEx',380,462,240,120,`<rect x="398" y="480" w
 
 $('#stack').className='model';
 $('#stack').innerHTML=`<div class="mwrap" id="mwrap">${svg}<div class="tip" id="tip"></div></div>
-<div class="legend">${D.layers.map(L=>`<button data-id="${L.id}" style="--c:${L.color}"><i></i>${L.n}. ${L.name}</button>`).join('')}</div>`;
+<div class="legend">${D.layers.map(L=>`<button data-id="${L.id}" style="--c:${L.color}"><i></i>${L.tam.v} · ${L.name}</button>`).join('')}</div>`;
 const tip=$('#tip'),wrap=$('#mwrap');
 const hl=(id,on)=>{document.querySelectorAll(`.hot[data-id=${id}],.legend button[data-id=${id}]`).forEach(e=>e.classList.toggle('lit',on))};
 document.querySelectorAll('.hot').forEach(g=>{const L=D.layers.find(l=>l.id===g.dataset.id);
- g.onmouseenter=()=>{hl(L.id,1);tip.innerHTML=`<b style="color:${L.color}">${L.n}. ${L.name}</b><div>${L.sub}</div><div class="tv">${tbd(L.tam.v)}</div><div class="tw">${L.tam.what}</div><em>Click to zoom in ›</em>`;tip.classList.add('on')};
+ g.onmouseenter=()=>{hl(L.id,1);tip.innerHTML=`<b style="color:${L.color}">${L.tam.v} · ${L.name}</b><div>${L.sub}</div><div class="tv">${tbd(L.tam.v)}</div><div class="tw">${L.tam.what}</div><em>Click to zoom in ›</em>`;tip.classList.add('on')};
  g.onmousemove=e=>{const r=wrap.getBoundingClientRect();let x=e.clientX-r.left+16,y=e.clientY-r.top+16;if(x>r.width-250)x-=270;tip.style.left=x+'px';tip.style.top=y+'px'};
  g.onmouseleave=()=>{hl(L.id,0);tip.classList.remove('on')};
  g.onclick=()=>camIn(L.id);g.onkeydown=k=>{if(k.key==='Enter')camIn(L.id)}});
@@ -299,7 +299,7 @@ document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.que
 // Tables
 function capRows(){return `<tr><th>Company</th><th class="num">2026 guide</th><th>Basis</th><th>Note</th></tr>`+cx.map(c=>`<tr><td><b>${c.tk}</b> ${c.co}</td><td class="num">${c.lo===c.hi?'~$'+c.lo:'$'+c.lo+'–'+c.hi}B${cite(c.src)}</td><td>${c.basis}</td><td style="font-size:12px;color:var(--mut)">${c.note}</td></tr>`).join('')}
 $('#capT').innerHTML=capRows();
-$('#layerTam').innerHTML='<tr><th>Layer</th><th>TAM anchor</th><th>Definition</th></tr>'+D.layers.map(L=>`<tr style="cursor:pointer" onclick="document.querySelector('#tabs button').click();camIn('${L.id}')"><td><b>${L.n}. ${L.name}</b></td><td>${tbd(L.tam.v)}${cite(L.tam.src)}</td><td style="font-size:12px;color:var(--mut)">${L.tam.what}</td></tr>`).join('');
+$('#layerTam').innerHTML='<tr><th>Layer</th><th>TAM anchor</th><th>Definition</th></tr>'+D.layers.map(L=>`<tr style="cursor:pointer" onclick="document.querySelector('#tabs button').click();camIn('${L.id}')"><td><b>${L.tam.v} · ${L.name}</b></td><td>${tbd(L.tam.v)}${cite(L.tam.src)}</td><td style="font-size:12px;color:var(--mut)">${L.tam.what}</td></tr>`).join('');
 $('#srcs').innerHTML=Object.values(S).map(s=>`<li><a href="${s.u}" target="_blank">${s.t}</a> <span class="d">— ${s.d}</span></li>`).join('');
 $('#mckNote').innerHTML=`McKinsey: $${D.mckinsey.total/1000}T ${D.mckinsey.period}; scenarios ${D.mckinsey.scen.map(s=>s[0]+' $'+s[1]/1000+'T').join(', ')}. ${cite('mck')}`;
 // Charts
