@@ -92,7 +92,20 @@ layers: [
   kpis:[["Big-4 2026 guide","$720–740B","mixed bases","luminix"],["Oracle FY27","$90–95B","target","orclReuters"],["Amazon 2027","> $220B","'meaningfully more'","cnbcAmzn"]],
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
-]};
+],
+whatsNewWeekOf:"2026-11-02",
+whatsNewUpdated:"2026-11-02 morning scan (SGT)",
+whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. url=null where article link not yet verified (never invented).
+whatsNewThisWeek:[
+ {date:"2026-11-01",layer:"capex",headline:"CapEx: no new company guidance since Q3 calls (29–30 Oct)",detail:"Big-5 Q3 spend $237.3B per MarketAnalysis (secondary source, not company guidance). MSFT kept at ~$170B per CNBC 29 Oct.",url:null,src:"MarketAnalysis, 2026-11-01; CNBC, 2026-10-29"},
+ {date:"2026-10-29",layer:"capex",headline:"Microsoft capex held at ~$170B",detail:"Dashboard keeps CNBC figure; no mgmt cite for “about $175B”.",url:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",src:"CNBC, 2026-10-29"},
+ {date:"2026-11-01",layer:"power",headline:"Alliant Energy lifts 2027–30 capex +19% to $15.9B",detail:"3.4 GW contracted with Google/Meta/QTS; ~1 GW more expected within 6 months.",url:null,src:"Reuters / ET, 2026-11-01"},
+ {date:"2026-10-29",layer:"power",headline:"Xcel Energy: $70B 2027–31 base capex",detail:"~$7B data-center load under contract.",url:null,src:"DatacenterFeed / Utility Dive, ~2026-10-29"},
+ {date:"2026-11-01",layer:"cooling",headline:"LG Electronics AI DC cooling orders pass ₩3T through Q3",detail:"Company order figure, not market TAM.",url:null,src:"Chosun Ilbo, 2026-11-01"},
+ {date:"2026-11-02",layer:"semis",headline:"Chips/memory: nothing new this weekend that moves the dashboard",url:null,src:"2026-11-02 scan"}
+]
+};
 // ===== Product catalog: Level -1 layer → -2 family → -3 product (qualitative; no invented $ figures) =====
 window.AIDC.catalog={
 semis:[
@@ -159,3 +172,4 @@ capex:[
   {id:"big4",name:"AWS · Google · Microsoft · Meta · Oracle campuses",company:"Hyperscalers",pic:"campus",blurb:"GW-scale campuses and leases.",use:"Demand driver for every layer above.",detail:["MW buildout per company: TBD (not yet sourced)"]},
   {id:"spcx",name:"SpaceX / xAI Colossus campuses (Memphis TN, Mississippi)",company:"SpaceX (SPCX)",pic:"campus",blurb:"Colossus I & II AI compute campuses; 4th Memphis-area site in development.",use:"Grok training and GPU cloud rented to Anthropic, Google and others.",detail:["Nameplate compute 1.7 GW at 30-Sep-26 (co. Q3 results)","Q3-26 capex $19.6B, of which Super Intelligence $16.4B; Q4 guide $35–40B","Mgmt target >2 GW by end-2026"]}]}]
 };
+window.whatsNewThisWeek=window.AIDC.whatsNewThisWeek;
