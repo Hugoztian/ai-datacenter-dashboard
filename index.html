@@ -4,14 +4,14 @@
 <title>AI Datacenter — Full-Stack Dashboard</title>
 <script src="data.js"></script><script src="chart.umd.min.js"></script>
 <style>
-:root{--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;--bg:#f5f5f7;--panel:#fff;--panel2:#fafafc;--line:rgba(0,0,0,.08);--hair:#d2d2d7;--txt:#1d1d1f;--mut:#6e6e73;--mut2:#86868b;--acc:#0071e3;--pos:#1d8a3a;--neg:#d70015;--warn:#b25000;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 18px rgba(0,0,0,.05);--glass:rgba(251,251,253,.72);--seg:#e8e8ed}
-[data-theme=dark]{--bg:#000;--panel:#1c1c1e;--panel2:#232325;--line:rgba(255,255,255,.1);--hair:#3a3a3c;--txt:#f5f5f7;--mut:#a1a1a6;--mut2:#8e8e93;--acc:#2997ff;--pos:#30d158;--neg:#ff453a;--warn:#ffb340;--shadow:0 1px 2px rgba(0,0,0,.3),0 4px 18px rgba(0,0,0,.4);--glass:rgba(22,22,23,.72);--seg:#2c2c2e}
+:root{--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;--bg:#f5f5f7;--panel:#fff;--panel2:#fafafc;--line:rgba(0,0,0,.08);--hair:#d2d2d7;--txt:#1d1d1f;--mut:#6e6e73;--mut2:#86868b;--acc:#5B5CE6;--accsoft:rgba(91,92,230,.10);--pos:#1d8a3a;--neg:#d70015;--warn:#b25000;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 18px rgba(0,0,0,.05);--glass:rgba(251,251,253,.72);--seg:#e8e8ed}
+[data-theme=dark]{--bg:#000;--panel:#1c1c1e;--panel2:#232325;--line:rgba(255,255,255,.1);--hair:#3a3a3c;--txt:#f5f5f7;--mut:#a1a1a6;--mut2:#8e8e93;--acc:#8B8AFF;--accsoft:rgba(139,138,255,.16);--pos:#30d158;--neg:#ff453a;--warn:#ffb340;--shadow:0 1px 2px rgba(0,0,0,.3),0 4px 18px rgba(0,0,0,.4);--glass:rgba(22,22,23,.72);--seg:#2c2c2e}
 *{box-sizing:border-box}body{margin:0;font-family:var(--font);background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
 header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--glass);border-bottom:1px solid var(--line)}
 .hd{max-width:1180px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
 .hd h1{font-size:19px;margin:0;font-weight:600;letter-spacing:-.01em}.hd .s{color:var(--mut);font-size:13px}
-.upd{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:5px 12px;border-radius:980px;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc);font-size:13px;font-weight:600}
+.upd{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:5px 12px;border-radius:980px;background:var(--accsoft);color:var(--acc);font-size:13px;font-weight:600}
 .upd .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);flex:none}
 .upd .tz{color:var(--mut);font-weight:500}
 .sp{flex:1}.seg{display:flex;background:var(--seg);border-radius:9px;padding:2px}.seg button{border:0;background:none;color:var(--txt);font:500 13px var(--font);padding:6px 12px;border-radius:7px;cursor:pointer}.seg button.on{background:var(--panel);box-shadow:var(--shadow)}
@@ -61,10 +61,10 @@ h2{font-size:22px;letter-spacing:-.015em;margin:28px 0 12px}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}th{font-size:12px;color:var(--mut);font-weight:500;text-transform:uppercase}
 td.num{text-align:right;font-variant-numeric:tabular-nums}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.wn{margin-bottom:16px}.wn h3{margin:0 0 4px}.wn ul{margin:8px 0 0;padding-left:18px}.wn li{margin:6px 0;font-size:14px}.wn .d{color:var(--mut2);font-size:12px}
-.wn li.fresh b,.wn li.fresh{color:var(--acc)}.wn li.fresh .d{color:var(--acc);opacity:.75}
-[data-theme=dark] .wn li.fresh b,[data-theme=dark] .wn li.fresh{color:var(--txt)}
-[data-theme=dark] .wn li.fresh .d{color:var(--mut)}
+.wn{margin-bottom:16px;border-left:4px solid var(--acc)}.wn h3{margin:0 0 4px}.wn ul{margin:8px 0 0;padding:0}.wn li{margin:0 0 10px;font-size:14px;color:var(--mut)}.wn li b{font-weight:600;color:var(--txt)}
+.wn .d{display:inline-block;min-width:92px;color:var(--mut);font-size:12px;font-variant-numeric:tabular-nums}
+.wn li.new48,.wn li.new48 b{color:var(--acc);font-weight:600}.wn li.new48 .d{color:var(--mut);font-weight:400}
+.wn .src{font-size:12px;color:var(--mut);font-weight:400;margin-top:2px}.wn .nb{display:inline-block;background:var(--acc);color:#fff;font-size:11px;border-radius:8px;padding:0 6px;margin-right:6px;font-weight:600;vertical-align:1px}
 .wn .cu{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .wn .cu h4{margin:0 0 6px;font-size:14px}.wn .cu li{font-size:13.5px}
 .wn .cu .when{color:var(--mut2);font-size:12px;white-space:nowrap}
@@ -320,11 +320,12 @@ const within7=Wraw.filter(x=>{const t=Date.parse(x.date);return !isNaN(t)&&nowMs
 const W=[...within7].sort((a,b)=>String(b.date).localeCompare(String(a.date))||String(b.headline).localeCompare(String(a.headline)));
 const isFresh=x=>{const t=Date.parse(x.date);return !isNaN(t)&&nowMs-t<=2*day};
 const row=x=>{const cite=x.url?`<a href="${x.url}" target="_blank" rel="noopener">${x.src||x.date}</a>`:(x.src||x.date);
- return `<li class="${isFresh(x)?'fresh':''}"><span class="d">${x.date}</span> <b>${x.headline}</b>${x.detail?' — '+x.detail:''} <span class="d">(${cite})</span></li>`};
+ const fresh=isFresh(x);
+ return `<li class="${fresh?'new48':''}"><span class="d">${x.date}</span>${fresh?'<span class="nb">48h</span>':''}<b>${x.headline}</b>${x.detail?`<div class="src">${x.detail}</div>`:''}<div class="src">(${cite})</div></li>`};
 const CU=D.comingUp||[];
 const cuHtml=CU.length?`<div class="cu"><h4>Coming up</h4><ul>${CU.map(c=>{const cite=c.url?`<a href="${c.url}" target="_blank" rel="noopener">${c.src||'source'}</a>`:(c.src||'');
  return `<li><span class="when">${c.date}${c.time?' · '+c.time:''}</span> — <b>${c.event}</b>${c.note?' — '+c.note:''}${c.status?` <span class="d">(${c.status})</span>`:''}${cite?` <span class="d">${cite}</span>`:''}</li>`}).join('')}</ul></div>`:'';
-$('#wn').innerHTML=`<h3>What’s new this week</h3><div class="d">Last 7 days · newest first · ≤48h highlighted · ${D.whatsNewUpdated||''}</div>`+(W.length?`<ul>${W.map(row).join('')}</ul>`:`<p class="note">${D.whatsNewEmpty}</p>`)+cuHtml;}
+$('#wn').innerHTML=`<h3>What’s new this week</h3><div class="d">Last 7 days · newest first · ≤48h accent · aged muted · ${D.whatsNewUpdated||''}</div>`+(W.length?`<ul>${W.map(row).join('')}</ul>`:`<p class="note">${D.whatsNewEmpty}</p>`)+cuHtml;}
 $('#srcs').innerHTML=Object.values(S).map(s=>`<li><a href="${s.u}" target="_blank">${s.t}</a> <span class="d">— ${s.d}</span></li>`).join('');
 $('#mckNote').innerHTML=`McKinsey: $${D.mckinsey.total/1000}T ${D.mckinsey.period}; scenarios ${D.mckinsey.scen.map(s=>s[0]+' $'+s[1]/1000+'T').join(', ')}. ${cite('mck')}`;
 // Charts
