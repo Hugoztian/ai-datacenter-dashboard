@@ -11,6 +11,9 @@ a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
 header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--glass);border-bottom:1px solid var(--line)}
 .hd{max-width:1180px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
 .hd h1{font-size:19px;margin:0;font-weight:600;letter-spacing:-.01em}.hd .s{color:var(--mut);font-size:13px}
+.upd{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:5px 12px;border-radius:980px;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc);font-size:13px;font-weight:600}
+.upd .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);flex:none}
+.upd .tz{color:var(--mut);font-weight:500}
 .sp{flex:1}.seg{display:flex;background:var(--seg);border-radius:9px;padding:2px}.seg button{border:0;background:none;color:var(--txt);font:500 13px var(--font);padding:6px 12px;border-radius:7px;cursor:pointer}.seg button.on{background:var(--panel);box-shadow:var(--shadow)}
 .tbtn{border:1px solid var(--hair);background:var(--panel);color:var(--txt);border-radius:20px;padding:6px 12px;cursor:pointer;font:13px var(--font)}
 main{max-width:1180px;margin:auto;padding:22px 20px 60px}
@@ -144,6 +147,7 @@ footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12p
 <div class="seg" id="tabs"><button data-t="stack" class="on">Model</button><button data-t="tam">TAM</button><button data-t="capex">CapEx</button><button data-t="src">Sources</button></div>
 <button class="tbtn" id="theme">◐</button></div></header>
 <main>
+<div class="upd" id="lastupd"></div>
 <div class="kpis" id="kpis"></div>
 <section class="tab on" id="t-stack"><div class="card wn" id="wn"></div><h2>AI data-center model — hover to inspect, click to zoom in</h2><div id="world"><div class="stack" id="stack"></div></div>
 <p class="note">Cutaway: grid &amp; substation → hall → switches, cable trays, racks → GPU/HBM board; rooftop chillers; buildout crane = CapEx. Press <b>Esc</b> or ← Back to zoom out. Deep links: <code>#layer=memory</code>.</p></section>
@@ -160,7 +164,10 @@ footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12p
 const D=window.AIDC,S=D.sources,$=s=>document.querySelector(s);
 const cite=k=>k&&S[k]?`<sup><a href="${S[k].u}" target="_blank" title="${S[k].t} (${S[k].d})">[${Object.keys(S).indexOf(k)+1}]</a></sup>`:'';
 const tbd=v=>/TBD|—/.test(v)?`<span class="tbd">${v}</span>`:v;
-$('#upd').textContent=D.updated;
+const stamp=D.updated_sgt||D.updated;
+const lastEl=$('#lastupd');
+if(lastEl)lastEl.innerHTML=`<span class="dot"></span>Last updated ${stamp} SGT <span class="tz">(Asia/Singapore)</span>`;
+$('#upd').textContent=stamp+' SGT';
 // theme
 const root=document.documentElement,mq=matchMedia('(prefers-color-scheme: dark)');
 function setT(t){root.dataset.theme=t;localStorage.setItem('aidc-theme',t);drawCharts()}
