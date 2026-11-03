@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
 updated: "2026-11-03",
-updated_sgt: "3 Nov 2026, 2:42 PM",
+updated_sgt: "3 Nov 2026, 2:44 PM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -100,11 +100,21 @@ layers: [
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
 whatsNewWeekOf:"2026-11-02",
-whatsNewUpdated:"2026-11-02 morning scan (SGT)",
+whatsNewUpdated:"2026-11-03 afternoon (SGT)",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
+
+comingUp:[
+ {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"AMD Q3 FY26 earnings",status:"Confirmed",note:"AI GPU / Instinct + CapEx commentary watch",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
+ {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"Arista Networks Q3 FY26 earnings",status:"Confirmed",note:"AI Ethernet fabrics vs ≥$3.5B 2026 target",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
+ {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"Eaton Q3 2026 earnings",status:"Confirmed",note:"Electrical / data-center power",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
+ {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"Super Micro Q1 FY27 earnings",status:"Confirmed",note:"AI server / rack systems",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
+ {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT)",event:"Arm Holdings Q2 FY27 earnings",status:"Confirmed",note:"CPU / AI licensing",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
+ {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT)",event:"Qualcomm Q4 FY26 earnings",status:"Confirmed",note:"AI edge / data-center adjacency",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
+ {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT)",event:"Coherent Q1 FY27 earnings",status:"Confirmed",note:"Optical transceivers / lasers",src:"Earnings calendar (SharpeIQ / company IR)",url:null}
+],
 // Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. url=null where article link not yet verified (never invented).
 whatsNewThisWeek:[
- {date:"2026-11-03",layer:"capex",headline:"CapEx: no new company guidance since Q3 calls (29–30 Oct)",detail:"Amazon still budgeting ~$220B 2026 capex; Microsoft held at ~$170B (CNBC). AMD, Arista, Eaton and Supermicro report 3 Nov ET; Arm, Qualcomm, Coherent 4 Nov ET.",url:"https://www.businessbagel.com/big-techs-ai-sales-are-booming-but-the-building-bill-is-now-bigger-than-the-cash-coming-in/",src:"Business Bagel, 2026-11-02; CNBC, 2026-10-29; SharpeIQ calendar, 2026-11"},
+ {date:"2026-11-03",layer:"capex",headline:"CapEx: no new company guidance since Q3 calls (29–30 Oct)",detail:"Amazon still budgeting ~$220B 2026 capex; Microsoft held at ~$170B (CNBC). See Coming up for this week’s earnings.",url:"https://www.businessbagel.com/big-techs-ai-sales-are-booming-but-the-building-bill-is-now-bigger-than-the-cash-coming-in/",src:"Business Bagel, 2026-11-02; CNBC, 2026-10-29; SharpeIQ calendar, 2026-11"},
  {date:"2026-11-02",layer:"capex",headline:"US data-center construction hits record $96B annual rate in September",detail:"Census Bureau: +8.6% m/m, +90% y/y (seasonally adjusted annual rate). Buildings only; excludes servers, network and most electrical gear.",url:"https://wolfstreet.com/2026/11/02/no-inflection-point-yet-near-exponential-data-center-boom-sends-shockwaves-to-industrial-economy-construction-hit-by-2nd-wave-of-inflation/",src:"US Census Bureau via Wolf Street, 2026-11-02"},
  {date:"2026-11-02",layer:"capex",headline:"S&P cuts Meta credit outlook to negative",detail:"Cites negative cash flow and uncertainty around capex plans (action late Fri 30 Oct). OpenAI reportedly cut its funding-round target to $20B from $30B (FT).",url:"https://fortune.com/2026/11/02/ai-boom-supply-crunch-capital-debt-bonds-capex-spending/",src:"Fortune, 2026-11-02"},
  {date:"2026-11-02",layer:"capex",headline:"AI data-center debt gets pricier: QTS paper shopped at 2.2–2.5 pts over Treasuries",detail:"Same Blackstone-backed issuer weighed ~1.7 pts six months ago.",url:"https://www.semafor.com/article/11/02/2026/blackstone-backed-data-center-operator-tests-ai-debt-fears",src:"Semafor, 2026-11-02"},
@@ -178,3 +188,4 @@ capex:[
   {id:"spcx",name:"SpaceX / xAI Colossus campuses (Memphis TN, Mississippi)",company:"SpaceX (SPCX)",pic:"campus",blurb:"Colossus I & II AI compute campuses; 4th Memphis-area site in development.",use:"Grok training and GPU cloud rented to Anthropic, Google and others.",detail:["Nameplate compute 1.7 GW at 30-Sep-26 (co. Q3 results)","Q3-26 capex $19.6B, of which Super Intelligence $16.4B; Q4 guide $35–40B","Mgmt target >2 GW by end-2026"]}]}]
 };
 window.whatsNewThisWeek=window.AIDC.whatsNewThisWeek;
+window.comingUp=window.AIDC.comingUp;

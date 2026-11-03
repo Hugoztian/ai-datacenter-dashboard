@@ -61,7 +61,14 @@ h2{font-size:22px;letter-spacing:-.015em;margin:28px 0 12px}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}th{font-size:12px;color:var(--mut);font-weight:500;text-transform:uppercase}
 td.num{text-align:right;font-variant-numeric:tabular-nums}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.wn{margin-bottom:16px}.wn h3{margin:0 0 4px}.wn ul{margin:8px 0 0;padding-left:18px}.wn li{margin:6px 0;font-size:14px}.wn .d{color:var(--mut2);font-size:12px}.srcs li{margin:6px 0;font-size:13px}.srcs .d{color:var(--mut2)}
+.wn{margin-bottom:16px}.wn h3{margin:0 0 4px}.wn ul{margin:8px 0 0;padding-left:18px}.wn li{margin:6px 0;font-size:14px}.wn .d{color:var(--mut2);font-size:12px}
+.wn li.fresh b,.wn li.fresh{color:var(--acc)}.wn li.fresh .d{color:var(--acc);opacity:.75}
+[data-theme=dark] .wn li.fresh b,[data-theme=dark] .wn li.fresh{color:var(--txt)}
+[data-theme=dark] .wn li.fresh .d{color:var(--mut)}
+.wn .cu{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.wn .cu h4{margin:0 0 6px;font-size:14px}.wn .cu li{font-size:13.5px}
+.wn .cu .when{color:var(--mut2);font-size:12px;white-space:nowrap}
+.srcs li{margin:6px 0;font-size:13px}.srcs .d{color:var(--mut2)}
 .tab{display:none}.tab.on{display:block;animation:pop .35s}
 footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12px;border-top:1px solid var(--line)}
 @media(max-width:760px){.slab{grid-template-columns:44px 1fr 22px}.slab .tvw,.slab .tw2{display:none}.hero,.grid2{grid-template-columns:1fr}.big{font-size:38px}.stack{transform:none}}
@@ -307,7 +314,17 @@ document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.que
 function capRows(){return `<tr><th>Company</th><th class="num">2026 guide</th><th>Basis</th><th>Note</th></tr>`+cx.map(c=>`<tr><td><b>${c.tk}</b> ${c.co}</td><td class="num">${c.lo===c.hi?'~$'+c.lo:'$'+c.lo+'–'+c.hi}B${cite(c.src)}</td><td>${c.basis}</td><td style="font-size:12px;color:var(--mut)">${c.note}</td></tr>`).join('')}
 $('#capT').innerHTML=capRows();
 $('#layerTam').innerHTML='<tr><th>Layer</th><th>TAM anchor</th><th>Definition</th></tr>'+D.layers.map(L=>`<tr style="cursor:pointer" onclick="document.querySelector('#tabs button').click();camIn('${L.id}')"><td><b>${L.tam.v} · ${L.name}</b></td><td>${tbd(L.tam.v)}${cite(L.tam.src)}</td><td style="font-size:12px;color:var(--mut)">${L.tam.what}</td></tr>`).join('');
-{const W=D.whatsNewThisWeek||[];$('#wn').innerHTML=`<h3>What’s new this week</h3><div class="d">Week of ${D.whatsNewWeekOf||''} · ${D.whatsNewUpdated||''}</div>`+(W.length?`<ul>${W.map(x=>{const cite=x.url?`<a href="${x.url}" target="_blank" rel="noopener">${x.src||x.date}</a>`:(x.src||x.date);return `<li><b>${x.headline}</b>${x.detail?' — '+x.detail:''} <span class="d">(${cite})</span></li>`}).join('')}</ul>`:`<p class="note">${D.whatsNewEmpty}</p>`);}
+{const Wraw=D.whatsNewThisWeek||[];
+const nowMs=Date.now(),day=864e5;
+const within7=Wraw.filter(x=>{const t=Date.parse(x.date);return !isNaN(t)&&nowMs-t<=7*day+day}); // keep calendar day slack
+const W=[...within7].sort((a,b)=>String(b.date).localeCompare(String(a.date))||String(b.headline).localeCompare(String(a.headline)));
+const isFresh=x=>{const t=Date.parse(x.date);return !isNaN(t)&&nowMs-t<=2*day};
+const row=x=>{const cite=x.url?`<a href="${x.url}" target="_blank" rel="noopener">${x.src||x.date}</a>`:(x.src||x.date);
+ return `<li class="${isFresh(x)?'fresh':''}"><span class="d">${x.date}</span> <b>${x.headline}</b>${x.detail?' — '+x.detail:''} <span class="d">(${cite})</span></li>`};
+const CU=D.comingUp||[];
+const cuHtml=CU.length?`<div class="cu"><h4>Coming up</h4><ul>${CU.map(c=>{const cite=c.url?`<a href="${c.url}" target="_blank" rel="noopener">${c.src||'source'}</a>`:(c.src||'');
+ return `<li><span class="when">${c.date}${c.time?' · '+c.time:''}</span> — <b>${c.event}</b>${c.note?' — '+c.note:''}${c.status?` <span class="d">(${c.status})</span>`:''}${cite?` <span class="d">${cite}</span>`:''}</li>`}).join('')}</ul></div>`:'';
+$('#wn').innerHTML=`<h3>What’s new this week</h3><div class="d">Last 7 days · newest first · ≤48h highlighted · ${D.whatsNewUpdated||''}</div>`+(W.length?`<ul>${W.map(row).join('')}</ul>`:`<p class="note">${D.whatsNewEmpty}</p>`)+cuHtml;}
 $('#srcs').innerHTML=Object.values(S).map(s=>`<li><a href="${s.u}" target="_blank">${s.t}</a> <span class="d">— ${s.d}</span></li>`).join('');
 $('#mckNote').innerHTML=`McKinsey: $${D.mckinsey.total/1000}T ${D.mckinsey.period}; scenarios ${D.mckinsey.scen.map(s=>s[0]+' $'+s[1]/1000+'T').join(', ')}. ${cite('mck')}`;
 // Charts
