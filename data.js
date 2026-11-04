@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-03",
-updated_sgt: "3 Nov 2026, 3:23 PM",
+updated: "2026-11-04",
+updated_sgt: "4 Nov 2026, 8:10 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -100,25 +100,26 @@ layers: [
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
 whatsNewWeekOf:"2026-11-02",
-whatsNewUpdated:"2026-11-03 afternoon (SGT)",
+whatsNewUpdated:"2026-11-04 morning (SGT)",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp:[
- {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"AMD Q3 FY26 earnings",status:"Confirmed",note:"AI GPU / Instinct + CapEx commentary watch",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
- {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"Arista Networks Q3 FY26 earnings",status:"Confirmed",note:"AI Ethernet fabrics vs ≥$3.5B 2026 target",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
- {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"Eaton Q3 2026 earnings",status:"Confirmed",note:"Electrical / data-center power",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
- {date:"2026-11-03",time:"After close ET (~05:00 4 Nov SGT)",event:"Super Micro Q1 FY27 earnings",status:"Confirmed",note:"AI server / rack systems",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
- {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT)",event:"Arm Holdings Q2 FY27 earnings",status:"Confirmed",note:"CPU / AI licensing",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
- {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT)",event:"Qualcomm Q4 FY26 earnings",status:"Confirmed",note:"AI edge / data-center adjacency",src:"Earnings calendar (SharpeIQ / company IR)",url:null},
- {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT)",event:"Coherent Q1 FY27 earnings",status:"Confirmed",note:"Optical transceivers / lasers",src:"Earnings calendar (SharpeIQ / company IR)",url:null}
+ {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT); webcast 2:00 PM PT",event:"Arm Holdings Q2 FY27 earnings",status:"Confirmed",note:"CPU / AI licensing & royalties",src:"Arm Newsroom",url:"https://newsroom.arm.com/news/arm-announces-earnings-release-date-for-second-quarter-fiscal-year-ending-2027"},
+ {date:"2026-11-04",time:"After close ET (~05:00 5 Nov SGT); call 1:45 PM PT",event:"Qualcomm Q4 FY26 earnings",status:"Confirmed",note:"AI edge / data-center adjacency",src:"Qualcomm IR",url:"https://investor.qualcomm.com/news-events/press-releases/news-details/2026/Qualcomm-Schedules-Fourth-Quarter-and-Fiscal-2026-Earnings-Release-and-Conference-Call/default.aspx"},
+ {date:"2026-11-04",time:"After NYSE close (~05:00 5 Nov SGT); webcast 4:30 PM ET",event:"Coherent Q1 FY27 earnings",status:"Confirmed",note:"Optical transceivers / lasers",src:"Coherent IR, 2026-10-14",url:"https://ir.coherent.com/news-releases/news-release-details/coherent-corp-announces-timing-fy2027-first-quarter-earnings"},
+ {date:"2026-11-17",time:"After close; call 2:00 PM PT (~06:00 18 Nov SGT)",event:"NVIDIA Q3 FY27 earnings",status:"Confirmed",note:"Quarter ended 25 Oct 2026; data-center compute & networking",src:"NVIDIA IR",url:"https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx"}
 ],
 // Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. url=null where article link not yet verified (never invented).
 whatsNewThisWeek:[
- {date:"2026-11-03",layer:"capex",headline:"CapEx: no new company guidance since Q3 calls (29–30 Oct)",detail:"Amazon still budgeting ~$220B 2026 capex; Microsoft held at ~$170B (CNBC). See Coming up for this week’s earnings.",url:"https://www.businessbagel.com/big-techs-ai-sales-are-booming-but-the-building-bill-is-now-bigger-than-the-cash-coming-in/",src:"Business Bagel, 2026-11-02; CNBC, 2026-10-29; SharpeIQ calendar, 2026-11"},
+ {date:"2026-11-03",layer:"semis",headline:"AMD Q3: Data Center a record $8.5B (+97% y/y); Q4 guide ~$17B ±3%",detail:"Total revenue $13.4B (+45%). Q4 midpoint +66% y/y with Data Center ~+50% q/q as Helios/MI450 and ‘Venice’ ramp. Mgmt: 2027 revenue +80%+, server revenue to double, Data Center >80% of 2027 revenue.",url:"https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results",src:"AMD press release, 2026-11-03; Q3 call via Investing.com, 2026-11-03"},
+ {date:"2026-11-03",layer:"net",headline:"Arista Q3 revenue $3.66B (+58.5%); FY26 raised to ~$13.3B, first FY27 view ~$18.5B",detail:"Q4 guide $3.9–4.0B. Mgmt: AI fabrics to roughly double to ~$7B in 2027; TAM north of $200B by 2030; scale-up Ethernet trials 2027, production 2028.",url:"https://www.arista.com/en/company/news/press-release/25025-pr-20261103",src:"Arista press release, 2026-11-03; Q3 call via Benzinga, 2026-11-03"},
+ {date:"2026-11-03",layer:"power",headline:"Eaton: data-center orders +100%+ (rolling 12-mo), DC revenue ~+65%; FY26 guide raised",detail:"Q3 sales +28% (19% organic). FY26 organic growth 13–15%, adj. EPS $13.70–13.80. Tracked announced DC projects 366 GW (vs 307 GW last update) vs ~50 GW installed. Agreed to buy COL Group (EU medium-voltage).",url:"https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-third-quarter-2026-results.html",src:"Eaton press release & Q3 analyst deck, 2026-11-03; Q3 call via Motley Fool, 2026-11-03"},
+ {date:"2026-11-03",layer:"racks",headline:"Super Micro Q1 FY27 sales $19.9B (prelim.); FY27 guide raised to $72–82B",detail:"Up from $65–72B. Q2 guide $19.5–21.5B, GM 12.0–12.5%. Q1 included ~$2.3B catch-up (underlying ~$17.6B); component, power and shell constraints still gate shipment timing.",url:"https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",src:"Supermicro press release, 2026-11-03; Q1 call via Benzinga, 2026-11-03"},
+ {date:"2026-11-03",layer:"capex",headline:"Hyperscaler CapEx: no new company guidance since Q3 calls (29–30 Oct)",detail:"Amazon still budgeting ~$220B 2026 capex; Microsoft held at ~$170B (CNBC). Supplier prints on 3 Nov (above) point to demand still accelerating.",url:"https://www.businessbagel.com/big-techs-ai-sales-are-booming-but-the-building-bill-is-now-bigger-than-the-cash-coming-in/",src:"Business Bagel, 2026-11-02; CNBC, 2026-10-29; SharpeIQ calendar, 2026-11"},
  {date:"2026-11-02",layer:"capex",headline:"US data-center construction hits record $96B annual rate in September",detail:"Census Bureau: +8.6% m/m, +90% y/y (seasonally adjusted annual rate). Buildings only; excludes servers, network and most electrical gear.",url:"https://wolfstreet.com/2026/11/02/no-inflection-point-yet-near-exponential-data-center-boom-sends-shockwaves-to-industrial-economy-construction-hit-by-2nd-wave-of-inflation/",src:"US Census Bureau via Wolf Street, 2026-11-02"},
  {date:"2026-11-02",layer:"capex",headline:"S&P cuts Meta credit outlook to negative",detail:"Cites negative cash flow and uncertainty around capex plans (action late Fri 30 Oct). OpenAI reportedly cut its funding-round target to $20B from $30B (FT).",url:"https://fortune.com/2026/11/02/ai-boom-supply-crunch-capital-debt-bonds-capex-spending/",src:"Fortune, 2026-11-02"},
  {date:"2026-11-02",layer:"capex",headline:"AI data-center debt gets pricier: QTS paper shopped at 2.2–2.5 pts over Treasuries",detail:"Same Blackstone-backed issuer weighed ~1.7 pts six months ago.",url:"https://www.semafor.com/article/11/02/2026/blackstone-backed-data-center-operator-tests-ai-debt-fears",src:"Semafor, 2026-11-02"},
- {date:"2026-11-02",layer:"power",headline:"41 local data-center ballot measures go to voters on 3 Nov",detail:"All six DC measures decided earlier in 2026 went against development (Axios/Ballotpedia).",url:"https://fortune.com/2026/11/02/midterms-2026-bofa-ai-correction-risk-global-economy-goldman-tariffs-jobs/",src:"Fortune, 2026-11-02"}
+ {date:"2026-11-02",layer:"power",headline:"41 local data-center ballot measures went to voters on 3 Nov",detail:"Results not yet certified (Ballotpedia shows pending, 4 Nov SGT); 21 in Ohio. All six DC measures decided earlier in 2026 went against development.",url:"https://fortune.com/2026/11/02/midterms-2026-bofa-ai-correction-risk-global-economy-goldman-tariffs-jobs/",src:"Fortune, 2026-11-02"}
 ]
 };
 // ===== Product catalog: Level -1 layer → -2 family → -3 product (qualitative; no invented $ figures) =====
