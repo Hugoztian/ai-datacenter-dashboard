@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-06",
-updated_sgt: "6 Nov 2026, 8:08 AM",
+updated: "2026-11-07",
+updated_sgt: "7 Nov 2026, 12:39 PM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -75,7 +75,7 @@ layers: [
   cos:[["AVGO","Broadcom","Tomahawk / Jericho switch silicon"],["NVDA","NVIDIA Networking","InfiniBand, Spectrum-X, NVLink"],["ANET","Arista","AI Ethernet switches"],["CSCO","Cisco","Silicon One, switches"],["MRVL","Marvell","Optical DSPs, custom"],["COHR","Coherent","Transceivers, lasers"],["LITE","Lumentum","Lasers, optics"],["CRDO","Credo","AECs, SerDes"]]},
  {id:"power",n:4,name:"Power",sub:"Grid · Substation · UPS · PDU",icon:"ϟ",color:"#b25000",
   tam:{v:"$120B",what:"Annual: global DC physical infrastructure (power + thermal), annual by 2030, 22% CAGR — Dell'Oro",src:"delloroDCPI"},
-  kpis:[["DCPI 2Q26","$14B","+27% Y/Y","delloroDCPIq"],["GE Vernova DC electrification orders","> $6B YTD","through 3Q26","gev"],["Eaton electrical backlog","+43% Y/Y","Q2 2026 (Q3 due 3 Nov)","etn"]],
+  kpis:[["DCPI 2Q26","$14B","+27% Y/Y","delloroDCPIq"],["GE Vernova DC electrification orders","> $6B YTD","through 3Q26","gev"],["Eaton electrical backlog","+43% Y/Y","Q2 2026 figure; Q3 results were reported 3 Nov 2026","etn"]],
   segs:[["Grid & generation","Interconnects, turbines, transformers"],["Medium voltage","Substations, switchgear"],["Critical power","UPS, batteries, generators"],["Rack power","Busway, PDUs, 800V DC architectures"]],
   cos:[["GEV","GE Vernova","Gas turbines, grid, electrification"],["ETN","Eaton","UPS, switchgear, PDUs"],["SU.PA","Schneider Electric","Electrical + cooling"],["VRT","Vertiv","UPS, power trains"],["ABBN.SW","ABB","Electrification"],["SIE.DE","Siemens","MV switchgear"],["CAT","Caterpillar","Gensets / turbines"]]},
  {id:"cool",n:5,name:"Cooling",sub:"Air · DLC · Immersion · CDU",icon:"❄︎",color:"#0a84a8",
@@ -99,42 +99,281 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf:"2026-11-02",
-whatsNewUpdated:"2026-11-06 morning (SGT)",
+whatsNewWeekOf: "2026-11-01",
+whatsNewUpdated: "2026-11-07 12:39 PM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
-comingUp:[
- {date:"2026-11-10",time:"Call 5:00 PM ET (~06:00 11 Nov SGT)",event:"CoreWeave Q3 2026 earnings",status:"Confirmed",note:"Neocloud GPU capacity, backlog, financing",src:"CoreWeave IR",url:"https://investors.coreweave.com/news/news-details/2026/CoreWeave-Announces-Date-of-Third-Quarter-2026-Financial-Results-and-Conference-Call/default.aspx"},
- {date:"2026-11-12",time:"Before market open; call 8:00 AM ET (~21:00 12 Nov SGT)",event:"Nebius Group Q3 2026 earnings",status:"Confirmed",note:"Neocloud capacity / Microsoft contract",src:"Nebius newsroom, 2026-10-30",url:"https://nebius.com/newsroom/nebius-group-announces-date-of-third-quarter-2026-results-and-conference-call"},
- {date:"2026-11-12",time:"Call 4:30 PM ET (~05:30 13 Nov SGT)",event:"Applied Materials Q4 FY26 earnings",status:"Confirmed",note:"Wafer-fab equipment for leading-edge logic, HBM/DRAM",src:"Applied Materials IR",url:"https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-report-fourth-quarter-and-fiscal-2026-results/"},
- {date:"2026-11-12",time:"After close; call 1:30 PM PT (~05:30 13 Nov SGT)",event:"Cisco Q1 FY27 earnings",status:"Confirmed",note:"AI networking orders from hyperscalers",src:"Cisco IR",url:"https://investor.cisco.com/news/news-details/2026/Cisco-Schedules-Conference-Call-for-Q1-Fiscal-Year-2027-Financial-Results/default.aspx"},
- {date:"2026-11-17",time:"After close; call 2:00 PM PT (~06:00 18 Nov SGT)",event:"NVIDIA Q3 FY27 earnings",status:"Confirmed",note:"Quarter ended 25 Oct 2026; data-center compute & networking",src:"NVIDIA IR",url:"https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx"}
+comingUp: [
+ {
+  "date": "2026-11-10",
+  "time": "Call 5:00 p.m. ET (~06:00 11 Nov SGT)",
+  "event": "CoreWeave Q3 2026 earnings",
+  "status": "Confirmed",
+  "note": "Neocloud GPU capacity, backlog, financing. IR release dated 27 Oct 2026.",
+  "src": "CoreWeave IR",
+  "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Announces-Date-of-Third-Quarter-2026-Financial-Results-and-Conference-Call/default.aspx"
+ },
+ {
+  "date": "2026-11-12",
+  "time": "Before market open; call 8:00 a.m. ET (~21:00 12 Nov SGT)",
+  "event": "Nebius Group Q3 2026 earnings",
+  "status": "Confirmed",
+  "note": "Neocloud capacity. Release dated 30 Oct 2026.",
+  "src": "Nebius newsroom",
+  "url": "https://nebius.com/newsroom/nebius-group-announces-date-of-third-quarter-2026-results-and-conference-call"
+ },
+ {
+  "date": "2026-11-12",
+  "time": "Call 4:30 p.m. ET / 1:30 p.m. PT (~05:30 13 Nov SGT)",
+  "event": "Applied Materials Q4 FY26 earnings",
+  "status": "Confirmed",
+  "note": "Wafer-fab equipment. The 22 Oct release states the call time and does not separately say when results are issued.",
+  "src": "Applied Materials IR",
+  "url": "https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-report-fourth-quarter-and-fiscal-2026-results/"
+ },
+ {
+  "date": "2026-11-12",
+  "time": "After the close; call 1:30 p.m. PT / 4:30 p.m. ET (~05:30 13 Nov SGT)",
+  "event": "Cisco Q1 FY27 earnings",
+  "status": "Confirmed",
+  "note": "AI networking. Release dated 3 Nov 2026 says results follow the market close.",
+  "src": "Cisco IR",
+  "url": "https://investor.cisco.com/news/news-details/2026/Cisco-Schedules-Conference-Call-for-Q1-Fiscal-Year-2027-Financial-Results/default.aspx"
+ },
+ {
+  "date": "2026-11-17",
+  "time": "Results ~1:20 p.m. PT; call 2:00 p.m. PT / 5:00 p.m. ET (~06:00 18 Nov SGT)",
+  "event": "NVIDIA Q3 FY27 earnings",
+  "status": "Confirmed",
+  "note": "Quarter ended 25 Oct 2026. IR release dated 28 Oct 2026.",
+  "src": "NVIDIA IR",
+  "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx"
+ }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. url=null where article link not yet verified (never invented).
-whatsNewThisWeek:[
- {date:"2026-11-05",layer:"memory",headline:"Counterpoint: Q3 DRAM revenue nearly $200B (+369% y/y) on AI pricing super-cycle",detail:"Bit shipments only ~+4% q/q; ASP reached $1.9/Gb. Samsung DRAM share 38%; SK hynix revenue +40%+ q/q. HBM revenue almost doubled but share of DRAM mix fell as DDR/LPDDR grew faster; Vera Rubin cited with ~1.5 TB CPU DRAM/socket.",url:"https://counterpointresearch.com/en/insights/dram-super-cycle-nears-dollar-200b",src:"Counterpoint Research Q3 2026 Global Memory Tracker, 2026-11-05"},
- {date:"2026-11-05",layer:"power",headline:"Eaton CEO: AC-to-DC / 800V DC migration for data centers ‘is real’",detail:"15-kV, 2-MW solid-state transformer said to be first multi-MW unit to pass new UL Solutions tests. Electrical Americas backlog $16B (+33% y/y); companywide Q3 sales $8.9B (+28%). Tracked announced DC projects still 366 GW vs ~50 GW installed. Timing of AC→DC ‘not under our control’.",url:"https://www.utilitydive.com/news/eaton-ceo-ac-to-dc-migration-is-real-because-of-large-power-savings/873887/",src:"Utility Dive, 2026-11-05 (Eaton CEO remarks)"},
- {date:"2026-11-05",layer:"power",headline:"Midterms: Texas governor-elect Hinojosa proposes new-DC permit pause; Nomura flags 2028 risk",detail:"CNBC: Democratic gubernatorial wins raise permitting risk; Hinojosa proposed statewide moratorium on new data-center permits (projects under construction reportedly exempt). JPMorgan: existing capacity more valuable as supply tightens; neocloud borrowing costs much higher than hyperscalers. Nomura: bigger buildout headwind from 2028 (2027 capacity largely already under construction).",url:"https://www.cnbc.com/2026/11/05/ai-data-centers-midterms-capacity.html",src:"CNBC, 2026-11-05"},
- {date:"2026-11-05",layer:"capex",headline:"OpenAI publishes National Community Compact + Compute Campus Policy Blueprint",detail:"For future US campuses OpenAI owns and operates: pay full electricity/infrastructure cost with financial assurances; site-level water/electricity reporting; no NDAs with public officials except narrow security/trade-secret exceptions; annual public progress reports. Blueprint asks policymakers for ratepayer protections and public incentive terms.",url:"https://openai.com/index/setting-new-standard-responsible-ai-infrastructure/",src:"OpenAI, 2026-11-05"},
- {date:"2026-11-05",layer:"capex",headline:"Microsoft declined ~500 MW Nscale Texas expansion option (FT/DCD)",detail:"Option was for capacity at an Nscale-owned Ward County site adjacent to the Ionic Digital campus where Microsoft already leases ~230 MW. Source told DCD talks were months ago; Nscale says $103B backlog unchanged (Microsoft still ~40%). Nscale later signed a $3.5B Figure deal for 100k Vera Rubin GPUs at its self-owned Barstow site.",url:"https://www.datacenterdynamics.com/en/news/microsoft-declined-option-for-expanded-compute-contract-in-texas-with-nscale/",src:"DCD citing FT, 2026-11-05"},
- {date:"2026-11-04",layer:"capex",headline:"Goldman: ~$3.2T AI commitments outside Big Tech balance sheets",detail:"Alphabet, Amazon, Meta, Microsoft, Oracle: ~$1.7T lease commitments (~$1.3T not yet commenced) + ~$1.9T other purchase commitments (servers/network/power/construction/capacity); ~$685B of purchase commitments due by YE2027. Analyst Amanda Lynam: debt financing still key; some already in consensus CapEx forecasts.",url:"https://finance.yahoo.com/markets/article/big-tech-has-more-than-3-trillion-in-ai-commitments-that-dont-show-up-on-its-balance-sheets-110100907.html",src:"Yahoo Finance citing Goldman Sachs (Amanda Lynam), 2026-11-04; CTOL 2026-11-04"},
- {date:"2026-11-04",layer:"power",headline:"Vertiv–Infineon 3-year Si/SiC supply deal for 800 VDC power systems",detail:"Company PR: long-term access to silicon and silicon-carbide power semiconductors across Vertiv’s global power portfolio, including next-gen 800 VDC systems for AI infrastructure; multi-supplier resilience strategy.",url:"https://www.vertiv.com/en-us/about/news-and-events/corporate-news/2026/vertiv-and-infineon-deepen-strategic-partnership-for-critical-power-infrastructure/",src:"Vertiv press release, 2026-11-04"},
- {date:"2026-11-04",layer:"net",headline:"Coherent Q1 FY27 revenue $2.37B (+50%); Datacenter & Comms $1.95B (+79%)",detail:"Q2 guide $2.55–2.75B. Mgmt: FY27 pro forma growth to exceed 60%; first $3B quarter by end-FY27, line of sight to $4B quarter in FY28; order coverage through CY27 'exceptional', orders extending into CY28.",url:"https://www.globenewswire.com/news-release/2026/11/04/3395801/11543/en/coherent-corp-reports-first-quarter-fiscal-2027-results.html",src:"Coherent press release & call, 2026-11-04"},
- {date:"2026-11-04",layer:"semis",headline:"Qualcomm reiterates $5B FY27 data-center revenue target; Dec-qtr DC revenue >$650M",detail:"Mgmt: DC to exit FY27 at ~$7B run-rate, $15B target in FY29; AWS custom AI-inference silicon began shipping in October, optical connectivity ramps this month; second optical customer signed. Total Q1 FY27 guide $10.4–11.2B. 'We don't have a demand issue; it's a supply issue' (Amon).",url:"https://www.benzinga.com/news/26/11/62899398/qualcomm-q4-2026-earnings-call-transcript",src:"Qualcomm Q4 FY26 call, 2026-11-04; CNBC"},
- {date:"2026-11-04",layer:"semis",headline:"Arm Q2 FY27 revenue a record $1.44B (+27%); data-center royalties doubled y/y",detail:"Licensing $773M (+50%), royalties $670M (+8%). Q3 guide $1.54B ±$50M (~+24% y/y); royalties to grow low-teens q/q on cloud AI, offset by weaker smartphones.",url:"https://newsroom.arm.com/news/arm-q2-fye27-results",src:"Arm shareholder letter & call, 2026-11-04"},
- {date:"2026-11-04",layer:"power",headline:"Voters back data-center restrictions in 44 of 45 local ballot measures (3 Nov)",detail:"Only Harwood, ND went the other way. Measures ranged from outright bans and 180-day moratoriums to ~25 MW caps; many in Ohio. On 4 Nov neoclouds fell (CoreWeave ~-9%, Nebius ~-6%, IREN ~-11%) while hyperscalers rose >4% (CNBC).",url:"https://www.cnbc.com/2026/11/04/data-center-ballot-measures-2026-midterm.html",src:"CNBC, 2026-11-04; KCRA/datacentersontheballot.com tally"},
- {date:"2026-11-03",layer:"capex",headline:"Big four seek >$131B debt/equity for AI buildout (AMZN/MSFT/ORCL/GOOGL)",detail:"Amazon: supplier-financing facility up to ~$80B (draw Q1'27–Q3'28). Microsoft: $25B bonds (rates 4.85–6.35%), expected close 4 Nov. Oracle: $10B equity + $10B notes. Google: €6B (~$6.7B) bonds. Full-year CapEx guidance unchanged vs Q3 prints (AMZN ~$220B; MSFT ~$170B; ORCL $90–95B; GOOGL $195–205B).",url:"https://www.datacenterdynamics.com/en/news/big-four-hyperscalers-raising-more-that-131-billion-in-debt-and-equity-for-ai-buildout/",src:"DCD, 2026-11-03; company SEC/IR disclosures cited therein"},
- {date:"2026-11-03",layer:"semis",headline:"AMD Q3: Data Center a record $8.5B (+97% y/y); Q4 guide ~$17B ±3%",detail:"Total revenue $13.4B (+45%). Q4 midpoint +66% y/y with Data Center ~+50% q/q as Helios/MI450 and ‘Venice’ ramp. Mgmt: 2027 revenue +80%+, server revenue to double, Data Center >80% of 2027 revenue.",url:"https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results",src:"AMD press release, 2026-11-03; Q3 call via Investing.com, 2026-11-03"},
- {date:"2026-11-03",layer:"net",headline:"Arista Q3 revenue $3.66B (+58.5%); FY26 raised to ~$13.3B, first FY27 view ~$18.5B",detail:"Q4 guide $3.9–4.0B. Mgmt: AI fabrics to roughly double to ~$7B in 2027; TAM north of $200B by 2030; scale-up Ethernet trials 2027, production 2028.",url:"https://www.arista.com/en/company/news/press-release/25025-pr-20261103",src:"Arista press release, 2026-11-03; Q3 call via Benzinga, 2026-11-03"},
- {date:"2026-11-03",layer:"power",headline:"Eaton: data-center orders +100%+ (rolling 12-mo), DC revenue ~+65%; FY26 guide raised",detail:"Q3 sales +28% (19% organic). FY26 organic growth 13–15%, adj. EPS $13.70–13.80. Tracked announced DC projects 366 GW (vs 307 GW last update) vs ~50 GW installed. Agreed to buy COL Group (EU medium-voltage).",url:"https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-third-quarter-2026-results.html",src:"Eaton press release & Q3 analyst deck, 2026-11-03; Q3 call via Motley Fool, 2026-11-03"},
- {date:"2026-11-03",layer:"racks",headline:"Super Micro Q1 FY27 sales $19.9B (prelim.); FY27 guide raised to $72–82B",detail:"Up from $65–72B. Q2 guide $19.5–21.5B, GM 12.0–12.5%. Q1 included ~$2.3B catch-up (underlying ~$17.6B); component, power and shell constraints still gate shipment timing.",url:"https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",src:"Supermicro press release, 2026-11-03; Q1 call via Benzinga, 2026-11-03"},
- {date:"2026-11-03",layer:"capex",headline:"Hyperscaler CapEx: no new company guidance since Q3 calls (29–30 Oct)",detail:"Amazon still budgeting ~$220B 2026 capex; Microsoft held at ~$170B (CNBC). Supplier prints on 3 Nov (above) point to demand still accelerating.",url:"https://www.businessbagel.com/big-techs-ai-sales-are-booming-but-the-building-bill-is-now-bigger-than-the-cash-coming-in/",src:"Business Bagel, 2026-11-02; CNBC, 2026-10-29; SharpeIQ calendar, 2026-11"},
- {date:"2026-11-02",layer:"net",headline:"Marvell announces $115B all-stock deal to acquire Lumentum",detail:"Implied Lumentum EV $115B (~23.9% premium to 28 Oct close); Marvell holders ~67% / Lumentum ~33%. Combines custom compute/switching/interconnect with lasers, transceivers and OCS; expected close 1H 2028 subject to approvals. Co. projects >$1B annual run-rate cost synergies and expanded TAM to $550B (company claim).",url:"https://www.techtarget.com/news/marvells-115-billion-lumentum-deal-tests-merchant-silicon-business/873486/",src:"TechTarget, 2026-11-02 (citing Marvell/Lumentum acquisition announcement)"},
- {date:"2026-11-02",layer:"capex",headline:"US data-center construction hits record $96B annual rate in September",detail:"Census Bureau: +8.6% m/m, +90% y/y (seasonally adjusted annual rate). Buildings only; excludes servers, network and most electrical gear.",url:"https://wolfstreet.com/2026/11/02/no-inflection-point-yet-near-exponential-data-center-boom-sends-shockwaves-to-industrial-economy-construction-hit-by-2nd-wave-of-inflation/",src:"US Census Bureau via Wolf Street, 2026-11-02"},
- {date:"2026-11-02",layer:"capex",headline:"S&P cuts Meta credit outlook to negative",detail:"Cites negative cash flow and uncertainty around capex plans (action late Fri 30 Oct). OpenAI reportedly cut its funding-round target to $20B from $30B (FT).",url:"https://fortune.com/2026/11/02/ai-boom-supply-crunch-capital-debt-bonds-capex-spending/",src:"Fortune, 2026-11-02"},
- {date:"2026-11-02",layer:"capex",headline:"AI data-center debt gets pricier: QTS paper shopped at 2.2–2.5 pts over Treasuries",detail:"Same Blackstone-backed issuer weighed ~1.7 pts six months ago.",url:"https://www.semafor.com/article/11/02/2026/blackstone-backed-data-center-operator-tests-ai-debt-fears",src:"Semafor, 2026-11-02"},
- {date:"2026-11-02",layer:"power",headline:"41 local data-center ballot measures went to voters on 3 Nov",detail:"Preview (results in 4 Nov item above); 21 in Ohio. All six DC measures decided earlier in 2026 went against development.",url:"https://fortune.com/2026/11/02/midterms-2026-bofa-ai-correction-risk-global-economy-goldman-tariffs-jobs/",src:"Fortune, 2026-11-02"}
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. url=null where a link is not verified.
+whatsNewThisWeek: [
+ {
+  "date": "2026-11-05",
+  "layer": "memory",
+  "headline": "Counterpoint: Q3 DRAM revenue nearly $200B (+369% y/y) on AI pricing super-cycle",
+  "detail": "Bit shipments only ~+4% q/q; ASP reached $1.9/Gb. Samsung DRAM share 38%; SK hynix revenue +40%+ q/q. HBM revenue almost doubled but share of DRAM mix fell as DDR/LPDDR grew faster; Vera Rubin cited with ~1.5 TB CPU DRAM/socket.",
+  "url": "https://counterpointresearch.com/en/insights/dram-super-cycle-nears-dollar-200b",
+  "src": "Counterpoint Research Q3 2026 Global Memory Tracker, 2026-11-05"
+ },
+ {
+  "date": "2026-11-05",
+  "layer": "power",
+  "headline": "Eaton CEO: AC-to-DC / 800V DC migration for data centers ‘is real’",
+  "detail": "15-kV, 2-MW solid-state transformer said to be first multi-MW unit to pass new UL Solutions tests. Electrical Americas backlog $16B (+33% y/y); companywide Q3 sales $8.9B (+28%). Tracked announced DC projects still 366 GW vs ~50 GW installed. Timing of AC→DC ‘not under our control’.",
+  "url": "https://www.utilitydive.com/news/eaton-ceo-ac-to-dc-migration-is-real-because-of-large-power-savings/873887/",
+  "src": "Utility Dive, 2026-11-05 (Eaton CEO remarks)"
+ },
+ {
+  "date": "2026-11-05",
+  "layer": "capex",
+  "headline": "OpenAI publishes National Community Compact + Compute Campus Policy Blueprint",
+  "detail": "For future US campuses OpenAI owns and operates: pay full electricity/infrastructure cost with financial assurances; site-level water/electricity reporting; no NDAs with public officials except narrow security/trade-secret exceptions; annual public progress reports. Blueprint asks policymakers for ratepayer protections and public incentive terms.",
+  "url": "https://openai.com/index/setting-new-standard-responsible-ai-infrastructure/",
+  "src": "OpenAI, 2026-11-05"
+ },
+ {
+  "date": "2026-11-05",
+  "layer": "capex",
+  "headline": "Microsoft declined ~500 MW Nscale Texas expansion option (FT/DCD)",
+  "detail": "Option was for capacity at an Nscale-owned Ward County site adjacent to the Ionic Digital campus where Microsoft already leases ~230 MW. Source told DCD talks were months ago; Nscale says $103B backlog unchanged (Microsoft still ~40%). Nscale later signed a $3.5B Figure deal for 100k Vera Rubin GPUs at its self-owned Barstow site.",
+  "url": "https://www.datacenterdynamics.com/en/news/microsoft-declined-option-for-expanded-compute-contract-in-texas-with-nscale/",
+  "src": "DCD citing FT, 2026-11-05"
+ },
+ {
+  "date": "2026-11-04",
+  "layer": "capex",
+  "headline": "Goldman: ~$3.2T AI commitments outside Big Tech balance sheets",
+  "detail": "Alphabet, Amazon, Meta, Microsoft, Oracle: ~$1.7T lease commitments (~$1.3T not yet commenced) + ~$1.9T other purchase commitments (servers/network/power/construction/capacity); ~$685B of purchase commitments due by YE2027. Analyst Amanda Lynam: debt financing still key; some already in consensus CapEx forecasts.",
+  "url": "https://finance.yahoo.com/markets/article/big-tech-has-more-than-3-trillion-in-ai-commitments-that-dont-show-up-on-its-balance-sheets-110100907.html",
+  "src": "Yahoo Finance citing Goldman Sachs (Amanda Lynam), 2026-11-04; CTOL 2026-11-04"
+ },
+ {
+  "date": "2026-11-04",
+  "layer": "power",
+  "headline": "Vertiv–Infineon 3-year Si/SiC supply deal for 800 VDC power systems",
+  "detail": "Company PR: long-term access to silicon and silicon-carbide power semiconductors across Vertiv’s global power portfolio, including next-gen 800 VDC systems for AI infrastructure; multi-supplier resilience strategy.",
+  "url": "https://www.vertiv.com/en-us/about/news-and-events/corporate-news/2026/vertiv-and-infineon-deepen-strategic-partnership-for-critical-power-infrastructure/",
+  "src": "Vertiv press release, 2026-11-04"
+ },
+ {
+  "date": "2026-11-04",
+  "layer": "net",
+  "headline": "Coherent Q1 FY27 revenue $2.37B (+50%); Datacenter & Comms $1.95B (+79%)",
+  "detail": "Q2 guide $2.55–2.75B. Mgmt: FY27 pro forma growth to exceed 60%; first $3B quarter by end-FY27, line of sight to $4B quarter in FY28; order coverage through CY27 'exceptional', orders extending into CY28.",
+  "url": "https://www.globenewswire.com/news-release/2026/11/04/3395801/11543/en/coherent-corp-reports-first-quarter-fiscal-2027-results.html",
+  "src": "Coherent press release & call, 2026-11-04"
+ },
+ {
+  "date": "2026-11-04",
+  "layer": "semis",
+  "headline": "Qualcomm reiterates $5B FY27 data-center revenue target; Dec-qtr DC revenue >$650M",
+  "detail": "Mgmt: DC to exit FY27 at ~$7B run-rate, $15B target in FY29; AWS custom AI-inference silicon began shipping in October, optical connectivity ramps this month; second optical customer signed. Total Q1 FY27 guide $10.4–11.2B. 'We don't have a demand issue; it's a supply issue' (Amon).",
+  "url": "https://www.benzinga.com/news/26/11/62899398/qualcomm-q4-2026-earnings-call-transcript",
+  "src": "Qualcomm Q4 FY26 call, 2026-11-04; CNBC"
+ },
+ {
+  "date": "2026-11-04",
+  "layer": "semis",
+  "headline": "Arm Q2 FY27 revenue a record $1.44B (+27%); data-center royalties doubled y/y",
+  "detail": "Licensing $773M (+50%), royalties $670M (+8%). Q3 guide $1.54B ±$50M (~+24% y/y); royalties to grow low-teens q/q on cloud AI, offset by weaker smartphones.",
+  "url": "https://newsroom.arm.com/news/arm-q2-fye27-results",
+  "src": "Arm shareholder letter & call, 2026-11-04"
+ },
+ {
+  "date": "2026-11-03",
+  "layer": "capex",
+  "headline": "Big four seek >$131B debt/equity for AI buildout (AMZN/MSFT/ORCL/GOOGL)",
+  "detail": "Amazon: supplier-financing facility up to ~$80B (draw Q1'27–Q3'28). Microsoft: $25B bonds (rates 4.85–6.35%), expected close 4 Nov. Oracle: $10B equity + $10B notes. Google: €6B (~$6.7B) bonds. Full-year CapEx guidance unchanged vs Q3 prints (AMZN ~$220B; MSFT ~$170B; ORCL $90–95B; GOOGL $195–205B).",
+  "url": "https://www.datacenterdynamics.com/en/news/big-four-hyperscalers-raising-more-that-131-billion-in-debt-and-equity-for-ai-buildout/",
+  "src": "DCD, 2026-11-03; company SEC/IR disclosures cited therein"
+ },
+ {
+  "date": "2026-11-03",
+  "layer": "semis",
+  "headline": "AMD Q3: Data Center a record $8.5B (+97% y/y); Q4 guide ~$17B ±3%",
+  "detail": "Total revenue $13.4B (+45%). Q4 midpoint +66% y/y with Data Center ~+50% q/q as Helios/MI450 and ‘Venice’ ramp. Mgmt: 2027 revenue +80%+, server revenue to double, Data Center >80% of 2027 revenue.",
+  "url": "https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results",
+  "src": "AMD press release, 2026-11-03; Q3 call via Investing.com, 2026-11-03"
+ },
+ {
+  "date": "2026-11-03",
+  "layer": "net",
+  "headline": "Arista Q3 revenue $3.66B (+58.5%); FY26 raised to ~$13.3B, first FY27 view ~$18.5B",
+  "detail": "Q4 guide $3.9–4.0B. Mgmt: AI fabrics to roughly double to ~$7B in 2027; TAM north of $200B by 2030; scale-up Ethernet trials 2027, production 2028.",
+  "url": "https://www.arista.com/en/company/news/press-release/25025-pr-20261103",
+  "src": "Arista press release, 2026-11-03; Q3 call via Benzinga, 2026-11-03"
+ },
+ {
+  "date": "2026-11-03",
+  "layer": "power",
+  "headline": "Eaton: data-center orders +100%+ (rolling 12-mo), DC revenue ~+65%; FY26 guide raised",
+  "detail": "Q3 sales +28% (19% organic). FY26 organic growth 13–15%, adj. EPS $13.70–13.80. Tracked announced DC projects 366 GW (vs 307 GW last update) vs ~50 GW installed. Agreed to buy COL Group (EU medium-voltage).",
+  "url": "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-third-quarter-2026-results.html",
+  "src": "Eaton press release & Q3 analyst deck, 2026-11-03; Q3 call via Motley Fool, 2026-11-03"
+ },
+ {
+  "date": "2026-11-03",
+  "layer": "racks",
+  "headline": "Super Micro Q1 FY27 sales $19.9B (prelim.); FY27 guide raised to $72–82B",
+  "detail": "Up from $65–72B. Q2 guide $19.5–21.5B, GM 12.0–12.5%. Q1 included ~$2.3B catch-up (underlying ~$17.6B); component, power and shell constraints still gate shipment timing.",
+  "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",
+  "src": "Supermicro press release, 2026-11-03; Q1 call via Benzinga, 2026-11-03"
+ },
+ {
+  "date": "2026-11-03",
+  "layer": "capex",
+  "headline": "Hyperscaler CapEx: no new company guidance since Q3 calls (29–30 Oct)",
+  "detail": "Amazon still budgeting ~$220B 2026 capex; Microsoft held at ~$170B (CNBC). Supplier prints on 3 Nov (above) point to demand still accelerating.",
+  "url": "https://www.businessbagel.com/big-techs-ai-sales-are-booming-but-the-building-bill-is-now-bigger-than-the-cash-coming-in/",
+  "src": "Business Bagel, 2026-11-02; CNBC, 2026-10-29; SharpeIQ calendar, 2026-11"
+ },
+ {
+  "date": "2026-11-02",
+  "layer": "net",
+  "headline": "Marvell announces $115B all-stock deal to acquire Lumentum",
+  "detail": "Implied Lumentum EV $115B (~23.9% premium to 28 Oct close); Marvell holders ~67% / Lumentum ~33%. Combines custom compute/switching/interconnect with lasers, transceivers and OCS; expected close 1H 2028 subject to approvals. Co. projects >$1B annual run-rate cost synergies and expanded TAM to $550B (company claim).",
+  "url": "https://www.techtarget.com/news/marvells-115-billion-lumentum-deal-tests-merchant-silicon-business/873486/",
+  "src": "TechTarget, 2026-11-02 (citing Marvell/Lumentum acquisition announcement)"
+ },
+ {
+  "date": "2026-11-02",
+  "layer": "capex",
+  "headline": "US data-center construction hits record $96B annual rate in September",
+  "detail": "Census Bureau: +8.6% m/m, +90% y/y (seasonally adjusted annual rate). Buildings only; excludes servers, network and most electrical gear.",
+  "url": "https://wolfstreet.com/2026/11/02/no-inflection-point-yet-near-exponential-data-center-boom-sends-shockwaves-to-industrial-economy-construction-hit-by-2nd-wave-of-inflation/",
+  "src": "US Census Bureau via Wolf Street, 2026-11-02"
+ },
+ {
+  "date": "2026-11-02",
+  "layer": "capex",
+  "headline": "S&P cuts Meta credit outlook to negative",
+  "detail": "Cites negative cash flow and uncertainty around capex plans (action late Fri 30 Oct). OpenAI reportedly cut its funding-round target to $20B from $30B (FT).",
+  "url": "https://fortune.com/2026/11/02/ai-boom-supply-crunch-capital-debt-bonds-capex-spending/",
+  "src": "Fortune, 2026-11-02"
+ },
+ {
+  "date": "2026-11-02",
+  "layer": "capex",
+  "headline": "AI data-center debt gets pricier: QTS paper shopped at 2.2–2.5 pts over Treasuries",
+  "detail": "Same Blackstone-backed issuer weighed ~1.7 pts six months ago.",
+  "url": "https://www.semafor.com/article/11/02/2026/blackstone-backed-data-center-operator-tests-ai-debt-fears",
+  "src": "Semafor, 2026-11-02"
+ },
+ {
+  "date": "2026-11-07",
+  "published_clock": "2026-11-07T08:00:05",
+  "layer": "power",
+  "headline": "Seoul Economic Daily cites Wall Street notes on 2028 US data-center permitting exposure",
+  "detail": "Secondary column, published 7 Nov 2026 08:00:05 (zone not printed; Seoul publisher). It attributes to a 4 Nov JPMorgan note about 37 GW of 2028 US capacity exposed to permitting-halt risk plus 12 GW to tighter grid or water rules, and to UBS on roughly 30% of expected 2028 US additions. It also cites SemiAnalysis and Modo Energy figures and Samsung/SK hynix supply comments. Those figures were not re-read from the bank or company primaries here. The column’s line about a sweeping midterm win is not repeated: this dashboard does not assert federal control. A pledged Texas moratorium is not an enacted rule. None of the cited volumes are recorded as cancelled.",
+  "url": "https://en.sedaily.com/finance/2026/11/07/us-data-center-curbs-loom-but-memory-hit-may-wait-until-2028",
+  "src": "Seoul Economic Daily, Seo Jong-gap, page timestamp 2026-11-07 08:00:05"
+ },
+ {
+  "date": "2026-11-06",
+  "layer": "capex",
+  "headline": "Google acquires Crusoe’s southeast Wyoming data-center site",
+  "detail": "Crusoe said Google acquired Crusoe’s southeast Wyoming site, completing Crusoe pre-development on site selection, governmental approvals, and a hybrid power approach with Tallgrass. Purchase terms were not disclosed. Crusoe said it remains the developer of Google’s Armstrong County campus near Amarillo, which it described as under construction.",
+  "url": "https://www.crusoe.ai/resources/newsroom/crusoe-wyoming-data-center-campus-update",
+  "src": "Crusoe newsroom, 2026-11-06"
+ },
+ {
+  "date": "2026-11-06",
+  "published_clock": "2026-11-06T05:30:00",
+  "layer": "power",
+  "headline": "Ballotpedia: voters favored limiting data-center development in 40 of 41 local measures on 3 Nov",
+  "detail": "Ballotpedia News (6 Nov 2026, 5:30 a.m., zone not printed) counted 40 of 41 local contests on 3 Nov as favoring limits, either by approving restrictions or by defeating measures that would have facilitated development. The exception was Harwood, North Dakota, where voters rejected additional review requirements. Six earlier 2026 local measures also favored limits, Ballotpedia said. A separate tracker’s 44-of-45 framing is not used; it does not match this count. These are local measures, not a verified change in federal control, and they are not applied as cancellations of campuses on the map.",
+  "url": "https://news.ballotpedia.org/2026/11/06/voters-favored-limiting-data-center-development-in-40-of-41-local-ballot-measures-on-nov-3/",
+  "src": "Ballotpedia News, 2026-11-06"
+ },
+ {
+  "date": "2026-11-05",
+  "layer": "capex",
+  "headline": "Google: first Wyoming data center, $17B, with 702 MW fuel cells and carbon capture",
+  "detail": "Google said it is making a long-term $17 billion investment in Laramie County with Tallgrass Energy, Black Hills Energy, AEP, and Related Digital. The project is contracted with AEP for a 702 MW fuel-cell development with carbon capture and storage, using Bloom Energy fuel cells and Tallgrass’s Eastern Wyoming Sequestration Hub. Google also described gas generation from Tallgrass and Black Hills, a FEED study on carbon capture for combined-cycle turbines, air cooling, and paying for the power it uses. This is an announcement, not a measured operating load.",
+  "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/",
+  "src": "Google blog, Steve Walter, 2026-11-05"
+ },
+ {
+  "date": "2026-11-04",
+  "published_at": "2026-11-04T14:41:00-06:00",
+  "layer": "power",
+  "headline": "Texas Tribune: governor-elect Hinojosa pledged a data-center approval moratorium; it is not enacted",
+  "detail": "The Texas Tribune (4 Nov 2026, 2:41 p.m. Central) reports Gina Hinojosa won the governor’s race and takes office on 19 Jan 2027. She said in an 22 Oct video that when she is governor she will issue a moratorium on data-center approvals until the Legislature passes protections. That pledge is not in effect because of the election. Tribune separately describes an existing freeze by Gov. Greg Abbott on environmental permitting and grid connections during an audit. This item does not treat the election as a new pause, a federal rule, or a status change for any mapped campus.",
+  "url": "https://www.texastribune.org/2026/11/04/data-center-texas-pause-gina-hinojosa-governor-policies/",
+  "src": "The Texas Tribune, Emily Foxhall, 2026-11-04 2:41 p.m. Central"
+ },
+ {
+  "date": "2026-11-04",
+  "published_at": "2026-11-04T21:06:00+05:30",
+  "layer": "capex",
+  "headline": "Andhra Pradesh High Court: Visakhapatnam data-centre case still pending; work remains at the developer’s risk",
+  "detail": "The Hindu (published 4 Nov 2026, 9:06 p.m. IST; updated 10:31 p.m. IST) reported that the High Court said the proposed Google data-centre project remains subject to the writ petition and at the risk and cost of Vizag Hyperscale Data Centre Park Ltd, as ordered earlier. The bench did not decide the merits that day. Counsel described the challenge as focused on a 160-acre parcel. This is not a verified stop-work order, cancellation, or delay.",
+  "url": "https://www.thehindu.com/news/national/andhra-pradesh/hc-hears-plea-against-google-data-centre-says-project-is-subject-to-its-decision-on-writ-petition/article71666395.ece",
+  "src": "The Hindu, V. Raghavendra, 2026-11-04"
+ },
+ {
+  "date": "2026-11-03",
+  "layer": "capex",
+  "headline": "Drax, Brookfield, Radiant and Qai announce a North Yorkshire data-centre plan",
+  "detail": "Drax said Brookfield estimates total investment could potentially exceed £20 billion, including an initial £2.5 billion for phase 1. Phase 1 targets up to 100 MW operational from Q1 2028; later phases are described as ambitions. Progression is subject to planning, regulatory and network approvals, and securing a tenant. The estate is described as about 1,000 acres with 4 GW of grid access. No dollar conversion is added here.",
+  "url": "https://www.drax.com/news/drax-brookfield-and-radiant-announce-20bn-partnership-to-deliver-gw-scale-data-centre-capacity-at-drax-power-station/",
+  "src": "Drax press release, 2026-11-03"
+ },
+ {
+  "date": "2026-11-02",
+  "layer": "power",
+  "headline": "Preview: local data-center measures were headed to the 3 Nov vote",
+  "detail": "Carried from the 2 Nov feed. The result count is not taken from this preview. See the 6 Nov Ballotpedia item for the 40-of-41 tally. Local ballot outcomes are not a federal statute and are not campus cancellations.",
+  "url": "https://fortune.com/2026/11/02/midterms-2026-bofa-ai-correction-risk-global-economy-goldman-tariffs-jobs/",
+  "src": "Fortune, 2026-11-02; tally in Ballotpedia News, 2026-11-06"
+ }
 ]
+
 };
 // ===== Product catalog: Level -1 layer → -2 family → -3 product (qualitative; no invented $ figures) =====
 window.AIDC.catalog={
