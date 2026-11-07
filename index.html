@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AI Datacenter — Full-Stack Dashboard</title>
-<script src="data.js"></script><script src="chart.umd.min.js"></script>
+<script src="data.js"></script><script src="sites.js"></script><script src="map-land.js"></script><script src="dashboard-logic.js"></script><script src="chart.umd.min.js"></script><script src="map.js"></script>
 <style>
 :root{--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;--bg:#f5f5f7;--panel:#fff;--panel2:#fafafc;--line:rgba(0,0,0,.08);--hair:#d2d2d7;--txt:#1d1d1f;--mut:#6e6e73;--mut2:#86868b;--acc:#5B5CE6;--accsoft:rgba(91,92,230,.10);--pos:#1d8a3a;--neg:#d70015;--warn:#b25000;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 18px rgba(0,0,0,.05);--glass:rgba(251,251,253,.72);--seg:#e8e8ed}
 [data-theme=dark]{--bg:#000;--panel:#1c1c1e;--panel2:#232325;--line:rgba(255,255,255,.1);--hair:#3a3a3c;--txt:#f5f5f7;--mut:#a1a1a6;--mut2:#8e8e93;--acc:#8B8AFF;--accsoft:rgba(139,138,255,.16);--pos:#30d158;--neg:#ff453a;--warn:#ffb340;--shadow:0 1px 2px rgba(0,0,0,.3),0 4px 18px rgba(0,0,0,.4);--glass:rgba(22,22,23,.72);--seg:#2c2c2e}
@@ -134,7 +134,55 @@ footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12p
 #dc .hot:hover .wbase,#dc .hot.lit .wbase{stroke:var(--c);stroke-dasharray:none}
 #dc .hot:hover .pill rect,#dc .hot.lit .pill rect{fill:var(--c)}
 
-#tabs{display:none!important}
+#tabs{display:flex;max-width:1180px;margin:0 auto;padding:0 20px 12px;gap:2px;overflow-x:auto}
+#tabs button{white-space:nowrap;flex:0 0 auto}
+#tabs button:focus-visible,.pin:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.maptools{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-end;margin:8px 0 12px}
+.maptools label{font-size:13px;color:var(--txt)}
+.maptools select,.maptools input[type=search]{font:13px var(--font);background:var(--panel);color:var(--txt);border:1px solid var(--hair);border-radius:8px;padding:6px 8px}
+.maptools fieldset{border:1px solid var(--line);border-radius:12px;margin:0;padding:8px 10px;display:flex;flex-wrap:wrap;gap:8px 12px}
+.maptools legend{padding:0 4px;color:var(--mut);font-size:12px}
+.maptools button{border:1px solid var(--hair);background:var(--panel);color:var(--txt);border-radius:999px;padding:6px 12px;cursor:pointer;font:13px var(--font)}
+.maptools button[aria-pressed=true]{border-color:var(--acc);box-shadow:0 0 0 3px var(--accsoft)}
+.maplayout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(240px,.75fr);gap:12px;align-items:start}
+.mapstage{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#d7e3f4;max-height:70vh}
+[data-theme=dark] .mapstage{background:#0e1726}
+.mapstage svg{display:block;width:100%;height:auto}
+.ocean{fill:#d7e3f4}[data-theme=dark] .ocean{fill:#0e1726}
+.land{fill:#efe8d8;stroke:#d5ccb8;stroke-width:.4}[data-theme=dark] .land{fill:#2c3344;stroke:#46506a}
+.pin{position:absolute;transform:translate(-50%,-50%);border:2px solid #1d1d1f;background:#fff;padding:0;cursor:pointer;display:grid;place-items:center;border-radius:50%;color:#1d1d1f}
+[data-theme=dark] .pin{border-color:#f5f5f7;color:#f5f5f7}
+.pin.st-operating{background:#1d8a3a}
+.pin.st-under_construction{border-radius:3px;background:#b25000}
+.pin.st-planned{background:#0071e3;clip-path:polygon(50% 10%,94% 90%,6% 90%)}
+.pin.st-mixed{background:#5B5CE6;box-shadow:inset 0 0 0 3px #fff, inset 0 0 0 6px #5B5CE6}
+[data-theme=dark] .pin.st-mixed{box-shadow:inset 0 0 0 3px #1c1c1e, inset 0 0 0 6px #8B8AFF}
+.pin.st-unknown{border-style:dashed;background:transparent}
+.pin.cluster{border-radius:999px;background:var(--acc);color:#fff;font-weight:700;clip-path:none}
+.pin.on{outline:3px solid var(--acc);outline-offset:2px;z-index:2}
+.riskmark{position:absolute;right:-7px;top:-7px;min-width:16px;height:16px;padding:0 2px;border-radius:3px;background:var(--panel);border:1px solid var(--txt);font:700 10px var(--font);line-height:14px;text-align:center}
+#map-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;max-height:70vh;overflow:auto}
+#map-panel h3,#map-panel h4{margin:12px 0 6px}
+#map-panel h3{margin-top:0}
+.badge{display:inline-block;border:1px solid var(--hair);border-radius:999px;padding:2px 8px;font-size:12px;margin:0 4px 4px 0}
+.map-legend ul{display:flex;flex-wrap:wrap;gap:8px 14px;padding:0;margin:6px 0 10px;list-style:none}
+.swatch{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-2px;border:2px solid #1d1d1f}
+.swatch.st-operating{border-radius:50%;background:#1d8a3a}
+.swatch.st-under_construction{border-radius:2px;background:#b25000}
+.swatch.st-planned{background:#0071e3;clip-path:polygon(50% 0,100% 100%,0 100%);border:0}
+.swatch.st-mixed{border-radius:50%;background:#5B5CE6;box-shadow:inset 0 0 0 2px #fff}
+.swatch.st-unknown{border-style:dashed;background:transparent}
+.swatch.rk{width:auto;min-width:16px;height:16px;border-radius:3px;background:var(--panel);font:700 10px var(--font);line-height:12px;text-align:center;padding:0 2px}
+.gap{border:1px dashed var(--hair);border-radius:14px;padding:12px;margin:8px 0;background:var(--panel2)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+#site-table{display:block;overflow:auto}
+#site-table caption{text-align:left;font-size:13px;color:var(--mut);padding:8px 0}
+#site-table th button{border:0;background:none;color:var(--mut);font:500 12px var(--font);text-transform:uppercase;cursor:pointer;padding:0}
+.linkish{background:none;border:0;color:var(--acc);font:inherit;font-weight:600;padding:0;cursor:pointer;text-align:left}
+.chooser{list-style:none;padding:0}
+.chooser button,.site-detail{font:inherit}
+#co-grid .mini{display:inline-block;margin:4px 6px 0 0;border:1px solid var(--line);background:var(--panel2);color:var(--txt);border-radius:999px;padding:4px 8px;font:12px var(--font);cursor:pointer}
+@media(max-width:800px){.maplayout{grid-template-columns:1fr}.hd{flex-wrap:wrap}#tabs{padding-bottom:8px}}
 .lvl{font-size:12px;color:var(--mut);letter-spacing:.06em;text-transform:uppercase}
 .pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:10px}
 .pic{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px;cursor:pointer;box-shadow:var(--shadow);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s;animation:popin .45s both;text-align:left;font:inherit;color:inherit}
@@ -151,19 +199,25 @@ footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12p
 .hero3{background:var(--panel);border-radius:18px;padding:12px;border:1px solid var(--line)}
 </style></head><body>
 <header><div class="hd"><div><h1>AI Datacenter</h1><div class="s">Full-stack TAM · companies · hyperscaler CapEx</div></div><div class="sp"></div>
-<div class="seg" id="tabs"><button data-t="stack" class="on">Model</button><button data-t="tam">TAM</button><button data-t="capex">CapEx</button><button data-t="src">Sources</button></div>
-<button class="tbtn" id="theme">◐</button></div></header>
+<button class="tbtn" id="theme" aria-label="Toggle color theme">◐</button></div>
+<nav class="seg" id="tabs" aria-label="Dashboard sections"><button data-t="overview" class="on" aria-current="page">Overview</button><button data-t="news">What’s new</button><button data-t="tam">TAM</button><button data-t="capex">CapEx</button><button data-t="companies">Companies</button><button data-t="src">Sources</button></nav></header>
 <main>
 <div class="upd" id="lastupd"></div>
 <div class="kpis" id="kpis"></div>
-<section class="tab on" id="t-stack"><div class="card wn" id="wn"></div><h2>AI data-center model — hover to inspect, click to zoom in</h2><div id="world"><div class="stack" id="stack"></div></div>
-<p class="note">Cutaway: grid &amp; substation → hall → switches, cable trays, racks → GPU/HBM board; rooftop chillers; buildout crane = CapEx. Press <b>Esc</b> or ← Back to zoom out. Deep links: <code>#layer=memory</code>.</p></section>
+<section class="tab on" id="t-overview"><h2>AI data-center model — hover to inspect, click to zoom in</h2><div id="world"><div class="stack" id="stack"></div></div>
+<p class="note">Cutaway: grid &amp; substation → hall → switches, cable trays, racks → GPU/HBM board; rooftop chillers; buildout crane = CapEx. Press <b>Esc</b> or ← Back to zoom out. Deep links: <code>#layer=memory</code>. Three levels: the stack, a product family, then one product.</p>
+<div id="site-map-root"></div>
+<noscript><div class="card"><h2>Major AI data-center sites — selected public disclosures</h2><p>JavaScript is off, so the map cannot draw. These eight campuses are a selected sample, not a census. Coordinates are approximate city positions. Unknowns are undisclosed, not zero.</p><ul><li>Abilene flagship / Lancium Clean Campus — Crusoe; Oracle Cloud Infrastructure — mixed as of 2026-06-09</li><li>Abilene dedicated Microsoft AI factory campus — Crusoe — under construction as of 2026-06-09. Separate campus, same city reference.</li><li>Fairwater / Mount Pleasant campus — Microsoft — mixed as of 2026-06-23</li><li>Richland Parish / Hyperion — Meta — under construction as of 2026-07-13</li><li>Nscale Narvik / Kvandal — Nscale — under construction as of 2026-09-29. Waste-heat filing deadline 15 Nov 2026 is not a stop-work order.</li><li>Stargate UAE cluster — planned as of 2025-05-22</li><li>Google Visakhapatnam AI hub — Google — under construction as of 2026-04-28</li><li>NEXTDC S7 Sydney — NEXTDC — planned. Prepare EIS is not approval.</li></ul></div></noscript>
+<section class="card wn" id="coming" aria-labelledby="coming-h"></section>
+</section>
+<section class="tab" id="t-news"><div class="card wn" id="wn"></div></section>
 <section class="tab" id="t-tam"><h2>Overall AI data-center TAM</h2><div class="grid2"><div class="card"><canvas id="cTam" height="260"></canvas><p class="note">Annual figures. Bars show low–high where a range was given. Mgmt = company guidance (preferred); Analyst = research firm.</p></div>
 <div class="card"><canvas id="cMck" height="260"></canvas><p class="note" id="mckNote"></p></div></div>
 <div class="card" style="margin-top:16px"><h3 style="margin-top:0">Layer TAM anchors</h3><table id="layerTam"></table></div></section>
 <section class="tab" id="t-capex"><h2>Hyperscaler CapEx — 2026 guidance</h2><div class="grid2"><div class="card"><canvas id="cCap" height="260"></canvas></div><div class="card"><table id="capT"></table></div></div>
 <p class="note">Bases differ (cash vs. incl. finance leases; Oracle is fiscal FY27). Data-center MW buildouts per company: TBD — not yet sourced.</p></section>
-<section class="tab" id="t-src"><h2>Sources</h2><div class="card"><ol class="srcs" id="srcs"></ol><p class="note">Research via web search on 2026-11-01 (SGT). Paywalled reports (LightCounting, Dell'Oro full tables) only cited at headline level. Figures not found are shown as TBD — never estimated.</p></div></section>
+<section class="tab" id="t-companies"><h2>Companies across the stack</h2><p class="note">Every supplier and builder already named on a layer or product card. Search and filter, then open the same product detail. Nothing here adds a figure.</p><div class="maptools"><label>Search <input id="co-q" type="search" placeholder="Name, ticker, or product" aria-label="Search companies"></label><label>Layer <select id="co-layer" aria-label="Filter by layer"><option value="all">All layers</option></select></label></div><p id="co-count" class="note" aria-live="polite"></p><div class="cos" id="co-grid"></div></section>
+<section class="tab" id="t-src"><h2>Sources</h2><div class="card"><ol class="srcs" id="srcs"></ol><h3>Site map sources</h3><ol class="srcs" id="mapsrcs"></ol><p class="note">Layer figures were gathered in earlier passes and checked forward where a 7 Nov 2026 item changed them. Paywalled reports (LightCounting, Dell'Oro full tables) stay at headline level. Missing figures stay TBD. Map records keep their own source dates.</p></div></section>
 </main>
 <div id="zoom"><div class="zin" id="zin"></div></div>
 <footer>© 2026 Hugo Tian · Data as of <span id="upd"></span> · Not investment advice. Company guidance preferred over sell-side estimates.</footer>
@@ -242,7 +296,7 @@ function openProd(lid,fid,pid){const L=D.layers.find(l=>l.id===lid),f=D.catalog[
  pushPop(`${bar(`Model › ${L.name} › ${f.name} › ${p.name}`)}<div class="lvl">Level −3 · Product detail</div><h2 style="margin:4px 0 14px">${p.name}</h2>
  <div class="det"><div class="hero3">${art(p.pic,L.color)}</div><div><div class="lvl">Company</div><p style="margin:4px 0 12px;font-weight:600;color:${L.color}">${p.company}</p><div class="lvl">What it is</div><p style="margin:4px 0 12px">${p.blurb}</p><div class="lvl">Role in the AI data center</div><p style="margin:4px 0 12px">${p.use}</p><div class="lvl">Key features</div><ul>${p.detail.map(x=>`<li>${x}</li>`).join('')}</ul>
  <p class="note">Layer TAM anchor: ${L.tam.v}${cite(L.tam.src)} — ${L.tam.what}</p></div></div>`,L.color)}
-addEventListener('keydown',e=>{if(e.key==='Escape'){if(POPS.length)popBack();else zoomOut()}});
+addEventListener('keydown',e=>{if(e.key==='Escape'){if(window.AIDCMap&&AIDCMap.handleEscape())return;if(POPS.length)popBack();else zoomOut()}});
 addEventListener('resize',()=>{if(cur)place({top:0,left:0,width:innerWidth,height:innerHeight})});
 // ===== Data-center model (Flash/Java-style interactive cutaway) =====
 (function(){
@@ -308,25 +362,41 @@ window.camIn=function(id){const g=document.querySelector(`.hot[data-id=${id}]`),
 window.camOut=function(){const s=$('#dc');s.style.transform='';wrap.classList.remove('dive');document.querySelectorAll('.lit').forEach(e=>e.classList.remove('lit'))};
 })();
 
-// Tabs
-document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.id==='t-'+b.dataset.t));drawCharts()});
+// Tabs — six visible sections. Overview keeps the model; news is separate.
+function showTab(id){const buttons=[...document.querySelectorAll('#tabs button')];if(!buttons.some(b=>b.dataset.t===id))return;buttons.forEach(b=>{const on=b.dataset.t===id;b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});document.querySelectorAll('main .tab').forEach(t=>t.classList.toggle('on',t.id==='t-'+id));drawCharts();const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:reduce?'auto':'auto'})}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{showTab(b.dataset.t);if(!location.hash.startsWith('#layer'))history.replaceState(null,'','#tab='+b.dataset.t)});
 // Tables
 function capRows(){return `<tr><th>Company</th><th class="num">2026 guide</th><th>Basis</th><th>Note</th></tr>`+cx.map(c=>`<tr><td><b>${c.tk}</b> ${c.co}</td><td class="num">${c.lo===c.hi?'~$'+c.lo:'$'+c.lo+'–'+c.hi}B${cite(c.src)}</td><td>${c.basis}</td><td style="font-size:12px;color:var(--mut)">${c.note}</td></tr>`).join('')}
 $('#capT').innerHTML=capRows();
-$('#layerTam').innerHTML='<tr><th>Layer</th><th>TAM anchor</th><th>Definition</th></tr>'+D.layers.map(L=>`<tr style="cursor:pointer" onclick="document.querySelector('#tabs button').click();camIn('${L.id}')"><td><b>${L.tam.v} · ${L.name}</b></td><td>${tbd(L.tam.v)}${cite(L.tam.src)}</td><td style="font-size:12px;color:var(--mut)">${L.tam.what}</td></tr>`).join('');
-{const Wraw=D.whatsNewThisWeek||[];
-const nowMs=Date.now(),day=864e5;
-const within7=Wraw.filter(x=>{const t=Date.parse(x.date);return !isNaN(t)&&nowMs-t<=7*day+day}); // keep calendar day slack
-const W=[...within7].sort((a,b)=>String(b.date).localeCompare(String(a.date))||String(b.headline).localeCompare(String(a.headline)));
-const isFresh=x=>{const t=Date.parse(x.date);return !isNaN(t)&&nowMs-t<=2*day};
+$('#layerTam').innerHTML='<tr><th>Layer</th><th>TAM anchor</th><th>Definition</th></tr>'+D.layers.map(L=>`<tr style="cursor:pointer" onclick="showTab('overview');camIn('${L.id}')"><td><b>${L.tam.v} · ${L.name}</b></td><td>${tbd(L.tam.v)}${cite(L.tam.src)}</td><td style="font-size:12px;color:var(--mut)">${L.tam.what}</td></tr>`).join('');
+{const logic=window.AIDCLogic,nowMs=Date.now();
+const W=logic.selectWhatsNew(D.whatsNewThisWeek||[],nowMs);
 const row=x=>{const cite=x.url?`<a href="${x.url}" target="_blank" rel="noopener">${x.src||x.date}</a>`:(x.src||x.date);
- const fresh=isFresh(x);
- return `<li class="${fresh?'new48':''}"><span class="d">${x.date}</span>${fresh?'<span class="nb">48h</span>':''}<b>${x.headline}</b>${x.detail?`<div class="src">${x.detail}</div>`:''}<div class="src">(${cite})</div></li>`};
-const CU=D.comingUp||[];
-const cuHtml=CU.length?`<div class="cu"><h4>Coming up</h4><ul>${CU.map(c=>{const cite=c.url?`<a href="${c.url}" target="_blank" rel="noopener">${c.src||'source'}</a>`:(c.src||'');
- return `<li><span class="when">${c.date}${c.time?' · '+c.time:''}</span> — <b>${c.event}</b>${c.note?' — '+c.note:''}${c.status?` <span class="d">(${c.status})</span>`:''}${cite?` <span class="d">${cite}</span>`:''}</li>`}).join('')}</ul></div>`:'';
-$('#wn').innerHTML=`<h3>What’s new this week</h3><div class="d">Last 7 days · newest first · ≤48h accent · aged muted · ${D.whatsNewUpdated||''}</div>`+(W.length?`<ul>${W.map(row).join('')}</ul>`:`<p class="note">${D.whatsNewEmpty}</p>`)+cuHtml;}
+ const fresh=logic.isFresh(x,nowMs);
+ const clock=x.published_at||x.published_clock;
+ return `<li class="${fresh?'new48':''}"><span class="d">${x.date}</span>${fresh?'<span class="nb">48h</span>':''}<b>${x.headline}</b>${x.detail?`<div class="src">${x.detail}</div>`:''}${clock?`<div class="src">Publication clock: ${clock}${x.published_at?'':' (zone not printed)'}</div>`:''}<div class="src">(${cite})</div></li>`};
+$('#wn').innerHTML=`<h3>What’s new</h3><div class="d">Rolling 7 days through ${logic.sgtISO(nowMs)} SGT · newest first · indigo only when a publication clock is inside 48 hours · ${D.whatsNewUpdated||''}</div><p class="note">A date with no clock is not badged. The check time is not used as a publication time.</p>`+(W.length?`<ul>${W.map(row).join('')}</ul>`:`<p class="note">${D.whatsNewEmpty}</p>`);
+const CU=[...(D.comingUp||[])].sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+$('#coming').innerHTML=`<h3 id="coming-h">Coming up</h3><p class="note">Dated from company IR pages rechecked 7 Nov 2026. Times are the published call times, converted to SGT.</p>`+(CU.length?`<ul>${CU.map(c=>{const cite=c.url?`<a href="${c.url}" target="_blank" rel="noopener">${c.src||'source'}</a>`:(c.src||'');return `<li><span class="when">${c.date}${c.time?' · '+c.time:''}</span> — <b>${c.event}</b>${c.note?' — '+c.note:''}${c.status?` <span class="d">(${c.status})</span>`:''}${cite?` <span class="d">${cite}</span>`:''}</li>`}).join('')}</ul>`:'<p class="note">No dated catalysts in this check.</p>');}
 $('#srcs').innerHTML=Object.values(S).map(s=>`<li><a href="${s.u}" target="_blank">${s.t}</a> <span class="d">— ${s.d}</span></li>`).join('');
+if(window.AIDC_SITES){$('#mapsrcs').innerHTML=Object.values(AIDC_SITES.sources).map(s=>`<li><a href="${s.url}" target="_blank">${s.title}</a> <span class="d">— ${s.publication_date||'publication date unknown'}; checked ${s.checked_at_sgt||''}</span></li>`).join('');}
+// Companies — same cards as the model, across layers
+(function(){
+ const index=new Map();
+ const aliasesOf=(name,ticker)=>{const set=new Set();[name,ticker].filter(Boolean).forEach(s=>{set.add(s.toLowerCase());s.split(/[/·,(]/).forEach(p=>{const t=p.trim().toLowerCase();if(t.length>2)set.add(t)})});return set};
+ D.layers.forEach(L=>L.cos.forEach(([tk,name,role])=>{const k=name.toLowerCase();if(!index.has(k))index.set(k,{name,ticker:tk,roles:[],products:[],layers:new Set(),aliases:aliasesOf(name,tk)});const rec=index.get(k);rec.layers.add(L.id);rec.roles.push({layer:L.id,layerName:L.name,color:L.color,role})}));
+ const findRec=token=>{const t=token.trim().toLowerCase();if(!t)return null;const exact=[...index.values()].find(r=>r.name.toLowerCase()===t||(r.ticker||'').toLowerCase()===t);if(exact)return exact;const hits=[...index.values()].filter(r=>r.aliases.has(t));return hits.length===1?hits[0]:null};
+ Object.entries(D.catalog).forEach(([lid,fams])=>{const L=D.layers.find(x=>x.id===lid);fams.forEach(f=>f.items.forEach(p=>{String(p.company||'').split(/[·,]/).forEach(part=>{const token=part.trim();if(!token)return;let rec=findRec(token);if(!rec){rec={name:token,ticker:'',roles:[],products:[],layers:new Set(),aliases:aliasesOf(token,'')};index.set('extra:'+token.toLowerCase(),rec)}rec.layers.add(lid);if(!rec.products.some(x=>x.id===p.id&&x.layer===lid))rec.products.push({layer:lid,color:L.color,family:f.id,id:p.id,name:p.name})})}))});
+ const all=[...index.values()].sort((a,b)=>a.name.localeCompare(b.name));
+ $('#co-layer').innerHTML='<option value="all">All layers</option>'+D.layers.map(L=>`<option value="${L.id}">${L.name}</option>`).join('');
+ function paint(){const q=($('#co-q').value||'').trim().toLowerCase(),layer=$('#co-layer').value;const rows=all.filter(r=>{if(layer!=='all'&&!r.layers.has(layer))return false;if(!q)return true;const blob=[r.name,r.ticker,...r.roles.map(x=>x.role+' '+x.layerName),...r.products.map(p=>p.name)].join(' ').toLowerCase();return blob.includes(q)});
+  $('#co-count').textContent=`${rows.length} of ${all.length} companies`;
+  $('#co-grid').innerHTML=rows.map(r=>`<article class="co"><div class="t">${r.ticker||'—'}</div><div class="nm">${r.name}</div><div class="r">${[...r.layers].map(id=>D.layers.find(l=>l.id===id).name).join(' · ')}</div>${r.roles.map(role=>`<div class="r">${role.layerName}: ${role.role}</div>`).join('')}<div>${r.products.map(p=>`<button type="button" class="mini" style="--c:${p.color}" data-l="${p.layer}" data-f="${p.family}" data-p="${p.id}">${p.name}</button>`).join('')}</div><button type="button" class="mini" data-open-layer="${[...r.layers][0]||''}">Open layer in model</button></article>`).join('')||'<p class="note">No company matches that search.</p>'};
+ $('#co-q').addEventListener('input',paint);$('#co-layer').addEventListener('change',paint);
+ $('#co-grid').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.p)openProd(b.dataset.l,b.dataset.f,b.dataset.p);else if(b.dataset.openLayer){showTab('overview');camIn(b.dataset.openLayer)}});
+ paint();
+})();
+if(window.AIDCMap)AIDCMap.mount('#site-map-root');
 $('#mckNote').innerHTML=`McKinsey: $${D.mckinsey.total/1000}T ${D.mckinsey.period}; scenarios ${D.mckinsey.scen.map(s=>s[0]+' $'+s[1]/1000+'T').join(', ')}. ${cite('mck')}`;
 // Charts
 let charts=[];
@@ -340,5 +410,6 @@ function drawCharts(){charts.forEach(c=>c.destroy());charts=[];if(!window.Chart)
  charts.push(new Chart($('#cCap'),{type:'bar',data:{labels:cx.map(c=>c.tk),datasets:[{label:'Low',data:cx.map(c=>c.lo),backgroundColor:acc,borderRadius:6},{label:'Range to high',data:cx.map(c=>c.hi-c.lo),backgroundColor:acc+'66',borderRadius:6}]},options:{...o,scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'$B'}}},plugins:{legend:{display:false},title:{display:true,text:'2026 capex guidance ($B)'}}}}))}}
 drawCharts();
 // deep link
-const m=location.hash.match(/layer=(\w+)/);if(m){if(D.layers.some(l=>l.id===m[1]))setTimeout(()=>camIn(m[1]),900)}
+const tabHash=location.hash.match(/tab=([a-z]+)/);if(tabHash)showTab(tabHash[1]);
+const m=location.hash.match(/layer=(\w+)/);if(m&&D.layers.some(l=>l.id===m[1])){showTab('overview');setTimeout(()=>camIn(m[1]),900)}
 </script></body></html>

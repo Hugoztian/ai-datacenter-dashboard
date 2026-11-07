@@ -1,0 +1,1418 @@
+{
+  "schema_version": "1.1-published-sample",
+  "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+  "publication_hold": false,
+  "site_count": 8,
+  "coverage": "Purposive global selection, not exhaustive: four US campuses plus Norway/UAE/India/Australia. Distinct Abilene campuses share city reference.",
+  "rules": [
+    "Null = undisclosed/unverified, never zero.",
+    "No total across unlike capacity bases or overlapping phases.",
+    "Source date != check date. Status may be stale.",
+    "Measured consumption undisclosed for all selected sites.",
+    "Planned/design GPU disclosures != installed inventory.",
+    "No election-inferred risks."
+  ],
+  "sources": {
+    "ab-power": {
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts",
+      "title": "Crusoe expands AI data center campus in Abilene to 1.2 gigawatts",
+      "publication_date": "2025-03-18",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text",
+      "date_caveat": "Body dateline used; page separately displays 2026-08-18 with unclear semantics. Do not redate milestone."
+    },
+    "ab-status": {
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoes-contracted-ai-infrastructure-capacity-approaches-5-gigawatts-across-data-centers-and-cloud",
+      "title": "Crusoe’s Contracted AI Infrastructure Capacity Approaches 5 Gigawatts Across Data Centers and Cloud",
+      "publication_date": "2026-06-09",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text",
+      "date_caveat": "Body dateline used; page separately displays 2026-10-29 with unclear semantics. Do not redate milestone."
+    },
+    "ab-ms": {
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure",
+      "title": "Crusoe Announces New 900 MW AI Factory Campus in Abilene, Texas to Support Microsoft AI Infrastructure",
+      "publication_date": "2026-03-27",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text",
+      "date_caveat": "Body dateline used; page separately displays 2026-10-12 with unclear semantics. Do not redate milestone."
+    },
+    "fair": {
+      "url": "https://news.microsoft.com/source/2026/06/23/microsoft-completes-construction-on-first-datacenter-facility-in-mount-pleasant-wisconsin/",
+      "title": "Microsoft completes construction on first datacenter facility in Mount Pleasant, Wisconsin",
+      "publication_date": "2026-06-23",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "meta": {
+      "url": "https://datacenters.atmeta.com/2026/07/deepening-our-investment-in-richland-parish-louisiana/",
+      "title": "Deepening our investment in Richland Parish, Louisiana",
+      "publication_date": "2026-07-13",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "meta-it": {
+      "url": "https://www.opportunitylouisiana.gov/news/meta-commits-more-than-50-billion-for-north-louisiana-project-becoming-one-of-the-largest-data-centers-in-history",
+      "title": "Meta Commits More Than $50 Billion for North Louisiana Project, Becoming One of the Largest Data Centers in History",
+      "publication_date": "2026-07-13",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "government",
+      "verification": "WebFetch full text"
+    },
+    "entergy": {
+      "url": "https://www.entergy.com/news/entergy-louisiana-announces-a-new-agreement-with-meta-that-will-deliver-an-additional-2b-in-customer-savings",
+      "title": "Entergy Louisiana announces a new agreement with Meta that will deliver an additional $2B in customer savings",
+      "publication_date": "2026-03-27",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "utility",
+      "verification": "WebFetch full text"
+    },
+    "narvik": {
+      "url": "https://www.nscale.com/press-releases/nscale-microsoft-norway",
+      "title": "Nscale announces expanded deal with Microsoft in Norway",
+      "publication_date": "2026-04-14",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "narvik-fin": {
+      "url": "https://www.nscale.com/press-releases/nscale-secures-790-million-norway",
+      "title": "Nscale Secures $790 Million in Financing to Support AI Infrastructure Buildout in Norway",
+      "publication_date": "2026-05-11",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "nve": {
+      "url": "https://kommunikasjon.ntb.no/pressemelding/19085196/nve-gir-nscale-varsel-om-tvangsmulkt?lang=no&publisherId=89280",
+      "title": "NVE gir Nscale varsel om tvangsmulkt",
+      "publication_date": "2026-09-29",
+      "checked_at_sgt": "2026-11-07T12:39:00+08:00",
+      "source_type": "regulator release hosted by NTB",
+      "verification": "WebFetch full text",
+      "recheck_note": "Refetched 2026-11-07. Notice text still orders analysis by 15 Nov 2026 and warns of a coercive fine. No closure, fine, or stop-work was in the release."
+    },
+    "uae": {
+      "url": "https://www.g42.ai/resources/news/global-tech-alliance-launches-stargate-uae",
+      "title": "Global Tech Alliance Launches Stargate UAE",
+      "publication_date": "2025-05-22",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "india": {
+      "url": "https://blog.google/intl/en-in/google-ai-hub-scaling-indias-ai-infrastructure-and-community-impact/",
+      "title": "Google AI Hub - Scaling India’s AI Infrastructure and Community Impact",
+      "publication_date": "2026-04-28",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "india-plan": {
+      "url": "https://blog.google/intl/en-in/company-news/our-first-ai-hub-in-india-powered-by-a-15-billion-investment/",
+      "title": "Our First AI Hub in India, Powered by a $15 Billion Investment",
+      "publication_date": "2025-10-14",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "s7": {
+      "url": "https://www.nextdc.com/data-centres/sydney-data-centres/s7-sydney",
+      "title": "S7 Sydney Data Centre",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "s7-mou": {
+      "url": "https://www.nextdc.com/news/building-the-next-generation-of-sovereign-ai-infrastructure-in-australia",
+      "title": "NEXTDC to Join OpenAI in Australia as an Infrastructure Partner",
+      "publication_date": "2025-12-05",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "operator",
+      "verification": "WebFetch full text"
+    },
+    "s7-permit": {
+      "url": "https://www.planningportal.nsw.gov.au/major-projects/projects/nextdc-s7-data-centre-eastern-creek",
+      "title": "NEXTDC S7 Data Centre, Eastern Creek",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:39:00+08:00",
+      "source_type": "government",
+      "verification": "WebFetch full text",
+      "recheck_note": "Refetched 2026-11-07. Current Status on the page: Prepare EIS. No publication date on the page."
+    },
+    "geo-abilene": {
+      "url": "https://www.geonames.org/4669635/abilene.html",
+      "title": "Abilene — GeoNames",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "geographic",
+      "verification": "WebFetch full text"
+    },
+    "geo-fair": {
+      "url": "https://www.geonames.org/8478941/mount-pleasant.html",
+      "title": "Mount Pleasant — GeoNames",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "geographic",
+      "verification": "WebFetch full text"
+    },
+    "geo-meta": {
+      "url": "https://www.geonames.org/4327645/holly-ridge.html",
+      "title": "Holly Ridge — GeoNames",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "geographic",
+      "verification": "WebFetch full text"
+    },
+    "geo-narvik": {
+      "url": "https://www.geonames.org/3144987/narvik.html",
+      "title": "Narvik — GeoNames",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "geographic",
+      "verification": "WebFetch full text"
+    },
+    "geo-uae": {
+      "url": "https://www.geonames.org/292968/abu-dhabi.html",
+      "title": "Abu Dhabi — GeoNames",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "geographic",
+      "verification": "WebFetch full text"
+    },
+    "geo-india": {
+      "url": "https://www.geonames.org/1253102/visakhapatnam.html",
+      "title": "Visakhapatnam — GeoNames",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "geographic",
+      "verification": "WebFetch full text"
+    },
+    "geo-s7": {
+      "url": "https://www.geonames.org/2147714/sydney.html",
+      "title": "Sydney — GeoNames",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "geographic",
+      "verification": "WebFetch full text"
+    },
+    "risk-ab": {
+      "url": "https://www.reuters.com/business/oracle-openai-end-plans-expand-texas-data-center-site-bloomberg-news-reports-2026-03-06/",
+      "title": "Oracle and OpenAI drop Texas data center expansion plan, Bloomberg News reports",
+      "publication_date": "2026-03-06",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "secondary",
+      "verification": "WebSearch excerpt only; not primary-confirmed"
+    },
+    "risk-uae": {
+      "url": "https://www.reuters.com/world/middle-east/uae-revises-ai-data-center-plan-after-iranian-attacks-sources-say-2026-09-11/",
+      "title": "UAE revises AI data center plan after Iranian attacks, sources say",
+      "publication_date": "2026-09-11",
+      "checked_at_sgt": "2026-11-07T12:39:00+08:00",
+      "source_type": "secondary",
+      "verification": "WebSearch excerpt only; not primary-confirmed",
+      "access_caveat": "Full-text WebFetch returned 401; no verified new masterplan or commissioning date.",
+      "recheck_note": "Full-text fetch on 2026-11-07 again returned 401. Headline remains a secondary lead only."
+    },
+    "risk-india": {
+      "url": "https://www.thehindu.com/news/national/andhra-pradesh/google-data-centre-project-cleared-for-approvals-after-due-diligence-of-dpr-apiic-tells-high-court/article71535897.ece",
+      "title": "Google data centre project cleared for approvals after due diligence of DPR, APIIC tells High Court",
+      "publication_date": null,
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "secondary",
+      "verification": "WebSearch excerpt only; not primary-confirmed"
+    },
+    "risk-meta": {
+      "url": "https://lailluminator.com/2026/08/04/meta-data-center-pollution-permit-doesnt-account-for-all-its-emissions-sierra-club-says/",
+      "title": "Meta data center pollution permit doesn’t account for all its emissions, Sierra Club says",
+      "publication_date": "2026-08-04",
+      "checked_at_sgt": "2026-11-07T12:04:18+08:00",
+      "source_type": "secondary",
+      "verification": "WebSearch excerpt only; not primary-confirmed"
+    },
+    "risk-india-nov4": {
+      "url": "https://www.thehindu.com/news/national/andhra-pradesh/hc-hears-plea-against-google-data-centre-says-project-is-subject-to-its-decision-on-writ-petition/article71666395.ece",
+      "title": "HC hears plea against Google data centre, says project is subject to its decision on Writ Petition",
+      "publication_date": "2026-11-04",
+      "publication_time_note": "Published 9:06 pm IST; updated 10:31 pm IST. Clock time is on the article, not a map status timestamp.",
+      "checked_at_sgt": "2026-11-07T12:39:00+08:00",
+      "source_type": "news",
+      "verification": "WebFetch full text on 2026-11-07"
+    }
+  },
+  "sites": [
+    {
+      "id": "us-abilene-oracle",
+      "site_name": "Abilene flagship / Lancium Clean Campus",
+      "owner": null,
+      "operator": "Crusoe; Oracle Cloud Infrastructure",
+      "partners": [
+        "Lancium",
+        "OpenAI"
+      ],
+      "known_tenants": [
+        "Oracle Cloud Infrastructure / OpenAI workloads"
+      ],
+      "location": "Abilene, Texas",
+      "country": "United States",
+      "region": "North America",
+      "coordinates": {
+        "lat": 32.45,
+        "lon": -99.73,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Abilene",
+        "source_ids": [
+          "geo-abilene"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [
+        {
+          "value": 1.2,
+          "unit": "GW",
+          "basis": "campus_power",
+          "phase": "full eight-building buildout",
+          "timeframe": "End-2026 completion target in March-2026 statement",
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "total power capacity of 1.2 gigawatts",
+          "source_ids": [
+            "ab-power"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": null,
+          "measured_consumption": false
+        },
+        {
+          "value": 200,
+          "unit": "MW",
+          "basis": "unspecified",
+          "phase": "first two buildings",
+          "timeframe": null,
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "two 100 MW buildings",
+          "source_ids": [
+            "ab-ms"
+          ],
+          "delivery_state": "energized",
+          "overlap_relation": "Subset of flagship; not additive",
+          "measured_consumption": false
+        }
+      ],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [
+        {
+          "count": null,
+          "type": "NVIDIA GB200 NVL72",
+          "disclosure_state": "design_capability_not_installed_count",
+          "scope": "per building",
+          "source_ids": [
+            "ab-power"
+          ],
+          "note": "Source says up to 50,000 per building; product-unit ambiguity: do not treat as installed GPU count."
+        }
+      ],
+      "status": {
+        "value": "mixed",
+        "as_of_source_date": "2026-06-09",
+        "source_ids": [
+          "ab-status",
+          "ab-power"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: mixed",
+          "source_date": "2026-06-09",
+          "event_date": null,
+          "source_ids": [
+            "ab-status",
+            "ab-power"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "June 9 body dateline: two buildings operational, six under construction; no assumption whole campus operational now.",
+        "March-2025 mid-2026 completion target replaced by March-2026 end-2026 target.",
+        "Historical optional 600 MW nearby expansion and separate Microsoft campus excluded from flagship total."
+      ],
+      "source_ids": [
+        "ab-status",
+        "ab-power",
+        "risk-ab",
+        "ab-ms"
+      ],
+      "policy_risks": [],
+      "risk_assessment": {
+        "classification": "reported_risk",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "low",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "reported_risk",
+            "summary": "Reuters relays abandoned Oracle/OpenAI nearby expansion talks, not cancellation of core eight-building campus. Separate Microsoft campus now disclosed.",
+            "source_ids": [
+              "risk-ab",
+              "ab-ms"
+            ],
+            "evidence_dates": [
+              "2026-03-06",
+              "2026-03-27"
+            ],
+            "scope": "Historical optional expansion lease, not core campus",
+            "confidence": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "id": "us-abilene-microsoft",
+      "site_name": "Abilene dedicated Microsoft AI factory campus",
+      "owner": null,
+      "operator": "Crusoe",
+      "partners": [
+        "Microsoft"
+      ],
+      "known_tenants": [
+        "Microsoft"
+      ],
+      "location": "Abilene, Texas",
+      "country": "United States",
+      "region": "North America",
+      "coordinates": {
+        "lat": 32.45,
+        "lon": -99.73,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Abilene",
+        "source_ids": [
+          "geo-abilene"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [
+        {
+          "value": 900,
+          "unit": "MW",
+          "basis": "generation_power",
+          "phase": "full power plant",
+          "timeframe": "First building energization mid-2027 target",
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "900MW on-site power plant",
+          "source_ids": [
+            "ab-ms"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": null,
+          "measured_consumption": false
+        },
+        {
+          "value": 336,
+          "unit": "MW",
+          "basis": "IT_load",
+          "phase": "building design",
+          "timeframe": null,
+          "scope": "each of two buildings",
+          "qualifier": "exact",
+          "source_wording": "Each of the two new buildings is designed to deliver 336 MW of critical IT load",
+          "source_ids": [
+            "ab-ms"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": "Do not add IT load to 900 MW generation",
+          "measured_consumption": false
+        }
+      ],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [],
+      "status": {
+        "value": "under_construction",
+        "as_of_source_date": "2026-06-09",
+        "source_ids": [
+          "ab-status",
+          "ab-ms"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: under_construction",
+          "source_date": "2026-06-09",
+          "event_date": null,
+          "source_ids": [
+            "ab-status",
+            "ab-ms"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "Adjacent but separate campus; shared city pin must cluster without implying identical facility.",
+        "2.1 GW combined Abilene headline is not an extra site or additive record.",
+        "Mid-2027 target applies to this new campus, not flagship completion."
+      ],
+      "source_ids": [
+        "ab-status",
+        "ab-ms"
+      ],
+      "policy_risks": [],
+      "risk_assessment": {
+        "classification": "no_identified_material_issue",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "low",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "no_identified_material_issue",
+            "summary": "No issue identified in limited primary disclosures; not proof all power, water, permits or financing secured.",
+            "source_ids": [
+              "ab-status",
+              "ab-ms"
+            ],
+            "evidence_dates": [
+              "2026-06-09",
+              "2026-03-27"
+            ],
+            "scope": "This dedicated campus only",
+            "confidence": "low"
+          }
+        ]
+      }
+    },
+    {
+      "id": "us-fairwater",
+      "site_name": "Fairwater / Mount Pleasant campus",
+      "owner": null,
+      "operator": "Microsoft",
+      "partners": [],
+      "known_tenants": [],
+      "location": "Mount Pleasant, Wisconsin",
+      "country": "United States",
+      "region": "North America",
+      "coordinates": {
+        "lat": 42.7,
+        "lon": -87.86,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Mount Pleasant",
+        "source_ids": [
+          "geo-fair"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [],
+      "status": {
+        "value": "mixed",
+        "as_of_source_date": "2026-06-23",
+        "source_ids": [
+          "fair"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: mixed",
+          "source_date": "2026-06-23",
+          "event_date": null,
+          "source_ids": [
+            "fair"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "First facility fully operational June 23, 2026; adjacent second facility under construction, completion scheduled 2028.",
+        "MW/GW and installed GPU count undisclosed in reviewed June release; do not derive from area/performance claims."
+      ],
+      "source_ids": [
+        "fair"
+      ],
+      "policy_risks": [],
+      "risk_assessment": {
+        "classification": "no_identified_material_issue",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "low",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "no_identified_material_issue",
+            "summary": "No issue identified in reviewed completion release; seven risk categories remain incompletely assessed.",
+            "source_ids": [
+              "fair"
+            ],
+            "evidence_dates": [
+              "2026-06-23"
+            ],
+            "scope": "Reviewed milestone only",
+            "confidence": "low"
+          }
+        ]
+      }
+    },
+    {
+      "id": "us-richland-hyperion",
+      "site_name": "Richland Parish / Hyperion",
+      "owner": null,
+      "operator": "Meta",
+      "partners": [
+        "Entergy Louisiana"
+      ],
+      "known_tenants": [],
+      "location": "Holly Ridge / Richland Parish, Louisiana",
+      "country": "United States",
+      "region": "North America",
+      "coordinates": {
+        "lat": 32.47,
+        "lon": -91.63,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Holly Ridge",
+        "source_ids": [
+          "geo-meta"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [
+        {
+          "value": 5,
+          "unit": "GW",
+          "basis": "IT_load",
+          "phase": "announced full expansion",
+          "timeframe": null,
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "5 gigawatts of IT capacity",
+          "source_ids": [
+            "meta-it"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": null,
+          "measured_consumption": false
+        }
+      ],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [],
+      "status": {
+        "value": "under_construction",
+        "as_of_source_date": "2026-07-13",
+        "source_ids": [
+          "meta",
+          "meta-it",
+          "entergy"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: under_construction",
+          "source_date": "2026-07-13",
+          "event_date": null,
+          "source_ids": [
+            "meta",
+            "meta-it",
+            "entergy"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "Government explicitly labels 5 GW IT capacity; Meta says compute capacity. Same quantity, not two capacities.",
+        "Announced expanded load is not achieved; utility generating MW and renewable commitments are not installed IT load.",
+        "Recheck 7 Nov 2026: no primary final air-permit or commission order was retrieved. The March 2026 Entergy filing remains a documented dependency for the expansion, not proof of energized supply. Sierra Club objections remain a reported risk, not an injunction or cancellation."
+      ],
+      "source_ids": [
+        "meta",
+        "meta-it",
+        "entergy",
+        "risk-meta"
+      ],
+      "policy_risks": [],
+      "risk_assessment": {
+        "classification": "reported_risk",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "low",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "documented_dependency",
+            "summary": "Utility says new generation filing is one of several factors needed for expansion; final regulatory disposition not verified. Seven plants >5,200 MW are planned, not proof energized supply.",
+            "source_ids": [
+              "entergy"
+            ],
+            "evidence_dates": [
+              "2026-03-27"
+            ],
+            "scope": "Expanded-campus power buildout",
+            "confidence": "high"
+          },
+          {
+            "classification": "reported_risk",
+            "summary": "Secondary report describes air-permit emissions objections; no injunction or cancellation verified.",
+            "source_ids": [
+              "risk-meta"
+            ],
+            "evidence_dates": [
+              "2026-08-04"
+            ],
+            "scope": "Air-permit challenge",
+            "confidence": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "id": "no-narvik",
+      "site_name": "Nscale Narvik / Kvandal (announced as Stargate Norway)",
+      "owner": null,
+      "operator": "Nscale",
+      "partners": [
+        "Microsoft",
+        "Aker (historical JV; rolled up per April-2026 statement)"
+      ],
+      "known_tenants": [
+        "Microsoft"
+      ],
+      "location": "Narvik; Kvandal nearby",
+      "country": "Norway",
+      "region": "Europe",
+      "coordinates": {
+        "lat": 68.44,
+        "lon": 17.43,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Narvik",
+        "source_ids": [
+          "geo-narvik"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [
+        {
+          "value": 230,
+          "unit": "MW",
+          "basis": "grid_connection",
+          "phase": "allocated grid capacity",
+          "timeframe": null,
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "tildelt nettkapasitet på 230 MW",
+          "source_ids": [
+            "nve"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": null,
+          "measured_consumption": false
+        },
+        {
+          "value": 290,
+          "unit": "MW",
+          "basis": "grid_connection",
+          "phase": "possible expansion",
+          "timeframe": null,
+          "scope": "campus",
+          "qualifier": "possible",
+          "source_wording": "mulig utvidelse på 290 MW",
+          "source_ids": [
+            "nve"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": "Not achieved/secured additional connection",
+          "measured_consumption": false
+        }
+      ],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [
+        {
+          "count": 30000,
+          "qualifier": "more_than",
+          "type": "NVIDIA Rubin",
+          "disclosure_state": "planned_deployment",
+          "timeframe": "2027",
+          "scope": "expanded Microsoft agreement",
+          "source_ids": [
+            "narvik"
+          ]
+        }
+      ],
+      "status": {
+        "value": "under_construction",
+        "as_of_source_date": "2026-09-29",
+        "source_ids": [
+          "nve",
+          "narvik",
+          "narvik-fin"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: under_construction",
+          "source_date": "2026-09-29",
+          "event_date": null,
+          "source_ids": [
+            "nve",
+            "narvik",
+            "narvik-fin"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "Nscale now says sole management after JV roll-up, with Microsoft customer. Do not retain old 50/50 JV or assume OpenAI direct offtake.",
+        "May financing has uncommitted accordion for further 115MW expansion; overlap with other expansion aspirations unclear, excluded from capacities.",
+        "NVE notice is not a stop-work order or confirmed delay; resolution since notice unverified.",
+        "Recheck 7 Nov 2026 (SGT): the 29 Sep 2026 NVE notice was fetched again. No later NVE closure, fine, or stop-work was in that release. The 15 Nov 2026 filing deadline was still ahead. This is a compliance notice, not a confirmed construction delay."
+      ],
+      "source_ids": [
+        "nve",
+        "narvik",
+        "narvik-fin"
+      ],
+      "policy_risks": [
+        {
+          "jurisdiction": "Norway",
+          "instrument": "Energy Act §7-2 waste-heat cost-benefit assessment",
+          "effective_date": "2025-04-01",
+          "site_action_deadline": "2026-11-15",
+          "source_ids": [
+            "nve"
+          ],
+          "note": "Regulator notice of potential coercive fine; no verified fine imposed or stop-work."
+        }
+      ],
+      "risk_assessment": {
+        "classification": "documented_compliance_issue",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "high",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "documented_compliance_issue",
+            "summary": "NVE states construction began without the mandatory waste-heat analysis, orders submission by 15 November 2026, and warns of a coercive fine. Refetch on 7 Nov 2026 still showed that notice and no closure. Not a verified stop-work order, imposed fine, cancellation, or delay.",
+            "source_ids": [
+              "nve"
+            ],
+            "evidence_dates": [
+              "2026-09-29"
+            ],
+            "scope": "Kvandal waste-heat compliance",
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ae-stargate-uae",
+      "site_name": "Stargate UAE cluster",
+      "owner": null,
+      "operator": "OpenAI and Oracle (announced operators)",
+      "partners": [
+        "G42 (builder)",
+        "NVIDIA",
+        "Cisco",
+        "SoftBank"
+      ],
+      "known_tenants": [],
+      "location": "Abu Dhabi",
+      "country": "United Arab Emirates",
+      "region": "Middle East",
+      "coordinates": {
+        "lat": 24.45,
+        "lon": 54.4,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Abu Dhabi",
+        "source_ids": [
+          "geo-uae"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [
+        {
+          "value": 1,
+          "unit": "GW",
+          "basis": "unspecified",
+          "phase": "announced full cluster",
+          "timeframe": null,
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "1-gigawatt compute cluster",
+          "source_ids": [
+            "uae"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": null,
+          "measured_consumption": false
+        },
+        {
+          "value": 200,
+          "unit": "MW",
+          "basis": "unspecified",
+          "phase": "initial phase",
+          "timeframe": "2026 expected",
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "first 200-megawatt AI cluster",
+          "source_ids": [
+            "uae"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": "Subset of 1 GW; not additive",
+          "measured_consumption": false
+        }
+      ],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [
+        {
+          "count": null,
+          "type": "NVIDIA Grace Blackwell GB300",
+          "disclosure_state": "planned_supply",
+          "scope": "cluster",
+          "source_ids": [
+            "uae"
+          ]
+        }
+      ],
+      "status": {
+        "value": "planned",
+        "as_of_source_date": "2025-05-22",
+        "source_ids": [
+          "uae"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: planned",
+          "source_date": "2025-05-22",
+          "event_date": null,
+          "source_ids": [
+            "uae"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "Status is planned as of May-2025 primary source; current construction/completion not primary-verified. Do not auto-promote at target date.",
+        "1 GW cluster sits within broader 5 GW campus; no 6 GW total. Avoid precise sensitive site geography.",
+        "September secondary redesign report remains risk lead, not verified new layout.",
+        "Recheck 7 Nov 2026: Reuters full text returned 401 again. No primary G42/OpenAI page with a revised masterplan or a new commissioning date was used to change status. Third-party site registers disagree and are not treated as operating status. Status remains planned as of 22 May 2025."
+      ],
+      "source_ids": [
+        "uae",
+        "risk-uae"
+      ],
+      "policy_risks": [],
+      "risk_assessment": {
+        "classification": "reported_risk",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "low",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "reported_risk",
+            "summary": "Reuters reported on 11 Sep 2026, from sources, a likely wider-campus revision. Full-text access returned 401 on 7 Nov 2026 as well. No primary-confirmed cancellation, revised masterplan, or new commissioning date was retrieved.",
+            "source_ids": [
+              "risk-uae"
+            ],
+            "evidence_dates": [
+              "2026-09-11"
+            ],
+            "scope": "Wider 5 GW campus, not proven 1 GW cluster cancellation",
+            "confidence": "low"
+          }
+        ]
+      }
+    },
+    {
+      "id": "in-vizag-google",
+      "site_name": "Google Visakhapatnam AI hub",
+      "owner": null,
+      "operator": "Google",
+      "partners": [
+        "AdaniConneX",
+        "Nxtra by Airtel"
+      ],
+      "known_tenants": [],
+      "location": "Visakhapatnam, Andhra Pradesh",
+      "country": "India",
+      "region": "Asia",
+      "coordinates": {
+        "lat": 17.68,
+        "lon": 83.2,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Visakhapatnam",
+        "source_ids": [
+          "geo-india"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [
+        {
+          "value": null,
+          "unit": "GW",
+          "basis": "unspecified",
+          "phase": "planned buildout",
+          "timeframe": "2026–2030 investment period, not operation date",
+          "scope": "campus",
+          "qualifier": "qualitative_only",
+          "source_wording": "gigawatt-scale compute",
+          "source_ids": [
+            "india"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": null,
+          "measured_consumption": false
+        }
+      ],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [],
+      "status": {
+        "value": "under_construction",
+        "as_of_source_date": "2026-04-28",
+        "source_ids": [
+          "india",
+          "india-plan"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: under_construction",
+          "source_date": "2026-04-28",
+          "event_date": null,
+          "source_ids": [
+            "india",
+            "india-plan"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "Gigawatt-scale does not justify entering exactly 1 GW; numeric capacity null.",
+        "$15B investment includes cables/energy and other infrastructure, not just data center.",
+        "April groundbreaking is construction milestone, not commissioning.",
+        "The Hindu, 4 Nov 2026: the High Court said the project remains subject to the writ petition and at the developer’s risk and cost, as previously ordered. The bench did not decide the merits that day. Not a verified stop-work or cancellation. An older Hindu report of APIIC’s due-diligence statement still has no verified publication date."
+      ],
+      "source_ids": [
+        "india",
+        "india-plan",
+        "risk-india",
+        "risk-india-nov4"
+      ],
+      "policy_risks": [],
+      "risk_assessment": {
+        "classification": "reported_risk",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "low",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "reported_risk",
+            "summary": "The Hindu (published 4 Nov 2026, 9:06 pm IST) reports the Andhra Pradesh High Court left the Visakhapatnam project subject to the writ petition and at Vizag Hyperscale Data Centre Park Ltd’s risk and cost. Merits were not heard that day. Counsel described the challenge as focused on a 160-acre parcel within a larger holding. This is not a verified injunction, cancellation, or delay.",
+            "source_ids": [
+              "risk-india-nov4",
+              "risk-india"
+            ],
+            "evidence_dates": [
+              "2026-11-04",
+              null
+            ],
+            "scope": "Pending writ on reported land allotment, not a whole-hub operating status",
+            "confidence": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "id": "au-nextdc-s7",
+      "site_name": "NEXTDC S7 Sydney",
+      "owner": null,
+      "operator": "NEXTDC",
+      "partners": [
+        "OpenAI (MoU collaboration; not confirmed occupied load)"
+      ],
+      "known_tenants": [],
+      "location": "Eastern Creek, Sydney",
+      "country": "Australia",
+      "region": "Oceania",
+      "coordinates": {
+        "lat": -33.87,
+        "lon": 151.21,
+        "precision": "approximate_city_or_settlement_level",
+        "mapped_place": "Sydney",
+        "source_ids": [
+          "geo-s7"
+        ],
+        "note": "Rounded public settlement reference, NOT facility footprint or entrance."
+      },
+      "capacity_disclosures": [
+        {
+          "value": 550,
+          "unit": "MW",
+          "basis": "IT_load",
+          "phase": "planned campus",
+          "timeframe": null,
+          "scope": "campus",
+          "qualifier": "more_than",
+          "source_wording": "550MW+ IT Capacity",
+          "source_ids": [
+            "s7"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": null,
+          "measured_consumption": false
+        },
+        {
+          "value": 612,
+          "unit": "MW",
+          "basis": "unspecified",
+          "phase": "planning proposal SSD-113934740",
+          "timeframe": null,
+          "scope": "campus",
+          "qualifier": "exact",
+          "source_wording": "operational capacity of 612 MW",
+          "source_ids": [
+            "s7-permit"
+          ],
+          "delivery_state": "planned",
+          "overlap_relation": "Undefined basis; not additive or assumed same as IT load",
+          "measured_consumption": false
+        }
+      ],
+      "measured_power_consumption": null,
+      "gpu_disclosures": [],
+      "status": {
+        "value": "planned",
+        "as_of_source_date": null,
+        "source_ids": [
+          "s7-permit",
+          "s7",
+          "s7-mou"
+        ],
+        "checked_at_sgt": "2026-11-07T12:04:18+08:00"
+      },
+      "milestones": [
+        {
+          "description": "Status disclosure: planned",
+          "source_date": null,
+          "event_date": null,
+          "source_ids": [
+            "s7-permit",
+            "s7",
+            "s7-mou"
+          ],
+          "note": "Source-date status, not exact event date unless separately specified."
+        }
+      ],
+      "relevant_facts": [],
+      "caveats": [
+        "Sydney metro city reference pin, not Eastern Creek facility coordinate.",
+        "Live planning stage Prepare EIS is not approval. First-phase H2-2027 target is conditional on approvals.",
+        "Do not infer PUE from 550MW+ versus 612MW; definitions and scope differ.",
+        "Recheck 7 Nov 2026 (SGT): the NSW planning portal still listed Current Status Prepare EIS for SSD-113934740. That is not approval and not a confirmed delay. The portal page is undated."
+      ],
+      "source_ids": [
+        "s7-permit",
+        "s7",
+        "s7-mou"
+      ],
+      "policy_risks": [],
+      "risk_assessment": {
+        "classification": "documented_dependency",
+        "confirmed_cancelled_paused_delayed": null,
+        "assessed_at_sgt": "2026-11-07T12:04:18+08:00",
+        "confidence": "high",
+        "assessed_scope": "Limited operator/regulator review plus targeted risk web screening, not exhaustive due diligence; no category individually cleared.",
+        "categories": {
+          "grid_interconnection": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "permits": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "water_environment": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "financing": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "demand_offtake": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "supply_chain": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          },
+          "litigation": {
+            "assessment": "screened_limited_unknown",
+            "source_ids": []
+          }
+        },
+        "findings": [
+          {
+            "classification": "documented_dependency",
+            "summary": "Government planning record still showed Prepare EIS on a 7 Nov 2026 refetch. Operator first-phase H2-2027 target was expressly subject to approvals in the Dec 2025 release. No confirmed cancellation or delay.",
+            "source_ids": [
+              "s7-permit",
+              "s7-mou"
+            ],
+            "evidence_dates": [
+              null,
+              "2025-12-05"
+            ],
+            "scope": "Planning consent and conditional first phase",
+            "confidence": "high"
+          }
+        ]
+      }
+    }
+  ],
+  "publication_authorization": "Hugo confirmed publication at 12:29 SGT on 7 Nov 2026. This file remains a bounded sourced sample, not a live-status census.",
+  "follow_up_recheck": {
+    "at_sgt": "2026-11-07T12:39:00+08:00",
+    "method": "Direct page fetches of the NVE notice, NSW planning portal, The Hindu 4 Nov 2026 report, and a Reuters retry. No newer primary closure was found for Narvik or S7.",
+    "narvik": "NVE 29 Sep 2026 notice still the latest primary text retrieved. Submission deadline 15 Nov 2026 is still ahead of this recheck. Not a stop-work order, imposed fine, cancellation, or confirmed delay.",
+    "s7": "NSW major-projects portal still showed Current Status: Prepare EIS for SSD-113934740. Not an approval and not a confirmed delay. Portal page has no publication date.",
+    "uae": "Reuters full-text fetch returned 401 again. No primary operator page with a revised masterplan or new commissioning date was used. Status left as planned as of 2025-05-22.",
+    "india": "The Hindu published 4 Nov 2026 9:06 pm IST (updated 10:31 pm IST): the High Court said the project remains subject to the writ petition and at the developer’s risk and cost, as ordered earlier. Merits were not decided that day. Not a verified halt or cancellation.",
+    "hyperion": "No primary final LDEQ or commission order was retrieved on this recheck. Generation filing stays a documented dependency. Air-permit objections stay a reported risk, not an injunction."
+  }
+}
