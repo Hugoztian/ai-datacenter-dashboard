@@ -36,7 +36,11 @@
   }
 
   function sourceById(id) {
-    return ((DATA() && DATA().sources) || {})[id] || null;
+    const packs = [window.AIDC_US_CAMPUSES, DATA()];
+    for (const pack of packs) {
+      if (pack && pack.sources && pack.sources[id]) return pack.sources[id];
+    }
+    return null;
   }
 
   function sourceLinks(ids) {
@@ -49,6 +53,7 @@
   }
 
   function usStateName(site) {
+    if (site.us_state) return site.us_state;
     const blob = `${site.location || ""} ${site.country || ""}`;
     const names = ((window.AIDC_US && window.AIDC_US.states) || []).map((item) => item.name).sort((a, b) => b.length - a.length);
     return names.find((name) => blob.includes(name)) || "";
@@ -78,7 +83,7 @@
       operator: "all",
       status: "all",
       risk: "all",
-      sizeOn: false,
+      sizeOn: true,
       sizeBasis: "IT_load",
       sizeDelivery: "planned",
       sizeScope: "campus",
@@ -97,16 +102,27 @@
   }
 
   function allSites() {
+    const extra = window.AIDC_US_CAMPUSES && window.AIDC_US_CAMPUSES.sites;
+    if (extra && extra.length) return extra;
     return (DATA() && DATA().sites) || [];
+  }
+
+  function otherSites() {
+    return ((DATA() && DATA().sites) || []).filter((site) => !isUS(site));
   }
 
   function passes(site) {
     const logic = L();
     if (state.usState !== "all" && usStateName(site) !== state.usState) return false;
-    if (state.operator !== "all" && site.operator !== state.operator) return false;
+    if (state.operator !== "all" && (site.owner_group || site.operator) !== state.operator) return false;
     if (state.status !== "all" && logic.statusOf(site) !== state.status) return false;
     if (state.risk !== "all" && logic.riskOf(site) !== state.risk) return false;
     return true;
+  }
+
+  function itRecord(site) {
+    const rows = (site.capacity_disclosures || []).filter((rec) => rec.basis === "IT_load" && rec.scope === "campus" && rec.value != null && rec.qualifier !== "qualitative_only");
+    return rows.length === 1 ? rows[0] : null;
   }
 
   function usFiltered() {
@@ -114,12 +130,12 @@
   }
 
   function pinRadius(site) {
-    if (!state.sizeOn) return 13;
-    const match = L().sizingMatch(site, state.sizeBasis, state.sizeDelivery, state.sizeScope);
-    if (!match.sized) return 13;
-    const peers = usFiltered().map((item) => L().sizingMatch(item, state.sizeBasis, state.sizeDelivery, state.sizeScope)).filter((item) => item.sized);
-    const max = Math.max(...peers.map((item) => item.mw), 1);
-    return 10 + Math.sqrt(match.mw / max) * 16;
+    if (!state.sizeOn) return 11;
+    const rec = itRecord(site);
+    if (!rec) return 9;
+    const values = usFiltered().map(itRecord).filter(Boolean).map((row) => row.value);
+    const max = Math.max(...values, 1);
+    return 8 + Math.sqrt(rec.value / max) * 18;
   }
 
   function hoverKeyFor(site) {
@@ -194,8 +210,9 @@
       return `<li>${esc(key.replaceAll("_", " "))}: ${esc(readable)}</li>`;
     }).join("");
     const policies = (site.policy_risks || []).map((policy) => `<li>${esc(policy.jurisdiction)} — ${esc(policy.instrument)}. Effective ${esc(policy.effective_date || "unknown")}. Site action deadline ${esc(policy.site_action_deadline || "none stated")}. ${esc(policy.note || "")}<br>${sourceLinks(policy.source_ids)}</li>`).join("");
+    const place = site.coordinates || {};
     return `<div class="site-detail">
-      <p class="note">Settlement precision: ${esc((site.coordinates.precision || "").replaceAll("_", " "))}. ${esc(site.coordinates.note || "")} Mapped place: ${esc(site.coordinates.mapped_place)}. Approximate, not a facility pin.</p>
+      <p class="note">Settlement precision: ${esc((place.precision || "undisclosed").toString().replaceAll("_", " "))}. ${esc(place.note || "No city coordinate in this row.")} Mapped place: ${esc(place.mapped_place || "Undisclosed / not verified")}. Approximate, not a facility pin.</p>
       <h4>Who operates it, and who owns it</h4>
       <p>Operator: ${esc(logic.undisclosed(site.operator))}<br>Owner: ${esc(logic.undisclosed(site.owner))}<br>Partners: ${esc(logic.undisclosed(site.partners))}<br>Known tenants: ${esc(logic.undisclosed(site.known_tenants))}</p>
       <p class="note">A partner or memorandum is not a contracted tenant. Owner stays undisclosed when no source names one. Design capacity is not installed load.</p>
@@ -339,28 +356,33 @@
       <p><b>Risk</b> is a separate letter, not a state color. A dependency is not a delay. Limited scope is not a guarantee. States are not shaded by election results.</p>
       <ul>${Object.entries(logic.RISK_LABEL).map(([key, label]) => `<li><i class="swatch rk rk-${key}">${RISK_MARK[key] || "?"}</i>${esc(label)}</li>`).join("")}</ul>
       <p id="size-legend">${state.sizeOn
-        ? `Circle area is sized only for ${esc(state.sizeBasis)} / ${esc(state.sizeDelivery)} / ${esc(state.sizeScope)}, one exact record. Other campuses stay the default size and are not zeros.`
+        ? "Circle area shows only Epoch timeline IT power (MW), one campus-scope figure. Facility power is not included. Campuses without that field stay small and are not zeros."
         : "Circle area does not represent capacity. Every campus uses the same size."}</p>
     </div>`;
   }
 
   function listHtml() {
     const logic = L();
-    const groups = logic.clusterSites(usFiltered());
-    if (!groups.length) return `<p class="note">No US campuses match these dropdowns.</p>`;
-    return `<ul class="map-list">${groups.map((group) => {
+    const rows = usFiltered();
+    const mapped = rows.filter((site) => site.coordinates && site.coordinates.lat != null);
+    const missing = rows.filter((site) => !(site.coordinates && site.coordinates.lat != null));
+    const groups = logic.clusterSites(mapped);
+    const items = groups.map((group) => {
       if (group.length > 1) {
         const key = `cluster:${logic.clusterKey(group[0])}`;
         return `<li><button type="button" data-hover="${esc(key)}" data-cluster="${esc(logic.clusterKey(group[0]))}"><b>${esc(group[0].coordinates.mapped_place)}</b> · ${group.length} campuses<small>${group.map((site) => esc(site.site_name)).join("<br>")}</small></button></li>`;
       }
       const site = group[0];
-      return `<li><button type="button" data-hover="${esc(site.id)}" data-open="${esc(site.id)}"><b>${esc(site.site_name)}</b><small>${esc(usStateName(site))} · ${esc(site.operator || "Operator undisclosed")} · ${esc(logic.STATUS_LABEL[logic.statusOf(site)])} · ${esc(logic.RISK_LABEL[logic.riskOf(site)])}</small></button></li>`;
-    }).join("")}</ul>`;
+      return `<li><button type="button" data-hover="${esc(site.id)}" data-open="${esc(site.id)}"><b>${esc(site.site_name)}</b><small>${esc(usStateName(site))} · ${esc(site.owner_group || site.operator || "Owner undisclosed")} · ${esc(logic.STATUS_LABEL[logic.statusOf(site)])} · ${esc(logic.RISK_LABEL[logic.riskOf(site)])}</small></button></li>`;
+    }).join("");
+    const extra = missing.map((site) => `<li><button type="button" data-open="${esc(site.id)}"><b>${esc(site.site_name)}</b><small>City coordinate undisclosed · ${esc(logic.STATUS_LABEL[logic.statusOf(site)])}</small></button></li>`).join("");
+    if (!items && !extra) return `<p class="note">No US campuses match these dropdowns.</p>`;
+    return `<ul class="map-list">${items}${extra}</ul>`;
   }
 
   function outsideHtml() {
     const logic = L();
-    const rows = allSites().filter((site) => !isUS(site));
+    const rows = otherSites();
     return `<h3>Outside this USA map</h3>
       <p class="note">These sourced campuses stay in the dataset. They are not drawn here, and leaving them off is not a statement that they do not exist. Same summary and detail window.</p>
       <ul class="map-list">${rows.map((site) => `<li><button type="button" data-open="${esc(site.id)}"><b>${esc(site.site_name)}</b><small>${esc(site.location)}, ${esc(site.country)} · ${esc(logic.STATUS_LABEL[logic.statusOf(site)])} · ${esc(logic.RISK_LABEL[logic.riskOf(site)])}</small></button></li>`).join("")}</ul>`;
@@ -387,7 +409,7 @@
     const logic = L();
     const box = window.AIDC_US || { w: 1000, h: 640 };
     stage.querySelectorAll(".pin").forEach((node) => node.remove());
-    logic.clusterSites(usFiltered()).forEach((group) => {
+    logic.clusterSites(usFiltered().filter((site) => site.coordinates && site.coordinates.lat != null)).forEach((group) => {
       const point = project(group[0].coordinates.lat, group[0].coordinates.lon);
       const button = document.createElement("button");
       button.type = "button";
@@ -426,8 +448,8 @@
   function operatorHtml() {
     const logic = L();
     const us = allSites().filter(isUS);
-    const rows = [...new Set(us.map((site) => site.operator).filter(Boolean))].map((op) => {
-      const mine = us.filter((site) => site.operator === op);
+    const rows = [...new Set(us.map((site) => site.owner_group || site.operator).filter(Boolean))].map((op) => {
+      const mine = us.filter((site) => (site.owner_group || site.operator) === op);
       return {
         op,
         n: mine.length,
@@ -445,7 +467,7 @@
     });
     const mark = (col) => state.opSort.key === col ? (state.opSort.dir < 0 ? " ↓" : " ↑") : "";
     return `<h3>Who operates the US campuses in this sample</h3>
-      <p class="note">One row per operator string in the four-campus set. Owner is separate and stays undisclosed when no source names one. No gigawatt total is shown, because the records use different power bases. Choosing a row filters the map and hides the others.</p>
+      <p class="note">One row per owner group in this US sample. Owner stays undisclosed when Epoch or the primary note does not name a separate owner. No gigawatt total is shown here, because IT power and facility power are different bases. Choosing a row filters the map.</p>
       <table id="op-table">
         <thead><tr>
           <th><button type="button" data-opsort="op">Operator${mark("op")}</button></th>
@@ -459,12 +481,40 @@
       </table>`;
   }
 
+  function kpiHtml() {
+    const shown = usFiltered();
+    const it = (site) => { const rec = itRecord(site); return rec && rec.basis === "IT_load" ? rec.value : null; };
+    const sum = (list) => list.reduce((acc, site) => acc + (it(site) || 0), 0);
+    const nOf = (stage) => shown.filter((site) => L().statusOf(site) === stage).length;
+    const op = shown.filter((site) => L().statusOf(site) === "operating" && it(site) != null);
+    const pipe = shown.filter((site) => ["under_construction", "planned"].includes(L().statusOf(site)) && it(site) != null);
+    const blocked = nOf("blocked");
+    return [
+      ["US campuses in view", String(shown.length), "Selected sample, not a census"],
+      ["Operating IT power", `${Math.round(sum(op)).toLocaleString("en-US")} MW`, `Sum of Epoch IT power only, ${op.length} operating campuses with that field. Not facility power and not a meter reading.`],
+      ["Construction or planned IT power", `${Math.round(sum(pipe)).toLocaleString("en-US")} MW`, `${pipe.length} campuses. Under construction and planned only. Mixed sites are excluded so they are not counted twice.`],
+      ["Blocked in this reading", String(blocked), "Only if the latest Epoch sentence says cancelled, paused, or blocked. Zero is not proof none exist."]
+    ].map((card) => `<div class="kpi"><div class="l">${esc(card[0])}</div><div class="v">${esc(card[1])}</div><div class="n">${esc(card[2])}</div></div>`).join("");
+  }
+
+  function chipHtml() {
+    const us = allSites().filter(isUS);
+    const groups = [...new Set(us.map((site) => site.owner_group || "Other"))].sort();
+    return [`<button type="button" data-chip="all" aria-pressed="${state.operator === "all"}">All owners</button>`]
+      .concat(groups.map((name) => `<button type="button" data-chip="${esc(name)}" aria-pressed="${state.operator === name}">${esc(name)} <span class="d">${us.filter((site) => (site.owner_group || "Other") === name).length}</span></button>`))
+      .join("");
+  }
+
   function draw() {
     const us = allSites().filter(isUS);
     const shown = usFiltered();
     announce(`${shown.length} of ${us.length} US campuses`);
     const count = root.querySelector("#map-count");
-    if (count) count.textContent = `${shown.length} of ${us.length} US campuses in this sample match the dropdowns. Not a national census.`;
+    if (count) count.textContent = `${shown.length} of ${us.length} US campuses in this sample match the dropdowns. Not a national census. ${us.filter((site) => !site.coordinates).length} have no city coordinate and are omitted from the map.`;
+    const kpis = root.querySelector("#map-kpis");
+    if (kpis) kpis.innerHTML = kpiHtml();
+    const chips = root.querySelector("#map-chips");
+    if (chips) chips.innerHTML = chipHtml();
     const list = root.querySelector("#map-list");
     if (list) list.innerHTML = listHtml();
     const legend = root.querySelector("#map-legend");
@@ -508,20 +558,21 @@
     if (window.AIDC_MAP_FORCE_FAIL) state.mapFailed = true;
     const logic = L();
     const us = allSites().filter(isUS);
+    const groups = [...new Set(us.map((site) => site.owner_group || site.operator).filter(Boolean))].sort();
     const states = [...new Set(us.map(usStateName).filter(Boolean))].sort();
-    const operators = [...new Set(us.map((site) => site.operator).filter(Boolean))].sort();
     const box = window.AIDC_US || { w: 1000, h: 640, states: [] };
     const paths = (box.states || []).map((item) => `<path class="stp" data-state="${esc(item.name)}" d="${item.d}"><title>${esc(item.name)}</title></path>`).join("");
     root.innerHTML = `<header class="maphead">
         <h2 id="map-h">US data centers — who operates them, and what risk is documented</h2>
-        <p class="note">Four sourced US campuses, including two distinct Abilene records that share a city point. This is not a census and not the reference map’s owner colors or state-hostility shading. Circles are approximate public settlements. Census outlines via us-atlas, public domain.</p>
+        <p class="note">United States campuses from the Epoch AI data-centers table retrieved 9 Nov 2026, with the earlier primary-sourced Abilene, Fairwater, and Hyperion records kept where they overlap an Epoch name. This is a selected sample, not a census, and not the reference map’s owner colors or state-hostility shading. Dots use Epoch IT power only. City coordinates are approximate. Census outlines via us-atlas, public domain.</p>
+        <p class="note">Documented policy events, not an election-risk layer: Ballotpedia counted 40 of 41 local measures on 3 Nov 2026 as favoring limits. The Texas Tribune reported on 4 Nov 2026 that governor-elect Hinojosa pledged a moratorium that is not enacted, and described a separate Abbott permitting freeze. Those facts are not applied as a campus cancellation.</p>
       </header>
       <div class="maptools">
         <label>State <select id="f-state">${options(states, "all", "All states in this sample")}</select></label>
-        <label>Operator <select id="f-operator">${options(operators, "all", "All operators")}</select></label>
+        <label>Owner <select id="f-operator">${options(groups, "all", "All owners")}</select></label>
         <label>Status <select id="f-status"><option value="all">All statuses</option>${Object.entries(logic.STATUS_LABEL).map(([key, label]) => `<option value="${key}">${esc(label)}</option>`).join("")}</select></label>
         <label>Risk <select id="f-risk"><option value="all">All risk classes</option>${Object.entries(logic.RISK_LABEL).map(([key, label]) => `<option value="${key}">${esc(label)}</option>`).join("")}</select></label>
-        <label>Circle size <select id="f-size"><option value="equal">Equal area — not capacity</option><option value="basis">Size by one comparable basis</option></select></label>
+        <label>Circle size <select id="f-size"><option value="equal">Equal area — not capacity</option><option value="basis" selected>Size by Epoch IT power only</option></select></label>
         <span id="size-controls" hidden>
           <label>Basis <select id="s-basis">${BASIS.map(([value, label]) => `<option value="${value}">${esc(label)}</option>`).join("")}</select></label>
           <label>Delivery <select id="s-delivery">${DELIVERY.map(([value, label]) => `<option value="${value}">${esc(label)}</option>`).join("")}</select></label>
@@ -531,6 +582,8 @@
         <label>Power / grid geography <select id="f-grid"><option value="off">Not drawn</option><option value="on">Show coverage gap</option></select></label>
         <button type="button" id="map-reset">Reset filters</button>
       </div>
+      <p id="map-kpis" class="kpis"></p>
+      <div id="map-chips" class="maptools" role="group" aria-label="Owner groups"></div>
       <p id="map-count" class="note"></p>
       <p id="map-hover" class="map-hover" aria-live="polite"></p>
       <div id="grid-gap" class="gap" hidden>Power and grid geography is unavailable. This dataset has no sourced public substation, transmission-line, or plant coordinates. Nothing is drawn. Figures stay in the site detail and are not compared across bases.</div>
@@ -584,13 +637,20 @@
       }
       const button = event.target.closest("button");
       if (!button || !root.contains(button)) return;
+      if (button.dataset.chip) {
+        state.operator = button.dataset.chip;
+        const select = root.querySelector("#f-operator");
+        if (select) select.value = state.operator;
+        draw();
+        return;
+      }
       if (button.id === "map-reset") {
         state.usState = state.operator = state.status = state.risk = "all";
-        state.sizeOn = false;
+        state.sizeOn = true;
         state.riskOn = true;
         state.gridNote = false;
         ["f-state", "f-operator", "f-status", "f-risk"].forEach((id) => { root.querySelector(`#${id}`).value = "all"; });
-        root.querySelector("#f-size").value = "equal";
+        root.querySelector("#f-size").value = "basis";
         root.querySelector("#f-riskmarks").value = "on";
         root.querySelector("#f-grid").value = "off";
         root.querySelector("#size-controls").hidden = true;
