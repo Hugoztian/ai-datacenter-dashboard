@@ -36,7 +36,8 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "7 Nov 2026, 12:39 PM");
+  assert.equal(window.AIDC.updated_sgt, "9 Nov 2026, 8:12 AM");
+  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-03" && item.date <= "2026-11-09"));
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
@@ -65,7 +66,8 @@ test("ballot and Texas items do not assert the removed claims", () => {
   const ballot = AIDC.whatsNewThisWeek.find((item) => item.headline.includes("Ballotpedia"));
   assert.match(ballot.detail, /40 of 41/);
   assert.match(ballot.detail, /not used/);
-  assert.match(ballot.detail, /not a verified change in federal control/);
+  assert.match(ballot.detail, /not a claim about control of Congress/);
+  assert.match(ballot.detail, /not a ban count/);
   const texas = AIDC.whatsNewThisWeek.find((item) => item.headline.includes("Hinojosa"));
   assert.match(texas.headline, /not enacted/);
   assert.match(texas.detail, /not in effect/);

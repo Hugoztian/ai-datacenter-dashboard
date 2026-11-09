@@ -16,4 +16,4 @@ The files `window.whatsNewThisWeek` and `window.comingUp` stay assigned from `da
 
 ## What this release checked
 
-Dashboard news and Coming up were checked on 7 Nov 2026 at 12:39 PM SGT. The map sample was prepared at 12:04:18 SGT the same day, with a follow-up refetch recorded on the Narvik notice, the NSW S7 portal, the 4 Nov Visakhapatnam court report, and a Reuters retry that again returned 401. Source dates and that check time are labeled separately in the interface.
+Dashboard news and Coming up were checked again on 9 Nov 2026 at 8:12 AM SGT. The visible feed is the rolling seven SGT dates 3–9 Nov 2026. The 7 Nov 2026, 12:39 PM check remains the prior pass. The map sample was prepared at 12:04:18 SGT the same day, with a follow-up refetch recorded on the Narvik notice, the NSW S7 portal, the 4 Nov Visakhapatnam court report, and a Reuters retry that again returned 401. Source dates and that check time are labeled separately in the interface.

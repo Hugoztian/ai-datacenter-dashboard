@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-07",
-updated_sgt: "7 Nov 2026, 12:39 PM",
+updated: "2026-11-09",
+updated_sgt: "9 Nov 2026, 8:12 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,11 +99,20 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-01",
-whatsNewUpdated: "2026-11-07 12:39 PM SGT",
+whatsNewWeekOf: "2026-11-03",
+whatsNewUpdated: "2026-11-09 8:12 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
+ {
+  "date": "2026-11-10",
+  "time": "13:30 Asia/Taipei (13:30 SGT)",
+  "event": "TSMC October 2026 monthly sales",
+  "status": "Confirmed",
+  "note": "Listed on TSMC’s IR financial calendar. The calendar says dates can change.",
+  "src": "TSMC IR financial calendar",
+  "url": "https://investor.tsmc.com/english/financial-calendar"
+ },
  {
   "date": "2026-11-10",
   "time": "Call 5:00 p.m. ET (~06:00 11 Nov SGT)",
@@ -141,6 +150,15 @@ comingUp: [
   "url": "https://investor.cisco.com/news/news-details/2026/Cisco-Schedules-Conference-Call-for-Q1-Fiscal-Year-2027-Financial-Results/default.aspx"
  },
  {
+  "date": "2026-11-15",
+  "time": "Program 15–20 Nov; exhibits 17–19 Nov",
+  "event": "SC26 supercomputing conference",
+  "status": "Confirmed",
+  "note": "Official dates page. City was not on that page, so none is stated here.",
+  "src": "SC26 dates page",
+  "url": "https://sc26.supercomputing.org/all-dates-deadlines/"
+ },
+ {
   "date": "2026-11-17",
   "time": "Results ~1:20 p.m. PT; call 2:00 p.m. PT / 5:00 p.m. ET (~06:00 18 Nov SGT)",
   "event": "NVIDIA Q3 FY27 earnings",
@@ -148,9 +166,27 @@ comingUp: [
   "note": "Quarter ended 25 Oct 2026. IR release dated 28 Oct 2026.",
   "src": "NVIDIA IR",
   "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx"
+ },
+ {
+  "date": "2026-11-24",
+  "time": "3:30 p.m. CST / 4:30 p.m. ET (~05:30 25 Nov SGT)",
+  "event": "Dell Technologies Q3 FY27 results",
+  "status": "Confirmed",
+  "note": "Dell’s IR events page lists the results at this time. It does not, on that listing, say whether the release is before or after the close.",
+  "src": "Dell IR events",
+  "url": "https://investors.delltechnologies.com/news-events/events"
+ },
+ {
+  "date": "2026-11-30",
+  "time": "30 Nov–4 Dec, Las Vegas",
+  "event": "AWS re:Invent 2026",
+  "status": "Confirmed",
+  "note": "AWS events page. Specific chip or Trainium announcements are not listed there.",
+  "src": "AWS events page",
+  "url": "https://aws.amazon.com/events/reinvent/"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. url=null where a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (3–9 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
  {
   "date": "2026-11-05",
@@ -273,38 +309,6 @@ whatsNewThisWeek: [
   "src": "Business Bagel, 2026-11-02; CNBC, 2026-10-29; SharpeIQ calendar, 2026-11"
  },
  {
-  "date": "2026-11-02",
-  "layer": "net",
-  "headline": "Marvell announces $115B all-stock deal to acquire Lumentum",
-  "detail": "Implied Lumentum EV $115B (~23.9% premium to 28 Oct close); Marvell holders ~67% / Lumentum ~33%. Combines custom compute/switching/interconnect with lasers, transceivers and OCS; expected close 1H 2028 subject to approvals. Co. projects >$1B annual run-rate cost synergies and expanded TAM to $550B (company claim).",
-  "url": "https://www.techtarget.com/news/marvells-115-billion-lumentum-deal-tests-merchant-silicon-business/873486/",
-  "src": "TechTarget, 2026-11-02 (citing Marvell/Lumentum acquisition announcement)"
- },
- {
-  "date": "2026-11-02",
-  "layer": "capex",
-  "headline": "US data-center construction hits record $96B annual rate in September",
-  "detail": "Census Bureau: +8.6% m/m, +90% y/y (seasonally adjusted annual rate). Buildings only; excludes servers, network and most electrical gear.",
-  "url": "https://wolfstreet.com/2026/11/02/no-inflection-point-yet-near-exponential-data-center-boom-sends-shockwaves-to-industrial-economy-construction-hit-by-2nd-wave-of-inflation/",
-  "src": "US Census Bureau via Wolf Street, 2026-11-02"
- },
- {
-  "date": "2026-11-02",
-  "layer": "capex",
-  "headline": "S&P cuts Meta credit outlook to negative",
-  "detail": "Cites negative cash flow and uncertainty around capex plans (action late Fri 30 Oct). OpenAI reportedly cut its funding-round target to $20B from $30B (FT).",
-  "url": "https://fortune.com/2026/11/02/ai-boom-supply-crunch-capital-debt-bonds-capex-spending/",
-  "src": "Fortune, 2026-11-02"
- },
- {
-  "date": "2026-11-02",
-  "layer": "capex",
-  "headline": "AI data-center debt gets pricier: QTS paper shopped at 2.2–2.5 pts over Treasuries",
-  "detail": "Same Blackstone-backed issuer weighed ~1.7 pts six months ago.",
-  "url": "https://www.semafor.com/article/11/02/2026/blackstone-backed-data-center-operator-tests-ai-debt-fears",
-  "src": "Semafor, 2026-11-02"
- },
- {
   "date": "2026-11-07",
   "published_clock": "2026-11-07T08:00:05",
   "layer": "power",
@@ -326,9 +330,9 @@ whatsNewThisWeek: [
   "published_clock": "2026-11-06T05:30:00",
   "layer": "power",
   "headline": "Ballotpedia: voters favored limiting data-center development in 40 of 41 local measures on 3 Nov",
-  "detail": "Ballotpedia News (6 Nov 2026, 5:30 a.m., zone not printed) counted 40 of 41 local contests on 3 Nov as favoring limits, either by approving restrictions or by defeating measures that would have facilitated development. The exception was Harwood, North Dakota, where voters rejected additional review requirements. Six earlier 2026 local measures also favored limits, Ballotpedia said. A separate tracker’s 44-of-45 framing is not used; it does not match this count. These are local measures, not a verified change in federal control, and they are not applied as cancellations of campuses on the map.",
+  "detail": "Ballotpedia News (6 Nov 2026, 5:30 a.m., no time zone printed) counted 40 of 41 local ballot-measure contests decided on 3 Nov. The 40 is Ballotpedia’s classification, not a ban count: 27 measures that limited or opposed data centers were approved, and 13 measures that would have facilitated development were defeated. The exception was Harwood, North Dakota, where voters rejected an additional-review requirement. Scope is those 41 local contests only. It is not a federal statute and not a claim about control of Congress. A separate tracker’s 44-of-45 framing is not used. The same newsletter projects state-legislative chamber control; that projection is not part of this tally and is not used here. Local results are not applied as campus cancellations.",
   "url": "https://news.ballotpedia.org/2026/11/06/voters-favored-limiting-data-center-development-in-40-of-41-local-ballot-measures-on-nov-3/",
-  "src": "Ballotpedia News, 2026-11-06"
+  "src": "Ballotpedia News, 2026-11-06, 5:30 a.m. (zone not printed)"
  },
  {
   "date": "2026-11-05",
@@ -365,12 +369,65 @@ whatsNewThisWeek: [
   "src": "Drax press release, 2026-11-03"
  },
  {
-  "date": "2026-11-02",
+  "date": "2026-11-08",
+  "published_at": "2026-11-08T08:50:00-05:00",
   "layer": "power",
-  "headline": "Preview: local data-center measures were headed to the 3 Nov vote",
-  "detail": "Carried from the 2 Nov feed. The result count is not taken from this preview. See the 6 Nov Ballotpedia item for the 40-of-41 tally. Local ballot outcomes are not a federal statute and are not campus cancellations.",
-  "url": "https://fortune.com/2026/11/02/midterms-2026-bofa-ai-correction-risk-global-economy-goldman-tariffs-jobs/",
-  "src": "Fortune, 2026-11-02; tally in Ballotpedia News, 2026-11-06"
+  "headline": "FT, via CNBC: Anthropic reported to have committed about $3.4B for 1.7 GW of generators; not confirmed by the companies",
+  "detail": "CNBC (published 8 Nov 2026, 8:50 a.m. EST) says the Financial Times reported that Anthropic bought commitments in late September for 1.7 GW of heavy-duty generators from San Antonio-based OnePWR, worth about $3.4 billion, and that the deal included installation capability but not an acquisition of OnePWR. CNBC also reports that Reuters could not immediately verify the report and that Anthropic and OnePWR did not respond to requests for comment. This dashboard does not treat the purchase as confirmed.",
+  "url": "https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html",
+  "src": "CNBC, 2026-11-08 8:50 a.m. EST, citing the Financial Times"
+ },
+ {
+  "date": "2026-11-08",
+  "layer": "semis",
+  "headline": "NVIDIA board starts an independent review after reports about its CEO; it does not say secrets were compromised",
+  "detail": "NVIDIA’s board said on 8 Nov 2026 that it is initiating an independent investigation in light of reporting that Jensen Huang has been the target of a foreign intelligence effort. A committee of independent directors, with outside counsel, will oversee it. The board said it has no reason to believe national security or NVIDIA secrets were compromised, that Huang supports the review, and that it has confidence in him. The statement does not confirm the underlying reporting.",
+  "url": "https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors",
+  "src": "NVIDIA Board statement, 2026-11-08"
+ },
+ {
+  "date": "2026-11-07",
+  "published_at": "2026-11-07T05:00:00-05:00",
+  "layer": "power",
+  "headline": "Guardian: Thailand paused datacentre construction and approvals in September; Johor capacity figures are cited, not re-measured",
+  "detail": "The Guardian (7 Nov 2026, 5:00 a.m. EST) reports that Thailand paused construction on 49 datacentre projects and approval decisions on 117 more in September 2026, citing insufficient detail for regulation and monitoring. It attributes Johor operational capacity of 94 MW in 2023 and 1,110 MW in 2026, plus 3,088 MW under construction or planned, and Singapore’s 95 MW added in 2023–26, to Cushman & Wakefield. It attributes a Wood Mackenzie estimate that datacentres are 24% of Johor power use and could reach 40% by 2035. Those third-party figures were not re-read from the firms. West Java is described as a separate halt for missing permits, not a regional ban.",
+  "url": "https://www.theguardian.com/technology/2026/nov/07/datacentres-southeast-asia",
+  "src": "The Guardian, Arundhati Hazra, 2026-11-07 5:00 a.m. EST"
+ },
+ {
+  "date": "2026-11-07",
+  "published_at": "2026-11-07T10:26:00+05:30",
+  "layer": "capex",
+  "headline": "OpenAI CFO says the company will keep building US data centers to meet demand",
+  "detail": "Reuters, published by The Hindu at 10:26 a.m. IST on 7 Nov 2026, quotes CFO Sarah Friar telling CNBC that OpenAI needs to keep investing to meet customer demand and keep building community relationships to get compute. No new megawatt or dollar build figure is in that quote. This item does not adopt the article’s description of a midterm sweep, a shift in congressional power, or a market-value change.",
+  "url": "https://www.thehindu.com/sci-tech/technology/openai-to-press-ahead-with-data-centre-expansion-despite-midterm-sweep-cfo-says/article71677198.ece",
+  "src": "Reuters via The Hindu, 2026-11-07 10:26 a.m. IST"
+ },
+ {
+  "date": "2026-11-06",
+  "published_at": "2026-11-06T13:31:00-05:00",
+  "layer": "capex",
+  "headline": "CNBC: Microsoft is reviewing which neocloud partners to keep; no final roster cut is confirmed",
+  "detail": "CNBC (6 Nov 2026, 1:31 p.m. EST), citing people familiar, says Microsoft is evaluating a smaller set of neocloud partners, including names such as CoreWeave, Nebius, IREN, Lambda and Nscale, and has not decided which it will stop using. Two people told CNBC that Microsoft opted not to renew an Oracle deal; Microsoft’s statement does not confirm that. Microsoft said it combines owned, leased and third-party capacity and regularly reviews investments against customer demand. CNBC also reports IREN said a Microsoft-requested network upgrade moves capacity online to January or February 2027 and that IREN AI revenue was about $200 million. Those operating details are as reported by CNBC, not re-read from an IREN filing here.",
+  "url": "https://www.cnbc.com/2026/11/06/microsoft-moves-to-consolidate-its-relationships-with-neoclouds-in-ai.html",
+  "src": "CNBC, Jordan Novet and Seema Mody, 2026-11-06 1:31 p.m. EST"
+ },
+ {
+  "date": "2026-11-06",
+  "published_at": "2026-11-06T14:53:00-08:00",
+  "layer": "capex",
+  "headline": "Bloomberg, via TechCrunch: OpenAI reported to have taken about $11B toward a larger round; OpenAI had not confirmed it",
+  "detail": "TechCrunch (6 Nov 2026, 2:53 p.m. PST) says Bloomberg, citing sources, reported about $11 billion raised so far in a round that could total about $20 billion and value OpenAI at $1.25 trillion, with the round not yet closed. TechCrunch said it had asked OpenAI for comment and had not posted a company confirmation. A late-September $30 billion target mentioned in the piece is an earlier report, not a result. This is not treated as a closed financing.",
+  "url": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
+  "src": "TechCrunch, Lucas Ropek, 2026-11-06 2:53 p.m. PST, citing Bloomberg"
+ },
+ {
+  "date": "2026-11-06",
+  "layer": "memory",
+  "headline": "Taipei Times, citing Bloomberg: people familiar say Micron has largely halted a Taoyuan fab; Micron did not confirm a suspension",
+  "detail": "Taipei Times (6 Nov 2026) carries a Bloomberg report that people familiar say Micron has all but halted construction of a Taoyuan plant and that one person put the budget at $3 billion to $4.5 billion. Micron’s statement in the article does not address the Taoyuan complex; it says Taiwan operations continue as normal and that it looks forward to reaching an agreement. The Taoyuan government said it had not been notified of a suspension. The pause is not treated as company-confirmed.",
+  "url": "https://www.taipeitimes.com/News/biz/archives/2026/11/06/2003867231",
+  "src": "Taipei Times, 2026-11-06, citing Bloomberg"
  }
 ]
 
