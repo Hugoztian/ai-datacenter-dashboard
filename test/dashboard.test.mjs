@@ -132,6 +132,10 @@ test("page has exactly six tabs, model, map fallback, and publication note", () 
   assert.match(mapJs, /Power and grid geography is unavailable/);
   assert.match(mapJs, /Circle area does not represent capacity/);
   assert.match(mapJs, /Map drawing is unavailable/);
+  assert.match(mapJs, /role="dialog"/);
+  assert.match(mapJs, /Outside this USA map/);
+  assert.equal(mapJs.includes("window.open"), false);
+  assert.equal(/hostile statewide|90 campuses|63 GW/i.test(mapJs), false);
   const doc = fs.readFileSync(new URL("../PUBLICATION.md", import.meta.url), "utf8");
   assert.match(doc, /cloud agent/i);
   assert.match(doc, /does not merge/i);

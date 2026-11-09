@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AI Datacenter — Full-Stack Dashboard</title>
-<script src="data.js"></script><script src="sites.js"></script><script src="map-land.js"></script><script src="dashboard-logic.js"></script><script src="chart.umd.min.js"></script><script src="map.js"></script>
+<script src="data.js"></script><script src="sites.js"></script><script src="map-us.js"></script><script src="dashboard-logic.js"></script><script src="chart.umd.min.js"></script><script src="map.js"></script>
 <style>
 :root{--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;--bg:#f5f5f7;--panel:#fff;--panel2:#fafafc;--line:rgba(0,0,0,.08);--hair:#d2d2d7;--txt:#1d1d1f;--mut:#6e6e73;--mut2:#86868b;--acc:#5B5CE6;--accsoft:rgba(91,92,230,.10);--pos:#1d8a3a;--neg:#d70015;--warn:#b25000;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 18px rgba(0,0,0,.05);--glass:rgba(251,251,253,.72);--seg:#e8e8ed}
 [data-theme=dark]{--bg:#000;--panel:#1c1c1e;--panel2:#232325;--line:rgba(255,255,255,.1);--hair:#3a3a3c;--txt:#f5f5f7;--mut:#a1a1a6;--mut2:#8e8e93;--acc:#8B8AFF;--accsoft:rgba(139,138,255,.16);--pos:#30d158;--neg:#ff453a;--warn:#ffb340;--shadow:0 1px 2px rgba(0,0,0,.3),0 4px 18px rgba(0,0,0,.4);--glass:rgba(22,22,23,.72);--seg:#2c2c2e}
@@ -150,7 +150,22 @@ footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12p
 .mapstage svg{display:block;width:100%;height:auto}
 .ocean{fill:#d7e3f4}[data-theme=dark] .ocean{fill:#0e1726}
 .land{fill:#efe8d8;stroke:#d5ccb8;stroke-width:.4}[data-theme=dark] .land{fill:#2c3344;stroke:#46506a}
-.pin{position:absolute;transform:translate(-50%,-50%);border:2px solid #1d1d1f;background:#fff;padding:0;cursor:pointer;display:grid;place-items:center;border-radius:50%;color:#1d1d1f}
+.pin{position:absolute;transform:translate(-50%,-50%);border:2px solid var(--acc);background:color-mix(in srgb,var(--acc) 28%,transparent);padding:0;cursor:pointer;display:grid;place-items:center;border-radius:50%;color:var(--txt)}
+.pin.lit,.map-list button.lit,.stp.lit{outline:3px solid var(--acc);outline-offset:2px;z-index:3}
+.pin.dim{opacity:.22}
+.map-tip{position:absolute;z-index:4;max-width:230px;padding:8px 10px;border-radius:12px;background:var(--panel);color:var(--txt);border:1px solid var(--acc);box-shadow:var(--shadow);font-size:12.5px;pointer-events:none}
+#op-table tr.on td{background:var(--accsoft)}
+#op-table button.linkish{font-weight:600}
+.stp{fill:color-mix(in srgb,var(--panel) 82%,var(--acc) 8%);stroke:color-mix(in srgb,var(--mut) 55%,var(--line));stroke-width:1;cursor:pointer}
+.stp.on{fill:color-mix(in srgb,var(--acc) 22%,var(--panel));stroke:var(--acc);stroke-width:2}
+.map-hover{min-height:2.6em;margin:8px 0;padding:8px 12px;border-radius:12px;background:var(--accsoft);color:var(--txt)}
+.map-list{list-style:none;margin:0;padding:0;max-height:280px;overflow:auto}
+.map-list button{width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:transparent;color:inherit;padding:8px 4px;cursor:pointer;font:inherit}
+.map-list small{display:block;color:var(--mut);font-size:12.5px;margin-top:2px}
+.map-modal{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;padding:12px}
+.map-modal[hidden]{display:none}
+.map-sheet{background:var(--bg);color:var(--txt);width:min(760px,100%);max-height:min(86vh,820px);overflow:auto;border-radius:18px 18px 12px 12px;padding:16px 18px 24px;box-shadow:var(--shadow)}
+@media(min-width:800px){.map-modal{align-items:center}.map-sheet{border-radius:18px}}
 [data-theme=dark] .pin{border-color:#f5f5f7;color:#f5f5f7}
 .pin.st-operating{background:#1d8a3a}
 .pin.st-under_construction{border-radius:3px;background:#b25000}
@@ -207,7 +222,7 @@ footer{max-width:1180px;margin:auto;padding:20px;color:var(--mut2);font-size:12p
 <section class="tab on" id="t-overview"><h2>AI data-center model — hover to inspect, click to zoom in</h2><div id="world"><div class="stack" id="stack"></div></div>
 <p class="note">Cutaway: grid &amp; substation → hall → switches, cable trays, racks → GPU/HBM board; rooftop chillers; buildout crane = CapEx. Press <b>Esc</b> or ← Back to zoom out. Deep links: <code>#layer=memory</code>. Three levels: the stack, a product family, then one product.</p>
 <div id="site-map-root"></div>
-<noscript><div class="card"><h2>Major AI data-center sites — selected public disclosures</h2><p>JavaScript is off, so the map cannot draw. These eight campuses are a selected sample, not a census. Coordinates are approximate city positions. Unknowns are undisclosed, not zero.</p><ul><li>Abilene flagship / Lancium Clean Campus — Crusoe; Oracle Cloud Infrastructure — mixed as of 2026-06-09</li><li>Abilene dedicated Microsoft AI factory campus — Crusoe — under construction as of 2026-06-09. Separate campus, same city reference.</li><li>Fairwater / Mount Pleasant campus — Microsoft — mixed as of 2026-06-23</li><li>Richland Parish / Hyperion — Meta — under construction as of 2026-07-13</li><li>Nscale Narvik / Kvandal — Nscale — under construction as of 2026-09-29. Waste-heat filing deadline 15 Nov 2026 is not a stop-work order.</li><li>Stargate UAE cluster — planned as of 2025-05-22</li><li>Google Visakhapatnam AI hub — Google — under construction as of 2026-04-28</li><li>NEXTDC S7 Sydney — NEXTDC — planned. Prepare EIS is not approval.</li></ul></div></noscript>
+<noscript><div class="card"><h2>US AI data-center sites — selected public disclosures</h2><p>JavaScript is off, so the map cannot draw. The interactive map is the United States only and is not a census. Four US campuses are in the sample, including two distinct Abilene records. Other sourced campuses stay listed here. Coordinates are approximate city positions. Unknowns are undisclosed, not zero.</p><ul><li>Abilene flagship / Lancium Clean Campus — Crusoe; Oracle Cloud Infrastructure — mixed as of 2026-06-09</li><li>Abilene dedicated Microsoft AI factory campus — Crusoe — under construction as of 2026-06-09. Separate campus, same city reference.</li><li>Fairwater / Mount Pleasant campus — Microsoft — mixed as of 2026-06-23</li><li>Richland Parish / Hyperion — Meta — under construction as of 2026-07-13</li><li>Nscale Narvik / Kvandal — Nscale — under construction as of 2026-09-29. Waste-heat filing deadline 15 Nov 2026 is not a stop-work order.</li><li>Stargate UAE cluster — planned as of 2025-05-22</li><li>Google Visakhapatnam AI hub — Google — under construction as of 2026-04-28</li><li>NEXTDC S7 Sydney — NEXTDC — planned. Prepare EIS is not approval.</li></ul></div></noscript>
 <section class="card wn" id="coming" aria-labelledby="coming-h"></section>
 </section>
 <section class="tab" id="t-news"><div class="card wn" id="wn"></div></section>
