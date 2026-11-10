@@ -36,8 +36,8 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "9 Nov 2026, 8:12 AM");
-  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-03" && item.date <= "2026-11-09"));
+  assert.equal(window.AIDC.updated_sgt, "10 Nov 2026, 8:25 AM");
+  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-04" && item.date <= "2026-11-10"));
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
