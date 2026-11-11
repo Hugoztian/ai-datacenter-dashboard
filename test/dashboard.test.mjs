@@ -36,8 +36,8 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "10 Nov 2026, 8:25 AM");
-  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-04" && item.date <= "2026-11-10"));
+  assert.equal(window.AIDC.updated_sgt, "11 Nov 2026, 8:45 AM");
+  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-05" && item.date <= "2026-11-11"));
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
@@ -68,14 +68,15 @@ test("ballot and Texas items do not assert the removed claims", () => {
   assert.match(ballot.detail, /not used/);
   assert.match(ballot.detail, /not a claim about control of Congress/);
   assert.match(ballot.detail, /not a ban count/);
-  const texas = AIDC.whatsNewThisWeek.find((item) => item.headline.includes("Hinojosa"));
-  assert.match(texas.headline, /not enacted/);
-  assert.match(texas.detail, /not in effect/);
-  assert.doesNotMatch(texas.detail, /federal control|House|Senate/);
+  assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-04"), false);
+  assert.equal(AIDC.whatsNewThisWeek.some((item) => item.headline.includes("Hinojosa")), false);
   const coming = AIDC.comingUp.map((item) => item.event);
-  for (const name of ["CoreWeave", "Nebius", "Applied Materials", "Cisco", "NVIDIA"]) {
+  for (const name of ["Nebius", "Applied Materials", "Cisco", "NVIDIA"]) {
     assert.ok(coming.some((event) => event.includes(name)), name);
   }
+  assert.equal(coming.some((event) => event.includes("CoreWeave")), false);
+  assert.equal(coming.some((event) => event.includes("TSMC October")), false);
+  assert.equal(AIDC.comingUp.some((item) => item.date === "2026-11-10"), false);
 });
 
 test("eight campuses, Abilene cluster, no cross-basis sizing, null is not zero", () => {
