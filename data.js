@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-10",
-updated_sgt: "10 Nov 2026, 8:25 AM",
+updated: "2026-11-11",
+updated_sgt: "11 Nov 2026, 8:45 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,29 +99,11 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-04",
-whatsNewUpdated: "2026-11-10 8:25 AM SGT",
+whatsNewWeekOf: "2026-11-05",
+whatsNewUpdated: "2026-11-11 8:45 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
- {
-  "date": "2026-11-10",
-  "time": "13:30 Asia/Taipei (13:30 SGT)",
-  "event": "TSMC October 2026 monthly sales",
-  "status": "Confirmed",
-  "note": "Listed on TSMC’s IR financial calendar. The calendar says dates can change.",
-  "src": "TSMC IR financial calendar",
-  "url": "https://investor.tsmc.com/english/financial-calendar"
- },
- {
-  "date": "2026-11-10",
-  "time": "Call 5:00 p.m. ET (~06:00 11 Nov SGT)",
-  "event": "CoreWeave Q3 2026 earnings",
-  "status": "Confirmed",
-  "note": "Neocloud GPU capacity, backlog, financing. IR release dated 27 Oct 2026.",
-  "src": "CoreWeave IR",
-  "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Announces-Date-of-Third-Quarter-2026-Financial-Results-and-Conference-Call/default.aspx"
- },
  {
   "date": "2026-11-12",
   "time": "Before market open; call 8:00 a.m. ET (~21:00 12 Nov SGT)",
@@ -186,8 +168,40 @@ comingUp: [
   "url": "https://aws.amazon.com/events/reinvent/"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (4–10 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (5–11 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-10",
+  "layer": "capex",
+  "headline": "CoreWeave Q3: revenue $3.66B (+168% y/y), backlog ~$132.5B; 2026 capex guide raised to $37–39B",
+  "detail": "Company release: FY26 revenue guide raised to $13.0–13.3B; adj. operating income guide $1.275–1.375B; low end of capex range lifted from $35B to $37B (top $39B unchanged) on earlier deployment; still expects >1.85 GW active power at year-end; exit-2026 run-rate revenue guide $20–21B. Call: Q3 capex $14.5B; >1.7 GW live.",
+  "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Third-Quarter-2026-Results/default.aspx",
+  "src": "CoreWeave IR release, 2026-11-10; Q3 call 2026-11-10"
+ },
+ {
+  "date": "2026-11-10",
+  "layer": "semis",
+  "headline": "TSMC October revenue a record NT$586.89B, +59.7% y/y and +14.7% m/m",
+  "detail": "Jan–Oct 2026 revenue NT$4,485.62B, +43.3% y/y (company monthly revenue report).",
+  "url": "https://pr.tsmc.com/english/news/3349",
+  "src": "TSMC press release, 2026-11-10"
+ },
+ {
+  "date": "2026-11-10",
+  "layer": "power",
+  "headline": "Infineon guides FY27 data-center power-supply revenue to close to €4B (FY26 €2.2B)",
+  "detail": "FY27 group revenue ~€20B (>20% growth) at EUR/USD 1.15; FY26 revenue €16.353B; Q4 FY26 €4.706B. CEO on call: FY26 AI data-center power revenue €1.7B plus ~€0.5B classic data center; FY27 investments €3.0–3.5B planned.",
+  "url": "https://www.infineon.com/press-release/2026/infpr202611-025",
+  "src": "Infineon press release and Q4 FY26 call, 2026-11-10"
+ },
+ {
+  "date": "2026-11-10",
+  "layer": "power",
+  "headline": "SoftBank books $3.7B loss after revising US AI data-center power-equipment procurement; rebates up to $2.1B",
+  "detail": "Q2 FY26 net loss ¥1.12T (~$7B). Loss of ¥597.2B ($3.7B) on non-refundable advance payments and contract changes for power-generation equipment for US projects incl. PORTS-Pike (Ohio); $9.5B advance payments cumulative, $2.9B already paid in the loss. SoftBank did not announce a downsizing of the Ohio project.",
+  "url": "https://group.softbank/media/Project/sbg/sbg/pdf/ir/presentations/2026/earnings-presentation_q2fy2026_01_en.pdf",
+  "src": "SoftBank Group Q2 FY2026 earnings presentation, 2026-11-10; Reuters 2026-11-10"
+ },
  {
   "date": "2026-11-09",
   "layer": "capex",
@@ -362,72 +376,6 @@ whatsNewThisWeek: [
   "detail": "Google said it is making a long-term $17 billion investment in Laramie County with Tallgrass Energy, Black Hills Energy, AEP, and Related Digital. The project is contracted with AEP for a 702 MW fuel-cell development with carbon capture and storage, using Bloom Energy fuel cells and Tallgrass’s Eastern Wyoming Sequestration Hub. Google also described gas generation from Tallgrass and Black Hills, a FEED study on carbon capture for combined-cycle turbines, air cooling, and paying for the power it uses. This is an announcement, not a measured operating load.",
   "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/",
   "src": "Google blog, Steve Walter, 2026-11-05"
- },
- {
-  "date": "2026-11-04",
-  "layer": "capex",
-  "headline": "Goldman: ~$3.2T AI commitments outside Big Tech balance sheets",
-  "detail": "Alphabet, Amazon, Meta, Microsoft, Oracle: ~$1.7T lease commitments (~$1.3T not yet commenced) + ~$1.9T other purchase commitments (servers/network/power/construction/capacity); ~$685B of purchase commitments due by YE2027. Analyst Amanda Lynam: debt financing still key; some already in consensus CapEx forecasts.",
-  "url": "https://finance.yahoo.com/markets/article/big-tech-has-more-than-3-trillion-in-ai-commitments-that-dont-show-up-on-its-balance-sheets-110100907.html",
-  "src": "Yahoo Finance citing Goldman Sachs (Amanda Lynam), 2026-11-04; CTOL 2026-11-04"
- },
- {
-  "date": "2026-11-04",
-  "layer": "power",
-  "headline": "Vertiv–Infineon 3-year Si/SiC supply deal for 800 VDC power systems",
-  "detail": "Company PR: long-term access to silicon and silicon-carbide power semiconductors across Vertiv’s global power portfolio, including next-gen 800 VDC systems for AI infrastructure; multi-supplier resilience strategy.",
-  "url": "https://www.vertiv.com/en-us/about/news-and-events/corporate-news/2026/vertiv-and-infineon-deepen-strategic-partnership-for-critical-power-infrastructure/",
-  "src": "Vertiv press release, 2026-11-04"
- },
- {
-  "date": "2026-11-04",
-  "layer": "net",
-  "headline": "Coherent Q1 FY27 revenue $2.37B (+50%); Datacenter & Comms $1.95B (+79%)",
-  "detail": "Q2 guide $2.55–2.75B. Mgmt: FY27 pro forma growth to exceed 60%; first $3B quarter by end-FY27, line of sight to $4B quarter in FY28; order coverage through CY27 'exceptional', orders extending into CY28.",
-  "url": "https://www.globenewswire.com/news-release/2026/11/04/3395801/11543/en/coherent-corp-reports-first-quarter-fiscal-2027-results.html",
-  "src": "Coherent press release & call, 2026-11-04"
- },
- {
-  "date": "2026-11-04",
-  "layer": "semis",
-  "headline": "Qualcomm reiterates $5B FY27 data-center revenue target; Dec-qtr DC revenue >$650M",
-  "detail": "Mgmt: DC to exit FY27 at ~$7B run-rate, $15B target in FY29; AWS custom AI-inference silicon began shipping in October, optical connectivity ramps this month; second optical customer signed. Total Q1 FY27 guide $10.4–11.2B. 'We don't have a demand issue; it's a supply issue' (Amon).",
-  "url": "https://www.benzinga.com/news/26/11/62899398/qualcomm-q4-2026-earnings-call-transcript",
-  "src": "Qualcomm Q4 FY26 call, 2026-11-04; CNBC"
- },
- {
-  "date": "2026-11-04",
-  "layer": "semis",
-  "headline": "Arm Q2 FY27 revenue a record $1.44B (+27%); data-center royalties doubled y/y",
-  "detail": "Licensing $773M (+50%), royalties $670M (+8%). Q3 guide $1.54B ±$50M (~+24% y/y); royalties to grow low-teens q/q on cloud AI, offset by weaker smartphones.",
-  "url": "https://newsroom.arm.com/news/arm-q2-fye27-results",
-  "src": "Arm shareholder letter & call, 2026-11-04"
- },
- {
-  "date": "2026-11-04",
-  "published_at": "2026-11-04T14:41:00-06:00",
-  "layer": "power",
-  "headline": "Texas Tribune: governor-elect Hinojosa pledged a data-center approval moratorium; it is not enacted",
-  "detail": "The Texas Tribune (4 Nov 2026, 2:41 p.m. Central) reports Gina Hinojosa won the governor’s race and takes office on 19 Jan 2027. She said in an 22 Oct video that when she is governor she will issue a moratorium on data-center approvals until the Legislature passes protections. That pledge is not in effect because of the election. Tribune separately describes an existing freeze by Gov. Greg Abbott on environmental permitting and grid connections during an audit. This item does not treat the election as a new pause, a federal rule, or a status change for any mapped campus.",
-  "url": "https://www.texastribune.org/2026/11/04/data-center-texas-pause-gina-hinojosa-governor-policies/",
-  "src": "The Texas Tribune, Emily Foxhall, 2026-11-04 2:41 p.m. Central"
- },
- {
-  "date": "2026-11-04",
-  "published_at": "2026-11-04T21:06:00+05:30",
-  "layer": "capex",
-  "headline": "Andhra Pradesh High Court: Visakhapatnam data-centre case still pending; work remains at the developer’s risk",
-  "detail": "The Hindu (published 4 Nov 2026, 9:06 p.m. IST; updated 10:31 p.m. IST) reported that the High Court said the proposed Google data-centre project remains subject to the writ petition and at the risk and cost of Vizag Hyperscale Data Centre Park Ltd, as ordered earlier. The bench did not decide the merits that day. Counsel described the challenge as focused on a 160-acre parcel. This is not a verified stop-work order, cancellation, or delay.",
-  "url": "https://www.thehindu.com/news/national/andhra-pradesh/hc-hears-plea-against-google-data-centre-says-project-is-subject-to-its-decision-on-writ-petition/article71666395.ece",
-  "src": "The Hindu, V. Raghavendra, 2026-11-04"
- },
- {
-  "date": "2026-11-04",
-  "layer": "capex",
-  "headline": "TeraWulf gets Google credit backstop for financing tied to ~$19B Anthropic lease; Fluor EPC signed",
-  "detail": "Credit support agreements with Google for debt financing supporting ~$19B of contracted Anthropic lease commitments at the Justified Data Campus, Hawesville, Kentucky; definitive Fluor EPC on a GMP basis for three buildings, value undisclosed; phased ready-for-service late 2027 through Q2 2028.",
-  "url": "https://investors.terawulf.com/news-events/press-releases/detail/148/terawulf-secures-google-credit-backstop-for-project-financing-in-support-of-19-billion-anthropic-lease-executes-definitive-fluor-epc-agreement",
-  "src": "TeraWulf press release, 2026-11-04; Fluor release 2026-11-04"
  }
 ]
 
