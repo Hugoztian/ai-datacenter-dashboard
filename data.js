@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-11",
-updated_sgt: "11 Nov 2026, 8:45 AM",
+updated: "2026-11-12",
+updated_sgt: "12 Nov 2026, 8:20 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-05",
-whatsNewUpdated: "2026-11-11 8:45 AM SGT",
+whatsNewWeekOf: "2026-11-06",
+whatsNewUpdated: "2026-11-12 8:20 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -168,8 +168,32 @@ comingUp: [
   "url": "https://aws.amazon.com/events/reinvent/"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (5–11 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (6–12 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-11",
+  "layer": "power",
+  "headline": "BloombergNEF research (via Guardian): 181 GW of on-site gas-fired capacity proposed at data-centre sites in the US, UK and Europe",
+  "detail": "Guardian, 11 Nov 2026: proposals driven by grid-connection delays; ~90% of the on-site gas plants are in the US, where BNEF estimates ~345 Mt CO2e a year if the rollout happens. Proposals, not built capacity.",
+  "url": "https://www.theguardian.com/world/2026/nov/11/ai-datacentres-on-site-gas-fired-power-stations",
+  "src": "The Guardian (BloombergNEF research)"
+ },
+ {
+  "date": "2026-11-11",
+  "layer": "power",
+  "headline": "Torus launches Foundry modular 1–20 MW inference units and raises $500M led by Magnetar",
+  "detail": "Company release 11 Nov 2026: prefabricated power, storage, cooling, networking and compute, 12–16 weeks contract-to-compute, behind-the-meter at existing transformers; plans more than 47,000 GPUs deployed in Foundry units by end-2027.",
+  "url": "https://www.torus.co/news/torus-launches-modular-ai-infrastructure-foundry",
+  "src": "Torus"
+ },
+ {
+  "date": "2026-11-11",
+  "layer": "memory",
+  "headline": "Seoul Economic Daily: Morgan Stanley cut Samsung and SK hynix price targets, flagging a possible 2028 earnings cliff (as reported)",
+  "detail": "Reported 11 Nov 2026: Samsung target to ₩309,000 from ₩381,000 and SK hynix to ₩1.6M from ₩2.6M, citing expanding chip supply and slowing AI data-center investment. The note itself was not reviewed; analyst view, not company guidance.",
+  "url": "https://en.sedaily.com/finance/2026/11/11/huang-spy-scandal-spurs-us-congress-to-block-ai-chip-exports",
+  "src": "Seoul Economic Daily"
+ },
  {
   "date": "2026-11-10",
   "layer": "capex",
@@ -201,6 +225,14 @@ whatsNewThisWeek: [
   "detail": "Q2 FY26 net loss ¥1.12T (~$7B). Loss of ¥597.2B ($3.7B) on non-refundable advance payments and contract changes for power-generation equipment for US projects incl. PORTS-Pike (Ohio); $9.5B advance payments cumulative, $2.9B already paid in the loss. SoftBank did not announce a downsizing of the Ohio project.",
   "url": "https://group.softbank/media/Project/sbg/sbg/pdf/ir/presentations/2026/earnings-presentation_q2fy2026_01_en.pdf",
   "src": "SoftBank Group Q2 FY2026 earnings presentation, 2026-11-10; Reuters 2026-11-10"
+ },
+ {
+  "date": "2026-11-10",
+  "layer": "capex",
+  "headline": "Anthropic S-1/A-2: $34.9B Lambda agreement now terminable by either party; Microsoft commitment raised to $47.2–49.2B",
+  "detail": "SEC filing 10 Nov 2026: Lambda did not secure the facility lease by the contractual date, so the Aug 2026 agreement (~$34.9B of ~$41.3B Lambda commitments) is terminable; neither party has given notice and Anthropic says it does not currently intend to terminate. Microsoft commitment is at least $47.2B and up to $49.2B, Nov 2026–Jun 2033 (DCD: $44.9B in the 2 Nov filing).",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026072484/anthropicpbc-sx1ax2.htm",
+  "src": "Anthropic S-1/A (SEC); DCD"
  },
  {
   "date": "2026-11-09",
@@ -241,6 +273,14 @@ whatsNewThisWeek: [
   "detail": "Wayve to train, evaluate and simulate its AI Driver models on CoreWeave Cloud with NVIDIA Blackwell GPUs; financial terms and duration not disclosed.",
   "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-to-Power-Wayves-AI-Driver-Training-in-Multi-Year-Agreement/default.aspx",
   "src": "CoreWeave IR, 2026-11-09"
+ },
+ {
+  "date": "2026-11-09",
+  "layer": "semis",
+  "headline": "Google introduces TPU 8tx and TPU 8i Max, taking the eighth-generation TPU family to four chips",
+  "detail": "Google blog, 9 Nov 2026: TPU 8tx is a confidential-computing system for secure inference and small-scale training; TPU 8i Max is a new inference system. They join the 8t and 8i released in April (per Seoul Economic Daily).",
+  "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
+  "src": "Google blog"
  },
  {
   "date": "2026-11-08",
@@ -336,46 +376,6 @@ whatsNewThisWeek: [
   "detail": "Taipei Times (6 Nov 2026) carries a Bloomberg report that people familiar say Micron has all but halted construction of a Taoyuan plant and that one person put the budget at $3 billion to $4.5 billion. Micron’s statement in the article does not address the Taoyuan complex; it says Taiwan operations continue as normal and that it looks forward to reaching an agreement. The Taoyuan government said it had not been notified of a suspension. The pause is not treated as company-confirmed.",
   "url": "https://www.taipeitimes.com/News/biz/archives/2026/11/06/2003867231",
   "src": "Taipei Times, 2026-11-06, citing Bloomberg"
- },
- {
-  "date": "2026-11-05",
-  "layer": "memory",
-  "headline": "Counterpoint: Q3 DRAM revenue nearly $200B (+369% y/y) on AI pricing super-cycle",
-  "detail": "Bit shipments only ~+4% q/q; ASP reached $1.9/Gb. Samsung DRAM share 38%; SK hynix revenue +40%+ q/q. HBM revenue almost doubled but share of DRAM mix fell as DDR/LPDDR grew faster; Vera Rubin cited with ~1.5 TB CPU DRAM/socket.",
-  "url": "https://counterpointresearch.com/en/insights/dram-super-cycle-nears-dollar-200b",
-  "src": "Counterpoint Research Q3 2026 Global Memory Tracker, 2026-11-05"
- },
- {
-  "date": "2026-11-05",
-  "layer": "power",
-  "headline": "Eaton CEO: AC-to-DC / 800V DC migration for data centers ‘is real’",
-  "detail": "15-kV, 2-MW solid-state transformer said to be first multi-MW unit to pass new UL Solutions tests. Electrical Americas backlog $16B (+33% y/y); companywide Q3 sales $8.9B (+28%). Tracked announced DC projects still 366 GW vs ~50 GW installed. Timing of AC→DC ‘not under our control’.",
-  "url": "https://www.utilitydive.com/news/eaton-ceo-ac-to-dc-migration-is-real-because-of-large-power-savings/873887/",
-  "src": "Utility Dive, 2026-11-05 (Eaton CEO remarks)"
- },
- {
-  "date": "2026-11-05",
-  "layer": "capex",
-  "headline": "OpenAI publishes National Community Compact + Compute Campus Policy Blueprint",
-  "detail": "For future US campuses OpenAI owns and operates: pay full electricity/infrastructure cost with financial assurances; site-level water/electricity reporting; no NDAs with public officials except narrow security/trade-secret exceptions; annual public progress reports. Blueprint asks policymakers for ratepayer protections and public incentive terms.",
-  "url": "https://openai.com/index/setting-new-standard-responsible-ai-infrastructure/",
-  "src": "OpenAI, 2026-11-05"
- },
- {
-  "date": "2026-11-05",
-  "layer": "capex",
-  "headline": "Microsoft declined ~500 MW Nscale Texas expansion option (FT/DCD)",
-  "detail": "Option was for capacity at an Nscale-owned Ward County site adjacent to the Ionic Digital campus where Microsoft already leases ~230 MW. Source told DCD talks were months ago; Nscale says $103B backlog unchanged (Microsoft still ~40%). Nscale later signed a $3.5B Figure deal for 100k Vera Rubin GPUs at its self-owned Barstow site.",
-  "url": "https://www.datacenterdynamics.com/en/news/microsoft-declined-option-for-expanded-compute-contract-in-texas-with-nscale/",
-  "src": "DCD citing FT, 2026-11-05"
- },
- {
-  "date": "2026-11-05",
-  "layer": "capex",
-  "headline": "Google: first Wyoming data center, $17B, with 702 MW fuel cells and carbon capture",
-  "detail": "Google said it is making a long-term $17 billion investment in Laramie County with Tallgrass Energy, Black Hills Energy, AEP, and Related Digital. The project is contracted with AEP for a 702 MW fuel-cell development with carbon capture and storage, using Bloom Energy fuel cells and Tallgrass’s Eastern Wyoming Sequestration Hub. Google also described gas generation from Tallgrass and Black Hills, a FEED study on carbon capture for combined-cycle turbines, air cooling, and paying for the power it uses. This is an announcement, not a measured operating load.",
-  "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/wyoming-data-center/",
-  "src": "Google blog, Steve Walter, 2026-11-05"
  }
 ]
 
