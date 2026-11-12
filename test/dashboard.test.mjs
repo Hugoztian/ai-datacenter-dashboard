@@ -36,8 +36,8 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "11 Nov 2026, 8:45 AM");
-  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-05" && item.date <= "2026-11-11"));
+  assert.equal(window.AIDC.updated_sgt, "12 Nov 2026, 8:20 AM");
+  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-06" && item.date <= "2026-11-12"));
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
@@ -55,7 +55,7 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const fresh = shown.filter((item) => logic.isFresh(item, NOW));
   assert.ok(fresh.some((item) => item.headline.includes("Ballotpedia")));
   assert.ok(fresh.some((item) => item.headline.includes("Seoul Economic Daily")));
-  assert.ok(shown.some((item) => item.headline.startsWith("Google:") && !logic.isFresh(item, NOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Google acquires") && !logic.isFresh(item, NOW)));
 });
 
 test("ballot and Texas items do not assert the removed claims", () => {
