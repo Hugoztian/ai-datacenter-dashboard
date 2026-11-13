@@ -36,14 +36,14 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "12 Nov 2026, 8:20 AM");
-  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-06" && item.date <= "2026-11-12"));
+  assert.equal(window.AIDC.updated_sgt, "13 Nov 2026, 8:40 AM");
+  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-07" && item.date <= "2026-11-13"));
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const { AIDC } = loadData();
   const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, NOW);
-  assert.ok(shown.length >= 8);
+  assert.ok(shown.length >= 3);
   assert.ok(shown.every((item) => logic.inRolling7(item.date, NOW)));
   for (let i = 1; i < shown.length; i++) assert.ok(shown[i - 1].date >= shown[i].date);
   assert.equal(logic.inRolling7("2026-11-01", NOW), true);
@@ -53,9 +53,8 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.equal(logic.isFresh({ date: "2026-11-06", published_clock: "2026-11-06T05:30:00" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-04", published_at: "2026-11-04T14:41:00-06:00" }, NOW), false);
   const fresh = shown.filter((item) => logic.isFresh(item, NOW));
-  assert.ok(fresh.some((item) => item.headline.includes("Ballotpedia")));
   assert.ok(fresh.some((item) => item.headline.includes("Seoul Economic Daily")));
-  assert.ok(shown.some((item) => item.headline.startsWith("Google acquires") && !logic.isFresh(item, NOW)));
+  assert.ok(shown.some((item) => item.headline.includes("OpenAI CFO") && !logic.isFresh(item, NOW)));
 });
 
 test("ballot and Texas items do not assert the removed claims", () => {
@@ -63,20 +62,21 @@ test("ballot and Texas items do not assert the removed claims", () => {
   assert.equal(text.includes("44 of 45"), false);
   assert.equal(text.includes("governor-elect Hinojosa proposes new-DC permit pause"), false);
   const { AIDC } = loadData();
-  const ballot = AIDC.whatsNewThisWeek.find((item) => item.headline.includes("Ballotpedia"));
-  assert.match(ballot.detail, /40 of 41/);
-  assert.match(ballot.detail, /not used/);
-  assert.match(ballot.detail, /not a claim about control of Congress/);
-  assert.match(ballot.detail, /not a ban count/);
+  assert.equal(AIDC.whatsNewThisWeek.some((item) => item.headline.includes("Ballotpedia")), false);
+  assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-06"), false);
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-04"), false);
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.headline.includes("Hinojosa")), false);
   const coming = AIDC.comingUp.map((item) => item.event);
-  for (const name of ["Nebius", "Applied Materials", "Cisco", "NVIDIA"]) {
+  for (const name of ["NVIDIA", "Marvell"]) {
     assert.ok(coming.some((event) => event.includes(name)), name);
   }
+  assert.equal(coming.some((event) => event.includes("Nebius")), false);
+  assert.equal(coming.some((event) => event.includes("Applied Materials")), false);
+  assert.equal(coming.some((event) => event.includes("Cisco")), false);
   assert.equal(coming.some((event) => event.includes("CoreWeave")), false);
   assert.equal(coming.some((event) => event.includes("TSMC October")), false);
   assert.equal(AIDC.comingUp.some((item) => item.date === "2026-11-10"), false);
+  assert.equal(AIDC.comingUp.some((item) => item.date === "2026-11-12"), false);
 });
 
 test("eight campuses, Abilene cluster, no cross-basis sizing, null is not zero", () => {
