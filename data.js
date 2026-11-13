@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-12",
-updated_sgt: "12 Nov 2026, 8:20 AM",
+updated: "2026-11-13",
+updated_sgt: "13 Nov 2026, 8:40 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,38 +99,11 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-06",
-whatsNewUpdated: "2026-11-12 8:20 AM SGT",
+whatsNewWeekOf: "2026-11-07",
+whatsNewUpdated: "2026-11-13 8:40 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
- {
-  "date": "2026-11-12",
-  "time": "Before market open; call 8:00 a.m. ET (~21:00 12 Nov SGT)",
-  "event": "Nebius Group Q3 2026 earnings",
-  "status": "Confirmed",
-  "note": "Neocloud capacity. Release dated 30 Oct 2026.",
-  "src": "Nebius newsroom",
-  "url": "https://nebius.com/newsroom/nebius-group-announces-date-of-third-quarter-2026-results-and-conference-call"
- },
- {
-  "date": "2026-11-12",
-  "time": "Call 4:30 p.m. ET / 1:30 p.m. PT (~05:30 13 Nov SGT)",
-  "event": "Applied Materials Q4 FY26 earnings",
-  "status": "Confirmed",
-  "note": "Wafer-fab equipment. The 22 Oct release states the call time and does not separately say when results are issued.",
-  "src": "Applied Materials IR",
-  "url": "https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-report-fourth-quarter-and-fiscal-2026-results/"
- },
- {
-  "date": "2026-11-12",
-  "time": "After the close; call 1:30 p.m. PT / 4:30 p.m. ET (~05:30 13 Nov SGT)",
-  "event": "Cisco Q1 FY27 earnings",
-  "status": "Confirmed",
-  "note": "AI networking. Release dated 3 Nov 2026 says results follow the market close.",
-  "src": "Cisco IR",
-  "url": "https://investor.cisco.com/news/news-details/2026/Cisco-Schedules-Conference-Call-for-Q1-Fiscal-Year-2027-Financial-Results/default.aspx"
- },
  {
   "date": "2026-11-15",
   "time": "Program 15–20 Nov; exhibits 17–19 Nov",
@@ -166,10 +139,71 @@ comingUp: [
   "note": "AWS events page. Specific chip or Trainium announcements are not listed there.",
   "src": "AWS events page",
   "url": "https://aws.amazon.com/events/reinvent/"
+ },
+ {
+  "date": "2026-12-01",
+  "time": "Call 1:30 p.m. PT / 4:30 p.m. ET (~05:30 2 Dec SGT)",
+  "event": "Marvell Technology Q3 FY27 earnings",
+  "status": "Confirmed",
+  "note": "Custom AI silicon/optics. IR release dated 6 Nov 2026 says call follows the results release.",
+  "src": "Marvell IR",
+  "url": "https://investor.marvell.com/news-events/press-releases/detail/1041/marvell-technology-inc-announces-conference-call-to-review-third-quarter-of-fiscal-year-2027-financial-results"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (6–12 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (7–13 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-12",
+  "layer": "networking",
+  "headline": "Cisco Q1 FY27: record revenue $18.5B (+24% y/y), networking product revenue +43%; FY27 revenue guide $74.8–75.8B",
+  "detail": "Quarter ended 24 Oct 2026 (Cisco newsroom, 12 Nov 2026). The release raises expected FY27 AI-infrastructure revenue from hyperscalers to $9B, more than double FY26. Reuters via CNA reports the prior hyperscaler expectation was $7.5B and the prior FY27 revenue guide was $72.2–73.4B; the Cisco release states the new figures and the more-than-double comparison, and does not restate those two prior figures. CNA: https://www.channelnewsasia.com/business/cisco-lifts-annual-revenue-forecast-strong-ai-networking-demand-6547511",
+  "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m11/cisco-reports-first-quarter-earnings.html",
+  "src": "Cisco newsroom, 2026-11-12; prior guide Reuters via CNA"
+ },
+ {
+  "date": "2026-11-12",
+  "published_at": "2026-11-12T08:00:00-06:00",
+  "layer": "semis",
+  "headline": "AMD Instinct MI400 update: MI430X with 432 GB HBM4; MI455X measured at 21,333 tokens/s/GPU; new MI450X at 288 GB HBM4",
+  "detail": "AMD newsroom, published 12 Nov 2026, 8:00 a.m. CST. MI430X is described with native FP64, 432 GB of HBM4 and up to 23.3 TB/s of memory bandwidth. AMD testing puts MI455X on Helios at 21,333 tokens per second per GPU on DeepSeek-R1 in an MLPerf Inference Offline configuration, which AMD says is up to 30% higher throughput than NVIDIA Vera Rubin’s latest published MLPerf offline result. MI450X has 288 GB of HBM4 and, AMD says, the same core compute, memory bandwidth, and scale-up and scale-out connectivity as MI455X. An editor’s note says the MI430X information was added after the original post. The throughput comparison is AMD’s measurement, not an independent re-test.",
+  "url": "https://newsroom.amd.com/news/amd-advances-instinct-mi400-series-ai-scientific-computing/",
+  "src": "AMD newsroom, 2026-11-12 8:00 a.m. CST"
+ },
+ {
+  "date": "2026-11-12",
+  "published_at": "2026-11-12T16:01:00-05:00",
+  "layer": "semis",
+  "headline": "Applied Materials Q4 FY26: record revenue $10.41B (+53% y/y); Q1 FY27 guide $11.1B ±$0.5B",
+  "detail": "Fiscal quarter ended 25 Oct 2026 (company release, 12 Nov 2026, 4:01 p.m. EST). The release gives the Q1 FY27 revenue guide as $11.1B ±$0.5B. On the call, CFO Brice Hill said the quarter posted record revenue in both DRAM and advanced packaging (Investing.com transcript). That DRAM and packaging line is call commentary, not a figure printed in the release.",
+  "url": "https://www.appliedmaterials.com/us/en/newsroom/press-releases/111226-applied-materials-announces-fourth-qtr-fiscal-year-end-2026-results.html",
+  "src": "Applied Materials, 2026-11-12 4:01 p.m. EST; DRAM/packaging from the call via Investing.com transcript"
+ },
+ {
+  "date": "2026-11-12",
+  "layer": "capex",
+  "headline": "Nebius Q3: revenue $980.8M (+571% y/y); 2026 capex guide about $27B, above the prior $20–25B range",
+  "detail": "Shareholder letter dated 12 Nov 2026, linked from the newsroom post (PDF: https://assets.nebius.com/assets/721c566e-9ba5-4935-ad24-b1209116a4cc/Nebius-SHL-2026-Q3.pdf). 2026 revenue is now the low end of the $3.0–3.4B range because some third-party capacity expected this year is scheduled for the first half of 2027. Initial 2027 outlook: revenue $12–13B and capex $40–45B, sized for more than 1 GW of new capacity. Prepayments and asset-backed financing of existing investment-grade contracts are expected to fund 75–85% of that 2027 capex. The letter’s 2026 revenue range is $3.0–3.4B.",
+  "url": "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results",
+  "src": "Nebius shareholder letter, 2026-11-12"
+ },
+ {
+  "date": "2026-11-12",
+  "published_clock": "2026-11-12T11:15:00",
+  "layer": "capex",
+  "headline": "SpaceX says it plans more than $74B for two supercomputing campuses, expanding the 9 Nov Starbase filing",
+  "detail": "Reuters via Investing.com, published 12 Nov 2026, 11:15 a.m. (zone not printed): more than $24B at Starbase, Texas, where the facility would generate its own electricity, and roughly $50B in Cochise County, Arizona. The Arizona campus needs county approval, a public hearing is set for December, and SpaceX said it would use dry cooling with no planned industrial groundwater use. This expands on the 9 Nov hearing-notice item for the Starbase gas-fired plant and super-compute facility. It is a company statement reported by Reuters, not a permit approval.",
+  "url": "https://www.investing.com/news/stock-market-news/spacex-to-invest-over-74-billion-in-supercompute-facilities-in-texas-arizona-5022690",
+  "src": "Reuters via Investing.com, 2026-11-12 11:15 a.m. (zone not printed)"
+ },
+ {
+  "date": "2026-11-12",
+  "published_at": "2026-11-12T07:29:48+00:00",
+  "layer": "power",
+  "headline": "ABC News: Quantum DC pauses a planned 1,200 MW AI data centre at Tungkillo, South Australia",
+  "detail": "ABC News, page datePublished 12 Nov 2026, 07:29:48Z (displayed as 6:29 p.m.): Quantum DC will pause plans for a 1,200 MW AI data centre at Tungkillo in the Adelaide Hills after community opposition. The South Australian government is preparing legislation to regulate data centres; that legislation is not enacted. This item does not adopt other site outcomes mentioned in the story.",
+  "url": "https://www.abc.net.au/news/2026-11-12/data-centre-industry-butts-up-against-community-challenges/107379250",
+  "src": "ABC News, 2026-11-12"
+ },
  {
   "date": "2026-11-11",
   "layer": "power",
@@ -333,49 +367,6 @@ whatsNewThisWeek: [
   "detail": "Reuters, published by The Hindu at 10:26 a.m. IST on 7 Nov 2026, quotes CFO Sarah Friar telling CNBC that OpenAI needs to keep investing to meet customer demand and keep building community relationships to get compute. No new megawatt or dollar build figure is in that quote. This item does not adopt the article’s description of a midterm sweep, a shift in congressional power, or a market-value change.",
   "url": "https://www.thehindu.com/sci-tech/technology/openai-to-press-ahead-with-data-centre-expansion-despite-midterm-sweep-cfo-says/article71677198.ece",
   "src": "Reuters via The Hindu, 2026-11-07 10:26 a.m. IST"
- },
- {
-  "date": "2026-11-06",
-  "layer": "capex",
-  "headline": "Google acquires Crusoe’s southeast Wyoming data-center site",
-  "detail": "Crusoe said Google acquired Crusoe’s southeast Wyoming site, completing Crusoe pre-development on site selection, governmental approvals, and a hybrid power approach with Tallgrass. Purchase terms were not disclosed. Crusoe said it remains the developer of Google’s Armstrong County campus near Amarillo, which it described as under construction.",
-  "url": "https://www.crusoe.ai/resources/newsroom/crusoe-wyoming-data-center-campus-update",
-  "src": "Crusoe newsroom, 2026-11-06"
- },
- {
-  "date": "2026-11-06",
-  "published_clock": "2026-11-06T05:30:00",
-  "layer": "power",
-  "headline": "Ballotpedia: voters favored limiting data-center development in 40 of 41 local measures on 3 Nov",
-  "detail": "Ballotpedia News (6 Nov 2026, 5:30 a.m., no time zone printed) counted 40 of 41 local ballot-measure contests decided on 3 Nov. The 40 is Ballotpedia’s classification, not a ban count: 27 measures that limited or opposed data centers were approved, and 13 measures that would have facilitated development were defeated. The exception was Harwood, North Dakota, where voters rejected an additional-review requirement. Scope is those 41 local contests only. It is not a federal statute and not a claim about control of Congress. A separate tracker’s 44-of-45 framing is not used. The same newsletter projects state-legislative chamber control; that projection is not part of this tally and is not used here. Local results are not applied as campus cancellations.",
-  "url": "https://news.ballotpedia.org/2026/11/06/voters-favored-limiting-data-center-development-in-40-of-41-local-ballot-measures-on-nov-3/",
-  "src": "Ballotpedia News, 2026-11-06, 5:30 a.m. (zone not printed)"
- },
- {
-  "date": "2026-11-06",
-  "published_at": "2026-11-06T13:31:00-05:00",
-  "layer": "capex",
-  "headline": "CNBC: Microsoft is reviewing which neocloud partners to keep; no final roster cut is confirmed",
-  "detail": "CNBC (6 Nov 2026, 1:31 p.m. EST), citing people familiar, says Microsoft is evaluating a smaller set of neocloud partners, including names such as CoreWeave, Nebius, IREN, Lambda and Nscale, and has not decided which it will stop using. Two people told CNBC that Microsoft opted not to renew an Oracle deal; Microsoft’s statement does not confirm that. Microsoft said it combines owned, leased and third-party capacity and regularly reviews investments against customer demand. CNBC also reports IREN said a Microsoft-requested network upgrade moves capacity online to January or February 2027 and that IREN AI revenue was about $200 million. Those operating details are as reported by CNBC, not re-read from an IREN filing here.",
-  "url": "https://www.cnbc.com/2026/11/06/microsoft-moves-to-consolidate-its-relationships-with-neoclouds-in-ai.html",
-  "src": "CNBC, Jordan Novet and Seema Mody, 2026-11-06 1:31 p.m. EST"
- },
- {
-  "date": "2026-11-06",
-  "published_at": "2026-11-06T14:53:00-08:00",
-  "layer": "capex",
-  "headline": "Bloomberg, via TechCrunch: OpenAI reported to have taken about $11B toward a larger round; OpenAI had not confirmed it",
-  "detail": "TechCrunch (6 Nov 2026, 2:53 p.m. PST) says Bloomberg, citing sources, reported about $11 billion raised so far in a round that could total about $20 billion and value OpenAI at $1.25 trillion, with the round not yet closed. TechCrunch said it had asked OpenAI for comment and had not posted a company confirmation. A late-September $30 billion target mentioned in the piece is an earlier report, not a result. This is not treated as a closed financing.",
-  "url": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
-  "src": "TechCrunch, Lucas Ropek, 2026-11-06 2:53 p.m. PST, citing Bloomberg"
- },
- {
-  "date": "2026-11-06",
-  "layer": "memory",
-  "headline": "Taipei Times, citing Bloomberg: people familiar say Micron has largely halted a Taoyuan fab; Micron did not confirm a suspension",
-  "detail": "Taipei Times (6 Nov 2026) carries a Bloomberg report that people familiar say Micron has all but halted construction of a Taoyuan plant and that one person put the budget at $3 billion to $4.5 billion. Micron’s statement in the article does not address the Taoyuan complex; it says Taiwan operations continue as normal and that it looks forward to reaching an agreement. The Taoyuan government said it had not been notified of a suspension. The pause is not treated as company-confirmed.",
-  "url": "https://www.taipeitimes.com/News/biz/archives/2026/11/06/2003867231",
-  "src": "Taipei Times, 2026-11-06, citing Bloomberg"
  }
 ]
 
