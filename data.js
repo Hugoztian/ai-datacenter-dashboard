@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-13",
-updated_sgt: "13 Nov 2026, 8:40 AM",
+updated: "2026-11-14",
+updated_sgt: "14 Nov 2026, 8:25 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-07",
-whatsNewUpdated: "2026-11-13 8:40 AM SGT",
+whatsNewWeekOf: "2026-11-08",
+whatsNewUpdated: "2026-11-14 8:25 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -118,7 +118,7 @@ comingUp: [
   "time": "Results ~1:20 p.m. PT; call 2:00 p.m. PT / 5:00 p.m. ET (~06:00 18 Nov SGT)",
   "event": "NVIDIA Q3 FY27 earnings",
   "status": "Confirmed",
-  "note": "Quarter ended 25 Oct 2026. IR release dated 28 Oct 2026.",
+  "note": "Quarter ended 25 Oct 2026. IR release dated 28 Oct 2026. Reconfirmed in NVIDIA’s 12 Nov 2026 CEO-transition release.",
   "src": "NVIDIA IR",
   "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx"
  },
@@ -150,8 +150,41 @@ comingUp: [
   "url": "https://investor.marvell.com/news-events/press-releases/detail/1041/marvell-technology-inc-announces-conference-call-to-review-third-quarter-of-fiscal-year-2027-financial-results"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (7–13 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (8–14 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-13",
+  "published_at": "2026-11-13T08:31:00+00:00",
+  "layer": "semis",
+  "headline": "Reuters review finds more than $3B of Chinese AI computing projects built around restricted Nvidia processors",
+  "detail": "Reuters exclusive, 13 Nov 2026 08:31 UTC: records span planned investments, awarded contracts and active facilities; Nvidia has said US export controls effectively shut it out of China’s AI data-centre market. Reuters’ figure, not verified independently.",
+  "url": "https://www.reuters.com/5f374b32b07b/world/china/huang-exit-us-scrutiny-imperil-3-billion-chinese-ai-projects-reliant-nvidia-2026-11-13/",
+  "src": "Reuters, 2026-11-13 08:31 UTC"
+ },
+ {
+  "date": "2026-11-13",
+  "layer": "power",
+  "headline": "Massachusetts campaign launches a proposed 2028 ballot petition to restrict data centers as Kraft Group pursues a $16B Sutton campus",
+  "detail": "WBUR/State House News Service, 13 Nov 2026: the Committee to Restrict Data Centers (Petition 26-08) would require, among other things, two-thirds host-community approval and 100% renewable supply commitments; it is a proposed petition, not a vote result or enacted law; no site status change is implied.",
+  "url": "https://www.wbur.org/news/2026/11/13/data-center-restriction-ballot-question-sutton-kraft-ai",
+  "src": "WBUR / State House News Service, 2026-11-13"
+ },
+ {
+  "date": "2026-11-12",
+  "layer": "semis",
+  "headline": "NVIDIA CEO transition: Jensen Huang resigns; CFO Colette Kress named interim CEO; Harvey Jones becomes first Board chair",
+  "detail": "NVIDIA newsroom release dated 12 Nov 2026; Form 8-K says the Board accepted the resignation on 11 Nov 2026, effective immediately; Kress remains CFO while a permanent CEO search (internal and external candidates) runs. The release says Q3 FY27 results remain scheduled for Tue 17 Nov ~1:20 p.m. PT, call 2:00 p.m. PT, and that the Board expects operations, customer commitments and product roadmap to continue without interruption.",
+  "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+  "src": "NVIDIA newsroom, 2026-11-12; Form 8-K (SEC) dated 2026-11-12"
+ },
+ {
+  "date": "2026-11-12",
+  "layer": "power",
+  "headline": "Fermi: non-binding LOI with an unnamed investment-grade hyperscaler for ~600 MW of powered land at Project Matador, with a $200M prepayment agreement; TensorWave lease terminated",
+  "detail": "Fermi Q3 release 12 Nov 2026 and 10-Q note: LOI and the $200M prepayment agreement plus a $15M early construction and site-development agreement were entered 10 Nov 2026; a $90M structural steel/building materials purchase agreement is still being finalized; no definitive lease yet. The TensorWave lease terminated 10 Nov 2026 under its terms after the closing date passed; the associated AMD credit support agreement is also terminated.",
+  "url": "https://www.datacenterdynamics.com/en/news/fermi-does-600mw-power-deal-with-hyperscaler-but-tensorwave-lease-is-officially-dead/",
+  "src": "Fermi Q3 release & 10-Q (SEC), 2026-11-12; via DCD"
+ },
  {
   "date": "2026-11-12",
   "layer": "networking",
@@ -182,7 +215,7 @@ whatsNewThisWeek: [
   "date": "2026-11-12",
   "layer": "capex",
   "headline": "Nebius Q3: revenue $980.8M (+571% y/y); 2026 capex guide about $27B, above the prior $20–25B range",
-  "detail": "Shareholder letter dated 12 Nov 2026, linked from the newsroom post (PDF: https://assets.nebius.com/assets/721c566e-9ba5-4935-ad24-b1209116a4cc/Nebius-SHL-2026-Q3.pdf). 2026 revenue is now the low end of the $3.0–3.4B range because some third-party capacity expected this year is scheduled for the first half of 2027. Initial 2027 outlook: revenue $12–13B and capex $40–45B, sized for more than 1 GW of new capacity. Prepayments and asset-backed financing of existing investment-grade contracts are expected to fund 75–85% of that 2027 capex. The letter’s 2026 revenue range is $3.0–3.4B.",
+  "detail": "Shareholder letter dated 12 Nov 2026, linked from the newsroom post (PDF: https://assets.nebius.com/assets/721c566e-9ba5-4935-ad24-b1209116a4cc/Nebius-SHL-2026-Q3.pdf). 2026 revenue is now the low end of the $3.0–3.4B range because some third-party capacity expected this year is scheduled for the first half of 2027. Initial 2027 outlook: revenue $12–13B and capex $40–45B, sized for more than 1 GW of new capacity. Prepayments and asset-backed financing of existing investment-grade contracts are expected to fund 75–85% of that 2027 capex. The letter’s 2026 revenue range is $3.0–3.4B. Reuters, 12 Nov 2026 (https://www.reuters.com/5f374b32b07b/technology/nebius-beats-quarterly-revenue-estimates-strong-ai-demand-2026-11-12/): 2027 capex expected $40–45B, with roughly 75–85% of 2027 investment covered by customer prepayments and asset-backed financing; some third-party capacity expected in 2026 pushed to 1H 2027 (contracts remain in place); shares fell 16% on 12 Nov.",
   "url": "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results",
   "src": "Nebius shareholder letter, 2026-11-12"
  },
@@ -270,6 +303,15 @@ whatsNewThisWeek: [
  },
  {
   "date": "2026-11-09",
+  "published_at": "2026-11-09T08:45:00+01:00",
+  "layer": "power",
+  "headline": "Norway: Statnett pauses new grid-capacity reservations for data centres until no later than 1 Aug 2027; Government plans a licensing regime",
+  "detail": "Statnett press release published 9 Nov 2026 08:45 (Norway): 800 MW of data centres connected, 4,200 MW with reserved capacity, 9,100 MW in the queue and requests for a further 18,000 MW, versus national peak demand just over 25,000 MW. Existing connections and facilities with approved functional requirements are unaffected; processing of new §14 technical-approval applications is paused (including received ones for direct 420 kV connections).",
+  "url": "https://www.statnett.no/om-statnett/nyheter-og-pressemeldinger/nyhetsarkiv-2026/midlertidige-tiltak-for-fortsatt-forsvarlig-systemdrift/",
+  "src": "Statnett, 2026-11-09 08:45 CET; Norwegian Government (regjeringen.no), 2026-11-09"
+ },
+ {
+  "date": "2026-11-09",
   "layer": "capex",
   "headline": "SoftBank, Grab and PETROS sign JDA for US$1B initial seed capital for Sarawak AI infrastructure",
   "detail": "SoftBank $800M, Grab $100M, PETROS $100M; deployed in stages subject to development/customer-contract milestones and closing conditions; SoftBank-led and majority-owned; long-term target of 5 GW of AI compute capacity; builds on the 8 Oct 2026 framework agreement.",
@@ -340,33 +382,6 @@ whatsNewThisWeek: [
   "detail": "Per excerpts of its 8 Nov report reported by Sulat (10 Nov) and Zhitong: ~$1.6T for 2027 and ~$1.8T for 2028 unchanged; ~5 GW of IT capacity modeled moving from 2028 to 2029; lease-financed investment is included in the bank's definition. Analyst projection from secondary reporting, not company guidance.",
   "url": "https://news.sulat.com/2026/11/10/morgan-stanley-ai-capex-2027-data-centre-delays/",
   "src": "Sulat citing Morgan Stanley 8 Nov note excerpts and Zhitong, 2026-11-10"
- },
- {
-  "date": "2026-11-07",
-  "published_clock": "2026-11-07T08:00:05",
-  "layer": "power",
-  "headline": "Seoul Economic Daily cites Wall Street notes on 2028 US data-center permitting exposure",
-  "detail": "Secondary column, published 7 Nov 2026 08:00:05 (zone not printed; Seoul publisher). It attributes to a 4 Nov JPMorgan note about 37 GW of 2028 US capacity exposed to permitting-halt risk plus 12 GW to tighter grid or water rules, and to UBS on roughly 30% of expected 2028 US additions. It also cites SemiAnalysis and Modo Energy figures and Samsung/SK hynix supply comments. Those figures were not re-read from the bank or company primaries here. The column’s line about a sweeping midterm win is not repeated: this dashboard does not assert federal control. A pledged Texas moratorium is not an enacted rule. None of the cited volumes are recorded as cancelled.",
-  "url": "https://en.sedaily.com/finance/2026/11/07/us-data-center-curbs-loom-but-memory-hit-may-wait-until-2028",
-  "src": "Seoul Economic Daily, Seo Jong-gap, page timestamp 2026-11-07 08:00:05"
- },
- {
-  "date": "2026-11-07",
-  "published_at": "2026-11-07T05:00:00-05:00",
-  "layer": "power",
-  "headline": "Guardian: Thailand paused datacentre construction and approvals in September; Johor capacity figures are cited, not re-measured",
-  "detail": "The Guardian (7 Nov 2026, 5:00 a.m. EST) reports that Thailand paused construction on 49 datacentre projects and approval decisions on 117 more in September 2026, citing insufficient detail for regulation and monitoring. It attributes Johor operational capacity of 94 MW in 2023 and 1,110 MW in 2026, plus 3,088 MW under construction or planned, and Singapore’s 95 MW added in 2023–26, to Cushman & Wakefield. It attributes a Wood Mackenzie estimate that datacentres are 24% of Johor power use and could reach 40% by 2035. Those third-party figures were not re-read from the firms. West Java is described as a separate halt for missing permits, not a regional ban.",
-  "url": "https://www.theguardian.com/technology/2026/nov/07/datacentres-southeast-asia",
-  "src": "The Guardian, Arundhati Hazra, 2026-11-07 5:00 a.m. EST"
- },
- {
-  "date": "2026-11-07",
-  "published_at": "2026-11-07T10:26:00+05:30",
-  "layer": "capex",
-  "headline": "OpenAI CFO says the company will keep building US data centers to meet demand",
-  "detail": "Reuters, published by The Hindu at 10:26 a.m. IST on 7 Nov 2026, quotes CFO Sarah Friar telling CNBC that OpenAI needs to keep investing to meet customer demand and keep building community relationships to get compute. No new megawatt or dollar build figure is in that quote. This item does not adopt the article’s description of a midterm sweep, a shift in congressional power, or a market-value change.",
-  "url": "https://www.thehindu.com/sci-tech/technology/openai-to-press-ahead-with-data-centre-expansion-despite-midterm-sweep-cfo-says/article71677198.ece",
-  "src": "Reuters via The Hindu, 2026-11-07 10:26 a.m. IST"
  }
 ]
 
