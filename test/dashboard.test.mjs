@@ -23,6 +23,7 @@ function loadSites() {
 }
 
 const NOW = Date.parse("2026-11-07T04:39:00Z");
+const WINDOW = Date.parse("2026-11-14T00:30:00Z");
 
 test("shared feeds keep the master-dashboard export shape", () => {
   const window = loadData();
@@ -36,15 +37,32 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "13 Nov 2026, 8:40 AM");
-  assert.ok(window.AIDC.whatsNewThisWeek.every((item) => item.date >= "2026-11-07" && item.date <= "2026-11-13"));
+  assert.equal(window.AIDC.updated_sgt, "14 Nov 2026, 8:25 AM");
+  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-08");
+  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-14 8:25 AM SGT");
+  assert.equal(window.AIDC.updated, "2026-11-14");
+  const items = window.AIDC.whatsNewThisWeek;
+  assert.equal(items.length, 28);
+  assert.ok(items.every((item) => item.date >= "2026-11-08" && item.date <= "2026-11-14"));
+  for (let i = 1; i < items.length; i++) assert.ok(items[i - 1].date >= items[i].date);
+  assert.equal(items.some((item) => item.date === "2026-11-07"), false);
+  assert.equal(items.some((item) => item.headline.includes("OpenAI CFO")), false);
+  assert.equal(items.some((item) => item.headline.includes("Thailand paused")), false);
+  assert.equal(items.some((item) => item.headline.includes("2028 US data-center permitting")), false);
+  const nebius = items.find((item) => item.headline.startsWith("Nebius"));
+  assert.equal(nebius.url, "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results");
+  assert.match(nebius.detail, /2027 capex expected \$40–45B/);
+  assert.match(nebius.detail, /roughly 75–85% of 2027 investment covered by customer prepayments and asset-backed financing/);
+  assert.match(nebius.detail, /contracts remain in place/);
+  assert.match(nebius.detail, /shares fell 16% on 12 Nov/);
+  assert.match(nebius.detail, /https:\/\/www\.reuters\.com\/5f374b32b07b\/technology\/nebius-beats-quarterly-revenue-estimates-strong-ai-demand-2026-11-12\//);
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const { AIDC } = loadData();
-  const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, NOW);
-  assert.ok(shown.length >= 3);
-  assert.ok(shown.every((item) => logic.inRolling7(item.date, NOW)));
+  const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, WINDOW);
+  assert.equal(shown.length, 28);
+  assert.ok(shown.every((item) => logic.inRolling7(item.date, WINDOW)));
   for (let i = 1; i < shown.length; i++) assert.ok(shown[i - 1].date >= shown[i].date);
   assert.equal(logic.inRolling7("2026-11-01", NOW), true);
   assert.equal(logic.inRolling7("2026-10-31", NOW), false);
@@ -52,9 +70,11 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.equal(logic.isFresh({ date: "2026-11-07", published_clock: "2026-11-07T08:00:05" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-06", published_clock: "2026-11-06T05:30:00" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-04", published_at: "2026-11-04T14:41:00-06:00" }, NOW), false);
-  const fresh = shown.filter((item) => logic.isFresh(item, NOW));
-  assert.ok(fresh.some((item) => item.headline.includes("Seoul Economic Daily")));
-  assert.ok(shown.some((item) => item.headline.includes("OpenAI CFO") && !logic.isFresh(item, NOW)));
+  const fresh = shown.filter((item) => logic.isFresh(item, WINDOW));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Reuters review")));
+  assert.ok(shown.some((item) => item.headline.startsWith("NVIDIA CEO transition") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Massachusetts campaign") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Norway:") && !logic.isFresh(item, WINDOW)));
 });
 
 test("ballot and Texas items do not assert the removed claims", () => {
@@ -70,6 +90,9 @@ test("ballot and Texas items do not assert the removed claims", () => {
   for (const name of ["NVIDIA", "Marvell"]) {
     assert.ok(coming.some((event) => event.includes(name)), name);
   }
+  const nvidia = AIDC.comingUp.find((item) => item.event.includes("NVIDIA"));
+  assert.match(nvidia.note, /Quarter ended 25 Oct 2026\. IR release dated 28 Oct 2026\. Reconfirmed in NVIDIA’s 12 Nov 2026 CEO-transition release\./);
+  assert.equal(AIDC.comingUp.length, 5);
   assert.equal(coming.some((event) => event.includes("Nebius")), false);
   assert.equal(coming.some((event) => event.includes("Applied Materials")), false);
   assert.equal(coming.some((event) => event.includes("Cisco")), false);
