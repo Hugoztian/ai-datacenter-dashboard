@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-14",
-updated_sgt: "14 Nov 2026, 8:25 AM",
+updated: "2026-11-16",
+updated_sgt: "16 Nov 2026, 8:28 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-08",
-whatsNewUpdated: "2026-11-14 8:25 AM SGT",
+whatsNewWeekOf: "2026-11-10",
+whatsNewUpdated: "2026-11-16 8:28 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -121,6 +121,15 @@ comingUp: [
   "note": "Quarter ended 25 Oct 2026. IR release dated 28 Oct 2026. Reconfirmed in NVIDIA’s 12 Nov 2026 CEO-transition release.",
   "src": "NVIDIA IR",
   "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx"
+ },
+ {
+  "date": "2026-11-23",
+  "time": "4:00 p.m. CT / 5:00 p.m. ET (~06:00 24 Nov SGT)",
+  "event": "HPE Q4 FY26 earnings call",
+  "status": "Confirmed",
+  "note": "Quarter ending 31 Oct 2026. HPE newsroom release dated 2 Nov 2026. The release does not say whether results are posted before the call.",
+  "src": "HPE newsroom",
+  "url": "https://www.hpe.com/us/en/newsroom/press-release/2026/11/hpe-to-present-live-audio-webcast-of-fiscal-2026-fourth-quarter-earnings-conference-call.html"
  },
  {
   "date": "2026-11-24",
@@ -148,10 +157,44 @@ comingUp: [
   "note": "Custom AI silicon/optics. IR release dated 6 Nov 2026 says call follows the results release.",
   "src": "Marvell IR",
   "url": "https://investor.marvell.com/news-events/press-releases/detail/1041/marvell-technology-inc-announces-conference-call-to-review-third-quarter-of-fiscal-year-2027-financial-results"
+ },
+ {
+  "date": "2026-12-09",
+  "time": "After the US close; call 2:00 p.m. PT / 5:00 p.m. ET (~06:00 10 Dec SGT)",
+  "event": "Broadcom Q4 and FY26 results",
+  "status": "Confirmed",
+  "note": "Broadcom news release dated 9 Nov 2026. Fiscal fourth quarter and full-year results and business outlook.",
+  "src": "Broadcom news release",
+  "url": "https://www.broadcom.com/company/news/financial-releases/64841"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (8–14 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (10–16 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-15",
+  "published_at": "2026-11-15T04:50:00+09:00",
+  "layer": "capex",
+  "headline": "Nikkei: Digital Realty CEO says the company will spend $10 billion on Japan data centers over the next decade",
+  "detail": "Nikkei Asia, 15 Nov 2026, 04:50 JST: CEO Andy Power said Digital Realty will spend $10 billion in Japan, its top investment destination in Asia, over the next decade, on continued demand for computing power. The headline describes the figure as $10 billion more, and the subhead says the company is to nearly quadruple capacity in that market. Interview report, not an SEC filing or a formal capex guide. No separate MW schedule was in the portion of the article reviewed.",
+  "url": "https://asia.nikkei.com/business/technology/artificial-intelligence/digital-realty-trust-to-spend-10bn-more-on-japan-data-centers-ceo",
+  "src": "Nikkei Asia, 2026-11-15 04:50 JST"
+ },
+ {
+  "date": "2026-11-14",
+  "layer": "capex",
+  "headline": "AirTrunk proposes two Andhra Pradesh campuses of as much as 1.8 GW, about ₹1.03 lakh crore ($11 billion)",
+  "detail": "Bloomberg, via The Hindu BusinessLine updated 14 Nov 2026, 4:42 p.m.: an emailed AirTrunk statement says a detailed project report covers two campuses with combined capacity of as much as 1.8 GW and about ₹1.03 lakh crore ($11 billion); the proposal remains under state consideration; AirTrunk said the campuses would use low-water, air-cooled technology and industrial rather than municipal water. DCD, 14 Nov 2026, quotes an AirTrunk LinkedIn post on an MoU with Chief Minister Nara Chandrababu Naidu for two proposed Anakapalli campuses, 400 MW at Rambilli and 1.4 GW at Tootipala, and says full details were not shared (https://www.datacenterdynamics.com/en/news/airtrunk-signs-mou-for-18gw-of-data-center-capacity-in-andhra-pradesh-india/). A 13 Nov Deccan Chronicle account of the CII summit lists an AirTrunk India–JCK Infra agreement at 1,400 MW and ₹1,03,018 crore; that listing is not the same figure as the company’s 1.8 GW statement (https://www.deccanchronicle.com/southern-states/andhra-pradesh/cm-holds-investor-talks-as-ap-secures-141-lakh-crore-commitments-2004252). Proposal only: not an approval and not a construction start.",
+  "url": "https://www.thehindubusinessline.com/info-tech/andhra-pradeshs-data-centre-push-blackstone-backed-airtrunk-plans-1-lakh-crore-investment/article71701375.ece",
+  "src": "Bloomberg via The Hindu BusinessLine, updated 2026-11-14 4:42 p.m.; DCD, 2026-11-14"
+ },
+ {
+  "date": "2026-11-14",
+  "layer": "memory",
+  "headline": "Court docket: Judge Noël Wise denied a motion to dismiss the DRAM antitrust suit against Samsung, SK hynix and Micron",
+  "detail": "CourtListener docket for Garciaguirre v. Samsung Electronics Co., Ltd., No. 5:26-cv-06345 (N.D. Cal.): the 14 Nov 2026 entry is an order denying the defendants’ motion to dismiss, signed by Judge Noël Wise. A 13 Nov minute entry says the motion was argued and taken under submission. The docket text does not decide liability. TechPowerUp, 14 Nov 2026, reports that the complaint alleges the three companies restricted conventional DRAM supply and shifted capacity toward HBM, and that the ruling is pleading-stage only (https://www.techpowerup.com/354863/samsung-sk-hynix-and-micron-fail-to-get-dram-antitrust-suit-dismissed). Price-surge percentages in other headlines are not used here.",
+  "url": "https://www.courtlistener.com/docket/73532135/garciaguirre-v-samsung-electronics-co-ltd/",
+  "src": "CourtListener docket, order filed 2026-11-14; TechPowerUp, 2026-11-14"
+ },
  {
   "date": "2026-11-13",
   "published_at": "2026-11-13T08:31:00+00:00",
@@ -301,88 +344,6 @@ whatsNewThisWeek: [
   "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026072484/anthropicpbc-sx1ax2.htm",
   "src": "Anthropic S-1/A (SEC); DCD"
  },
- {
-  "date": "2026-11-09",
-  "published_at": "2026-11-09T08:45:00+01:00",
-  "layer": "power",
-  "headline": "Norway: Statnett pauses new grid-capacity reservations for data centres until no later than 1 Aug 2027; Government plans a licensing regime",
-  "detail": "Statnett press release published 9 Nov 2026 08:45 (Norway): 800 MW of data centres connected, 4,200 MW with reserved capacity, 9,100 MW in the queue and requests for a further 18,000 MW, versus national peak demand just over 25,000 MW. Existing connections and facilities with approved functional requirements are unaffected; processing of new §14 technical-approval applications is paused (including received ones for direct 420 kV connections).",
-  "url": "https://www.statnett.no/om-statnett/nyheter-og-pressemeldinger/nyhetsarkiv-2026/midlertidige-tiltak-for-fortsatt-forsvarlig-systemdrift/",
-  "src": "Statnett, 2026-11-09 08:45 CET; Norwegian Government (regjeringen.no), 2026-11-09"
- },
- {
-  "date": "2026-11-09",
-  "layer": "capex",
-  "headline": "SoftBank, Grab and PETROS sign JDA for US$1B initial seed capital for Sarawak AI infrastructure",
-  "detail": "SoftBank $800M, Grab $100M, PETROS $100M; deployed in stages subject to development/customer-contract milestones and closing conditions; SoftBank-led and majority-owned; long-term target of 5 GW of AI compute capacity; builds on the 8 Oct 2026 framework agreement.",
-  "url": "https://group.softbank/en/news/press/20261109",
-  "src": "SoftBank Group press release, 2026-11-09"
- },
- {
-  "date": "2026-11-09",
-  "layer": "capex",
-  "headline": "NextDC stops work on all projects without customer contracts after Melbourne M3 setback",
-  "detail": "Follows suspension of its M3 expansion due to power delays and community backlash, which led to an earnings-forecast cut last month; CEO Craig Scroggie did not say how many projects are paused; company had 11 centres in development or planning per its 2026 annual report.",
-  "url": "https://www.investing.com/news/stock-market-news/nextdc-pauses-uncontracted-projects-after-australian-data-centre-woes-5010826",
-  "src": "Reuters (via Investing.com), 2026-11-09"
- },
- {
-  "date": "2026-11-09",
-  "layer": "power",
-  "headline": "SpaceX hearing notice: ~$24B gas-fired power plant and super-compute facility planned at Starbase, Texas",
-  "detail": "$24B is the notice's estimated capital investment for initial phases; SpaceX applied for a property-tax abatement that the Starbase City Commission will consider on 9 Dec 2026; the notice gave no generating capacity or compute scale. This is a filing, not a final approval.",
-  "url": "https://www.investing.com/news/stock-market-news/spacex-plans-24-billion-gas-power-plant-data-center-project-in-texas-5013083",
-  "src": "Reuters (via Investing.com) citing public hearing notice, 2026-11-09"
- },
- {
-  "date": "2026-11-09",
-  "layer": "power",
-  "headline": "Reuters: turbine shortage pushes data-centre power buyers to used turbines and jet-engine units",
-  "detail": "Wood Mackenzie says US new-turbine delivery talks focus on 2030–31; worldwide orders top 100 GW vs estimated 60–70 GW production capacity; Jefferies estimates US data centres ~17 GW of turbine demand this year and global manufacturing capacity ~87 GW in 2028 vs 129 GW expected demand (analyst estimates).",
-  "url": "https://www.investing.com/news/stock-market-news/analysisai-power-rush-sends-data-centres-hunting-for-used-turbines-and-jet-engines-5010537",
-  "src": "Reuters analysis (via Investing.com), 2026-11-09"
- },
- {
-  "date": "2026-11-09",
-  "layer": "capex",
-  "headline": "CoreWeave signs multi-year Wayve agreement on Blackwell GPUs a day before Q3 results",
-  "detail": "Wayve to train, evaluate and simulate its AI Driver models on CoreWeave Cloud with NVIDIA Blackwell GPUs; financial terms and duration not disclosed.",
-  "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-to-Power-Wayves-AI-Driver-Training-in-Multi-Year-Agreement/default.aspx",
-  "src": "CoreWeave IR, 2026-11-09"
- },
- {
-  "date": "2026-11-09",
-  "layer": "semis",
-  "headline": "Google introduces TPU 8tx and TPU 8i Max, taking the eighth-generation TPU family to four chips",
-  "detail": "Google blog, 9 Nov 2026: TPU 8tx is a confidential-computing system for secure inference and small-scale training; TPU 8i Max is a new inference system. They join the 8t and 8i released in April (per Seoul Economic Daily).",
-  "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/",
-  "src": "Google blog"
- },
- {
-  "date": "2026-11-08",
-  "published_at": "2026-11-08T08:50:00-05:00",
-  "layer": "power",
-  "headline": "FT, via CNBC: Anthropic reported to have committed about $3.4B for 1.7 GW of generators; not confirmed by the companies",
-  "detail": "CNBC (published 8 Nov 2026, 8:50 a.m. EST) says the Financial Times reported that Anthropic bought commitments in late September for 1.7 GW of heavy-duty generators from San Antonio-based OnePWR, worth about $3.4 billion, and that the deal included installation capability but not an acquisition of OnePWR. CNBC also reports that Reuters could not immediately verify the report and that Anthropic and OnePWR did not respond to requests for comment. This dashboard does not treat the purchase as confirmed.",
-  "url": "https://www.cnbc.com/2026/11/08/anthropic-generator-deal-ai-data-centers.html",
-  "src": "CNBC, 2026-11-08 8:50 a.m. EST, citing the Financial Times"
- },
- {
-  "date": "2026-11-08",
-  "layer": "semis",
-  "headline": "NVIDIA board starts an independent review after reports about its CEO; it does not say secrets were compromised",
-  "detail": "NVIDIA’s board said on 8 Nov 2026 that it is initiating an independent investigation in light of reporting that Jensen Huang has been the target of a foreign intelligence effort. A committee of independent directors, with outside counsel, will oversee it. The board said it has no reason to believe national security or NVIDIA secrets were compromised, that Huang supports the review, and that it has confidence in him. The statement does not confirm the underlying reporting.",
-  "url": "https://nvidianews.nvidia.com/news/statement-from-nvidia-board-of-directors",
-  "src": "NVIDIA Board statement, 2026-11-08"
- },
- {
-  "date": "2026-11-08",
-  "layer": "capex",
-  "headline": "Morgan Stanley note (as reported): keeps ~$1.6T 2027 hyperscaler capex forecast, sees some US builds slip to 2029",
-  "detail": "Per excerpts of its 8 Nov report reported by Sulat (10 Nov) and Zhitong: ~$1.6T for 2027 and ~$1.8T for 2028 unchanged; ~5 GW of IT capacity modeled moving from 2028 to 2029; lease-financed investment is included in the bank's definition. Analyst projection from secondary reporting, not company guidance.",
-  "url": "https://news.sulat.com/2026/11/10/morgan-stanley-ai-capex-2027-data-centre-delays/",
-  "src": "Sulat citing Morgan Stanley 8 Nov note excerpts and Zhitong, 2026-11-10"
- }
 ]
 
 };
