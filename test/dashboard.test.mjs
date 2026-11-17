@@ -23,7 +23,7 @@ function loadSites() {
 }
 
 const NOW = Date.parse("2026-11-07T04:39:00Z");
-const WINDOW = Date.parse("2026-11-16T00:28:00Z");
+const WINDOW = Date.parse("2026-11-17T00:23:00Z");
 
 test("shared feeds keep the master-dashboard export shape", () => {
   const window = loadData();
@@ -37,13 +37,14 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "16 Nov 2026, 8:28 AM");
-  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-10");
-  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-16 8:28 AM SGT");
-  assert.equal(window.AIDC.updated, "2026-11-16");
+  assert.equal(window.AIDC.updated_sgt, "17 Nov 2026, 8:23 AM");
+  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-11");
+  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-17 8:23 AM SGT");
+  assert.equal(window.AIDC.updated, "2026-11-17");
   const items = window.AIDC.whatsNewThisWeek;
-  assert.equal(items.length, 21);
-  assert.ok(items.every((item) => item.date >= "2026-11-10" && item.date <= "2026-11-16"));
+  assert.equal(items.length, 25);
+  assert.ok(items.every((item) => item.date >= "2026-11-11" && item.date <= "2026-11-16"));
+  assert.equal(items.some((item) => item.date === "2026-11-10"), false);
   for (let i = 1; i < items.length; i++) assert.ok(items[i - 1].date >= items[i].date);
   assert.equal(items.some((item) => item.date === "2026-11-07"), false);
   assert.equal(items.some((item) => item.headline.includes("OpenAI CFO")), false);
@@ -61,7 +62,7 @@ test("shared feeds keep the master-dashboard export shape", () => {
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const { AIDC } = loadData();
   const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, WINDOW);
-  assert.equal(shown.length, 21);
+  assert.equal(shown.length, 25);
   assert.ok(shown.every((item) => logic.inRolling7(item.date, WINDOW)));
   for (let i = 1; i < shown.length; i++) assert.ok(shown[i - 1].date >= shown[i].date);
   assert.equal(logic.inRolling7("2026-11-01", NOW), true);
@@ -71,7 +72,10 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.equal(logic.isFresh({ date: "2026-11-06", published_clock: "2026-11-06T05:30:00" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-04", published_at: "2026-11-04T14:41:00-06:00" }, NOW), false);
   const fresh = shown.filter((item) => logic.isFresh(item, WINDOW));
-  assert.ok(fresh.some((item) => item.headline.startsWith("Nikkei: Digital Realty")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("NYT:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("AMD: HPE-built Lux")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("NVIDIA announces Rubin")));
+  assert.ok(shown.some((item) => item.headline.startsWith("Nikkei: Digital Realty") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Reuters review") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("NVIDIA CEO transition") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Massachusetts campaign") && !logic.isFresh(item, WINDOW)));
@@ -95,7 +99,9 @@ test("ballot and Texas items do not assert the removed claims", () => {
   }
   const nvidia = AIDC.comingUp.find((item) => item.event.includes("NVIDIA"));
   assert.match(nvidia.note, /Quarter ended 25 Oct 2026\. IR release dated 28 Oct 2026\. Reconfirmed in NVIDIA’s 12 Nov 2026 CEO-transition release\./);
-  assert.equal(AIDC.comingUp.length, 7);
+  assert.equal(AIDC.comingUp.length, 8);
+  assert.ok(coming.some((event) => event.includes("Credo")), "Credo");
+  assert.ok(coming.some((event) => event.includes("SC26")), "SC26");
   for (const name of ["HPE", "Broadcom", "Dell"]) {
     assert.ok(coming.some((event) => event.includes(name)), name);
   }

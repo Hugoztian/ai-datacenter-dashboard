@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-16",
-updated_sgt: "16 Nov 2026, 8:28 AM",
+updated: "2026-11-17",
+updated_sgt: "17 Nov 2026, 8:23 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-10",
-whatsNewUpdated: "2026-11-16 8:28 AM SGT",
+whatsNewWeekOf: "2026-11-11",
+whatsNewUpdated: "2026-11-17 8:23 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -159,6 +159,15 @@ comingUp: [
   "url": "https://investor.marvell.com/news-events/press-releases/detail/1041/marvell-technology-inc-announces-conference-call-to-review-third-quarter-of-fiscal-year-2027-financial-results"
  },
  {
+  "date": "2026-12-01",
+  "time": "Results after the US close; call 2:00 p.m. PT / 5:00 p.m. ET (~06:00 2 Dec SGT)",
+  "event": "Credo Q2 FY27 earnings call",
+  "status": "Confirmed",
+  "note": "Quarter ended 31 Oct 2026. Credo IR release dated 11 Nov 2026. Results go out the same day after the close; the call starts at 2:00 p.m. PT.",
+  "src": "Credo IR",
+  "url": "https://investors.credosemi.com/news-events/news/news-details/2026/Credo-Schedules-Second-Quarter-Fiscal-Year-2027-Financial-Results-Conference-Call/default.aspx"
+ },
+ {
   "date": "2026-12-09",
   "time": "After the US close; call 2:00 p.m. PT / 5:00 p.m. ET (~06:00 10 Dec SGT)",
   "event": "Broadcom Q4 and FY26 results",
@@ -168,8 +177,75 @@ comingUp: [
   "url": "https://www.broadcom.com/company/news/financial-releases/64841"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (10–16 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (11–17 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-16",
+  "published_at": "2026-11-16T15:33:00-05:00",
+  "layer": "power",
+  "headline": "NYT: a permitting bill under debate would charge data centers more for grid access; it is not enacted",
+  "detail": "New York Times via The Philadelphia Inquirer, published 16 Nov 2026, 3:33 p.m. ET. Congress is debating a permitting bill. It is not enacted law, and this item does not treat any project as cancelled or delayed. The article says the bill would speed federal environmental reviews of energy projects, including transmission lines and gas pipelines, and that a provision would direct FERC to issue rules within 90 days charging data centers both for grid upgrades needed to serve them and for use of the existing network. Sen. Sheldon Whitehouse, a co-author, is quoted: “The day of data center freeloading ends when this bill passes.” A Grid Strategies report cited by the Times estimates the federal grid rules alone could force data centers to pay an extra $35 billion over the next 10 years; that figure is the consultant’s estimate, not statutory text.",
+  "url": "https://www.inquirer.com/news/nation-world/congress-bill-energy-permits-data-centers-pay-costs-ai-20261116.html",
+  "src": "New York Times via The Philadelphia Inquirer, 2026-11-16 3:33 p.m. ET"
+ },
+ {
+  "date": "2026-11-16",
+  "published_at": "2026-11-16T13:05:00-06:00",
+  "layer": "semis",
+  "headline": "AMD: HPE-built Lux at Oak Ridge, with EPYC and Instinct MI355X, is open to users",
+  "detail": "AMD newsroom, published 16 Nov 2026, 1:05 p.m. CST. Lux SI + HPC is open to scientific users at Oak Ridge National Laboratory. AMD says it was built by HPE and brings together EPYC processors, Instinct MI355X GPUs, Pensando networking and ROCm. On TOP500, AMD says Lux debuts at No. 14 with 220.79 petaflops of measured HPL, that AMD powers four of the 10 fastest and four of the 10 most energy-efficient systems, and that AMD technology is in 202 TOP500 systems. Those rankings are AMD’s claims.",
+  "url": "https://newsroom.amd.com/news/sc26-amd-expands-frontier-scientific-computing/",
+  "src": "AMD newsroom, 2026-11-16 1:05 p.m. CST"
+ },
+ {
+  "date": "2026-11-16",
+  "published_at": "2026-11-16T16:00:01+00:00",
+  "layer": "semis",
+  "headline": "NVIDIA announces Rubin HPC at SC26: more than 50,000 CUDA cores, sparse-data acceleration, NVLink 7",
+  "detail": "NVIDIA blog, datePublished 16 Nov 2026, 16:00:01 UTC (Dan Ernst). Announced at SC26 as a GPU in the Vera Rubin platform for simulation and data processing. The blog says more than 50,000 CUDA cores on a single GPU, a sparse data acceleration capability, and seventh-generation NVLink. “Rubin HPC is expected to be available in 2028.”",
+  "url": "https://blogs.nvidia.com/blog/rubin-hpc/",
+  "src": "NVIDIA blog, 2026-11-16 16:00:01 UTC"
+ },
+ {
+  "date": "2026-11-16",
+  "layer": "capex",
+  "headline": "TensorWave–OpenAI: six-year agreement for more than 450 MW of AMD-powered AI infrastructure",
+  "detail": "Business Wire, 16 Nov 2026. The release headline is more than 450 MW. The release states TensorWave will provide OpenAI with 457 megawatts of IT capacity across multiple U.S. data center sites, on AMD Instinct MI455X GPUs, purpose-built for AMD Helios rack-scale systems and operated as dedicated single-tenant capacity. Capacity is expected to begin coming online in the first half of 2027, with the full deployment expected by early 2028. The Next Web, published 16 Nov 2026, 4:41 p.m. UTC, reports the same 457 MW, six-year term, MI455X, Helios, first-half-2027 start and early-2028 completion, and says no contract value or site names were disclosed (https://thenextweb.com/news/tensorwave-openai-457mw-amd-helios).",
+  "url": "https://www.businesswire.com/news/home/20261116130015/en/TensorWave-Announces-Agreement-with-OpenAI-to-Deliver-More-Than-450MW-of-AMD-Powered-AI-Infrastructure",
+  "src": "Business Wire, 2026-11-16; The Next Web, 2026-11-16 4:41 p.m. UTC"
+ },
+ {
+  "date": "2026-11-16",
+  "layer": "capex",
+  "headline": "BXDC signs a definitive agreement to buy 75% of two AWS joint ventures for about $5 billion",
+  "detail": "Blackstone press release, 16 Nov 2026. Blackstone Digital Infrastructure Trust (NYSE: BXDC) signed a definitive agreement to acquire a 75% majority interest in two joint ventures with AWS, in a transaction valued at approximately $5 billion at an initial capitalization rate of 7.0%. The joint ventures will own 13 newly constructed powered shells across two AWS data center campuses; AWS retains 25%. AWS will lease back 100% of the portfolio on a triple-net basis, with an initial term of 12 years and a fully extended term of 32 years. Closing is expected in the fourth quarter of 2026, subject to closing conditions.",
+  "url": "https://www.blackstone.com/news/press/blackstone-digital-infrastructure-trust-announces-5-billion-acquisition-of-stabilized-data-center-portfolio/",
+  "src": "Blackstone press release, 2026-11-16"
+ },
+ {
+  "date": "2026-11-16",
+  "layer": "semis",
+  "headline": "BIS releases an interim final rule on remote access to advanced AI chips; Federal Register publication is scheduled for 19 Nov",
+  "detail": "BIS press release, 16 Nov 2026: the Bureau released an interim final rule on remote access to advanced super intelligence chips and servers. It is an interim final rule, not a proposed rule, and it is not yet effective. The rule text on BIS’s site still sets the effective date as the date of Federal Register publication. Federal Register public inspection (document 2026-23529) lists it as filed 16 Nov 2026, at 4:15 p.m. on that page, which does not print a time zone, and scheduled for publication on 19 Nov 2026; the inspection page says the document is unpublished. The rule text requires a license to export, reexport, or transfer advanced semiconductors to Indonesia, Malaysia, Singapore, Thailand, or Brazil, with an exception for semiconductors destined to companies headquartered in, or whose ultimate parent is headquartered in, the United States if reporting requirements are met. It also requires a license for exports, reexports, or transfers to overseas data centers that remotely supply significant volumes of compute to companies headquartered in Country Group D:5 or Macau; data centers already providing that compute must obtain a license within 90 days of the effective date. The license requirement does not apply to commercial recommender systems. The rule also formally rescinds the regulations implementing the AI Diffusion Rule. Rule PDF: https://www.bis.gov/media/documents/rin-0694-ak50.pdf. Public inspection: https://www.federalregister.gov/public-inspection/2026-23529/addressing-remote-access-to-advanced-semiconductors.",
+  "url": "https://www.bis.gov/press-release/bis-issues-rule-addressing-remote-access-american-super-intelligence-technology",
+  "src": "BIS press release, 2026-11-16; BIS rule text RIN 0694-AK50; Federal Register public inspection 2026-23529"
+ },
+ {
+  "date": "2026-11-16",
+  "layer": "capex",
+  "headline": "DCD: Core Scientific files a $1.3B core-and-shell at its Hunt County campus near Dallas; AMD is set to lease 110 MW",
+  "detail": "Data Center Dynamics, 16 Nov 2026, citing a Texas Department of Licensing and Regulation filing by Telios Quinlan One, LLC for the Core Scientific – Hunt project at 4852 County Road 3507, Quinlan, Hunt County, about 53 miles northeast of Dallas. DCD describes a 341,325 sq ft core-and-shell building and says construction on the $1.3 billion project is set to run from November 2026 until September 2028. The 285 MW figure is the company’s March statement as reported by DCD: the campus could support up to 285 MW of leasable capacity (430 MW gross) across multiple buildings. DCD says AMD is set to lease 110 MW in Hunt County as part of a wider leasing agreement. Core Scientific’s 28 Jul 2026 8-K states AMD lease agreements for an aggregate of 377 MW of critical IT capacity at Pecos, TX, Muskogee, OK, and Hunt County, TX, for 15-year terms; that 8-K does not state the 110 MW site split (https://investors.corescientific.com/sec-filings/all-sec-filings/content/0001839341-26-000012/0001839341-26-000012.pdf).",
+  "url": "https://www.datacenterdynamics.com/en/news/core-scientific-files-for-285mw-data-center-outside-dallas-texas/",
+  "src": "Data Center Dynamics, 2026-11-16; Core Scientific 8-K, 2026-07-28"
+ },
+ {
+  "date": "2026-11-16",
+  "layer": "memory",
+  "headline": "ETNews: suppliers say SK hynix is discussing HBM4 back-end equipment orders, with installation aimed at the first half of next year",
+  "detail": "ETNews, 16 Nov 2026 (Kwon Dong-joon). Industry-sourced report, not company guidance. The article says that, according to multiple semiconductor equipment industry officials on 15 Nov, SK hynix is discussing purchase orders for HBM4 manufacturing equipment, mainly with back-end suppliers for bonding, cutting and inspection. A supplier is quoted saying the company is accelerating its schedule with the goal of bringing in and installing equipment in the first half of next year. The article is dated 16 Nov 2026, so that phrase points at the first half of 2027; SK hynix is not quoted setting that date. An SK hynix official said: “We have continued placing equipment orders in line with our plans. We intend to respond to market expansion without disruption.” The page says the article was translated using AI and published after review by the reporter. Cheongju P&T6 is described as the most likely site, which is the article’s assessment.",
+  "url": "https://en.etnews.com/20261116200004",
+  "src": "ETNews, 2026-11-16 (industry-sourced; not company guidance)"
+ },
  {
   "date": "2026-11-15",
   "published_at": "2026-11-15T04:50:00+09:00",
@@ -194,6 +270,15 @@ whatsNewThisWeek: [
   "detail": "CourtListener docket for Garciaguirre v. Samsung Electronics Co., Ltd., No. 5:26-cv-06345 (N.D. Cal.): the 14 Nov 2026 entry is an order denying the defendants’ motion to dismiss, signed by Judge Noël Wise. A 13 Nov minute entry says the motion was argued and taken under submission. The docket text does not decide liability. TechPowerUp, 14 Nov 2026, reports that the complaint alleges the three companies restricted conventional DRAM supply and shifted capacity toward HBM, and that the ruling is pleading-stage only (https://www.techpowerup.com/354863/samsung-sk-hynix-and-micron-fail-to-get-dram-antitrust-suit-dismissed). Price-surge percentages in other headlines are not used here.",
   "url": "https://www.courtlistener.com/docket/73532135/garciaguirre-v-samsung-electronics-co-ltd/",
   "src": "CourtListener docket, order filed 2026-11-14; TechPowerUp, 2026-11-14"
+ },
+ {
+  "date": "2026-11-13",
+  "published_clock": "2026-11-13T16:50:00",
+  "layer": "semis",
+  "headline": "Xintec filing: seven-year advanced-packaging outsourcing deal with TSMC through 31 Dec 2033",
+  "detail": "Xintec (3374) material information, reproduced by USTV from the Taiwan exchange feed, timestamped 2026/11/13 16:50 (zone not printed). Counterparty is TSMC. The contract dates are ROC 115/11/13–122/12/31, which is 13 Nov 2026 through 31 Dec 2033. The filing says the parties will cooperate on back-end advanced packaging, that Xintec will build and run a line inside TSMC’s Central Taiwan Science Park plant and become a supplier of the oS module, that first-phase volume production is planned for ROC 118 (2029), and that the board approved NT$15 billion of convertible bonds for the initial build. The filing text uses “oS module” and does not print the word CoWoS. Taiwan News, 13 Nov 2026, 21:03 (zone not printed), identifies the line as the on-substrate portion of CoWoS (https://www.taiwannews.com.tw/news/6476137).",
+  "url": "https://news.ustv.com.tw/companynews/271677",
+  "src": "Xintec MOPS filing via USTV, 2026-11-13 16:50 (zone not printed); Taiwan News, 2026-11-13 21:03"
  },
  {
   "date": "2026-11-13",
@@ -303,46 +388,6 @@ whatsNewThisWeek: [
   "detail": "Reported 11 Nov 2026: Samsung target to ₩309,000 from ₩381,000 and SK hynix to ₩1.6M from ₩2.6M, citing expanding chip supply and slowing AI data-center investment. The note itself was not reviewed; analyst view, not company guidance.",
   "url": "https://en.sedaily.com/finance/2026/11/11/huang-spy-scandal-spurs-us-congress-to-block-ai-chip-exports",
   "src": "Seoul Economic Daily"
- },
- {
-  "date": "2026-11-10",
-  "layer": "capex",
-  "headline": "CoreWeave Q3: revenue $3.66B (+168% y/y), backlog ~$132.5B; 2026 capex guide raised to $37–39B",
-  "detail": "Company release: FY26 revenue guide raised to $13.0–13.3B; adj. operating income guide $1.275–1.375B; low end of capex range lifted from $35B to $37B (top $39B unchanged) on earlier deployment; still expects >1.85 GW active power at year-end; exit-2026 run-rate revenue guide $20–21B. Call: Q3 capex $14.5B; >1.7 GW live.",
-  "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Third-Quarter-2026-Results/default.aspx",
-  "src": "CoreWeave IR release, 2026-11-10; Q3 call 2026-11-10"
- },
- {
-  "date": "2026-11-10",
-  "layer": "semis",
-  "headline": "TSMC October revenue a record NT$586.89B, +59.7% y/y and +14.7% m/m",
-  "detail": "Jan–Oct 2026 revenue NT$4,485.62B, +43.3% y/y (company monthly revenue report).",
-  "url": "https://pr.tsmc.com/english/news/3349",
-  "src": "TSMC press release, 2026-11-10"
- },
- {
-  "date": "2026-11-10",
-  "layer": "power",
-  "headline": "Infineon guides FY27 data-center power-supply revenue to close to €4B (FY26 €2.2B)",
-  "detail": "FY27 group revenue ~€20B (>20% growth) at EUR/USD 1.15; FY26 revenue €16.353B; Q4 FY26 €4.706B. CEO on call: FY26 AI data-center power revenue €1.7B plus ~€0.5B classic data center; FY27 investments €3.0–3.5B planned.",
-  "url": "https://www.infineon.com/press-release/2026/infpr202611-025",
-  "src": "Infineon press release and Q4 FY26 call, 2026-11-10"
- },
- {
-  "date": "2026-11-10",
-  "layer": "power",
-  "headline": "SoftBank books $3.7B loss after revising US AI data-center power-equipment procurement; rebates up to $2.1B",
-  "detail": "Q2 FY26 net loss ¥1.12T (~$7B). Loss of ¥597.2B ($3.7B) on non-refundable advance payments and contract changes for power-generation equipment for US projects incl. PORTS-Pike (Ohio); $9.5B advance payments cumulative, $2.9B already paid in the loss. SoftBank did not announce a downsizing of the Ohio project.",
-  "url": "https://group.softbank/media/Project/sbg/sbg/pdf/ir/presentations/2026/earnings-presentation_q2fy2026_01_en.pdf",
-  "src": "SoftBank Group Q2 FY2026 earnings presentation, 2026-11-10; Reuters 2026-11-10"
- },
- {
-  "date": "2026-11-10",
-  "layer": "capex",
-  "headline": "Anthropic S-1/A-2: $34.9B Lambda agreement now terminable by either party; Microsoft commitment raised to $47.2–49.2B",
-  "detail": "SEC filing 10 Nov 2026: Lambda did not secure the facility lease by the contractual date, so the Aug 2026 agreement (~$34.9B of ~$41.3B Lambda commitments) is terminable; neither party has given notice and Anthropic says it does not currently intend to terminate. Microsoft commitment is at least $47.2B and up to $49.2B, Nov 2026–Jun 2033 (DCD: $44.9B in the 2 Nov filing).",
-  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026072484/anthropicpbc-sx1ax2.htm",
-  "src": "Anthropic S-1/A (SEC); DCD"
  },
 ]
 
