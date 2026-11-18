@@ -37,13 +37,14 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "17 Nov 2026, 8:23 AM");
-  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-11");
-  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-17 8:23 AM SGT");
-  assert.equal(window.AIDC.updated, "2026-11-17");
+  assert.equal(window.AIDC.updated_sgt, "18 Nov 2026, 8:24 AM");
+  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-12");
+  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-18 8:24 AM SGT");
+  assert.equal(window.AIDC.updated, "2026-11-18");
   const items = window.AIDC.whatsNewThisWeek;
-  assert.equal(items.length, 25);
-  assert.ok(items.every((item) => item.date >= "2026-11-11" && item.date <= "2026-11-16"));
+  assert.equal(items.length, 30);
+  assert.ok(items.every((item) => item.date >= "2026-11-12" && item.date <= "2026-11-17"));
+  assert.equal(items.some((item) => item.date === "2026-11-11"), false);
   assert.equal(items.some((item) => item.date === "2026-11-10"), false);
   for (let i = 1; i < items.length; i++) assert.ok(items[i - 1].date >= items[i].date);
   assert.equal(items.some((item) => item.date === "2026-11-07"), false);
@@ -62,7 +63,7 @@ test("shared feeds keep the master-dashboard export shape", () => {
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const { AIDC } = loadData();
   const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, WINDOW);
-  assert.equal(shown.length, 25);
+  assert.equal(shown.length, 30);
   assert.ok(shown.every((item) => logic.inRolling7(item.date, WINDOW)));
   for (let i = 1; i < shown.length; i++) assert.ok(shown[i - 1].date >= shown[i].date);
   assert.equal(logic.inRolling7("2026-11-01", NOW), true);
@@ -94,12 +95,9 @@ test("ballot and Texas items do not assert the removed claims", () => {
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-04"), false);
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.headline.includes("Hinojosa")), false);
   const coming = AIDC.comingUp.map((item) => item.event);
-  for (const name of ["NVIDIA", "Marvell"]) {
-    assert.ok(coming.some((event) => event.includes(name)), name);
-  }
-  const nvidia = AIDC.comingUp.find((item) => item.event.includes("NVIDIA"));
-  assert.match(nvidia.note, /Quarter ended 25 Oct 2026\. IR release dated 28 Oct 2026\. Reconfirmed in NVIDIA’s 12 Nov 2026 CEO-transition release\./);
-  assert.equal(AIDC.comingUp.length, 8);
+  assert.ok(coming.some((event) => event.includes("Marvell")), "Marvell");
+  assert.equal(coming.some((event) => event.includes("NVIDIA")), false);
+  assert.equal(AIDC.comingUp.length, 7);
   assert.ok(coming.some((event) => event.includes("Credo")), "Credo");
   assert.ok(coming.some((event) => event.includes("SC26")), "SC26");
   for (const name of ["HPE", "Broadcom", "Dell"]) {

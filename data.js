@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-17",
-updated_sgt: "17 Nov 2026, 8:23 AM",
+updated: "2026-11-18",
+updated_sgt: "18 Nov 2026, 8:24 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-11",
-whatsNewUpdated: "2026-11-17 8:23 AM SGT",
+whatsNewWeekOf: "2026-11-12",
+whatsNewUpdated: "2026-11-18 8:24 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -112,15 +112,6 @@ comingUp: [
   "note": "Official dates page. City was not on that page, so none is stated here.",
   "src": "SC26 dates page",
   "url": "https://sc26.supercomputing.org/all-dates-deadlines/"
- },
- {
-  "date": "2026-11-17",
-  "time": "Results ~1:20 p.m. PT; call 2:00 p.m. PT / 5:00 p.m. ET (~06:00 18 Nov SGT)",
-  "event": "NVIDIA Q3 FY27 earnings",
-  "status": "Confirmed",
-  "note": "Quarter ended 25 Oct 2026. IR release dated 28 Oct 2026. Reconfirmed in NVIDIA’s 12 Nov 2026 CEO-transition release.",
-  "src": "NVIDIA IR",
-  "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx"
  },
  {
   "date": "2026-11-23",
@@ -177,8 +168,67 @@ comingUp: [
   "url": "https://www.broadcom.com/company/news/financial-releases/64841"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (11–17 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (12–18 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-17",
+  "published_at": "2026-11-17T16:20:00-05:00",
+  "layer": "semis",
+  "headline": "NVIDIA Q3 FY27: revenue $115.8B (+103% y/y); Data Center $107.6B; Vera Rubin NVL72 has shipped; Q4 outlook $130.0B ±3%",
+  "detail": "NVIDIA newsroom, also on GlobeNewswire at 17 Nov 2026, 4:20 p.m. ET. Quarter ended 25 Oct 2026. Revenue was $115.8 billion, up 20% from the previous quarter and up 103% from a year ago. Data Center revenue was $107.6 billion, up 21% sequentially and up 110% from a year ago. SEC CFO commentary splits that Data Center total into Hyperscale $60.1 billion (up 23% q/q and 71% y/y) and AI Clouds, Industrial, & Enterprise $47.5 billion (up 18% q/q and 195% y/y); those two lines add up to the $107.6 billion and are not extra. The release says Vera Rubin NVL72 has shipped, and that NVIDIA ramped production and began shipping it, calling that the fastest product ramp in the company’s history. Q4 FY27 outlook, which includes an additional week: revenue is expected to be $130.0 billion, plus or minus 3%. NVIDIA is not assuming any Data Center compute revenue from China. GAAP and non-GAAP gross margins are expected to be 71.0% to 72.0%. CFO commentary says shipments of Data Center Hopper products to China during the quarter were $2.4 billion, and that supply commitments increased from $279 billion last quarter to $390 billion, primarily multi-year memory procurement. The same commentary describes credit-support guarantees of up to $105 billion for approximately 4.25 GW across nine buildings at SB Energy’s PORTS-Pike campus in Ohio, under 20-year leases to OpenAI, taking effect building by building when each building is completed and ready for service, with the first expected in fiscal 2029. The release also says NVIDIA announced an agreement to acquire Hugging Face; no price is stated. CFO commentary: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+  "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
+  "src": "NVIDIA newsroom and GlobeNewswire, 2026-11-17 4:20 p.m. ET; SEC CFO commentary"
+ },
+ {
+  "date": "2026-11-17",
+  "layer": "semis",
+  "headline": "Microsoft: Azure Cobalt 200 VMs are generally available; Maia 300 is not a new announcement",
+  "detail": "Microsoft Azure blog, 17 Nov 2026 (Rani Borkar and Arun Kishan): general availability of Azure Cobalt 200 VMs, announced that day at Ignite 2026. Microsoft says they deliver up to 50% better performance than Cobalt 100, are available in 14 regions, and will expand to 23 regions by the end of 2026. The blog says they will represent a significant share of new Azure Compute capacity beginning in 2027. The SoC is on TSMC’s 3nm process with 132 Arm Neoverse V3 cores. Microsoft’s own benchmarks versus Cobalt 100 include up to 1.5 times for AI agent tool execution. Satya Nadella’s Ignite remarks the same day refer to Maia 300 and “40 percent more tokens per watt” versus leading GPU-based systems (https://blogs.microsoft.com/blog/2026/11/17/ignite-2026-building-the-frontier-ecosystem/). That chip is not new. Microsoft’s 12 Oct 2026 blog already announced Maia 300, including 40% more tokens per megawatt versus leading GPU-based systems, with production deployments beginning in 2027 (https://blogs.microsoft.com/blog/2026/10/12/microsoft-to-expand-azure-maia-system-to-multi-gigawatt-deployments/).",
+  "url": "https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/",
+  "src": "Microsoft Azure blog, 2026-11-17; Maia 300 first announced on the Microsoft blog, 2026-10-12"
+ },
+ {
+  "date": "2026-11-17",
+  "published_at": "2026-11-17T17:39:00-05:00",
+  "layer": "power",
+  "headline": "Politico: TCEQ issued an air permit Monday for SpaceX’s Rio Grande Valley data center and gas plant",
+  "detail": "Politico, 17 Nov 2026, 5:39 p.m. ET. Politico reports that Texas environmental regulators issued an air pollution permit on Monday, 16 Nov 2026, for SpaceX’s planned data center and gas-fired power plant in the Rio Grande Valley, and that the agency said it has resumed permitting of supercomputing facilities after Gov. Greg Abbott’s September pause. Politico says a copy of the permit, obtained by FracTracker Alliance through a public records request and shared with Politico, approves 35 natural-gas turbines producing 750 megawatts at a 444-acre site. Those equipment figures are Politico’s account of that copy; the TCEQ permit record was not opened for this item. Politico describes the project as the $24 billion plan. That dollar figure is not stated here as a term of the permit. The story’s mention of the incoming governor is not treated as a cancellation or delay of the project.",
+  "url": "https://www.politico.com/news/2026/11/17/texas-issues-air-permit-for-massive-spacex-data-center-01170758",
+  "src": "Politico, 2026-11-17 5:39 p.m. ET"
+ },
+ {
+  "date": "2026-11-17",
+  "published_at": "2026-11-17T16:24:00-06:00",
+  "layer": "power",
+  "headline": "Texas Tribune: TCEQ says it has resumed normal environmental-permit review for data centers",
+  "detail": "Texas Tribune, 17 Nov 2026, 4:24 p.m. Central. TCEQ spokesperson Laura Lopez, in a written statement: “The agency has resumed its normal permit review process and will evaluate applications under all applicable state and federal laws and regulations.” The Tribune says TCEQ received notice on Friday from Gov. Greg Abbott’s office that ERCOT had finished gathering information on potential community impacts from data centers. This is a resumption of review, not an approval of any named project, and it is not enacted legislation. The election result is not used here as a site cancellation, delay, or approval. Public Citizen’s Kathryn Guerra said agency leadership “has begun unilaterally issuing data center permits”; that is the group’s statement, not the TCEQ quote.",
+  "url": "https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/",
+  "src": "The Texas Tribune, 2026-11-17 4:24 p.m. Central"
+ },
+ {
+  "date": "2026-11-17",
+  "layer": "cool",
+  "headline": "Ecolab launches an open liquid-cooling ecosystem at SC26 with Siemens, Alfa Laval and Dassault",
+  "detail": "Ecolab investor release, 17 Nov 2026 (Business Wire): at SC26 the company launched an open AI-infrastructure ecosystem. Partners named in the release are Siemens, for power distribution and intelligent infrastructure; Alfa Laval, for heat exchangers, pumps and valves, tied to the CoolIT CHx 3000 CDU initiative; and Dassault Systèmes, for a virtual-twin cooling-loop model linking the technology cooling system and the facility water system. A separate Ecolab release dated 16 Nov 2026 describes the CoolIT CHx 3000 as a 3-megawatt coolant distribution unit with Ecolab 3D TRASAR, and says Global High-Tech annualized sales, including Ovivo and CoolIT, are approaching $1.5 billion in 2026, with a company target of $4 billion in annual High-Tech sales by 2030 and operating-income margins of 25% (https://www.ecolab.com/en-us/media-center/news/ecolab-unveils-first-of-its-kind-integrated-cooling-platform-to-unlock-the-next-generation-of-ai). The $4 billion figure is a company target, not a result.",
+  "url": "https://investor.ecolab.com/news/news-details/2026/Ecolab-Launches-Premier-Liquid-Cooling-Ecosystem-to-Shape-the-Industrys-Most-Efficient-AI-Infrastructure/default.aspx",
+  "src": "Ecolab, 2026-11-17; CoolIT CHx 3000 specification in the Ecolab release dated 2026-11-16"
+ },
+ {
+  "date": "2026-11-17",
+  "layer": "memory",
+  "headline": "TrendForce: Samsung is reportedly developing custom HBM4E for Meta on a 2nm base die",
+  "detail": "TrendForce, 17 Nov 2026, citing The Bell and industry sources. Reported, not Samsung or Meta guidance. The report says the product would be custom HBM for Meta’s in-house AI chips, based on seventh-generation HBM4E, with Meta-specific functions in the base die, which Samsung reportedly plans to manufacture on its own foundry’s 2nm process. TrendForce also says Samsung is reportedly developing custom base dies on both 2nm and 4nm. No Samsung or Meta statement is quoted. Digitimes carried the same report the same day (https://www.digitimes.com/news/a20261117PD225/samsung-hbm-meta-2nm-nvidia.html).",
+  "url": "https://www.trendforce.com/news/2026/11/17/news-samsung-reportedly-developing-custom-hbm4e-for-meta-plans-2nm-base-die-production/",
+  "src": "TrendForce, 2026-11-17 (reported, citing The Bell; not company guidance)"
+ },
+ {
+  "date": "2026-11-17",
+  "layer": "capex",
+  "headline": "Giga Energy: 10-year, $1B lease with an unnamed AI cloud for a 60 MW Hunt County campus",
+  "detail": "Giga Energy, 17 Nov 2026. The company says it signed a 10-year, $1 billion lease with an undisclosed U.S.-based AI cloud provider for Project Clay, a 60 MW GigaBase campus in Hunt County, Texas, on about 30 acres. Giga says it broke ground in July and that the campus will be ready for service in spring 2027. The release says IT cooling is a closed loop that does not use municipal or groundwater, and that the build is expected to create about 300 construction jobs and 24 permanent full-time roles. The customer is not named. Ready-for-service timing is the company’s statement.",
+  "url": "https://www.gigaenergy.com/news/giga-news-hunt-county-deal",
+  "src": "Giga Energy, 2026-11-17"
+ },
  {
   "date": "2026-11-16",
   "published_at": "2026-11-16T15:33:00-05:00",
@@ -273,6 +323,15 @@ whatsNewThisWeek: [
  },
  {
   "date": "2026-11-13",
+  "published_at": "2026-11-13T13:32:00-04:00",
+  "layer": "capex",
+  "headline": "IBJ: Amazon held a 12 Nov ceremonial groundbreaking for a planned $7B campus in Wheatfield, Indiana",
+  "detail": "Inside INdiana Business / Indianapolis Business Journal, 13 Nov 2026, 1:32 p.m. EDT. A ceremonial groundbreaking was held on 12 Nov 2026 for a planned $7 billion data center campus in Wheatfield, Jasper County. IBJ attributes Roger Wehner’s remarks, and a Gov. Mike Braun quote naming “Amazon’s $7 billion investment in Jasper County,” to an Amazon news release. Wehner’s quoted remarks say Amazon is beginning construction. The company said more than 350 workers are already onsite. IBJ says Jasper County Commissioners approved development agreements in June for the 304-acre site, and that those agreements commit Amazon to $98 million upfront and $23 million a year for the next decade, plus $25 million to expand water access in Wheatfield Township. The Amazon release was not found on Amazon’s newsroom, so this item follows IBJ’s account of it. The $7 billion figure is the one IBJ attributes to Amazon; it is not a new company capex guide.",
+  "url": "https://www.insideindianabusiness.com/articles/amazon-breaks-ground-on-7b-wheatfield-data-center-campus",
+  "src": "Inside INdiana Business / Indianapolis Business Journal, 2026-11-13 1:32 p.m. EDT"
+ },
+ {
+  "date": "2026-11-13",
   "published_clock": "2026-11-13T16:50:00",
   "layer": "semis",
   "headline": "Xintec filing: seven-year advanced-packaging outsourcing deal with TSMC through 31 Dec 2033",
@@ -364,30 +423,6 @@ whatsNewThisWeek: [
   "detail": "ABC News, page datePublished 12 Nov 2026, 07:29:48Z (displayed as 6:29 p.m.): Quantum DC will pause plans for a 1,200 MW AI data centre at Tungkillo in the Adelaide Hills after community opposition. The South Australian government is preparing legislation to regulate data centres; that legislation is not enacted. This item does not adopt other site outcomes mentioned in the story.",
   "url": "https://www.abc.net.au/news/2026-11-12/data-centre-industry-butts-up-against-community-challenges/107379250",
   "src": "ABC News, 2026-11-12"
- },
- {
-  "date": "2026-11-11",
-  "layer": "power",
-  "headline": "BloombergNEF research (via Guardian): 181 GW of on-site gas-fired capacity proposed at data-centre sites in the US, UK and Europe",
-  "detail": "Guardian, 11 Nov 2026: proposals driven by grid-connection delays; ~90% of the on-site gas plants are in the US, where BNEF estimates ~345 Mt CO2e a year if the rollout happens. Proposals, not built capacity.",
-  "url": "https://www.theguardian.com/world/2026/nov/11/ai-datacentres-on-site-gas-fired-power-stations",
-  "src": "The Guardian (BloombergNEF research)"
- },
- {
-  "date": "2026-11-11",
-  "layer": "power",
-  "headline": "Torus launches Foundry modular 1–20 MW inference units and raises $500M led by Magnetar",
-  "detail": "Company release 11 Nov 2026: prefabricated power, storage, cooling, networking and compute, 12–16 weeks contract-to-compute, behind-the-meter at existing transformers; plans more than 47,000 GPUs deployed in Foundry units by end-2027.",
-  "url": "https://www.torus.co/news/torus-launches-modular-ai-infrastructure-foundry",
-  "src": "Torus"
- },
- {
-  "date": "2026-11-11",
-  "layer": "memory",
-  "headline": "Seoul Economic Daily: Morgan Stanley cut Samsung and SK hynix price targets, flagging a possible 2028 earnings cliff (as reported)",
-  "detail": "Reported 11 Nov 2026: Samsung target to ₩309,000 from ₩381,000 and SK hynix to ₩1.6M from ₩2.6M, citing expanding chip supply and slowing AI data-center investment. The note itself was not reviewed; analyst view, not company guidance.",
-  "url": "https://en.sedaily.com/finance/2026/11/11/huang-spy-scandal-spurs-us-congress-to-block-ai-chip-exports",
-  "src": "Seoul Economic Daily"
  },
 ]
 
