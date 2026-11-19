@@ -23,7 +23,7 @@ function loadSites() {
 }
 
 const NOW = Date.parse("2026-11-07T04:39:00Z");
-const WINDOW = Date.parse("2026-11-17T00:23:00Z");
+const WINDOW = Date.parse("2026-11-19T00:25:00Z");
 
 test("shared feeds keep the master-dashboard export shape", () => {
   const window = loadData();
@@ -37,27 +37,32 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "18 Nov 2026, 8:24 AM");
-  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-12");
-  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-18 8:24 AM SGT");
-  assert.equal(window.AIDC.updated, "2026-11-18");
+  assert.equal(window.AIDC.updated_sgt, "19 Nov 2026, 8:28 AM");
+  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-13");
+  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-19 8:28 AM SGT");
+  assert.equal(window.AIDC.updated, "2026-11-19");
   const items = window.AIDC.whatsNewThisWeek;
   assert.equal(items.length, 30);
-  assert.ok(items.every((item) => item.date >= "2026-11-12" && item.date <= "2026-11-17"));
+  assert.ok(items.every((item) => item.date >= "2026-11-13" && item.date <= "2026-11-18"));
+  assert.equal(items.some((item) => item.date === "2026-11-12"), false);
   assert.equal(items.some((item) => item.date === "2026-11-11"), false);
-  assert.equal(items.some((item) => item.date === "2026-11-10"), false);
   for (let i = 1; i < items.length; i++) assert.ok(items[i - 1].date >= items[i].date);
   assert.equal(items.some((item) => item.date === "2026-11-07"), false);
   assert.equal(items.some((item) => item.headline.includes("OpenAI CFO")), false);
   assert.equal(items.some((item) => item.headline.includes("Thailand paused")), false);
   assert.equal(items.some((item) => item.headline.includes("2028 US data-center permitting")), false);
-  const nebius = items.find((item) => item.headline.startsWith("Nebius"));
-  assert.equal(nebius.url, "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results");
-  assert.match(nebius.detail, /2027 capex expected \$40–45B/);
-  assert.match(nebius.detail, /roughly 75–85% of 2027 investment covered by customer prepayments and asset-backed financing/);
-  assert.match(nebius.detail, /contracts remain in place/);
-  assert.match(nebius.detail, /shares fell 16% on 12 Nov/);
-  assert.match(nebius.detail, /https:\/\/www\.reuters\.com\/5f374b32b07b\/technology\/nebius-beats-quarterly-revenue-estimates-strong-ai-demand-2026-11-12\//);
+  assert.equal(items.some((item) => item.headline.startsWith("Nebius")), false);
+  const micron = items.find((item) => item.headline.startsWith("Micron CEO"));
+  assert.match(micron.detail, /75% of our 2027 is sold out/);
+  assert.match(micron.detail, /even tighter than 2026/);
+  const jedec = items.find((item) => item.headline.startsWith("JEDEC previews"));
+  assert.equal(jedec.url, "https://www.jedec.org/news/pressreleases/jedec%C2%AE-previews-next-generation-ddr6-dram-higher-performance-greater-capacity");
+  assert.match(jedec.detail, /12\.8 GT\/s/);
+  assert.match(jedec.detail, /not a finalized standard/);
+  const nvda = items.find((item) => item.headline.startsWith("NVIDIA Q3"));
+  assert.match(nvda.detail, /no longer shipping licensed Hopper data center products to China/);
+  assert.match(nvda.detail, /\$118\.0 billion/);
+  assert.match(nvda.detail, /does not itself say that shipments have stopped/);
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
@@ -73,12 +78,18 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.equal(logic.isFresh({ date: "2026-11-06", published_clock: "2026-11-06T05:30:00" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-04", published_at: "2026-11-04T14:41:00-06:00" }, NOW), false);
   const fresh = shown.filter((item) => logic.isFresh(item, WINDOW));
-  assert.ok(fresh.some((item) => item.headline.startsWith("NYT:")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("AMD: HPE-built Lux")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("NVIDIA announces Rubin")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("NVIDIA Q3")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Politico:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Texas Tribune:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Ohio Capital Journal:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Micron CEO")));
+  assert.ok(shown.some((item) => item.headline.startsWith("NYT:") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("AMD: HPE-built Lux") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("NVIDIA announces Rubin") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("JEDEC previews") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Nature Sustainability") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Astera Labs") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Nikkei: Digital Realty") && !logic.isFresh(item, WINDOW)));
-  assert.ok(shown.some((item) => item.headline.startsWith("Reuters review") && !logic.isFresh(item, WINDOW)));
-  assert.ok(shown.some((item) => item.headline.startsWith("NVIDIA CEO transition") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Massachusetts campaign") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("AirTrunk proposes") && !logic.isFresh(item, WINDOW)));
 });
