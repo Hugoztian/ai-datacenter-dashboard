@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-18",
-updated_sgt: "18 Nov 2026, 8:24 AM",
+updated: "2026-11-19",
+updated_sgt: "19 Nov 2026, 8:28 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-12",
-whatsNewUpdated: "2026-11-18 8:24 AM SGT",
+whatsNewWeekOf: "2026-11-13",
+whatsNewUpdated: "2026-11-19 8:28 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -168,16 +168,41 @@ comingUp: [
   "url": "https://www.broadcom.com/company/news/financial-releases/64841"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (12–18 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (13–19 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-18",
+  "published_clock": "2026-11-18T14:08:00",
+  "layer": "memory",
+  "headline": "Micron CEO, at TomorrowX: CY2027 and CY2028 “even tighter than 2026”; “75% of our 2027 is sold out”",
+  "detail": "Investing.com transcript of the TomorrowX Summit, published 18 Nov 2026, 2:08 p.m. (zone not printed). This is a transcript of remarks, not an SEC filing or a new guidance release. Sanjay Mehrotra, Micron CEO: “We have said before that calendar year 2027 and 2028 will be even tighter than 2026. 75% of our 2027 is sold out. We are in discussions with customers now moving to 2028.” He also said demand “remains robust,” supply “continues to be tight,” and “2027 is going to be even stronger” after a record 2026. The “75%” line is his wording; it does not say “of supply” or “of capacity.” TipRanks, also covering the 18 Nov Austin appearance, inserts “[capacity]” in that sentence; that word is the outlet’s bracket, not the transcript quote used here (https://www.tipranks.com/news/micron-still-sees-memory-supply-shortage-through-2028-mu-stock-falls).",
+  "url": "https://www.investing.com/news/transcripts/micron-at-tomorrowx-summit-ai-memory-demand-reshapes-outlook-93CH-5036868",
+  "src": "Investing.com transcript of TomorrowX Summit remarks, published 2026-11-18 2:08 p.m. (zone not printed)"
+ },
+ {
+  "date": "2026-11-18",
+  "layer": "memory",
+  "headline": "JEDEC previews DDR6: RDIMM rate to start at 12.8 GT/s, roadmap to 14.4 GT/s; not a final standard",
+  "detail": "JEDEC press release, Arlington, 18 Nov 2026. The release says the features are current development plans, not a finalized standard, and are subject to change, including disapproval by the JEDEC Board. DDR6 RDIMMs “move beyond DDR5’s 9.2 GT/s to a data rate that will start at 12.8 GT/s with a roadmap extending to 14.4 GT/s and beyond.” The data bus expands from 64 to 96 DQ. JEDEC says improved data rates and the wider bus “will combine to increase bandwidth more than 50% at introduction,” and that this “is distinct from a claim of equivalent improvement in application performance.” Other stated plans: up to 128Gb DRAM die density, a 74mm module length versus 133mm for DDR5, and a target of better performance-per-watt versus DDR5. The release says the interface is being aimed at high-capacity modules for general-purpose compute and for AI inferencing and agentic AI. No publication clock is printed.",
+  "url": "https://www.jedec.org/news/pressreleases/jedec%C2%AE-previews-next-generation-ddr6-dram-higher-performance-greater-capacity",
+  "src": "JEDEC press release, 2026-11-18"
+ },
+ {
+  "date": "2026-11-18",
+  "layer": "memory",
+  "headline": "TrendForce: Google is reportedly moving to buy HBM directly for TPUs (reported)",
+  "detail": "TrendForce, 18 Nov 2026, citing Chosun Biz. Reported, not Google or Broadcom guidance. The article says Google is reportedly moving toward direct purchases of HBM for its TPUs, away from a bundled arrangement with Broadcom that covered TPU design, packaging, and HBM procurement, and that Google is reportedly also diversifying TPU supply through MediaTek. It cites a Bernstein analysis for lower intermediary markups versus that bundled model. A section heading attributes a potential US$50 billion saving to Bernstein; the paragraphs reviewed state the Bernstein point as lower markups and design-partner margins, not as a Google figure. No Google or Broadcom statement is quoted.",
+  "url": "https://www.trendforce.com/news/2026/11/18/news-google-reportedly-eyes-direct-hbm-purchases-for-tpus-reducing-broadcom-related-costs/",
+  "src": "TrendForce, 2026-11-18 (reported, citing Chosun Biz; not company guidance)"
+ },
  {
   "date": "2026-11-17",
   "published_at": "2026-11-17T16:20:00-05:00",
   "layer": "semis",
-  "headline": "NVIDIA Q3 FY27: revenue $115.8B (+103% y/y); Data Center $107.6B; Vera Rubin NVL72 has shipped; Q4 outlook $130.0B ±3%",
-  "detail": "NVIDIA newsroom, also on GlobeNewswire at 17 Nov 2026, 4:20 p.m. ET. Quarter ended 25 Oct 2026. Revenue was $115.8 billion, up 20% from the previous quarter and up 103% from a year ago. Data Center revenue was $107.6 billion, up 21% sequentially and up 110% from a year ago. SEC CFO commentary splits that Data Center total into Hyperscale $60.1 billion (up 23% q/q and 71% y/y) and AI Clouds, Industrial, & Enterprise $47.5 billion (up 18% q/q and 195% y/y); those two lines add up to the $107.6 billion and are not extra. The release says Vera Rubin NVL72 has shipped, and that NVIDIA ramped production and began shipping it, calling that the fastest product ramp in the company’s history. Q4 FY27 outlook, which includes an additional week: revenue is expected to be $130.0 billion, plus or minus 3%. NVIDIA is not assuming any Data Center compute revenue from China. GAAP and non-GAAP gross margins are expected to be 71.0% to 72.0%. CFO commentary says shipments of Data Center Hopper products to China during the quarter were $2.4 billion, and that supply commitments increased from $279 billion last quarter to $390 billion, primarily multi-year memory procurement. The same commentary describes credit-support guarantees of up to $105 billion for approximately 4.25 GW across nine buildings at SB Energy’s PORTS-Pike campus in Ohio, under 20-year leases to OpenAI, taking effect building by building when each building is completed and ready for service, with the first expected in fiscal 2029. The release also says NVIDIA announced an agreement to acquire Hugging Face; no price is stated. CFO commentary: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+  "headline": "NVIDIA Q3 FY27: revenue $115.8B (+103% y/y); Data Center $107.6B; Vera Rubin NVL72 has shipped; Q4 outlook $130.0B ±3%; call says licensed Hopper shipments to China have stopped",
+  "detail": "NVIDIA newsroom, also on GlobeNewswire at 17 Nov 2026, 4:20 p.m. ET. Quarter ended 25 Oct 2026. Revenue was $115.8 billion, up 20% from the previous quarter and up 103% from a year ago. Data Center revenue was $107.6 billion, up 21% sequentially and up 110% from a year ago. SEC CFO commentary splits that Data Center total into Hyperscale $60.1 billion (up 23% q/q and 71% y/y) and AI Clouds, Industrial, & Enterprise $47.5 billion (up 18% q/q and 195% y/y); those two lines add up to the $107.6 billion and are not extra. The release says Vera Rubin NVL72 has shipped, and that NVIDIA ramped production and began shipping it, calling that the fastest product ramp in the company’s history. Q4 FY27 outlook, which includes an additional week: revenue is expected to be $130.0 billion, plus or minus 3%. NVIDIA is not assuming any Data Center compute revenue from China. GAAP and non-GAAP gross margins are expected to be 71.0% to 72.0%. SEC CFO commentary says shipments of Data Center Hopper products to China during the quarter were $2.4 billion. It also says supply commitments increased from $279 billion last quarter to $390 billion, primarily multi-year memory procurement. The same commentary’s guarantee table lists maximum gross exposure of $118.0 billion: neocloud land, power, and shell guarantees $3.5 billion, SB Energy credit-support guarantees $105.0 billion, and power and systems credit-support guarantees $9.5 billion. The $105 billion line is the credit support for approximately 4.25 GW across nine buildings at SB Energy’s PORTS-Pike campus in Ohio, under 20-year leases to OpenAI, taking effect building by building when each building is completed and ready for service, with the first expected in fiscal 2029. On the 17 Nov earnings call, interim CEO Colette Kress said: “Q3 sales of licensed Hopper data center products to China was $2.4 billion. Our guidance does not have any licensed Hopper data center products included, and we are no longer shipping licensed Hopper data center products to China.” Reuters, published 18 Nov 2026, 4:16 a.m. (zone not printed on the Investing.com page), reports that quote and says she did not explain why shipments stopped or whether the halt is permanent (https://www.investing.com/news/stock-market-news/nvidia-stops-shipping-usapproved-ai-chips-to-china-5035204). The written SEC commentary states the $2.4 billion of shipments and that the outlook assumes no Data Center compute revenue from China; it does not itself say that shipments have stopped. A CNBC transcript of a Mad Money interview, published 18 Nov 2026, 1:07 p.m. EST, and labeled edited for clarity, quotes Kress: “we are no longer shipping H200 at all, let alone not shipping it to China” (https://www.cnbc.com/2026/11/18/nvidia-interim-ceo-colette-kress-talks-earnings-china-transcript.html). That line names H200 and says shipping has stopped entirely, which is broader than the call’s “to China” wording. Other dollar figures in that edited interview are not used here where they differ from the SEC commentary. The release also says NVIDIA announced an agreement to acquire Hugging Face; no price is stated. CFO commentary: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
   "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
-  "src": "NVIDIA newsroom and GlobeNewswire, 2026-11-17 4:20 p.m. ET; SEC CFO commentary"
+  "src": "NVIDIA newsroom and GlobeNewswire, 2026-11-17 4:20 p.m. ET; SEC CFO commentary; Reuters, 2026-11-18; CNBC edited transcript, 2026-11-18 1:07 p.m. EST"
  },
  {
   "date": "2026-11-17",
@@ -228,6 +253,48 @@ whatsNewThisWeek: [
   "detail": "Giga Energy, 17 Nov 2026. The company says it signed a 10-year, $1 billion lease with an undisclosed U.S.-based AI cloud provider for Project Clay, a 60 MW GigaBase campus in Hunt County, Texas, on about 30 acres. Giga says it broke ground in July and that the campus will be ready for service in spring 2027. The release says IT cooling is a closed loop that does not use municipal or groundwater, and that the build is expected to create about 300 construction jobs and 24 permanent full-time roles. The customer is not named. Ready-for-service timing is the company’s statement.",
   "url": "https://www.gigaenergy.com/news/giga-news-hunt-county-deal",
   "src": "Giga Energy, 2026-11-17"
+ },
+ {
+  "date": "2026-11-17",
+  "published_at": "2026-11-17T17:00:38+00:00",
+  "layer": "power",
+  "headline": "Ohio Capital Journal: a leaked draft, not introduced and not law, would widen who counts as a public utility",
+  "detail": "Ohio Capital Journal, published 17 Nov 2026, 17:00:38 UTC, a republication of a WEWS / News 5 Cleveland story by Morgan Trau. This is a leaked draft. The article does not give a bill number and does not say the bill has been introduced or enacted. The draft text quoted in the story would add, to the definition of “public utility,” “an agency holding a certificate of environmental compatibility and public need from the power siting board for constructing an electric transmission line and associated facilities or gas pipeline and its associated facilities.” The story says legal experts believe a transmission developer may then be able to seize land to power or place a data center. The quoted addition does not name data centers and does not give data-center operators eminent domain directly. The story also says the draft would change the appraisal process so construction can begin before a compensation fight ends; the Ohio Farm Bureau calls that a quick take, and the Ohio Business Roundtable calls a related idea “deposit and build.” Incoming Senate President Bill Reineke, who the story says is working on the bill, said it “would not extend eminent domain to anyone who doesn’t already have that privilege.” Roundtable spokesperson Alexandra Denney said expanding eminent domain to anyone who does not already have it is not the Roundtable’s intent. Election results mentioned in the story are not treated here as a cancellation or delay of any project.",
+  "url": "https://ohiocapitaljournal.com/2026/11/17/leaked-bill-could-allow-ohio-data-centers-to-seize-land/",
+  "src": "Ohio Capital Journal (WEWS / News 5 Cleveland), published 2026-11-17 17:00:38 UTC"
+ },
+ {
+  "date": "2026-11-17",
+  "layer": "semis",
+  "headline": "Architect, Luxor and Hyperbolic: first OTC put on NVIDIA B200 rental prices, about $5 million notional",
+  "detail": "Luxor and Architect joint release, San Francisco, 17 Nov 2026, and Hyperbolic’s own post the same day. Architect designed the hedge with Hyperbolic through its CFTC-registered introducing-broker affiliate. Luxor, as swap counterparty, priced and executed a put on the rental price of NVIDIA B200 GPUs. The option settles against the Silicon Data B200 Rental Price Index (SDB200RT), with monthly cash settlement over a one-year term, and hedges approximately $5 million notional of Hyperbolic’s future B200 rental revenue. Hyperbolic says the option pays if B200 rental prices fall below the agreed level. The strike is not disclosed. The releases call it the first OTC option on GPU rental prices. No exchange-listed contract is claimed; Hyperbolic says exchange-listed compute futures are still on hold. Hyperbolic post: https://www.hyperbolic.ai/blog/first-otc-gpu-option",
+  "url": "https://luxor.tech/news/corporate-news/article/luxor-architect-hyperbolic-first-otc-option-gpu-rental-prices",
+  "src": "Luxor and Architect release, 2026-11-17; Hyperbolic, 2026-11-17"
+ },
+ {
+  "date": "2026-11-17",
+  "layer": "memory",
+  "headline": "Maeil Business: Samsung and Apple are near a 4–5 year DRAM supply agreement (reported)",
+  "detail": "Maeil Business Newspaper, 17 Nov 2026. Reported, not an Apple or Samsung announcement. The paper, citing the semiconductor industry, says the companies are finalizing a long-term DRAM agreement that would run four to five years from the first half of next year, with a floor on volume and prices set later from market conditions. It says the DRAM is for consumer products such as the iPhone and MacBook, not an AI-data-center supply contract. The stated link to data centers is the paper’s: memory makers are allocating capacity to server DRAM and HBM, tightening mobile DRAM. No volume, price, or dollar value is stated. Neither company is quoted confirming the agreement. TrendForce, 18 Nov 2026, repeats the Maeil account (https://www.trendforce.com/news/2026/11/18/news-samsung-apple-reportedly-finalizing-4-5-year-dram-lta-with-minimum-supply-commitment-starting-in-2027/).",
+  "url": "https://www.mk.co.kr/en/business/12211342",
+  "src": "Maeil Business Newspaper, 2026-11-17 (reported; not company guidance)"
+ },
+ {
+  "date": "2026-11-16",
+  "layer": "power",
+  "headline": "Nature Sustainability: 403 US hyperscale data centers, central case ~82 TWh and ~25.7 Mt CO2",
+  "detail": "Nature Sustainability, published 16 Nov 2026: “Assessing the carbon emissions and energy consumption of US hyperscale data centres,” Guidi, Dominici and co-authors (Harvard T.H. Chan School of Public Health and others). These are model estimates for facilities operating between May 2024 and April 2025, not metered utility bills. The paper compiled 403 US hyperscale data centers. Across facility-load scenarios it estimates about 68–99 TWh of electricity and about 21–31 million metric tons of CO2, using a location-based total-output balancing-authority method. The central scenario is about 82 TWh, about 1.8% of US electricity consumption, and about 25.7 Mt of CO2. About 54% of attributed generation was from fossil fuels. The electricity-weighted carbon intensity was about 314 gCO2/kWh, against a US total-output average of about 348 gCO2/kWh. Harvard’s 16 Nov 2026 release says the researchers could not split AI-specialized use from general-purpose use, and that the list is not every US hyperscale facility (https://hsph.harvard.edu/news/hyperscale-data-centers-energy-consumption-carbon-emissions-newly-estimated-by-researchers/).",
+  "url": "https://www.nature.com/articles/s41893-026-01985-7",
+  "src": "Nature Sustainability, published 2026-11-16; Harvard T.H. Chan release, 2026-11-16"
+ },
+ {
+  "date": "2026-11-16",
+  "published_at": "2026-11-16T09:00:00-05:00",
+  "layer": "networking",
+  "headline": "Astera Labs and Hyve: Orion boards in the Apex inference rack; air-cooled; availability aimed at Q1 2027",
+  "detail": "GlobeNewswire, 16 Nov 2026, 9:00 a.m. ET, source Astera Labs. Hyve Solutions, a TD SYNNEX subsidiary, will offer Astera’s Orion Compute Board, Fabric Tray, and Link Board in the Hyve Apex platform. In Astera’s testing of an 8-GPU configuration, one Scorpio X-Series 320-lane switch delivered up to 89% higher output tokens per second than a baseline of two 144-lane switches. The footnote says the platforms were otherwise identical, the measure covered four large language models and three workload profiles at concurrency from 1 to 512, and gains of up to 89% vary by model and workload. The release says Apex systems are air-cooled so they can go into existing data centers without liquid-cooling infrastructure. “On track for availability in the first quarter of 2027” is the company’s statement, and the release labels it forward-looking. A quoted design target is scale-up to 160 accelerators in a pod.",
+  "url": "https://www.globenewswire.com/news-release/2026/11/16/3403604/0/en/hyve-solutions-and-astera-labs-collaborate-to-bring-ai-inference-capacity-to-customers-faster.html",
+  "src": "GlobeNewswire / Astera Labs, 2026-11-16 9:00 a.m. ET"
  },
  {
   "date": "2026-11-16",
@@ -355,74 +422,6 @@ whatsNewThisWeek: [
   "detail": "WBUR/State House News Service, 13 Nov 2026: the Committee to Restrict Data Centers (Petition 26-08) would require, among other things, two-thirds host-community approval and 100% renewable supply commitments; it is a proposed petition, not a vote result or enacted law; no site status change is implied.",
   "url": "https://www.wbur.org/news/2026/11/13/data-center-restriction-ballot-question-sutton-kraft-ai",
   "src": "WBUR / State House News Service, 2026-11-13"
- },
- {
-  "date": "2026-11-12",
-  "layer": "semis",
-  "headline": "NVIDIA CEO transition: Jensen Huang resigns; CFO Colette Kress named interim CEO; Harvey Jones becomes first Board chair",
-  "detail": "NVIDIA newsroom release dated 12 Nov 2026; Form 8-K says the Board accepted the resignation on 11 Nov 2026, effective immediately; Kress remains CFO while a permanent CEO search (internal and external candidates) runs. The release says Q3 FY27 results remain scheduled for Tue 17 Nov ~1:20 p.m. PT, call 2:00 p.m. PT, and that the Board expects operations, customer commitments and product roadmap to continue without interruption.",
-  "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
-  "src": "NVIDIA newsroom, 2026-11-12; Form 8-K (SEC) dated 2026-11-12"
- },
- {
-  "date": "2026-11-12",
-  "layer": "power",
-  "headline": "Fermi: non-binding LOI with an unnamed investment-grade hyperscaler for ~600 MW of powered land at Project Matador, with a $200M prepayment agreement; TensorWave lease terminated",
-  "detail": "Fermi Q3 release 12 Nov 2026 and 10-Q note: LOI and the $200M prepayment agreement plus a $15M early construction and site-development agreement were entered 10 Nov 2026; a $90M structural steel/building materials purchase agreement is still being finalized; no definitive lease yet. The TensorWave lease terminated 10 Nov 2026 under its terms after the closing date passed; the associated AMD credit support agreement is also terminated.",
-  "url": "https://www.datacenterdynamics.com/en/news/fermi-does-600mw-power-deal-with-hyperscaler-but-tensorwave-lease-is-officially-dead/",
-  "src": "Fermi Q3 release & 10-Q (SEC), 2026-11-12; via DCD"
- },
- {
-  "date": "2026-11-12",
-  "layer": "networking",
-  "headline": "Cisco Q1 FY27: record revenue $18.5B (+24% y/y), networking product revenue +43%; FY27 revenue guide $74.8–75.8B",
-  "detail": "Quarter ended 24 Oct 2026 (Cisco newsroom, 12 Nov 2026). The release raises expected FY27 AI-infrastructure revenue from hyperscalers to $9B, more than double FY26. Reuters via CNA reports the prior hyperscaler expectation was $7.5B and the prior FY27 revenue guide was $72.2–73.4B; the Cisco release states the new figures and the more-than-double comparison, and does not restate those two prior figures. CNA: https://www.channelnewsasia.com/business/cisco-lifts-annual-revenue-forecast-strong-ai-networking-demand-6547511",
-  "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m11/cisco-reports-first-quarter-earnings.html",
-  "src": "Cisco newsroom, 2026-11-12; prior guide Reuters via CNA"
- },
- {
-  "date": "2026-11-12",
-  "published_at": "2026-11-12T08:00:00-06:00",
-  "layer": "semis",
-  "headline": "AMD Instinct MI400 update: MI430X with 432 GB HBM4; MI455X measured at 21,333 tokens/s/GPU; new MI450X at 288 GB HBM4",
-  "detail": "AMD newsroom, published 12 Nov 2026, 8:00 a.m. CST. MI430X is described with native FP64, 432 GB of HBM4 and up to 23.3 TB/s of memory bandwidth. AMD testing puts MI455X on Helios at 21,333 tokens per second per GPU on DeepSeek-R1 in an MLPerf Inference Offline configuration, which AMD says is up to 30% higher throughput than NVIDIA Vera Rubin’s latest published MLPerf offline result. MI450X has 288 GB of HBM4 and, AMD says, the same core compute, memory bandwidth, and scale-up and scale-out connectivity as MI455X. An editor’s note says the MI430X information was added after the original post. The throughput comparison is AMD’s measurement, not an independent re-test.",
-  "url": "https://newsroom.amd.com/news/amd-advances-instinct-mi400-series-ai-scientific-computing/",
-  "src": "AMD newsroom, 2026-11-12 8:00 a.m. CST"
- },
- {
-  "date": "2026-11-12",
-  "published_at": "2026-11-12T16:01:00-05:00",
-  "layer": "semis",
-  "headline": "Applied Materials Q4 FY26: record revenue $10.41B (+53% y/y); Q1 FY27 guide $11.1B ±$0.5B",
-  "detail": "Fiscal quarter ended 25 Oct 2026 (company release, 12 Nov 2026, 4:01 p.m. EST). The release gives the Q1 FY27 revenue guide as $11.1B ±$0.5B. On the call, CFO Brice Hill said the quarter posted record revenue in both DRAM and advanced packaging (Investing.com transcript). That DRAM and packaging line is call commentary, not a figure printed in the release.",
-  "url": "https://www.appliedmaterials.com/us/en/newsroom/press-releases/111226-applied-materials-announces-fourth-qtr-fiscal-year-end-2026-results.html",
-  "src": "Applied Materials, 2026-11-12 4:01 p.m. EST; DRAM/packaging from the call via Investing.com transcript"
- },
- {
-  "date": "2026-11-12",
-  "layer": "capex",
-  "headline": "Nebius Q3: revenue $980.8M (+571% y/y); 2026 capex guide about $27B, above the prior $20–25B range",
-  "detail": "Shareholder letter dated 12 Nov 2026, linked from the newsroom post (PDF: https://assets.nebius.com/assets/721c566e-9ba5-4935-ad24-b1209116a4cc/Nebius-SHL-2026-Q3.pdf). 2026 revenue is now the low end of the $3.0–3.4B range because some third-party capacity expected this year is scheduled for the first half of 2027. Initial 2027 outlook: revenue $12–13B and capex $40–45B, sized for more than 1 GW of new capacity. Prepayments and asset-backed financing of existing investment-grade contracts are expected to fund 75–85% of that 2027 capex. The letter’s 2026 revenue range is $3.0–3.4B. Reuters, 12 Nov 2026 (https://www.reuters.com/5f374b32b07b/technology/nebius-beats-quarterly-revenue-estimates-strong-ai-demand-2026-11-12/): 2027 capex expected $40–45B, with roughly 75–85% of 2027 investment covered by customer prepayments and asset-backed financing; some third-party capacity expected in 2026 pushed to 1H 2027 (contracts remain in place); shares fell 16% on 12 Nov.",
-  "url": "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results",
-  "src": "Nebius shareholder letter, 2026-11-12"
- },
- {
-  "date": "2026-11-12",
-  "published_clock": "2026-11-12T11:15:00",
-  "layer": "capex",
-  "headline": "SpaceX says it plans more than $74B for two supercomputing campuses, expanding the 9 Nov Starbase filing",
-  "detail": "Reuters via Investing.com, published 12 Nov 2026, 11:15 a.m. (zone not printed): more than $24B at Starbase, Texas, where the facility would generate its own electricity, and roughly $50B in Cochise County, Arizona. The Arizona campus needs county approval, a public hearing is set for December, and SpaceX said it would use dry cooling with no planned industrial groundwater use. This expands on the 9 Nov hearing-notice item for the Starbase gas-fired plant and super-compute facility. It is a company statement reported by Reuters, not a permit approval.",
-  "url": "https://www.investing.com/news/stock-market-news/spacex-to-invest-over-74-billion-in-supercompute-facilities-in-texas-arizona-5022690",
-  "src": "Reuters via Investing.com, 2026-11-12 11:15 a.m. (zone not printed)"
- },
- {
-  "date": "2026-11-12",
-  "published_at": "2026-11-12T07:29:48+00:00",
-  "layer": "power",
-  "headline": "ABC News: Quantum DC pauses a planned 1,200 MW AI data centre at Tungkillo, South Australia",
-  "detail": "ABC News, page datePublished 12 Nov 2026, 07:29:48Z (displayed as 6:29 p.m.): Quantum DC will pause plans for a 1,200 MW AI data centre at Tungkillo in the Adelaide Hills after community opposition. The South Australian government is preparing legislation to regulate data centres; that legislation is not enacted. This item does not adopt other site outcomes mentioned in the story.",
-  "url": "https://www.abc.net.au/news/2026-11-12/data-centre-industry-butts-up-against-community-challenges/107379250",
-  "src": "ABC News, 2026-11-12"
  },
 ]
 
