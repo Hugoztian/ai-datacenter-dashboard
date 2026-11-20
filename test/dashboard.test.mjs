@@ -23,7 +23,7 @@ function loadSites() {
 }
 
 const NOW = Date.parse("2026-11-07T04:39:00Z");
-const WINDOW = Date.parse("2026-11-19T00:25:00Z");
+const WINDOW = Date.parse("2026-11-20T00:32:00Z");
 
 test("shared feeds keep the master-dashboard export shape", () => {
   const window = loadData();
@@ -37,13 +37,14 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "19 Nov 2026, 8:28 AM");
-  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-13");
-  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-19 8:28 AM SGT");
-  assert.equal(window.AIDC.updated, "2026-11-19");
+  assert.equal(window.AIDC.updated_sgt, "20 Nov 2026, 8:32 AM");
+  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-14");
+  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-20 8:32 AM SGT");
+  assert.equal(window.AIDC.updated, "2026-11-20");
   const items = window.AIDC.whatsNewThisWeek;
-  assert.equal(items.length, 30);
-  assert.ok(items.every((item) => item.date >= "2026-11-13" && item.date <= "2026-11-18"));
+  assert.equal(items.length, 35);
+  assert.ok(items.every((item) => item.date >= "2026-11-14" && item.date <= "2026-11-20"));
+  assert.equal(items.some((item) => item.date === "2026-11-13"), false);
   assert.equal(items.some((item) => item.date === "2026-11-12"), false);
   assert.equal(items.some((item) => item.date === "2026-11-11"), false);
   for (let i = 1; i < items.length; i++) assert.ok(items[i - 1].date >= items[i].date);
@@ -63,12 +64,24 @@ test("shared feeds keep the master-dashboard export shape", () => {
   assert.match(nvda.detail, /no longer shipping licensed Hopper data center products to China/);
   assert.match(nvda.detail, /\$118\.0 billion/);
   assert.match(nvda.detail, /does not itself say that shipments have stopped/);
+  assert.match(nvda.detail, /\$518 billion/);
+  assert.match(nvda.detail, /not a commitment to smaller AI cloud providers/);
+  assert.match(nvda.detail, /Neocloud agreements/);
+  const iea = items.find((item) => item.headline.startsWith("IEA World Energy Outlook"));
+  assert.match(iea.detail, /1 000 terawatt-hours by 2030 in the STEPS/);
+  const hfac = items.find((item) => item.headline.startsWith("House Foreign Affairs"));
+  assert.match(hfac.detail, /879,868/);
+  assert.match(hfac.detail, /Approved, not shipped/);
+  const bill = items.find((item) => item.headline.startsWith("Senate permitting"));
+  assert.equal(bill.date, "2026-11-19");
+  assert.match(bill.detail, /not enacted/);
+  assert.match(bill.detail, /not final passage/);
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const { AIDC } = loadData();
   const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, WINDOW);
-  assert.equal(shown.length, 30);
+  assert.equal(shown.length, 35);
   assert.ok(shown.every((item) => logic.inRolling7(item.date, WINDOW)));
   for (let i = 1; i < shown.length; i++) assert.ok(shown[i - 1].date >= shown[i].date);
   assert.equal(logic.inRolling7("2026-11-01", NOW), true);
@@ -78,20 +91,23 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.equal(logic.isFresh({ date: "2026-11-06", published_clock: "2026-11-06T05:30:00" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-04", published_at: "2026-11-04T14:41:00-06:00" }, NOW), false);
   const fresh = shown.filter((item) => logic.isFresh(item, WINDOW));
-  assert.ok(fresh.some((item) => item.headline.startsWith("NVIDIA Q3")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("Politico:")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("Texas Tribune:")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("Ohio Capital Journal:")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("Micron CEO")));
-  assert.ok(shown.some((item) => item.headline.startsWith("NYT:") && !logic.isFresh(item, WINDOW)));
+  assert.equal(fresh.length, 3);
+  assert.ok(fresh.some((item) => item.headline.startsWith("Mindstream Energy")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Semafor:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Musk,")));
+  assert.ok(shown.some((item) => item.headline.startsWith("NVIDIA Q3") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Micron CEO") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("IEA World Energy Outlook") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Senate permitting") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("OpenAI:") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("AMD: HPE-built Lux") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("NVIDIA announces Rubin") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("JEDEC previews") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Nature Sustainability") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Astera Labs") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Nikkei: Digital Realty") && !logic.isFresh(item, WINDOW)));
-  assert.ok(shown.some((item) => item.headline.startsWith("Massachusetts campaign") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("AirTrunk proposes") && !logic.isFresh(item, WINDOW)));
+  assert.equal(shown.some((item) => item.headline.startsWith("Massachusetts campaign")), false);
 });
 
 test("ballot and Texas items do not assert the removed claims", () => {
@@ -100,6 +116,7 @@ test("ballot and Texas items do not assert the removed claims", () => {
   assert.equal(text.includes("governor-elect Hinojosa proposes new-DC permit pause"), false);
   const { AIDC } = loadData();
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.headline.includes("Ballotpedia")), false);
+  assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-13"), false);
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-09"), false);
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-08"), false);
   assert.equal(AIDC.whatsNewThisWeek.some((item) => item.date === "2026-11-06"), false);
