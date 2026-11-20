@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-19",
-updated_sgt: "19 Nov 2026, 8:28 AM",
+updated: "2026-11-20",
+updated_sgt: "20 Nov 2026, 8:32 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-13",
-whatsNewUpdated: "2026-11-19 8:28 AM SGT",
+whatsNewWeekOf: "2026-11-14",
+whatsNewUpdated: "2026-11-20 8:32 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -168,8 +168,83 @@ comingUp: [
   "url": "https://www.broadcom.com/company/news/financial-releases/64841"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (13–19 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (14–20 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-19",
+  "layer": "power",
+  "headline": "IEA World Energy Outlook 2026: data-centre electricity doubles to 1,000 TWh by 2030 in the Stated Policies Scenario",
+  "detail": "IEA, World Energy Outlook 2026, published 19 Nov 2026. This is a scenario, not a metered result. The key findings say electricity use by data centres “doubles to reach 1 000 terawatt-hours by 2030 in the STEPS,” and that the boom is “revealing several constraints related to grids, supply chains and, in some cases, public acceptance.” The data-centre section says global data-centre electricity consumption grew by 17% in 2025 and that data-centre investment reached $565 billion. It says a further $4 trillion of investment spending associated with data centres “is anticipated to be spent by 2030.” AI-optimised capacity “drives around three-quarters of this growth” toward that doubling. From satellite imagery of 93 purpose-built AI data centres, the IEA says inferred potential capacity grew 10-fold in 24 months to 17 GW, and that those 93 sites are set to reach about 50 GW once completed. It says data centres of all types have about 120 GW of capacity today, and that another 120 GW is built by the end of the decade in the STEPS, with over three-quarters of that addition intended for AI-optimised servers. Prospective capacity in places including Denmark, Finland, Northern Virginia and Texas is described as much larger than today’s peak load. The IEA says not all of that prospective capacity will be built, and that connection queues are measured in years in several jurisdictions. Emissions associated with electricity for data centres “are on track to rise by 70% by 2030.” As of August 2026, the IEA says around 180 GW of gas-fired capacity was planned in the United States to supply data centres, 11 GW in Canada and 4 GW elsewhere, and that gas-turbine backlogs mean most of that planned capacity is not expected to be operational until the 2030s. Those 2030 and planned-capacity figures are the Outlook’s. No publication clock is printed. PDF: https://www.iea.org/files/934d3d47-698a-43c5-a567-24cf9bb5fbdb/WorldEnergyOutlook2026.pdf",
+  "url": "https://www.iea.org/reports/world-energy-outlook-2026",
+  "src": "IEA World Energy Outlook 2026, published 2026-11-19"
+ },
+ {
+  "date": "2026-11-19",
+  "layer": "semis",
+  "headline": "House Foreign Affairs Committee discloses BIS records: 879,868 H200 and MI325X chips approved for China as of 11 May, of 3,444,160 applied; listed as not shipped",
+  "detail": "House Foreign Affairs Committee press release, 19 Nov 2026 (“this afternoon”; no clock). Chairman Brian Mast released Bureau of Industry and Security license records under the Export Control Reform Act. The committee summary of a BIS summary dated 11 May 2026 says BIS had received applications to sell 3,444,160 covered integrated circuits to PRC companies and had approved 879,868 across 21 applications. A footnote defines those circuits as NVIDIA’s H200 and AMD’s MI325X. The license table marks the approved China entries “Approved, not shipped.” These are records as of 11 May 2026. They are not a statement that the chips were exported, and they do not update NVIDIA’s later statement that licensed Hopper shipments to China have stopped. For groups the summary identifies on the Department of War’s June 2026 Chinese Military Companies list, it gives Alibaba and subsidiaries 948,950 requested and 75,000 approved; Tencent and subsidiaries 150,000 requested and 150,000 approved; Baidu 43,000 and 43,000; BYD 4,000 and 4,000. The summary says applications list Maginfra, Beijing New Matrix, ZTE Kangxun, and Lenovo or its subsidiaries as entities that “may install the systems in the datacenter,” and it points to public reports raising diversion questions. That is the committee’s account of the applications, not a finding that chips were diverted. Summary: https://democrats-foreignaffairs.house.gov/wp-content/uploads/2026/11/11.19.26-ECRA-Information-Disclosure-HFAC-Summary.pdf. License table: https://democrats-foreignaffairs.house.gov/wp-content/uploads/2026/11/11.19.26-ECRA-Information-Disclosure-of-BIS-License-Decisions.pdf",
+  "url": "https://foreignaffairs.house.gov/news/press-releases/chairman-brian-mast-exercises-legislative-authority-to-publicly-release-ai-chip-license-information-for-china",
+  "src": "House Foreign Affairs Committee press release, 2026-11-19; committee summary of BIS records as of 2026-05-11"
+ },
+ {
+  "date": "2026-11-19",
+  "layer": "semis",
+  "headline": "Federal Register publishes the BIS remote-access rule; effective 19 Nov 2026",
+  "detail": "Federal Register, 19 Nov 2026, document 2026-23529, 91 FR 74970, RIN 0694-AK50. This is the publication of the interim final rule BIS released on 16 Nov. It is not a second policy, and it is not a proposed rule. The rule states: “This rule is effective November 19, 2026.” Comments are due 19 Jan 2027. The text says a data center that, before publication, was already providing a significant volume of compute to companies headquartered in, or whose ultimate parent is headquartered in, Macau or Country Group D:5 must obtain a license within 90 days of the effective date if it wants to continue. The license requirement does not apply to commercial recommender systems. The same rule formally rescinds the regulations that implemented the AI Diffusion Rule. Destination and end-use scope are in the 16 Nov item. No publication clock is printed on the Federal Register page. https://www.federalregister.gov/documents/2026/11/19/2026-23529/addressing-remote-access-to-advanced-semiconductors",
+  "url": "https://www.federalregister.gov/documents/2026/11/19/2026-23529/addressing-remote-access-to-advanced-semiconductors",
+  "src": "Federal Register, 2026-11-19, document 2026-23529, 91 FR 74970"
+ },
+ {
+  "date": "2026-11-19",
+  "layer": "power",
+  "headline": "Senate permitting bill (BAAJA) has cleared a cloture vote and is not law",
+  "detail": "The Bipartisan American Affordability and Jobs Act is a bill. It is not enacted, the House has not been reported here as having agreed to this text, and no project is treated as cancelled or delayed. The Hill reported that on 18 Nov 2026 the Senate advanced the bill 65–31 on a cloture vote, which ends debate and is not final passage (https://thehill.com/policy/energy-environment/6227652-baaja-bipartisan-permitting-reform-bill-vote/). A later Hill report said the Senate had teed up final passage with 30 hours of consideration and that amendment votes were in limbo, including a proposed Wyden amendment to bar data centers on public lands, which had not been adopted (https://thehill.com/policy/energy-environment/6230386-data-center-ban-permitting-reform-bill/). A spokesperson for Sen. Mike Lee is quoted there: “BAAJA actually makes data centers pay more to interconnect to the grid to ensure other customers’ rates don’t increase,” and “It does not authorize a single data center on public lands or anywhere else.” The Washington Examiner, on 19 Nov, said that as of 3 p.m. a passage vote was scheduled after 8 p.m. that night (https://www.washingtonexaminer.com/daily-on-energy/4809271/daily-on-energy-baaja-big-day/). Final passage was not established. The New York Times, via The Philadelphia Inquirer on 16 Nov 2026, 3:33 p.m. ET, described a provision directing FERC to issue rules within 90 days charging data centers for grid upgrades needed to serve them and for use of the existing network. Sen. Sheldon Whitehouse, called a co-author, is quoted: “The day of data center freeloading ends when this bill passes.” A Grid Strategies estimate cited by the Times, an extra $35 billion over 10 years, is the consultant’s figure, not statutory text (https://www.inquirer.com/news/nation-world/congress-bill-energy-permits-data-centers-pay-costs-ai-20261116.html).",
+  "url": "https://thehill.com/policy/energy-environment/6227652-baaja-bipartisan-permitting-reform-bill-vote/",
+  "src": "The Hill, cloture vote reported 2026-11-18; The Hill on amendment delays; Washington Examiner, 2026-11-19; New York Times via The Philadelphia Inquirer, 2026-11-16 3:33 p.m. ET"
+ },
+ {
+  "date": "2026-11-19",
+  "published_at": "2026-11-19T08:57:00-05:00",
+  "layer": "power",
+  "headline": "Mindstream Energy unveils plans for a gas-powered AI campus at Al-Risha, Jordan, up to 400 MW",
+  "detail": "PR Newswire, 19 Nov 2026, 8:57 a.m. ET. Mindstream Energy says it unveiled plans, at the Jordan–EU Investment Conference, for a modular campus at Al-Risha in Mafraq Governorate, on a 250-acre site at a natural-gas field. The release says the project is designed for up to 400 MW of AI-ready capacity, with an initial 70 MW deployment targeted for the second quarter of 2027, and on-site gas generation so the campus can be developed off the utility grid. No customer is named. The company says it has a natural-gas supply agreement with Jordan’s National Petroleum Company; that agreement was not separately reviewed. Investment figures are the company’s “preliminary development scenarios”: about $150 million to $400 million for the initial phase, and cumulative infrastructure investment that “could” exceed $1 billion, including solar components, subject to customer demand, financing, and phasing. “Compute investment could run into the billions” is the company’s phrasing, not a contracted amount. These are plans and targets, not a financed close or an operating site.",
+  "url": "https://www.prnewswire.com/news-releases/powering-jordans-ai-future-mindstream-energy-unveils-400-mw-al-risha-ai-infrastructure-campus-302944941.html",
+  "src": "Mindstream Energy via PR Newswire, 2026-11-19 8:57 a.m. ET"
+ },
+ {
+  "date": "2026-11-18",
+  "published_at": "2026-11-18T07:53:00-05:00",
+  "layer": "capex",
+  "headline": "Semafor: SpaceX’s Apollo GPU financing is being structured off the balance sheet (reported)",
+  "detail": "Semafor, 18 Nov 2026, 7:53 a.m. EST, citing people familiar with the matter. Reported, not a SpaceX or Apollo announcement. Semafor says the financing could reach the market as early as that week, would sit in a special-purpose vehicle so it stays off SpaceX’s balance sheet, and that SpaceX would rent the GPUs from that vehicle. It says Apollo would lend close to $20 billion upfront and syndicate the rest. It says the bulk, $35.5 billion, would price at 8.3% and 7.75%, and that riskier pieces, less than $3 billion, could price at a blended rate above 9%. Apollo declined to comment. SpaceX did not respond. The approximately $40 billion commitment itself is older than this window. SpaceX’s 26 Oct 2026 release says it reached a binding commitment for an approximately $40 billion master finance lease for GPUs with an Apollo-managed entity, expected to close before year-end 2026 subject to conditions, with lease schedules expected to start on delivery in the first half of 2027 (https://ir.spacex.com/updates/releases-details/2026/SPACEX-SECURES-40-BILLION-IN-THE-LARGEST-GPU-FINANCING-EVER-2026-EnDqGhTAB3/default.aspx). The 24 Oct 2026 8-K says aggregate principal payments under the lease schedules are expected to total approximately $40 billion (https://www.sec.gov/Archives/edgar/data/1181412/000110465926118614/tm2628247d1_8k.htm). The off-balance-sheet structure, the upfront split, and the pricing are Semafor’s account.",
+  "url": "https://www.semafor.com/article/11/18/2026/spacex-40-billion-chip-financing-to-stay-off-balance-sheet",
+  "src": "Semafor, 2026-11-18 7:53 a.m. EST (reported); SpaceX release, 2026-10-26; SpaceX 8-K, 2026-10-24"
+ },
+ {
+  "date": "2026-11-18",
+  "published_clock": "2026-11-18T22:55:00",
+  "layer": "capex",
+  "headline": "Musk, at DealBook, says Anthropic’s most likely path is another 10 GW of SpaceX compute (his account)",
+  "detail": "Transcript of Elon Musk’s interview with Andrew Ross Sorkin at the New York Times DealBook Summit, published 18 Nov 2026, 10:55 p.m. (zone not printed). This is Musk’s account of what Anthropic told him. It is not an Anthropic filing, and Anthropic is not quoted confirming it. Musk: “when I’ve talked to Anthropic, they tell me it is extremely likely that they will continue to rent compute from SpaceX. And in fact that they want significantly more.” He then says they have described a worst case in which “extreme curtailments” on what AI can do would leave them unable to use the compute, and: “But they’ve told me that their sort of highest probability outcome is that they would like an incremental 10 gigawatts of compute from SpaceX. So that’s a big number.” He also says the contracts are relatively short term, that either side can end them, and that Anthropic can end them on three to six months’ notice depending on the contract. No expanded contract is stated.",
+  "url": "https://singjupost.com/transcript-andrew-ross-sorkin-interviews-elon-musk-at-dealbook-summit-2026/",
+  "src": "Transcript of the DealBook Summit interview, published 2026-11-18 10:55 p.m. (zone not printed); Musk’s account, not an Anthropic confirmation"
+ },
+ {
+  "date": "2026-11-18",
+  "layer": "capex",
+  "headline": "ChronoScale and STN sign definitive agreements for an Odessa, Texas campus and up to $750 million of financing",
+  "detail": "ChronoScale release, Menlo Park, 18 Nov 2026 (GlobeNewswire). No clock is printed. ChronoScale says it entered definitive agreements for a 50/50 development partnership with STN to develop STN’s Odessa, Texas site, and for a $750 million financing. Closing of the partnership and the financing was expected on 18 Nov 2026, subject to closing conditions, including HSR clearance. The release does not say the closing occurred. Each side would contribute $390 million in value for a 50% interest. The financing is $250 million of equity and an up to $500 million convertible preferred facility; ChronoScale says it expects to draw $10 million of that facility at closing. The customer is described as a leading frontier AI lab and is not named. The first 65 MW is ordered and scheduled for the first half of 2027. The release says a substantial portion of that first phase is backstopped by credit support from an unnamed investment-grade technology company and is expected to provide up to $7.5 billion of total contract value over six years. ChronoScale has a right of first offer on the remaining 285 MW. The release’s forward-looking statement says the customer has no commitment to order phases 2 or 3, and that without those orders the contract value will be substantially lower. A blended figure of about $20.8 million of annual revenue per megawatt is stated across all three phases, which are not all ordered. Deployment timing and the $7.5 billion are the company’s expectations.",
+  "url": "https://www.chronoscale.com/press-release/chronoscale-announces-new-development-partnership-to-accelerate-ai-compute-capacity-deployment-supported-by-a-significant-capital-raise",
+  "src": "ChronoScale, 2026-11-18"
+ },
+ {
+  "date": "2026-11-18",
+  "layer": "semis",
+  "headline": "OpenAI: models rewrote AMD flagship-GPU RTL, with up to 14% PPA improvement",
+  "detail": "OpenAI, 18 Nov 2026, “Advancing chip design with OpenAI models.” No clock is printed. OpenAI says it has “seen up to 14% improvement relative to heavily optimized baselines on the flagship GPU IP,” from model-written SystemVerilog. It says AMD has included some of those changes in a recent design sent for manufacturing and has added others to production design files for future versions. That is OpenAI’s account. The post does not quote AMD, does not split the 14% across power, performance, and area, and does not say the 14% was measured on finished silicon. OpenAI also says AMD verified single-digit percentage PPA gains on key blocks of an upcoming next-generation flagship CPU. Separately, OpenAI says its own Jalapeño team estimates that model-proposed changes cut standard-cell area by about 13% in the vector unit and 10% in the matrix unit, and that those optimizations were silicon-proven in bring-up. The Jalapeño percentages are not the AMD 14% figure.",
+  "url": "https://openai.com/index/advancing-chip-design-with-our-models/",
+  "src": "OpenAI, 2026-11-18"
+ },
  {
   "date": "2026-11-18",
   "published_clock": "2026-11-18T14:08:00",
@@ -200,7 +275,7 @@ whatsNewThisWeek: [
   "published_at": "2026-11-17T16:20:00-05:00",
   "layer": "semis",
   "headline": "NVIDIA Q3 FY27: revenue $115.8B (+103% y/y); Data Center $107.6B; Vera Rubin NVL72 has shipped; Q4 outlook $130.0B ±3%; call says licensed Hopper shipments to China have stopped",
-  "detail": "NVIDIA newsroom, also on GlobeNewswire at 17 Nov 2026, 4:20 p.m. ET. Quarter ended 25 Oct 2026. Revenue was $115.8 billion, up 20% from the previous quarter and up 103% from a year ago. Data Center revenue was $107.6 billion, up 21% sequentially and up 110% from a year ago. SEC CFO commentary splits that Data Center total into Hyperscale $60.1 billion (up 23% q/q and 71% y/y) and AI Clouds, Industrial, & Enterprise $47.5 billion (up 18% q/q and 195% y/y); those two lines add up to the $107.6 billion and are not extra. The release says Vera Rubin NVL72 has shipped, and that NVIDIA ramped production and began shipping it, calling that the fastest product ramp in the company’s history. Q4 FY27 outlook, which includes an additional week: revenue is expected to be $130.0 billion, plus or minus 3%. NVIDIA is not assuming any Data Center compute revenue from China. GAAP and non-GAAP gross margins are expected to be 71.0% to 72.0%. SEC CFO commentary says shipments of Data Center Hopper products to China during the quarter were $2.4 billion. It also says supply commitments increased from $279 billion last quarter to $390 billion, primarily multi-year memory procurement. The same commentary’s guarantee table lists maximum gross exposure of $118.0 billion: neocloud land, power, and shell guarantees $3.5 billion, SB Energy credit-support guarantees $105.0 billion, and power and systems credit-support guarantees $9.5 billion. The $105 billion line is the credit support for approximately 4.25 GW across nine buildings at SB Energy’s PORTS-Pike campus in Ohio, under 20-year leases to OpenAI, taking effect building by building when each building is completed and ready for service, with the first expected in fiscal 2029. On the 17 Nov earnings call, interim CEO Colette Kress said: “Q3 sales of licensed Hopper data center products to China was $2.4 billion. Our guidance does not have any licensed Hopper data center products included, and we are no longer shipping licensed Hopper data center products to China.” Reuters, published 18 Nov 2026, 4:16 a.m. (zone not printed on the Investing.com page), reports that quote and says she did not explain why shipments stopped or whether the halt is permanent (https://www.investing.com/news/stock-market-news/nvidia-stops-shipping-usapproved-ai-chips-to-china-5035204). The written SEC commentary states the $2.4 billion of shipments and that the outlook assumes no Data Center compute revenue from China; it does not itself say that shipments have stopped. A CNBC transcript of a Mad Money interview, published 18 Nov 2026, 1:07 p.m. EST, and labeled edited for clarity, quotes Kress: “we are no longer shipping H200 at all, let alone not shipping it to China” (https://www.cnbc.com/2026/11/18/nvidia-interim-ceo-colette-kress-talks-earnings-china-transcript.html). That line names H200 and says shipping has stopped entirely, which is broader than the call’s “to China” wording. Other dollar figures in that edited interview are not used here where they differ from the SEC commentary. The release also says NVIDIA announced an agreement to acquire Hugging Face; no price is stated. CFO commentary: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+  "detail": "NVIDIA newsroom, also on GlobeNewswire at 17 Nov 2026, 4:20 p.m. ET. Quarter ended 25 Oct 2026. Revenue was $115.8 billion, up 20% from the previous quarter and up 103% from a year ago. Data Center revenue was $107.6 billion, up 21% sequentially and up 110% from a year ago. SEC CFO commentary splits that Data Center total into Hyperscale $60.1 billion (up 23% q/q and 71% y/y) and AI Clouds, Industrial, & Enterprise $47.5 billion (up 18% q/q and 195% y/y); those two lines add up to the $107.6 billion and are not extra. The release says Vera Rubin NVL72 has shipped, and that NVIDIA ramped production and began shipping it, calling that the fastest product ramp in the company’s history. Q4 FY27 outlook, which includes an additional week: revenue is expected to be $130.0 billion, plus or minus 3%. NVIDIA is not assuming any Data Center compute revenue from China. GAAP and non-GAAP gross margins are expected to be 71.0% to 72.0%. SEC CFO commentary says shipments of Data Center Hopper products to China during the quarter were $2.4 billion. It also says supply commitments increased from $279 billion last quarter to $390 billion, primarily multi-year memory procurement. The same commentary’s commitments table, as of 25 Oct 2026, totals $518 billion: supply and capacity $390 billion, cloud service agreements $28 billion, data-center leases not yet commenced $74 billion, equity investments $20 billion, and capital expenditures $6 billion. That $518 billion is the table total. It is not a commitment to smaller AI cloud providers. A separate line, “Neocloud agreements,” is $32 billion. The commentary says those commitments take effect only if the neoclouds secure financing and the capacity is deployed, made operational, and accepted by NVIDIA, and that the line was formerly called “AI cloud agreements.” The same commentary’s guarantee table lists maximum gross exposure of $118.0 billion: neocloud land, power, and shell guarantees $3.5 billion, SB Energy credit-support guarantees $105.0 billion, and power and systems credit-support guarantees $9.5 billion. The $105 billion line is the credit support for approximately 4.25 GW across nine buildings at SB Energy’s PORTS-Pike campus in Ohio, under 20-year leases to OpenAI, taking effect building by building when each building is completed and ready for service, with the first expected in fiscal 2029. On the 17 Nov earnings call, interim CEO Colette Kress said: “Q3 sales of licensed Hopper data center products to China was $2.4 billion. Our guidance does not have any licensed Hopper data center products included, and we are no longer shipping licensed Hopper data center products to China.” Reuters, published 18 Nov 2026, 4:16 a.m. (zone not printed on the Investing.com page), reports that quote and says she did not explain why shipments stopped or whether the halt is permanent (https://www.investing.com/news/stock-market-news/nvidia-stops-shipping-usapproved-ai-chips-to-china-5035204). The written SEC commentary states the $2.4 billion of shipments and that the outlook assumes no Data Center compute revenue from China; it does not itself say that shipments have stopped. A CNBC transcript of a Mad Money interview, published 18 Nov 2026, 1:07 p.m. EST, and labeled edited for clarity, quotes Kress: “we are no longer shipping H200 at all, let alone not shipping it to China” (https://www.cnbc.com/2026/11/18/nvidia-interim-ceo-colette-kress-talks-earnings-china-transcript.html). That line names H200 and says shipping has stopped entirely, which is broader than the call’s “to China” wording. Other dollar figures in that edited interview are not used here where they differ from the SEC commentary. The release also says NVIDIA announced an agreement to acquire Hugging Face; no price is stated. CFO commentary: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
   "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
   "src": "NVIDIA newsroom and GlobeNewswire, 2026-11-17 4:20 p.m. ET; SEC CFO commentary; Reuters, 2026-11-18; CNBC edited transcript, 2026-11-18 1:07 p.m. EST"
  },
@@ -280,6 +355,14 @@ whatsNewThisWeek: [
   "src": "Maeil Business Newspaper, 2026-11-17 (reported; not company guidance)"
  },
  {
+  "date": "2026-11-17",
+  "layer": "memory",
+  "headline": "TrendForce: commodity NAND spot prices down 20% in two weeks; enterprise SSD contracts still forecast up 15–20% in 4Q26",
+  "detail": "TrendForce, 17 Nov 2026. No clock is printed. TrendForce says NAND spot prices fell 20% in two weeks as Chinese traders cut inventory, and that GPU shortages have damped enterprise SSD demand in China. It separately forecasts enterprise SSD contract prices to rise 15%–20% quarter on quarter in the fourth quarter of 2026 even as commodity NAND spot prices slide. That split matters: the spot drop is not TrendForce’s forecast for AI-data-center SSD contracts. The same article cites Seoul Economic Daily, which cites Bank of America, for 512Gb wafer prices down 32% quarter on quarter to $14.30 and 1Tb products down 19% to $24.90. Those are the bank’s figures, as relayed. Seoul Economic Daily, again citing Bank of America, says smartphone and PC NAND contract prices could fall 5%–10% quarter on quarter in the first quarter of 2027, while enterprise-grade products may hold steady or edge higher. A “0–5%” early-2027 contract dip was not in this article and is not used. TrendForce’s own 2027 comment is that weak demand outside North America and in consumer markets could limit suppliers’ pricing power, and that YMTC’s push for bit share may limit price increases in early 2027. That is a forecast, not a result.",
+  "url": "https://www.trendforce.com/news/2026/11/17/news-nand-spot-prices-reverse-course-sliding-20-in-2-weeks-amid-weak-consumer-demand-ymtc-competition/",
+  "src": "TrendForce, 2026-11-17; Bank of America figures via Seoul Economic Daily, as cited by TrendForce"
+ },
+ {
   "date": "2026-11-16",
   "layer": "power",
   "headline": "Nature Sustainability: 403 US hyperscale data centers, central case ~82 TWh and ~25.7 Mt CO2",
@@ -295,15 +378,6 @@ whatsNewThisWeek: [
   "detail": "GlobeNewswire, 16 Nov 2026, 9:00 a.m. ET, source Astera Labs. Hyve Solutions, a TD SYNNEX subsidiary, will offer Astera’s Orion Compute Board, Fabric Tray, and Link Board in the Hyve Apex platform. In Astera’s testing of an 8-GPU configuration, one Scorpio X-Series 320-lane switch delivered up to 89% higher output tokens per second than a baseline of two 144-lane switches. The footnote says the platforms were otherwise identical, the measure covered four large language models and three workload profiles at concurrency from 1 to 512, and gains of up to 89% vary by model and workload. The release says Apex systems are air-cooled so they can go into existing data centers without liquid-cooling infrastructure. “On track for availability in the first quarter of 2027” is the company’s statement, and the release labels it forward-looking. A quoted design target is scale-up to 160 accelerators in a pod.",
   "url": "https://www.globenewswire.com/news-release/2026/11/16/3403604/0/en/hyve-solutions-and-astera-labs-collaborate-to-bring-ai-inference-capacity-to-customers-faster.html",
   "src": "GlobeNewswire / Astera Labs, 2026-11-16 9:00 a.m. ET"
- },
- {
-  "date": "2026-11-16",
-  "published_at": "2026-11-16T15:33:00-05:00",
-  "layer": "power",
-  "headline": "NYT: a permitting bill under debate would charge data centers more for grid access; it is not enacted",
-  "detail": "New York Times via The Philadelphia Inquirer, published 16 Nov 2026, 3:33 p.m. ET. Congress is debating a permitting bill. It is not enacted law, and this item does not treat any project as cancelled or delayed. The article says the bill would speed federal environmental reviews of energy projects, including transmission lines and gas pipelines, and that a provision would direct FERC to issue rules within 90 days charging data centers both for grid upgrades needed to serve them and for use of the existing network. Sen. Sheldon Whitehouse, a co-author, is quoted: “The day of data center freeloading ends when this bill passes.” A Grid Strategies report cited by the Times estimates the federal grid rules alone could force data centers to pay an extra $35 billion over the next 10 years; that figure is the consultant’s estimate, not statutory text.",
-  "url": "https://www.inquirer.com/news/nation-world/congress-bill-energy-permits-data-centers-pay-costs-ai-20261116.html",
-  "src": "New York Times via The Philadelphia Inquirer, 2026-11-16 3:33 p.m. ET"
  },
  {
   "date": "2026-11-16",
@@ -343,9 +417,9 @@ whatsNewThisWeek: [
   "date": "2026-11-16",
   "layer": "semis",
   "headline": "BIS releases an interim final rule on remote access to advanced AI chips; Federal Register publication is scheduled for 19 Nov",
-  "detail": "BIS press release, 16 Nov 2026: the Bureau released an interim final rule on remote access to advanced super intelligence chips and servers. It is an interim final rule, not a proposed rule, and it is not yet effective. The rule text on BIS’s site still sets the effective date as the date of Federal Register publication. Federal Register public inspection (document 2026-23529) lists it as filed 16 Nov 2026, at 4:15 p.m. on that page, which does not print a time zone, and scheduled for publication on 19 Nov 2026; the inspection page says the document is unpublished. The rule text requires a license to export, reexport, or transfer advanced semiconductors to Indonesia, Malaysia, Singapore, Thailand, or Brazil, with an exception for semiconductors destined to companies headquartered in, or whose ultimate parent is headquartered in, the United States if reporting requirements are met. It also requires a license for exports, reexports, or transfers to overseas data centers that remotely supply significant volumes of compute to companies headquartered in Country Group D:5 or Macau; data centers already providing that compute must obtain a license within 90 days of the effective date. The license requirement does not apply to commercial recommender systems. The rule also formally rescinds the regulations implementing the AI Diffusion Rule. Rule PDF: https://www.bis.gov/media/documents/rin-0694-ak50.pdf. Public inspection: https://www.federalregister.gov/public-inspection/2026-23529/addressing-remote-access-to-advanced-semiconductors.",
+  "detail": "BIS press release, 16 Nov 2026: the Bureau released an interim final rule on remote access to advanced super intelligence chips and servers. It is an interim final rule, not a proposed rule. The Federal Register published it on 19 Nov 2026 as document 2026-23529, 91 FR 74970. The rule states: “This rule is effective November 19, 2026.” Comments are due 19 Jan 2027. The 19 Nov item records that effective date. The rule text requires a license to export, reexport, or transfer advanced semiconductors to Indonesia, Malaysia, Singapore, Thailand, or Brazil, with an exception for semiconductors destined to companies headquartered in, or whose ultimate parent is headquartered in, the United States if reporting requirements are met. It also requires a license for exports, reexports, or transfers to overseas data centers that remotely supply significant volumes of compute to companies headquartered in Country Group D:5 or Macau; data centers already providing that compute must obtain a license within 90 days of the effective date. The license requirement does not apply to commercial recommender systems. The rule also formally rescinds the regulations implementing the AI Diffusion Rule. Rule PDF: https://www.bis.gov/media/documents/rin-0694-ak50.pdf. Public inspection: https://www.federalregister.gov/public-inspection/2026-23529/addressing-remote-access-to-advanced-semiconductors.",
   "url": "https://www.bis.gov/press-release/bis-issues-rule-addressing-remote-access-american-super-intelligence-technology",
-  "src": "BIS press release, 2026-11-16; BIS rule text RIN 0694-AK50; Federal Register public inspection 2026-23529"
+  "src": "BIS press release, 2026-11-16; Federal Register, 2026-11-19, document 2026-23529, effective that day"
  },
  {
   "date": "2026-11-16",
@@ -387,41 +461,6 @@ whatsNewThisWeek: [
   "detail": "CourtListener docket for Garciaguirre v. Samsung Electronics Co., Ltd., No. 5:26-cv-06345 (N.D. Cal.): the 14 Nov 2026 entry is an order denying the defendants’ motion to dismiss, signed by Judge Noël Wise. A 13 Nov minute entry says the motion was argued and taken under submission. The docket text does not decide liability. TechPowerUp, 14 Nov 2026, reports that the complaint alleges the three companies restricted conventional DRAM supply and shifted capacity toward HBM, and that the ruling is pleading-stage only (https://www.techpowerup.com/354863/samsung-sk-hynix-and-micron-fail-to-get-dram-antitrust-suit-dismissed). Price-surge percentages in other headlines are not used here.",
   "url": "https://www.courtlistener.com/docket/73532135/garciaguirre-v-samsung-electronics-co-ltd/",
   "src": "CourtListener docket, order filed 2026-11-14; TechPowerUp, 2026-11-14"
- },
- {
-  "date": "2026-11-13",
-  "published_at": "2026-11-13T13:32:00-04:00",
-  "layer": "capex",
-  "headline": "IBJ: Amazon held a 12 Nov ceremonial groundbreaking for a planned $7B campus in Wheatfield, Indiana",
-  "detail": "Inside INdiana Business / Indianapolis Business Journal, 13 Nov 2026, 1:32 p.m. EDT. A ceremonial groundbreaking was held on 12 Nov 2026 for a planned $7 billion data center campus in Wheatfield, Jasper County. IBJ attributes Roger Wehner’s remarks, and a Gov. Mike Braun quote naming “Amazon’s $7 billion investment in Jasper County,” to an Amazon news release. Wehner’s quoted remarks say Amazon is beginning construction. The company said more than 350 workers are already onsite. IBJ says Jasper County Commissioners approved development agreements in June for the 304-acre site, and that those agreements commit Amazon to $98 million upfront and $23 million a year for the next decade, plus $25 million to expand water access in Wheatfield Township. The Amazon release was not found on Amazon’s newsroom, so this item follows IBJ’s account of it. The $7 billion figure is the one IBJ attributes to Amazon; it is not a new company capex guide.",
-  "url": "https://www.insideindianabusiness.com/articles/amazon-breaks-ground-on-7b-wheatfield-data-center-campus",
-  "src": "Inside INdiana Business / Indianapolis Business Journal, 2026-11-13 1:32 p.m. EDT"
- },
- {
-  "date": "2026-11-13",
-  "published_clock": "2026-11-13T16:50:00",
-  "layer": "semis",
-  "headline": "Xintec filing: seven-year advanced-packaging outsourcing deal with TSMC through 31 Dec 2033",
-  "detail": "Xintec (3374) material information, reproduced by USTV from the Taiwan exchange feed, timestamped 2026/11/13 16:50 (zone not printed). Counterparty is TSMC. The contract dates are ROC 115/11/13–122/12/31, which is 13 Nov 2026 through 31 Dec 2033. The filing says the parties will cooperate on back-end advanced packaging, that Xintec will build and run a line inside TSMC’s Central Taiwan Science Park plant and become a supplier of the oS module, that first-phase volume production is planned for ROC 118 (2029), and that the board approved NT$15 billion of convertible bonds for the initial build. The filing text uses “oS module” and does not print the word CoWoS. Taiwan News, 13 Nov 2026, 21:03 (zone not printed), identifies the line as the on-substrate portion of CoWoS (https://www.taiwannews.com.tw/news/6476137).",
-  "url": "https://news.ustv.com.tw/companynews/271677",
-  "src": "Xintec MOPS filing via USTV, 2026-11-13 16:50 (zone not printed); Taiwan News, 2026-11-13 21:03"
- },
- {
-  "date": "2026-11-13",
-  "published_at": "2026-11-13T08:31:00+00:00",
-  "layer": "semis",
-  "headline": "Reuters review finds more than $3B of Chinese AI computing projects built around restricted Nvidia processors",
-  "detail": "Reuters exclusive, 13 Nov 2026 08:31 UTC: records span planned investments, awarded contracts and active facilities; Nvidia has said US export controls effectively shut it out of China’s AI data-centre market. Reuters’ figure, not verified independently.",
-  "url": "https://www.reuters.com/5f374b32b07b/world/china/huang-exit-us-scrutiny-imperil-3-billion-chinese-ai-projects-reliant-nvidia-2026-11-13/",
-  "src": "Reuters, 2026-11-13 08:31 UTC"
- },
- {
-  "date": "2026-11-13",
-  "layer": "power",
-  "headline": "Massachusetts campaign launches a proposed 2028 ballot petition to restrict data centers as Kraft Group pursues a $16B Sutton campus",
-  "detail": "WBUR/State House News Service, 13 Nov 2026: the Committee to Restrict Data Centers (Petition 26-08) would require, among other things, two-thirds host-community approval and 100% renewable supply commitments; it is a proposed petition, not a vote result or enacted law; no site status change is implied.",
-  "url": "https://www.wbur.org/news/2026/11/13/data-center-restriction-ballot-question-sutton-kraft-ai",
-  "src": "WBUR / State House News Service, 2026-11-13"
  },
 ]
 
