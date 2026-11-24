@@ -23,7 +23,7 @@ function loadSites() {
 }
 
 const NOW = Date.parse("2026-11-07T04:39:00Z");
-const WINDOW = Date.parse("2026-11-23T00:40:00Z");
+const WINDOW = Date.parse("2026-11-24T00:28:00Z");
 
 test("shared feeds keep the master-dashboard export shape", () => {
   const window = loadData();
@@ -37,13 +37,14 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "23 Nov 2026, 8:40 AM");
-  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-17");
-  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-23 8:40 AM SGT");
-  assert.equal(window.AIDC.updated, "2026-11-23");
+  assert.equal(window.AIDC.updated_sgt, "24 Nov 2026, 8:28 AM");
+  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-18");
+  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-24 8:28 AM SGT");
+  assert.equal(window.AIDC.updated, "2026-11-24");
   const items = window.AIDC.whatsNewThisWeek;
-  assert.equal(items.length, 41);
-  assert.ok(items.every((item) => item.date >= "2026-11-17" && item.date <= "2026-11-23"));
+  assert.equal(items.length, 34);
+  assert.ok(items.every((item) => item.date >= "2026-11-18" && item.date <= "2026-11-24"));
+  assert.equal(items.some((item) => item.date === "2026-11-17"), false);
   assert.equal(items.some((item) => item.date === "2026-11-16"), false);
   assert.equal(items.some((item) => item.date === "2026-11-15"), false);
   assert.equal(items.some((item) => item.date === "2026-11-14"), false);
@@ -63,13 +64,48 @@ test("shared feeds keep the master-dashboard export shape", () => {
   assert.equal(jedec.url, "https://www.jedec.org/news/pressreleases/jedec%C2%AE-previews-next-generation-ddr6-dram-higher-performance-greater-capacity");
   assert.match(jedec.detail, /12\.8 GT\/s/);
   assert.match(jedec.detail, /not a finalized standard/);
-  const nvda = items.find((item) => item.headline.startsWith("NVIDIA Q3"));
-  assert.match(nvda.detail, /no longer shipping licensed Hopper data center products to China/);
-  assert.match(nvda.detail, /\$118\.0 billion/);
-  assert.match(nvda.detail, /does not itself say that shipments have stopped/);
-  assert.match(nvda.detail, /\$518 billion/);
-  assert.match(nvda.detail, /not a commitment to smaller AI cloud providers/);
-  assert.match(nvda.detail, /Neocloud agreements/);
+  assert.equal(items.some((item) => item.headline.startsWith("NVIDIA Q3")), false);
+  const hpe = items.find((item) => item.headline.startsWith("HPE Q4 FY26"));
+  assert.equal(hpe.date, "2026-11-23");
+  assert.equal(hpe.layer, "racks");
+  assert.match(hpe.detail, /\$14,547 million/);
+  assert.match(hpe.detail, /50\.3%/);
+  assert.match(hpe.detail, /\$11,257 million/);
+  assert.match(hpe.detail, /\$8,790 million/);
+  assert.match(hpe.detail, /\$3,056 million/);
+  assert.match(hpe.detail, /\$397 million/);
+  assert.match(hpe.detail, /\$59\.4 billion to \$63\.1 billion/);
+  assert.match(hpe.detail, /\$5\.05 to \$5\.35/);
+  assert.match(hpe.detail, /at least \$5\.5 billion/);
+  assert.match(hpe.detail, /raised outlook, not results/);
+  const apld = items.find((item) => item.headline.startsWith("Applied Digital:"));
+  assert.equal(apld.published_at, "2026-11-23T08:00:00-05:00");
+  assert.match(apld.detail, /150 MW/);
+  assert.match(apld.detail, /\$5\.4 billion/);
+  assert.match(apld.detail, /\$12\.7 billion/);
+  assert.match(apld.detail, /exceeds \$41 billion/);
+  assert.match(apld.detail, /first half of calendar 2028/);
+  assert.match(apld.detail, /does not name the campus/);
+  const spain = items.find((item) => item.headline.includes("Royal Decree 1032/2026"));
+  assert.equal(spain.date, "2026-11-20");
+  assert.equal(spain.layer, "power");
+  assert.match(spain.detail, /80 percent/);
+  assert.match(spain.detail, /at least 10 MW/);
+  assert.match(spain.detail, /each hour/);
+  assert.match(spain.detail, /That path is not Article 8/);
+  assert.match(spain.detail, /15,133 million/);
+  assert.match(spain.detail, /47 GW/);
+  const gs = items.find((item) => item.headline.startsWith("Chosunbiz:"));
+  assert.match(gs.headline, /Wall Street forecast/);
+  assert.match(gs.detail, /350,000 won/);
+  assert.match(gs.detail, /2 million won/);
+  assert.match(gs.detail, /26% and 23%/);
+  assert.match(gs.detail, /\$60 billion this year, \$200 billion next year, and \$237 billion in 2028/);
+  assert.match(gs.detail, /not Samsung or SK hynix guidance/);
+  const mu = items.find((item) => item.headline.startsWith("Yahoo Finance: Micron"));
+  assert.match(mu.detail, /about 12%/);
+  assert.match(mu.detail, /not a closing print/);
+  assert.match(mu.detail, /Citi note was not opened/);
   const iea = items.find((item) => item.headline.startsWith("IEA World Energy Outlook"));
   assert.match(iea.detail, /1 000 terawatt-hours by 2030 in the STEPS/);
   const hfac = items.find((item) => item.headline.startsWith("House Foreign Affairs"));
@@ -101,7 +137,7 @@ test("shared feeds keep the master-dashboard export shape", () => {
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const { AIDC } = loadData();
   const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, WINDOW);
-  assert.equal(shown.length, 41);
+  assert.equal(shown.length, 34);
   assert.ok(shown.every((item) => logic.inRolling7(item.date, WINDOW)));
   for (let i = 1; i < shown.length; i++) assert.ok(shown[i - 1].date >= shown[i].date);
   assert.equal(logic.inRolling7("2026-11-01", NOW), true);
@@ -111,18 +147,23 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.equal(logic.isFresh({ date: "2026-11-06", published_clock: "2026-11-06T05:30:00" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-04", published_at: "2026-11-04T14:41:00-06:00" }, NOW), false);
   const fresh = shown.filter((item) => logic.isFresh(item, WINDOW));
-  assert.equal(fresh.length, 4);
+  assert.equal(fresh.length, 7);
+  assert.ok(fresh.some((item) => item.headline.startsWith("Applied Digital:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Chosunbiz:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Yahoo Finance: Micron")));
   assert.ok(fresh.some((item) => item.headline.startsWith("Yonhap,")));
   assert.ok(fresh.some((item) => item.headline.startsWith("Bessent:")));
   assert.ok(fresh.some((item) => item.headline.startsWith("Fortune, citing Howden")));
   assert.ok(fresh.some((item) => item.headline.startsWith("Fortune: SpaceX")));
+  assert.ok(shown.some((item) => item.headline.startsWith("HPE Q4 FY26") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.includes("Royal Decree 1032/2026") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("The Nation:") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Nikkei:") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Oracle:") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("BCG estimate") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Reuters: TSMC") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Musk,") && !logic.isFresh(item, WINDOW)));
-  assert.ok(shown.some((item) => item.headline.startsWith("NVIDIA Q3") && !logic.isFresh(item, WINDOW)));
+  assert.equal(shown.some((item) => item.headline.startsWith("NVIDIA Q3")), false);
   assert.ok(shown.some((item) => item.headline.startsWith("Micron CEO") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("IEA World Energy Outlook") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Senate passed") && !logic.isFresh(item, WINDOW)));
@@ -153,11 +194,12 @@ test("ballot and Texas items do not assert the removed claims", () => {
   assert.ok(coming.some((event) => event.includes("Marvell")), "Marvell");
   assert.equal(coming.some((event) => event.includes("NVIDIA")), false);
   assert.ok(coming.some((event) => event.includes("Treasury")), "Treasury deadline");
-  assert.equal(AIDC.comingUp.length, 9);
+  assert.equal(AIDC.comingUp.length, 8);
+  assert.equal(coming.some((event) => event.includes("HPE")), false);
   assert.ok(coming.some((event) => event.includes("Credo")), "Credo");
   assert.equal(coming.some((event) => event.includes("SC26")), false);
   assert.ok(coming.some((event) => event.includes("re:Invent")), "re:Invent");
-  for (const name of ["HPE", "Broadcom", "Dell"]) {
+  for (const name of ["Broadcom", "Dell"]) {
     assert.ok(coming.some((event) => event.includes(name)), name);
   }
   assert.equal(coming.some((event) => event.includes("Oracle")), false);
