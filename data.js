@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-23",
-updated_sgt: "23 Nov 2026, 8:40 AM",
+updated: "2026-11-24",
+updated_sgt: "24 Nov 2026, 8:28 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,20 +99,11 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-17",
-whatsNewUpdated: "2026-11-23 8:40 AM SGT",
+whatsNewWeekOf: "2026-11-18",
+whatsNewUpdated: "2026-11-24 8:28 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
- {
-  "date": "2026-11-23",
-  "time": "4:00 p.m. CT / 5:00 p.m. ET (~06:00 24 Nov SGT)",
-  "event": "HPE Q4 FY26 earnings call",
-  "status": "Confirmed",
-  "note": "Quarter ending 31 Oct 2026. HPE newsroom release dated 2 Nov 2026. The release does not say whether results are posted before the call.",
-  "src": "HPE newsroom",
-  "url": "https://www.hpe.com/us/en/newsroom/press-release/2026/11/hpe-to-present-live-audio-webcast-of-fiscal-2026-fourth-quarter-earnings-conference-call.html"
- },
  {
   "date": "2026-11-24",
   "time": "3:30 p.m. CST / 4:30 p.m. ET (~05:30 25 Nov SGT)",
@@ -183,8 +174,43 @@ comingUp: [
   "url": "https://www.fortune.com/2026/11/22/spacex-74-billion-ai-data-centers-texas-arizona-who-pays/"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (17–23 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (18–24 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-23",
+  "layer": "racks",
+  "headline": "HPE Q4 FY26: revenue $14,547 million, up 50.3% year on year; FY27 revenue outlook raised to $59.4–63.1 billion",
+  "detail": "HPE newsroom, Houston, 23 Nov 2026. No clock is printed on the release. Quarter ended 31 Oct 2026. The release prose says revenue was $14.5 billion, up 50% from the prior-year period. The financial table in the same release, filed as exhibit 99.1 to the 8-K of 23 Nov 2026, states net revenue of $14,547 million, against $9,679 million a year earlier, and marks that change up 50.3%. The prose figure is the rounding of that table. Cloud & AI revenue in the table was $11,257 million, up 68.6% from $6,676 million; the prose rounds this to $11.3 billion. Within Cloud & AI, server revenue was $8,790 million, up 94.7% from $4,514 million (prose: $8.8 billion); storage was $1,480 million, up 33.8% (prose: $1.5 billion); Financial Services was $900 million, up 1.2% (prose: $0.9 billion). Networking revenue was $3,056 million, up 12.3% from $2,722 million (prose: $3.1 billion), with an operating margin of 22.1% against 23.4% a year earlier. Within Networking, data-center networking was $397 million, up 12.1%, and campus and branch was $1,498 million, up 16.7%. Cloud & AI’s operating margin was 18.4%, against 9.3% a year earlier. GAAP diluted EPS was $1.26 and non-GAAP diluted EPS was $1.43. Quarterly free cash flow was $1.9 billion, which the release says was flat from the prior-year period. Those quarterly lines are results. The fiscal 2027 lines are a raised outlook, not results. HPE says it is raising the FY27 revenue-growth outlook to 27% to 35%, representing $59.4 billion to $63.1 billion of revenue. It estimates GAAP diluted net EPS of $3.68 to $3.98 and is raising non-GAAP diluted net EPS to $5.05 to $5.35. It is also raising free-cash-flow guidance and now expects free cash flow of at least $5.5 billion. The release says that free-cash-flow guidance is non-GAAP and that HPE cannot reconcile it to the comparable GAAP measure without unreasonable effort. Exhibit: https://www.sec.gov/Archives/edgar/data/1645590/000164559026000097/ex-991x11232026x8k.htm",
+  "url": "https://www.hpe.com/us/en/newsroom/press-release/2026/11/hpe-reports-fiscal-2026-fourth-quarter-results.html",
+  "src": "HPE newsroom, 2026-11-23 (no clock printed); exhibit 99.1 to the HPE 8-K filed 2026-11-23"
+ },
+ {
+  "date": "2026-11-23",
+  "published_at": "2026-11-23T08:00:00-05:00",
+  "layer": "capex",
+  "headline": "Applied Digital: new 18-year, 150 MW lease with an unnamed investment-grade hyperscaler, about $5.4 billion over the base term",
+  "detail": "Applied Digital, Dallas, 23 Nov 2026, 8:00 a.m. EST, on GlobeNewswire. The company says it entered an 18-year lease with a tier-one investment-grade hyperscaler for 150 MW of critical IT capacity. The customer is not named. The lease provides for approximately $5.4 billion of base-term contracted revenue, or approximately $12.7 billion if all renewal options are exercised over a 33-year total term. With this lease, the company says total contracted base-term lease revenue exceeds $41 billion, or approximately $100 billion if all renewal options are exercised. The renewal totals are not contracted revenue until those options are exercised. The release says the lease has improved commercial terms, including higher pricing, and it does not print a price per megawatt. Delivery of the capacity is “currently anticipated to begin in the first half of calendar 2028,” subject to development milestones, utility arrangements, and regulatory approvals. That is the company’s expectation, not a recorded delivery. The release does not name the campus this 150 MW sits on. It says that with this lease the portfolio is over 1.6 GW of total contracted critical IT load and 2.2 GW of grid-connected peak load, and that approximately 75% of total contracted base-term lease revenue is now attributable to investment-grade customers. The financing sentences are plans. The CFO says the company plans to finance this build with equity already funded and through a $5 billion programmatic equity partnership with Macquarie Asset Management, followed by project financing, and expects to finish the remaining project finance for Delta Forge 1 and Polaris Forge 3 in the first calendar quarter of 2027 and for Delta Forge 2 in the second. The release does not say this lease is at one of those named campuses.",
+  "url": "https://ir.applieddigital.com/news-events/press-releases/detail/165/applied-digital-secures-new-150-mw-18-year-lease-with",
+  "src": "Applied Digital, 2026-11-23 8:00 a.m. EST"
+ },
+ {
+  "date": "2026-11-23",
+  "published_clock": "2026-11-23T19:53:00",
+  "layer": "memory",
+  "headline": "Chosunbiz: Goldman Sachs cuts Samsung’s target to 350,000 won and SK hynix’s to 2 million won, and keeps Buy (Wall Street forecast)",
+  "detail": "Chosunbiz English, entered 23 Nov 2026, 19:53. The zone is not printed. This is a Goldman Sachs forecast, as Chosunbiz reports a note it says was published on the 22nd, local time. It is not Samsung or SK hynix guidance, and the Goldman note itself was not opened. Goldman cut its Samsung Electronics target by 30%, from 500,000 won to 350,000 won, and its SK hynix target by 43%, from 3.5 million won to 2 million won. It lowered its 2028 operating-profit forecasts for the two companies by 26% and 23%, respectively, and kept a Buy rating on both, which Chosunbiz says was because Goldman called the recent share-price declines excessive. Chosunbiz says Goldman expects the chip shortage to last through next year and to ease substantially in 2028, when memory prices begin to fall. It forecast the DRAM supply shortfall narrowing from 5.1% next year to 1.2% in 2028. It expects conventional DRAM prices to fall by 20% and 19%, respectively, in 2028 from the prior year. The article does not name the two series those percentages belong to, so they are not assigned here. It forecast NAND prices down by about 20%. On high-bandwidth memory, Chosunbiz says Goldman forecast the market at $60 billion this year, $200 billion next year, and $237 billion in 2028. In an article entered on 23 Nov 2026, those years are 2026, 2027, and 2028. Chosunbiz says Goldman still cut the 2028 profit forecasts because HBM growth alone was unlikely to offset falling conventional-memory prices. An earlier Morgan Stanley target cut mentioned in the same article is dated the 9th and is outside this window.",
+  "url": "https://biz.chosun.com/en/en-finance/2026/11/23/RXXK5VX6ZFAZNF5XXNVNGKYQUA/",
+  "src": "Chosunbiz, entered 2026-11-23 19:53 (zone not printed), reporting a Goldman Sachs forecast dated to the 22nd, local time (Wall Street forecast; the note was not opened)"
+ },
+ {
+  "date": "2026-11-23",
+  "published_at": "2026-11-23T10:20:00-05:00",
+  "layer": "memory",
+  "headline": "Yahoo Finance: Micron up 20% intraday; the page says Citi estimates a full halt to Nvidia-linked financing would cut DRAM demand about 12% (reported)",
+  "detail": "Yahoo Finance, 23 Nov 2026, 10:20 a.m. EST. The page is a TIKR article. It says Micron jumped 20% that morning after Citi estimated that a complete halt to Nvidia-linked financing would cut DRAM demand only about 12%, and NAND demand about 7%. The 20% is the article’s account of an intraday move. It is not a closing print, and no exchange release was opened for this item. The 12% and the 7% are the article’s account of a Citi estimate. The Citi note was not opened. Other claims on the same page, including a report that Nvidia’s board reinstated its chief executive and a percentage move in Nvidia shares, were not checked against a company or exchange source and are not used.",
+  "url": "https://finance.yahoo.com/markets/stocks/articles/micron-soars-20-citi-says-152000640.html",
+  "src": "Yahoo Finance (TIKR), 2026-11-23 10:20 a.m. EST (reported; Citi estimate as relayed, not a Citi note)"
+ },
  {
   "date": "2026-11-23",
   "published_clock": "2026-11-23T06:40:00",
@@ -246,6 +272,14 @@ whatsNewThisWeek: [
   "detail": "Economy Tribune, entered 21 Nov 2026, 12:54, updated 13:08. The zone is not printed. Reported, one person familiar with the matter, not a Samsung release. The paper says most of Samsung Electronics’ memory production capacity for 2027 through 2029 is already secured by contract, and that some customers are asking for volume beyond existing contracts and are pushing to extend agreements through 2031. The headline’s “사실상 완판” is the paper’s “effectively sold out.” The body says most of that capacity, not a Samsung percentage of the whole fleet. Citing industry sources, the paper says major memory makers currently meet only about 60–70% of demand, that 2027 commodity-DRAM wafer capacity is effectively sold out, and that DRAM bit-supply growth is expected to be limited to at most 20–25% a year. Those are the article’s industry estimates, not Samsung guidance. The paper also recalls Samsung’s 29 Oct third-quarter briefing: long-term agreements with 10 major customers, talks with 10 more, a goal of putting 60–70% of memory capacity under such agreements by 2030, and price floors on the agreements already signed. That briefing is earlier than this window. It is not a new 21 Nov guide. Wccftech’s 21 Nov article is a rewrite of this report: https://wccftech.com/samsungs-memory-production-reportedly-almost-fully-booked-through-2029-as-customers-seek-supply-deals-until-2031/",
   "url": "https://www.economytribune.co.kr/news/articleView.html?idxno=3904497",
   "src": "Economy Tribune, entered 2026-11-21 12:54 (zone not printed; reported, not Samsung guidance)"
+ },
+ {
+  "date": "2026-11-20",
+  "layer": "power",
+  "headline": "Spain’s Council of Ministers approves Royal Decree 1032/2026: data centers of at least 10 MW must cover 80 percent of electricity with renewable supply, matched each hour",
+  "detail": "Royal Decree 1032/2026, of 20 Nov 2026. The preamble says the Council of Ministers deliberated on 20 Nov 2026. The BOE consolidated page read for this item says the decree was published in BOE no. 290 on 21 Nov 2026 and entered into force on 22 Nov 2026, the day after publication, which is also what the final provision says. That page says the consolidated text is informative and is not itself the official legal text. It also says the initial text was published on 21 Nov 2026 and that this consolidation’s last update is that same publication. Article 7 requires the operator to show that it covers 80 percent of total consumption by self-consumption under Royal Decree 244/2019, or by one or more long-term contracts to buy renewable electricity from producers, and storage, located in Spain. Article 11 says such a contract has a minimum term of six years, and that a hedge on an organized market whose renewable origin is shown only by guarantees of origin does not qualify. The generating plant’s commissioning record must be no more than 36 months before the data center enters service, or before the first use of that energy. The decree states exceptions, including photovoltaic plants that did not already have such a contract when the decree entered into force, certain repowering, and plants in categories b.6, b.7 and b.8 of Royal Decree 413/2014 that have finished their regulated life. Article 8 requires that electricity consumed in each hour is backed, at least 80 percent, by an equivalent volume of renewable electricity generated in that same hour. The 80 percent figures are the decree’s. They apply to data centers whose access capacity is at least 10 MW, and to groups at the same site and under the same owner that together reach 10 MW. The threshold is access capacity, not IT load. Article 5’s digital-sovereignty conditions, for high-category public information systems, apply whatever the size. The 80 percent hourly rule is not a general phase-in. For five years from entry into force, a center may instead meet a narrower hourly test if it joins the automatic power-reduction system and can be cut to zero consumption on the system operator’s signal. Until 31 Dec 2028 that alternative is 60 percent of the energy consumed in each P1 toll hour. From 1 Jan 2029 to the end of the five years it is 70 percent of each P1 hour and 60 percent of each P2 hour. Only a center that enters service before 31 Dec 2030 may use it. If the center leaves that system or breaks its rules, the system operator may disconnect it for the time strictly necessary. A further provision treats the additionality and hourly rules as met once the national renewable share has exceeded 90 percent in year n-2, and then caps annual hours of grid consumption. Data Center Dynamics on 23 Nov 2026 described a general path of 60 percent, then 70 percent in 2029, reaching 80 percent in 2032. That path is not Article 8 and it is not the first transitional provision. The decree’s dates of 31 Dec 2031 and 1 Jan 2032 sit in the eighth transitional provision, and they concern a power-usage effectiveness of 1.25 or lower for centers that signed a grid-access contract before 1 Jan 2029. They are not a renewable-share schedule. Until the European label applies, the sixth transitional provision treats the efficiency rules as met at a power-usage effectiveness of 1.25 or lower and a water-usage effectiveness of 0.1 or lower. The energy figure is due two years after the center enters service, and the water figure after one year. The ministry’s note the same day quotes Sara Aagesen that, without this decree, the impact on bills would be 5,000 million euros, and that one scenario would have industrial consumers pay 25 percent more for electricity. Those are her estimates. They are not a sum stated in the decree. The same Council approved a separate, binding transmission plan through 2030. The Council reference says it is tied to investment of more than 17,000 million euros: 15,133 million for the national transmission grid and 2,010 million for international interconnections. It says the plan would accommodate 47 GW of new electricity demand, 193 substation parks, 6,707 kilometres of new lines, and higher capacity on 8,164 kilometres of existing lines. A 9.3 GW figure for data centers was not in that Council reference and is not used. Dollar conversions in the Data Center Dynamics article are not used. Council reference: https://www.lamoncloa.gob.es/consejodeministros/referencias/paginas/2026/20261120-referencia-rueda-de-consejo-ministros-ext.aspx. Ministry note: https://www.miteco.gob.es/es/prensa/ultimas-noticias/2026/noviembre/el-gobierno-aprueba-el-real-decreto-para-la-sostenibilidad-energ.html. Data Center Dynamics: https://www.datacenterdynamics.com/en/news/spain-approves-decree-on-data-centers-to-curb-electricity-costs/",
+  "url": "https://www.boe.es/eli/es/rd/2026/11/20/1032",
+  "src": "BOE consolidated text of Royal Decree 1032/2026, approved 2026-11-20, published in BOE no. 290 on 2026-11-21, in force 2026-11-22; Council of Ministers reference, 2026-11-20; Ministry for the Ecological Transition note, 2026-11-20; Data Center Dynamics, 2026-11-23"
  },
  {
   "date": "2026-11-20",
@@ -430,106 +464,6 @@ whatsNewThisWeek: [
   "detail": "TrendForce, 18 Nov 2026, citing Chosun Biz. Reported, not Google or Broadcom guidance. The article says Google is reportedly moving toward direct purchases of HBM for its TPUs, away from a bundled arrangement with Broadcom that covered TPU design, packaging, and HBM procurement, and that Google is reportedly also diversifying TPU supply through MediaTek. It cites a Bernstein analysis for lower intermediary markups versus that bundled model. A section heading attributes a potential US$50 billion saving to Bernstein; the paragraphs reviewed state the Bernstein point as lower markups and design-partner margins, not as a Google figure. No Google or Broadcom statement is quoted.",
   "url": "https://www.trendforce.com/news/2026/11/18/news-google-reportedly-eyes-direct-hbm-purchases-for-tpus-reducing-broadcom-related-costs/",
   "src": "TrendForce, 2026-11-18 (reported, citing Chosun Biz; not company guidance)"
- },
- {
-  "date": "2026-11-17",
-  "published_at": "2026-11-17T16:20:00-05:00",
-  "layer": "semis",
-  "headline": "NVIDIA Q3 FY27: revenue $115.8B (+103% y/y); Data Center $107.6B; Vera Rubin NVL72 has shipped; Q4 outlook $130.0B ±3%; call says licensed Hopper shipments to China have stopped",
-  "detail": "NVIDIA newsroom, also on GlobeNewswire at 17 Nov 2026, 4:20 p.m. ET. Quarter ended 25 Oct 2026. Revenue was $115.8 billion, up 20% from the previous quarter and up 103% from a year ago. Data Center revenue was $107.6 billion, up 21% sequentially and up 110% from a year ago. SEC CFO commentary splits that Data Center total into Hyperscale $60.1 billion (up 23% q/q and 71% y/y) and AI Clouds, Industrial, & Enterprise $47.5 billion (up 18% q/q and 195% y/y); those two lines add up to the $107.6 billion and are not extra. The release says Vera Rubin NVL72 has shipped, and that NVIDIA ramped production and began shipping it, calling that the fastest product ramp in the company’s history. Q4 FY27 outlook, which includes an additional week: revenue is expected to be $130.0 billion, plus or minus 3%. NVIDIA is not assuming any Data Center compute revenue from China. GAAP and non-GAAP gross margins are expected to be 71.0% to 72.0%. SEC CFO commentary says shipments of Data Center Hopper products to China during the quarter were $2.4 billion. It also says supply commitments increased from $279 billion last quarter to $390 billion, primarily multi-year memory procurement. The same commentary’s commitments table, as of 25 Oct 2026, totals $518 billion: supply and capacity $390 billion, cloud service agreements $28 billion, data-center leases not yet commenced $74 billion, equity investments $20 billion, and capital expenditures $6 billion. That $518 billion is the table total. It is not a commitment to smaller AI cloud providers. A separate line, “Neocloud agreements,” is $32 billion. The commentary says those commitments take effect only if the neoclouds secure financing and the capacity is deployed, made operational, and accepted by NVIDIA, and that the line was formerly called “AI cloud agreements.” The same commentary’s guarantee table lists maximum gross exposure of $118.0 billion: neocloud land, power, and shell guarantees $3.5 billion, SB Energy credit-support guarantees $105.0 billion, and power and systems credit-support guarantees $9.5 billion. The $105 billion line is the credit support for approximately 4.25 GW across nine buildings at SB Energy’s PORTS-Pike campus in Ohio, under 20-year leases to OpenAI, taking effect building by building when each building is completed and ready for service, with the first expected in fiscal 2029. On the 17 Nov earnings call, interim CEO Colette Kress said: “Q3 sales of licensed Hopper data center products to China was $2.4 billion. Our guidance does not have any licensed Hopper data center products included, and we are no longer shipping licensed Hopper data center products to China.” Reuters, published 18 Nov 2026, 4:16 a.m. (zone not printed on the Investing.com page), reports that quote and says she did not explain why shipments stopped or whether the halt is permanent (https://www.investing.com/news/stock-market-news/nvidia-stops-shipping-usapproved-ai-chips-to-china-5035204). The written SEC commentary states the $2.4 billion of shipments and that the outlook assumes no Data Center compute revenue from China; it does not itself say that shipments have stopped. A CNBC transcript of a Mad Money interview, published 18 Nov 2026, 1:07 p.m. EST, and labeled edited for clarity, quotes Kress: “we are no longer shipping H200 at all, let alone not shipping it to China” (https://www.cnbc.com/2026/11/18/nvidia-interim-ceo-colette-kress-talks-earnings-china-transcript.html). That line names H200 and says shipping has stopped entirely, which is broader than the call’s “to China” wording. Other dollar figures in that edited interview are not used here where they differ from the SEC commentary. The release also says NVIDIA announced an agreement to acquire Hugging Face; no price is stated. CFO commentary: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
-  "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
-  "src": "NVIDIA newsroom and GlobeNewswire, 2026-11-17 4:20 p.m. ET; SEC CFO commentary; Reuters, 2026-11-18; CNBC edited transcript, 2026-11-18 1:07 p.m. EST"
- },
- {
-  "date": "2026-11-17",
-  "layer": "semis",
-  "headline": "Microsoft: Azure Cobalt 200 VMs are generally available; Maia 300 is not a new announcement",
-  "detail": "Microsoft Azure blog, 17 Nov 2026 (Rani Borkar and Arun Kishan): general availability of Azure Cobalt 200 VMs, announced that day at Ignite 2026. Microsoft says they deliver up to 50% better performance than Cobalt 100, are available in 14 regions, and will expand to 23 regions by the end of 2026. The blog says they will represent a significant share of new Azure Compute capacity beginning in 2027. The SoC is on TSMC’s 3nm process with 132 Arm Neoverse V3 cores. Microsoft’s own benchmarks versus Cobalt 100 include up to 1.5 times for AI agent tool execution. Satya Nadella’s Ignite remarks the same day refer to Maia 300 and “40 percent more tokens per watt” versus leading GPU-based systems (https://blogs.microsoft.com/blog/2026/11/17/ignite-2026-building-the-frontier-ecosystem/). That chip is not new. Microsoft’s 12 Oct 2026 blog already announced Maia 300, including 40% more tokens per megawatt versus leading GPU-based systems, with production deployments beginning in 2027 (https://blogs.microsoft.com/blog/2026/10/12/microsoft-to-expand-azure-maia-system-to-multi-gigawatt-deployments/).",
-  "url": "https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/",
-  "src": "Microsoft Azure blog, 2026-11-17; Maia 300 first announced on the Microsoft blog, 2026-10-12"
- },
- {
-  "date": "2026-11-17",
-  "published_at": "2026-11-17T17:39:00-05:00",
-  "layer": "power",
-  "headline": "Politico: TCEQ issued an air permit Monday for SpaceX’s Rio Grande Valley data center and gas plant",
-  "detail": "Politico, 17 Nov 2026, 5:39 p.m. ET. Politico reports that Texas environmental regulators issued an air pollution permit on Monday, 16 Nov 2026, for SpaceX’s planned data center and gas-fired power plant in the Rio Grande Valley, and that the agency said it has resumed permitting of supercomputing facilities after Gov. Greg Abbott’s September pause. Politico says a copy of the permit, obtained by FracTracker Alliance through a public records request and shared with Politico, approves 35 natural-gas turbines producing 750 megawatts at a 444-acre site. Those equipment figures are Politico’s account of that copy; the TCEQ permit record was not opened for this item. Politico describes the project as the $24 billion plan. That dollar figure is not stated here as a term of the permit. The story’s mention of the incoming governor is not treated as a cancellation or delay of the project.",
-  "url": "https://www.politico.com/news/2026/11/17/texas-issues-air-permit-for-massive-spacex-data-center-01170758",
-  "src": "Politico, 2026-11-17 5:39 p.m. ET"
- },
- {
-  "date": "2026-11-17",
-  "published_at": "2026-11-17T16:24:00-06:00",
-  "layer": "power",
-  "headline": "Texas Tribune: TCEQ says it has resumed normal environmental-permit review for data centers",
-  "detail": "Texas Tribune, 17 Nov 2026, 4:24 p.m. Central. TCEQ spokesperson Laura Lopez, in a written statement: “The agency has resumed its normal permit review process and will evaluate applications under all applicable state and federal laws and regulations.” The Tribune says TCEQ received notice on Friday from Gov. Greg Abbott’s office that ERCOT had finished gathering information on potential community impacts from data centers. This is a resumption of review, not an approval of any named project, and it is not enacted legislation. The election result is not used here as a site cancellation, delay, or approval. Public Citizen’s Kathryn Guerra said agency leadership “has begun unilaterally issuing data center permits”; that is the group’s statement, not the TCEQ quote.",
-  "url": "https://www.texastribune.org/2026/11/17/tceq-environmental-data-center-permits-resume/",
-  "src": "The Texas Tribune, 2026-11-17 4:24 p.m. Central"
- },
- {
-  "date": "2026-11-17",
-  "layer": "cool",
-  "headline": "Ecolab launches an open liquid-cooling ecosystem at SC26 with Siemens, Alfa Laval and Dassault",
-  "detail": "Ecolab investor release, 17 Nov 2026 (Business Wire): at SC26 the company launched an open AI-infrastructure ecosystem. Partners named in the release are Siemens, for power distribution and intelligent infrastructure; Alfa Laval, for heat exchangers, pumps and valves, tied to the CoolIT CHx 3000 CDU initiative; and Dassault Systèmes, for a virtual-twin cooling-loop model linking the technology cooling system and the facility water system. A separate Ecolab release dated 16 Nov 2026 describes the CoolIT CHx 3000 as a 3-megawatt coolant distribution unit with Ecolab 3D TRASAR, and says Global High-Tech annualized sales, including Ovivo and CoolIT, are approaching $1.5 billion in 2026, with a company target of $4 billion in annual High-Tech sales by 2030 and operating-income margins of 25% (https://www.ecolab.com/en-us/media-center/news/ecolab-unveils-first-of-its-kind-integrated-cooling-platform-to-unlock-the-next-generation-of-ai). The $4 billion figure is a company target, not a result.",
-  "url": "https://investor.ecolab.com/news/news-details/2026/Ecolab-Launches-Premier-Liquid-Cooling-Ecosystem-to-Shape-the-Industrys-Most-Efficient-AI-Infrastructure/default.aspx",
-  "src": "Ecolab, 2026-11-17; CoolIT CHx 3000 specification in the Ecolab release dated 2026-11-16"
- },
- {
-  "date": "2026-11-17",
-  "layer": "memory",
-  "headline": "TrendForce: Samsung is reportedly developing custom HBM4E for Meta on a 2nm base die",
-  "detail": "TrendForce, 17 Nov 2026, citing The Bell and industry sources. Reported, not Samsung or Meta guidance. The report says the product would be custom HBM for Meta’s in-house AI chips, based on seventh-generation HBM4E, with Meta-specific functions in the base die, which Samsung reportedly plans to manufacture on its own foundry’s 2nm process. TrendForce also says Samsung is reportedly developing custom base dies on both 2nm and 4nm. No Samsung or Meta statement is quoted. Digitimes carried the same report the same day (https://www.digitimes.com/news/a20261117PD225/samsung-hbm-meta-2nm-nvidia.html).",
-  "url": "https://www.trendforce.com/news/2026/11/17/news-samsung-reportedly-developing-custom-hbm4e-for-meta-plans-2nm-base-die-production/",
-  "src": "TrendForce, 2026-11-17 (reported, citing The Bell; not company guidance)"
- },
- {
-  "date": "2026-11-17",
-  "layer": "capex",
-  "headline": "Giga Energy: 10-year, $1B lease with an unnamed AI cloud for a 60 MW Hunt County campus",
-  "detail": "Giga Energy, 17 Nov 2026. The company says it signed a 10-year, $1 billion lease with an undisclosed U.S.-based AI cloud provider for Project Clay, a 60 MW GigaBase campus in Hunt County, Texas, on about 30 acres. Giga says it broke ground in July and that the campus will be ready for service in spring 2027. The release says IT cooling is a closed loop that does not use municipal or groundwater, and that the build is expected to create about 300 construction jobs and 24 permanent full-time roles. The customer is not named. Ready-for-service timing is the company’s statement.",
-  "url": "https://www.gigaenergy.com/news/giga-news-hunt-county-deal",
-  "src": "Giga Energy, 2026-11-17"
- },
- {
-  "date": "2026-11-17",
-  "published_at": "2026-11-17T17:00:38+00:00",
-  "layer": "power",
-  "headline": "Ohio Capital Journal: a leaked draft, not introduced and not law, would widen who counts as a public utility",
-  "detail": "Ohio Capital Journal, published 17 Nov 2026, 17:00:38 UTC, a republication of a WEWS / News 5 Cleveland story by Morgan Trau. This is a leaked draft. The article does not give a bill number and does not say the bill has been introduced or enacted. The draft text quoted in the story would add, to the definition of “public utility,” “an agency holding a certificate of environmental compatibility and public need from the power siting board for constructing an electric transmission line and associated facilities or gas pipeline and its associated facilities.” The story says legal experts believe a transmission developer may then be able to seize land to power or place a data center. The quoted addition does not name data centers and does not give data-center operators eminent domain directly. The story also says the draft would change the appraisal process so construction can begin before a compensation fight ends; the Ohio Farm Bureau calls that a quick take, and the Ohio Business Roundtable calls a related idea “deposit and build.” Incoming Senate President Bill Reineke, who the story says is working on the bill, said it “would not extend eminent domain to anyone who doesn’t already have that privilege.” Roundtable spokesperson Alexandra Denney said expanding eminent domain to anyone who does not already have it is not the Roundtable’s intent. Election results mentioned in the story are not treated here as a cancellation or delay of any project.",
-  "url": "https://ohiocapitaljournal.com/2026/11/17/leaked-bill-could-allow-ohio-data-centers-to-seize-land/",
-  "src": "Ohio Capital Journal (WEWS / News 5 Cleveland), published 2026-11-17 17:00:38 UTC"
- },
- {
-  "date": "2026-11-17",
-  "layer": "semis",
-  "headline": "Architect, Luxor and Hyperbolic: first OTC put on NVIDIA B200 rental prices, about $5 million notional",
-  "detail": "Luxor and Architect joint release, San Francisco, 17 Nov 2026, and Hyperbolic’s own post the same day. Architect designed the hedge with Hyperbolic through its CFTC-registered introducing-broker affiliate. Luxor, as swap counterparty, priced and executed a put on the rental price of NVIDIA B200 GPUs. The option settles against the Silicon Data B200 Rental Price Index (SDB200RT), with monthly cash settlement over a one-year term, and hedges approximately $5 million notional of Hyperbolic’s future B200 rental revenue. Hyperbolic says the option pays if B200 rental prices fall below the agreed level. The strike is not disclosed. The releases call it the first OTC option on GPU rental prices. No exchange-listed contract is claimed; Hyperbolic says exchange-listed compute futures are still on hold. Hyperbolic post: https://www.hyperbolic.ai/blog/first-otc-gpu-option",
-  "url": "https://luxor.tech/news/corporate-news/article/luxor-architect-hyperbolic-first-otc-option-gpu-rental-prices",
-  "src": "Luxor and Architect release, 2026-11-17; Hyperbolic, 2026-11-17"
- },
- {
-  "date": "2026-11-17",
-  "layer": "memory",
-  "headline": "Maeil Business: Samsung and Apple are near a 4–5 year DRAM supply agreement (reported)",
-  "detail": "Maeil Business Newspaper, 17 Nov 2026. Reported, not an Apple or Samsung announcement. The paper, citing the semiconductor industry, says the companies are finalizing a long-term DRAM agreement that would run four to five years from the first half of next year, with a floor on volume and prices set later from market conditions. It says the DRAM is for consumer products such as the iPhone and MacBook, not an AI-data-center supply contract. The stated link to data centers is the paper’s: memory makers are allocating capacity to server DRAM and HBM, tightening mobile DRAM. No volume, price, or dollar value is stated. Neither company is quoted confirming the agreement. TrendForce, 18 Nov 2026, repeats the Maeil account (https://www.trendforce.com/news/2026/11/18/news-samsung-apple-reportedly-finalizing-4-5-year-dram-lta-with-minimum-supply-commitment-starting-in-2027/).",
-  "url": "https://www.mk.co.kr/en/business/12211342",
-  "src": "Maeil Business Newspaper, 2026-11-17 (reported; not company guidance)"
- },
- {
-  "date": "2026-11-17",
-  "layer": "memory",
-  "headline": "TrendForce: commodity NAND spot prices down 20% in two weeks; enterprise SSD contracts still forecast up 15–20% in 4Q26",
-  "detail": "TrendForce, 17 Nov 2026. No clock is printed. TrendForce says NAND spot prices fell 20% in two weeks as Chinese traders cut inventory, and that GPU shortages have damped enterprise SSD demand in China. It separately forecasts enterprise SSD contract prices to rise 15%–20% quarter on quarter in the fourth quarter of 2026 even as commodity NAND spot prices slide. That split matters: the spot drop is not TrendForce’s forecast for AI-data-center SSD contracts. The same article cites Seoul Economic Daily, which cites Bank of America, for 512Gb wafer prices down 32% quarter on quarter to $14.30 and 1Tb products down 19% to $24.90. Those are the bank’s figures, as relayed. Seoul Economic Daily, again citing Bank of America, says smartphone and PC NAND contract prices could fall 5%–10% quarter on quarter in the first quarter of 2027, while enterprise-grade products may hold steady or edge higher. A “0–5%” early-2027 contract dip was not in this article and is not used. TrendForce’s own 2027 comment is that weak demand outside North America and in consumer markets could limit suppliers’ pricing power, and that YMTC’s push for bit share may limit price increases in early 2027. That is a forecast, not a result.",
-  "url": "https://www.trendforce.com/news/2026/11/17/news-nand-spot-prices-reverse-course-sliding-20-in-2-weeks-amid-weak-consumer-demand-ymtc-competition/",
-  "src": "TrendForce, 2026-11-17; Bank of America figures via Seoul Economic Daily, as cited by TrendForce"
- },
- {
-  "date": "2026-11-17",
-  "layer": "power",
-  "headline": "Alberta Utilities Commission approves the Beacon AI Centers Indus thermal plant, 1,494 MW, with conditions",
-  "detail": "Alberta Utilities Commission Decision 30524-D01-2026, issued 17 Nov 2026. No clock is printed. The Commission approved, with conditions, the application from Indus Power Generation LP, by its general partner Northbridge Power GPC Inc., to construct and operate the Beacon AI Centers – Indus Project thermal power plant. The decision says total generating capability is 1,494 MW. The configuration in the decision is 100 INNIO Jenbacher J624 engines of 4.6 MW, and 12 Siemens SGT-800 turbines of 61.2 MW with heat-recovery steam generators supplying four 75 MW Siemens SST-500 steam turbines, in four combined-cycle units of three gas turbines and one steam turbine. Approximately 1,200 MW is intended to supply the co-located, on-site data centre campus under normal operating conditions. The plant is about three kilometres east of Calgary and two kilometres northwest of Indus, on land the decision says Rocky View County designated for a data centre campus and power generation. The plant’s 45-acre footprint is described as sitting in the northwest of a broader 627-acre campus boundary. This is approval of the power plant. It is not a statement that data-centre halls are built or energized. The pages used here do not state a commercial operation date. Decision text: https://prd-api-efiling20.auc.ab.ca/Anonymous/DownloadPublicDocumentAsync/864900",
-  "url": "https://www.auc.ab.ca/featured/beacon-ai-centers-indus-project-thermal-power-plant/",
-  "src": "Alberta Utilities Commission Decision 30524-D01-2026, issued 2026-11-17"
  },
 ]
 
