@@ -1,7 +1,7 @@
 // AI Datacenter Dashboard data. Every figure carries source/url/asOf. null = TBD (not invented).
 window.AIDC = {
-updated: "2026-11-27",
-updated_sgt: "27 Nov 2026, 8:26 AM",
+updated: "2026-11-28",
+updated_sgt: "28 Nov 2026, 8:26 AM",
 sources: {
  cnbcCapex:{t:"CNBC — Microsoft, Google hold capex forecasts",u:"https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html",d:"2026-10-29"},
  luminix:{t:"Luminix — Hyperscaler Capex Q3 2026 (compiles company guidance)",u:"https://www.useluminix.com/reports/industry-analysis/hyperscaler-capex-q3-2026/source/4",d:"2026-10-30"},
@@ -99,8 +99,8 @@ layers: [
   segs:[["Compute","Servers & accelerators — largest share"],["Facilities","Shells, power, cooling (incl. leases)"],["MW buildout","GW-scale campuses; MW totals TBD per company"]],
   cos:[["AMZN","Amazon / AWS","~$220B 2026"],["GOOGL","Alphabet","$195–205B"],["MSFT","Microsoft","~$170B CY26"],["META","Meta","$135–145B"],["ORCL","Oracle","$90–95B FY27"],["SPCX","SpaceX (incl. xAI)","~$83–88B CY26 implied"]]}
 ],
-whatsNewWeekOf: "2026-11-21",
-whatsNewUpdated: "2026-11-27 8:26 AM SGT",
+whatsNewWeekOf: "2026-11-22",
+whatsNewUpdated: "2026-11-28 8:26 AM SGT",
 whatsNewEmpty:"No material CapEx/TAM changes since Q3 calls (29–30 Oct 2026).",
 
 comingUp: [
@@ -226,8 +226,62 @@ comingUp: [
   "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-to-Report-Fiscal-First-Quarter-Results-on-December-17-2026/default.aspx"
  }
 ],
-// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (21–27 Nov 2026). url stays null only when a link is not verified.
+// Array shape {date, headline, detail?, url?, layer?, src?} — aggregated by master dashboard. Optional published_at / published_clock are real publication clocks only. The array is the rolling window as of the SGT stamp (22–28 Nov 2026). url stays null only when a link is not verified.
 whatsNewThisWeek: [
+ {
+  "date": "2026-11-27",
+  "published_at": "2026-11-27T13:00:00-05:00",
+  "layer": "memory",
+  "headline": "SanDisk closed up 15.96% and Micron up 7.60% on 27 Nov (market data)",
+  "detail": "Market data, not company guidance, and not a finding that NAND or DRAM demand changed. Yahoo Finance’s history page for SanDisk shows the 27 Nov 2026 close at $85.36, up $11.75, or 15.96%, at 1:00:00 p.m. EST. After-hours on that page is $85.40 at 4:59:58 p.m. EST. The table prints an open of $79.92, a high of $85.44, a low of $77.10, and volume of 97,928,204. The table that loaded then jumps to 19 Nov and does not print 21–26 Nov, so the prior session is not named from that table. The $11.75 change is Yahoo’s. The Motley Fool, 27 Nov 2026, 4:48 p.m. EST, prints the same close, $85.36, up $11.75, or 15.96%, as of 1:00 p.m. ET, and says memory stocks rebounded from an AI-driven sell-off. On the same page the Fool says Western Digital closed at $292.11, up 7.22%, and Seagate at $509.66, up 7.90%. Those are the Fool’s closes. Yahoo Finance’s history page for Micron shows the 27 Nov 2026 close at $646.95, up $45.70, or 7.60%, at 1:00:01 p.m. EST. After-hours on that page is $645.66. The Micron table prints the 25 Nov close at $601.25. $646.95 minus $601.25 is $45.70, which matches Yahoo’s change line. The 23 Nov close in that table is $707.70, the same print already in the 23 Nov Micron item. No SanDisk or Micron demand statement dated 27 Nov was opened. Micron history: https://finance.yahoo.com/quote/MU/history/. The Motley Fool: https://www.fool.com/coverage/stock-market-today/2026/11/27/stock-market-today-nov-27-sandisk-surges-16-as-memory-stocks-rebound-from-ai-driven-selloff/",
+  "url": "https://finance.yahoo.com/quote/SNDK/history/",
+  "src": "Yahoo Finance close, 2026-11-27 1:00:00 p.m. EST (SanDisk) and 1:00:01 p.m. EST (Micron); The Motley Fool, 2026-11-27 4:48 p.m. EST (market data, not company guidance)"
+ },
+ {
+  "date": "2026-11-27",
+  "published_at": "2026-11-27T06:45:00-05:00",
+  "layer": "semis",
+  "headline": "Bloomberg: a GB300 NVL72 at Shanghai’s Yangtze River Delta Project was pledged for a 96 million yuan loan (reported)",
+  "detail": "Bloomberg, Andy Lin, Mackenzie Hawkins, and Kari Soo Lindberg, 27 Nov 2026, 6:45 a.m. EST, updated 2:18 p.m. EST. Reported. The page that loaded is the opening of the article. It says a pair of Chinese firms installed Nvidia’s Blackwell semiconductors in a Shanghai data center linked to Alice Huang. It says the gear at the Yangtze River Delta Project included a GB300 NVL72 rack, among Nvidia’s most powerful products, according to a serial number in documents submitted to Chinese regulators in November. It says Shanghai Shuoyao offered the hardware as collateral for a 96 million yuan ($14 million) loan from Shanghai Innovation Bank, according to filings from the lender that Bloomberg reviewed. The rest of the Bloomberg article did not load. Engadget, Igor Bonifacic, 27 Nov 2026, 2:45 p.m. EST, citing Bloomberg, says the documents also mention a GB200 at the same project, that Bloomberg traced the GB300 serial through a public warranty database to Gigabyte Technology, and that Gigabyte declined to name the original buyer. Engadget quotes Gigabyte: it “conducts all business in compliance with applicable laws and regulations,” and “all transactions are subject to our internal compliance requirements and the relevant laws and regulations in effect at the time.” Engadget says Shanghai Shuoyao described its relationship with Megaspeed as “limited to ordinary commercial cooperation,” that Bloomberg notes it does not have evidence Megaspeed directly diverted the chips, that the company denies wrongdoing, and that Nvidia did not immediately respond to Engadget. Those sentences are Engadget’s account of Bloomberg. They are not a finding that a named shipment violated a license. GuruFocus, on Yahoo Finance, 27 Nov 2026, 11:52 a.m. EST, citing Bloomberg, says Shanghai Kezhan listed a GB200 server at the site in paperwork for a 90 million yuan loan it received in late 2025, from a leasing firm owned by a Shanghai government agency. That yuan figure is not in the Bloomberg opening that loaded, so it is GuruFocus’s account. The same day’s Nvidia close is a separate print. Yahoo Finance’s history page shows the 27 Nov close at $150.49, up $1.19, or 0.80%, at 1:00:00 p.m. EST. The same table prints the 25 Nov close at $149.30. $150.49 minus $149.30 is $1.19, which matches Yahoo’s change line. The table’s 27 Nov range is $145.39 to $151.98. After-hours on that page was $149.80. Investor’s Business Daily, Patrick Seitz, 27 Nov 2026, 1:21 p.m. ET, says Nvidia rose 0.8% to close at 150.49, reversing earlier losses, and ties that session to curtailed sales in Southeast Asia and Huang’s coming testimony. The IBD text that loaded does not mention the Shanghai collateral. The 0.80% is not stated here as the effect of the Bloomberg report. Engadget: https://www.engadget.com/2329748/restricted-nvidia-chips-were-installed-at-a-chinese-data-center-linked-to-alice-huang/. GuruFocus via Yahoo: https://finance.yahoo.com/technology/articles/nvidia-fans-just-got-worrying-165257509.html. NVDA history: https://finance.yahoo.com/quote/NVDA/history/. IBD: https://www.investors.com/news/technology/nvidia-stock-jensen-huang-testimony/",
+  "url": "https://www.bloomberg.com/news/articles/2026-11-27/nvidia-blackwell-chips-turn-up-at-china-site-tied-to-alice-huang",
+  "src": "Bloomberg, 2026-11-27 6:45 a.m. EST, updated 2:18 p.m. EST (opening loaded; reported); Engadget, 2026-11-27 2:45 p.m. EST, citing Bloomberg; Yahoo Finance NVDA close, 2026-11-27 1:00:00 p.m. EST; Investor’s Business Daily, 2026-11-27 1:21 p.m. ET (does not mention the Shanghai collateral)"
+ },
+ {
+  "date": "2026-11-27",
+  "published_at": "2026-11-27T05:00:00+09:00",
+  "layer": "power",
+  "headline": "Nikkei and Reuters: JERA is in talks with Anthropic, Meta, Amazon, Microsoft and Google on plant-side data centers near Tokyo (reported)",
+  "detail": "Reported talks, not a signed lease and not a new spending guide. Nikkei, 27 Nov 2026, 5:00, the portion that loaded before the paywall, says it had become known by the 27th that JERA is negotiating with Anthropic, Meta and other major US technology companies to attract them to data centers JERA is developing in the greater Tokyo area, aiming to reach agreement by using plant-integrated sites where power can be used directly. The same opening says JERA has also entered talks with Amazon, Microsoft and Google, and names Yukio Kani as chairman and global CEO before the text cuts off. Reuters, via Deccan Herald, published 27 Nov 2026, 6:07 IST, says Nikkei reported on Friday that JERA has entered talks with Anthropic, Meta and other US tech giants to build data centers near power plants in the Tokyo area, and that Kani said in a recent interview that the group is also in discussions with Amazon, Microsoft and Google. Reuters says JERA, Anthropic, Meta, Amazon, Microsoft and Google did not immediately respond to requests for comment. The $15 billion hyperscale data centre in Chiba that Reuters mentions is the October partnership with Dell Technologies and RHAELM, which is before this window. Data Center Dynamics, 27 Nov 2026, no clock printed, says the potential agreements would likely follow that October script: a behind-the-meter data center at the Chiba Thermal Power Station, planned at 400 MW, expected to commence operations in 2028, with an estimated $15 billion across all phases. Those capacity, year, and dollar figures are DCD’s account of the October project, not terms of the 27 Nov talks. DCD quotes Kani: “We'll develop standard models capable of supporting a wide range of applications by clients and deploy them at multiple thermal power plants.” The 27 Nov stories that loaded do not print an 8-to-10-year grid wait. No project is treated as approved or delayed. Deccan Herald: https://www.deccanherald.com/business/japans-jera-in-talks-with-us-tech-giants-to-build-data-centres-near-tokyo-power-plants-4232950. DCD: https://www.datacenterdynamics.com/en/news/japans-jera-in-talks-with-us-hyperscalers-to-colocate-data-centers-at-thermal-power-plants-in-japan/",
+  "url": "https://www.nikkei.com/article/DGXZQOUC218DJ0R21C26A0000000/",
+  "src": "Nikkei, 2026-11-27 5:00 (paywalled after the opening; reported); Reuters via Deccan Herald, published 2026-11-27 6:07 IST; Data Center Dynamics, 2026-11-27 (no clock; October Chiba figures are not the 27 Nov terms)"
+ },
+ {
+  "date": "2026-11-26",
+  "published_at": "2026-11-26T12:03:00-08:00",
+  "layer": "semis",
+  "headline": "FT and the Journal, as Reuters and TechCrunch report them: Nvidia told Dell and Super Micro to pause server shipments to four Southeast Asian countries (reported)",
+  "detail": "Reported. It is not an Nvidia, Dell, or Super Micro release. This is a later account than the 21 Nov Nikkei item, which is now outside this window. That report said at least two unnamed server partners had suspended Southeast Asia shipments. It did not say Nvidia had instructed Dell and Super Micro. TechCrunch, Connie Loizos, 26 Nov 2026, 12:03 p.m. PST, citing The Wall Street Journal, says Nvidia has told manufacturing partners, including Dell and Super Micro, to pause server shipments to Malaysia, Singapore, Thailand, and Indonesia for an unspecified period while it assesses whether regional partners meet US export requirements. TechCrunch says the Journal notes that the Institute for Progress estimates remote data centers like these supply about 24% of China’s AI computing power. That percentage is TechCrunch’s account of the Journal. Reuters, via Investing.com, published 27 Nov 2026, 9:15 a.m., updated 9:18 a.m., zone not printed, carries a 26 Nov dateline and says the Financial Times reported on Thursday that Nvidia has told manufacturing partners to stop shipping servers containing its chips to those four countries. Reuters says Dell and Supermicro told buyers Nvidia would not allow their orders to be shipped, that it was unclear whether the halt would be temporary, and that the newspaper cited three people familiar with the matter. Reuters says Nvidia, Dell and Supermicro did not immediately respond outside regular business hours. Quartz, updated 27 Nov 2026, no clock printed, citing The Wall Street Journal, says the pause has no set length and that there is a mechanism under which held shipments can be cleared later. The four country names are the reports’. Brazil, which is in the earlier Commerce rule, is not added by these halt reports. Reuters copy: https://www.investing.com/news/stock-market-news/nvidia-halts-server-shipments-to-four-southeast-asian-countries-ft-reports-5053574. Quartz: https://qz.com/nvidia-pauses-server-shipments-southeast-asia-export-controls-112726",
+  "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/",
+  "src": "TechCrunch, 2026-11-26 12:03 p.m. PST, citing The Wall Street Journal (reported); Reuters via Investing.com, published 2026-11-27 9:15 a.m. (zone not printed; 26 Nov dateline), citing the Financial Times; Quartz, updated 2026-11-27 (no clock), citing The Wall Street Journal"
+ },
+ {
+  "date": "2026-11-26",
+  "published_at": "2026-11-26T19:20:00+09:00",
+  "layer": "memory",
+  "headline": "Yonhap, citing the WSJ: Lee asked what more Musk could offer beyond a long-term memory purchase and a plant financing guarantee (reported)",
+  "detail": "Reported. Not a Samsung release, and not a new offer dated this week. Yonhap, filed 26 Nov 2026, 19:20, says The Wall Street Journal on the 25th, local time, described a scramble for memory chips, and that Elon Musk proposed a long-term purchase contract to Samsung and was met with Lee Jae-yong asking what more he could offer. Yonhap says Carl Kawaja, a portfolio manager at Capital Group, told a conference in June that he had discussed Tesla’s memory-chip problem with Musk. In that conversation, as Yonhap recounts it, Musk offered Samsung a long-term chip-purchase contract and then a financing guarantee for a new semiconductor-plant project, and Lee’s reply both times was that others were already making the same offer. The June conference is when Yonhap says the anecdote was told. It is not a November negotiation. Yonhap does not name HBM or DRAM as the product in that offer. A photograph caption on the page shows HBM4. That caption is not the offer. Yonhap, citing Citi analyst Peter Lee via the Journal, says suppliers and customers want binding contracts of up to five years, and that customers may have to prepay 25–30% or share the cost of a new plant. Those terms are Yonhap’s account of Citi, not Samsung guidance. The WSJ page was not opened. Asia Today’s English article, 27 Nov 2026, 10:54 a.m., zone not printed, says the WSJ reported on 27 Nov. That date is not used. Yonhap’s “25th, local time” is the date used for the Journal. Asia Today: https://en.asiatoday.co.kr/view.php?key=20261127001050563",
+  "url": "https://www.yna.co.kr/view/AKR20261126188000009",
+  "src": "Yonhap, filed 2026-11-26 19:20, citing The Wall Street Journal on the 25th local time (reported; the anecdote is from a June conference; the WSJ page was not opened)"
+ },
+ {
+  "date": "2026-11-26",
+  "published_clock": "2026-11-26T06:35:00",
+  "layer": "semis",
+  "headline": "Reuters: the Dutch trade minister says the Netherlands will ask Washington not to enforce the MATCH Act if it becomes law (bill, not law)",
+  "detail": "A bill, not a law, and not an ASML guidance cut. Reuters, Toby Sterling and Bart H. Meijer, Amsterdam dateline 26 Nov, via Investing.com, published 26 Nov 2026, 6:35 a.m., updated 8:12 p.m. The zone on those timestamps is not printed. Trade minister Sjoerd Sjoerdsma, in a parliamentary debate on Thursday, said: “We will not simply be told what to do. If the act is adopted, our message to the US administration will be to not enforce it.” Reuters says Congress is negotiating whether to adopt the bipartisan Multilateral Alignment of Technology Controls on Hardware, or MATCH Act, next month as part of the annual defence spending bill. It says the legislation would force allies including the Netherlands and Japan to adopt tougher export controls or face unilateral US restrictions on their equipment, including ASML’s immersion deep ultraviolet lithography tools. It says the Netherlands has opposed the MATCH Act on sovereignty grounds, and that Sjoerdsma is working with the European Commission, Germany and France to prevent its passage. It says ASML expects China to account for about 20% of this year’s sales and declined to comment on Thursday. A warning Reuters attributes to chief executive Christophe Fouquet is described as last week, before this item. Nothing in the story says the bill has been enacted.",
+  "url": "https://www.investing.com/news/stock-market-news/dutch-minister-says-us-chip-curbs-bill-would-hurt-europe-5052431",
+  "src": "Reuters via Investing.com, published 2026-11-26 6:35 a.m., updated 8:12 p.m. (zone not printed; bill, not law)"
+ },
  {
   "date": "2026-11-26",
   "published_at": "2026-11-26T08:22:43Z",
@@ -460,24 +514,6 @@ whatsNewThisWeek: [
   "url": "https://www.nationthailand.com/business/economy/40073777",
   "src": "The Nation, 2026-11-22 (draft decree; cabinet date not stated; not enacted)"
  },
- {
-  "date": "2026-11-21",
-  "published_at": "2026-11-21T05:04:00+09:00",
-  "layer": "semis",
-  "headline": "Nikkei: at least two Nvidia server partners have suspended Southeast Asia shipments (reported)",
-  "detail": "Nikkei Asia, 21 Nov 2026, 05:04 JST. Reported. The portion of the article that loaded says at least two of Nvidia’s server partners have suspended shipments to clients in Southeast Asia amid the latest U.S. export controls, and that Nikkei “has learned” this. It does not name the partners. Lianhe Zaobao’s English page, 22 Nov 2026, 20:03, zone not printed, is labeled an AI translation and cites Nikkei for further detail: an unnamed server manufacturer suspended all shipments from Friday, 20 Nov; another put deliveries on hold on advice from its legal department while it checks compliance; and one is also temporarily declining orders from new customers in the region. Zaobao quotes an unnamed executive on the risk of holding expensive GPU boards as inventory. Zaobao also says several suppliers said near-term projects were proceeding as usual, with demand and orders for the next two years largely unchanged, and that specifications and capacity planning face greater uncertainty from the second half of 2028. Those sentences are Zaobao’s translation of the Nikkei report, not a second survey and not Nvidia guidance. Zaobao says interim chief executive Colette Kress stressed that partnerships with customers and suppliers remained unaffected. That was her title in Zaobao’s 22 Nov account. The sentence is kept. NVIDIA’s newsroom post of 23 Nov 2026 says that after the board reinstated Jensen Huang, Kress continues as executive vice president and chief financial officer, and the board thanked her for her service as interim CEO. The 23 Nov release does not call her interim CEO. The underlying rule is the 19 Nov Federal Register item. Zaobao’s retelling names Singapore, Malaysia, Thailand, and Indonesia and does not mention Brazil, which is in the rule text already recorded. Zaobao: https://www.zaobao.com.sg/en/news/world/nvidia-suppliers-halt-shipments-southeast-asia-us-tightens-chip-controls",
-  "url": "https://asia.nikkei.com/business/technology/artificial-intelligence/nvidia-server-suppliers-halt-southeast-asia-shipments-over-us-curbs",
-  "src": "Nikkei Asia, 2026-11-21 05:04 JST (reported); Lianhe Zaobao English, 2026-11-22 20:03 (zone not printed; AI translation citing Nikkei)"
- },
- {
-  "date": "2026-11-21",
-  "published_clock": "2026-11-21T12:54:00",
-  "layer": "memory",
-  "headline": "Economy Tribune: most of Samsung’s 2027–2029 memory capacity is already under contract; some customers want 2031 (reported)",
-  "detail": "Economy Tribune, entered 21 Nov 2026, 12:54, updated 13:08. The zone is not printed. Reported, one person familiar with the matter, not a Samsung release. The paper says most of Samsung Electronics’ memory production capacity for 2027 through 2029 is already secured by contract, and that some customers are asking for volume beyond existing contracts and are pushing to extend agreements through 2031. The headline’s “사실상 완판” is the paper’s “effectively sold out.” The body says most of that capacity, not a Samsung percentage of the whole fleet. Citing industry sources, the paper says major memory makers currently meet only about 60–70% of demand, that 2027 commodity-DRAM wafer capacity is effectively sold out, and that DRAM bit-supply growth is expected to be limited to at most 20–25% a year. Those are the article’s industry estimates, not Samsung guidance. The paper also recalls Samsung’s 29 Oct third-quarter briefing: long-term agreements with 10 major customers, talks with 10 more, a goal of putting 60–70% of memory capacity under such agreements by 2030, and price floors on the agreements already signed. That briefing is earlier than this window. It is not a new 21 Nov guide. Wccftech’s 21 Nov article is a rewrite of this report: https://wccftech.com/samsungs-memory-production-reportedly-almost-fully-booked-through-2029-as-customers-seek-supply-deals-until-2031/",
-  "url": "https://www.economytribune.co.kr/news/articleView.html?idxno=3904497",
-  "src": "Economy Tribune, entered 2026-11-21 12:54 (zone not printed; reported, not Samsung guidance)"
- }
 ]
 
 };
