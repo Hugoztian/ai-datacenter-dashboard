@@ -23,7 +23,7 @@ function loadSites() {
 }
 
 const NOW = Date.parse("2026-11-07T04:39:00Z");
-const WINDOW = Date.parse("2026-11-27T00:26:00Z");
+const WINDOW = Date.parse("2026-11-28T00:26:00Z");
 
 test("shared feeds keep the master-dashboard export shape", () => {
   const window = loadData();
@@ -37,13 +37,14 @@ test("shared feeds keep the master-dashboard export shape", () => {
       assert.ok(["date", "headline", "detail", "url", "layer", "src", "published_at", "published_clock"].includes(key), key);
     }
   }
-  assert.equal(window.AIDC.updated_sgt, "27 Nov 2026, 8:26 AM");
-  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-21");
-  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-27 8:26 AM SGT");
-  assert.equal(window.AIDC.updated, "2026-11-27");
+  assert.equal(window.AIDC.updated_sgt, "28 Nov 2026, 8:26 AM");
+  assert.equal(window.AIDC.whatsNewWeekOf, "2026-11-22");
+  assert.equal(window.AIDC.whatsNewUpdated, "2026-11-28 8:26 AM SGT");
+  assert.equal(window.AIDC.updated, "2026-11-28");
   const items = window.AIDC.whatsNewThisWeek;
-  assert.equal(items.length, 29);
-  assert.ok(items.every((item) => item.date >= "2026-11-21" && item.date <= "2026-11-27"));
+  assert.equal(items.length, 33);
+  assert.ok(items.every((item) => item.date >= "2026-11-22" && item.date <= "2026-11-28"));
+  assert.equal(items.some((item) => item.date === "2026-11-21"), false);
   assert.equal(items.some((item) => item.date === "2026-11-20"), false);
   assert.equal(items.some((item) => item.date === "2026-11-19"), false);
   assert.equal(items.some((item) => item.date === "2026-11-18"), false);
@@ -86,7 +87,7 @@ test("shared feeds keep the master-dashboard export shape", () => {
   assert.match(nv.detail, /does not name the president/);
   assert.match(nv.detail, /service as interim CEO/);
   assert.match(nv.detail, /does not name the SEC/);
-  const sndk = items.find((item) => item.headline.startsWith("SanDisk closed"));
+  const sndk = items.find((item) => item.headline.startsWith("SanDisk closed down"));
   assert.equal(sndk.published_at, "2026-11-24T16:00:00-05:00");
   assert.match(sndk.detail, /11\.13%/);
   assert.match(sndk.detail, /\$77\.95/);
@@ -189,12 +190,55 @@ test("shared feeds keep the master-dashboard export shape", () => {
   assert.equal(items.some((item) => item.headline.includes("Inception")), false);
   assert.equal(items.filter((item) => item.headline.includes("CoreWeave")).length, 1);
   assert.equal(items.some((item) => item.headline.includes("AirTrunk")), false);
+  assert.equal(items.some((item) => item.headline.startsWith("Nikkei: at least two")), false);
+  assert.equal(items.some((item) => item.headline.startsWith("Economy Tribune:")), false);
+  assert.equal(items.some((item) => item.headline.includes("Amarillo")), false);
+  assert.equal(items.some((item) => item.headline.includes("Fermi")), false);
+  const mem = items.find((item) => item.headline.startsWith("SanDisk closed up"));
+  assert.equal(mem.date, "2026-11-27");
+  assert.equal(mem.layer, "memory");
+  assert.equal(mem.published_at, "2026-11-27T13:00:00-05:00");
+  assert.match(mem.detail, /15\.96%/);
+  assert.match(mem.detail, /\$85\.36/);
+  assert.match(mem.detail, /7\.60%/);
+  assert.match(mem.detail, /\$646\.95/);
+  assert.match(mem.detail, /not company guidance/);
+  const sh = items.find((item) => item.headline.startsWith("Bloomberg:"));
+  assert.equal(sh.date, "2026-11-27");
+  assert.equal(sh.published_at, "2026-11-27T06:45:00-05:00");
+  assert.match(sh.detail, /96 million yuan/);
+  assert.match(sh.detail, /\$14 million/);
+  assert.match(sh.detail, /not a finding that a named shipment violated a license/);
+  assert.match(sh.detail, /0\.80%/);
+  assert.match(sh.detail, /not stated here as the effect of the Bloomberg report/);
+  const jera = items.find((item) => item.headline.startsWith("Nikkei and Reuters:"));
+  assert.equal(jera.date, "2026-11-27");
+  assert.equal(jera.layer, "power");
+  assert.match(jera.detail, /do not print an 8-to-10-year grid wait/);
+  assert.match(jera.detail, /not terms of the 27 Nov talks/);
+  const sea = items.find((item) => item.headline.startsWith("FT and the Journal"));
+  assert.equal(sea.date, "2026-11-26");
+  assert.equal(sea.published_at, "2026-11-26T12:03:00-08:00");
+  assert.match(sea.detail, /Dell and Super Micro/);
+  assert.match(sea.detail, /not an Nvidia, Dell, or Super Micro release/);
+  assert.match(sea.detail, /now outside this window/);
+  const musk = items.find((item) => item.headline.startsWith("Yonhap, citing the WSJ:"));
+  assert.equal(musk.date, "2026-11-26");
+  assert.match(musk.detail, /June conference/);
+  assert.match(musk.detail, /does not name HBM or DRAM as the product/);
+  assert.match(musk.detail, /not Samsung guidance/);
+  const match = items.find((item) => item.headline.startsWith("Reuters: the Dutch"));
+  assert.equal(match.date, "2026-11-26");
+  assert.equal(match.published_at, undefined);
+  assert.match(match.detail, /not a law/);
+  assert.match(match.detail, /has been enacted/);
+  assert.equal(items.filter((item) => /Southeast Asia|Indonesia/.test(item.headline)).length, 1);
 });
 
 test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   const { AIDC } = loadData();
   const shown = logic.selectWhatsNew(AIDC.whatsNewThisWeek, WINDOW);
-  assert.equal(shown.length, 29);
+  assert.equal(shown.length, 33);
   assert.ok(shown.every((item) => logic.inRolling7(item.date, WINDOW)));
   for (let i = 1; i < shown.length; i++) assert.ok(shown[i - 1].date >= shown[i].date);
   assert.equal(logic.inRolling7("2026-11-01", NOW), true);
@@ -204,14 +248,20 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.equal(logic.isFresh({ date: "2026-11-06", published_clock: "2026-11-06T05:30:00" }, NOW), true);
   assert.equal(logic.isFresh({ date: "2026-11-04", published_at: "2026-11-04T14:41:00-06:00" }, NOW), false);
   const fresh = shown.filter((item) => logic.isFresh(item, WINDOW));
-  assert.equal(fresh.length, 5);
+  assert.equal(fresh.length, 6);
+  assert.ok(fresh.some((item) => item.headline.startsWith("SanDisk closed up")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Bloomberg:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Nikkei and Reuters:")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("FT and the Journal")));
+  assert.ok(fresh.some((item) => item.headline.startsWith("Yonhap, citing the WSJ:")));
   assert.ok(fresh.some((item) => item.headline.startsWith("SemiAnalysis:")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("CBS News:")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("No public Nvidia response")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("Daily Herald:")));
-  assert.ok(fresh.some((item) => item.headline.startsWith("SpaceX’s Cochise")));
+  assert.ok(shown.some((item) => item.headline.startsWith("Reuters: the Dutch") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("CBS News:") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("No public Nvidia response") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("Daily Herald:") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("SpaceX’s Cochise") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Dell Q3 FY27") && !logic.isFresh(item, WINDOW)));
-  assert.ok(shown.some((item) => item.headline.startsWith("SanDisk closed") && !logic.isFresh(item, WINDOW)));
+  assert.ok(shown.some((item) => item.headline.startsWith("SanDisk closed down") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Polaris Forge 2:") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("Korea Herald:") && !logic.isFresh(item, WINDOW)));
   assert.ok(shown.some((item) => item.headline.startsWith("TrendForce and Data Phoenix:") && !logic.isFresh(item, WINDOW)));
@@ -229,7 +279,7 @@ test("rolling seven SGT dates, newest first, no date-only 48h badge", () => {
   assert.ok(shown.some((item) => item.headline.startsWith("HPE Q4 FY26") && !logic.isFresh(item, WINDOW)));
   assert.equal(shown.some((item) => item.headline.includes("Royal Decree 1032/2026")), false);
   assert.ok(shown.some((item) => item.headline.startsWith("The Nation:") && !logic.isFresh(item, WINDOW)));
-  assert.ok(shown.some((item) => item.headline.startsWith("Nikkei:") && !logic.isFresh(item, WINDOW)));
+  assert.equal(shown.some((item) => item.headline.startsWith("Nikkei: at least two")), false);
   assert.equal(shown.some((item) => item.headline.startsWith("Oracle:")), false);
   assert.equal(shown.some((item) => item.headline.startsWith("BCG estimate")), false);
   assert.equal(shown.some((item) => item.headline.startsWith("Reuters: TSMC")), false);
